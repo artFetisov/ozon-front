@@ -21,7 +21,6 @@ export default function RootLayout({
 		<body>
 		<div className='root'>
 			<Header />
-			<div className={'box'}></div>
 			<div className={'root-layout'}>
 				{children}
 			</div>

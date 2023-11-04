@@ -1,6 +1,6 @@
 import { IProduct } from '@/types/product/product.types'
 
-export const selectionItemsArray: IProduct[] = [
+export const productsMock: IProduct[] = [
 	{ price: 999, title: 'fldmfk mfkmkfs ssssss smsms;f;ekf;efef', category: 'd;l;fmdlf', discount: 33 },
 	{ price: 741, title: 'fldmfkmfk m1111111kf msefe,f;elflf[f df;d;fd;f', category: 'd;l;fmdlf', discount: 53 },
 	{ price: 1500, title: 'fldmfkmfkm dfdf dfdfdfdf dlf,dlf 22222222kfms', category: 'd;l;fmdlf', discount: 63 },

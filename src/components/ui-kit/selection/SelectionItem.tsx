@@ -5,9 +5,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import cn from 'classnames'
 import { getPriceWithDiscount, getPriceWithWhitespace } from '@/utils/price/getCorrectPrice'
+import { IProduct } from '@/types/product/product.types'
 
 interface ISelectionItem {
-	item: { price: number, title: string, category: string, discount: number }
+	item: IProduct
 	size: number
 }
 

@@ -1,5 +1,9 @@
 import { Product } from '@/components/screens/product/Product'
+import { NextPage } from 'next'
 
-export default function ProductPage({ params }) {
+const ProductPage: NextPage = ({ params }) => {
 	return <><Product /> - {params.slug}</>
 }
+
+export default ProductPage
+
