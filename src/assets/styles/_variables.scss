@@ -1,0 +1,15 @@
+$red-color: #f91155;
+$blue-primary: #005bff;
+$blue-hover: #0050e0;
+$green-color: #10c44c;
+$grey-color: #99a3ae;
+$white-bg-color: #f7f8f9;
+
+:export {
+  redcolor: $red-color;
+  bluecolor: $blue-primary;
+  bluehovercolor: $blue-hover;
+  greencolor: $green-color;
+  greycolor: $grey-color;
+  whitecolor: $white-bg-color;
+}

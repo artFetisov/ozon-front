@@ -1,0 +1,29 @@
+@use 'src/assets/styles/variables' as variables;
+
+.button {
+	display: block;
+	background: transparent;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+
+	.inner {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 120px;
+		min-height: 40px;
+		padding: 0 12px;
+		color: #fff;
+		font-size: 16px;
+		line-height: 20px;
+		text-align: center;
+		background-color: variables.$blue-primary;
+		border-radius: 8px;
+		transition: all 0.3s ease;
+
+		&:hover {
+			background-color: variables.$blue-hover;
+		}
+	}
+}

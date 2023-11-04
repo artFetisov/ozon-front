@@ -1,0 +1,35 @@
+@use 'src/assets/styles/variables' as variables;
+
+.linkBox {
+	display: flex;
+	gap: 16px;
+
+	.link {
+		align-items: center;
+		height: 56px;
+		width: 76px;
+		padding: 8px 0 0;
+		transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		position: relative;
+		display: flex;
+		font-size: 14px;
+		flex-direction: column;
+
+		&:hover {
+			color: variables.$blue-primary;
+		}
+
+		.control {
+			background-color: variables.$red-color;
+			border-radius: 8px;
+			height: 16px;
+			line-height: 17px;
+			color: #fff;
+			padding: 0 8px;
+			font-size: 12px;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+}

@@ -1,0 +1,18 @@
+.heading {
+  display: flex;
+  align-items: center;
+  padding: 7px 0;
+  margin-bottom: 24px;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 30px;
+  letter-spacing: 0.4px;
+}
+
+.number {
+  color: rgba(0, 26, 52, .6);
+  font-weight: 400;
+  font-size: 14px;
+  height: 20px;
+  margin: 0 0 12px 2px;
+}

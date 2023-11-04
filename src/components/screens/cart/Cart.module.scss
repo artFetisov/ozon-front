@@ -1,0 +1,13 @@
+@use 'src/assets/styles/variables' as variables;
+
+.cartBox {
+  display: flex;
+  flex-direction: column;
+  margin: 0 24px;
+  padding: 0 28px;
+}
+
+.cart {
+  margin: 24px 0 0 0;
+  background-color: variables.$white-bg-color;
+}

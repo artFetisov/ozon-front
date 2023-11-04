@@ -1,9 +1,35 @@
-.header {
+.headerContainer {
+  //position: fixed;
+  //top: 0;
+  //right: 0;
+  //left: 0;
+  z-index: 100;
+  background-color: #fff;
+  border-bottom: 1px solid rgb(204 214 228 / 60%);
 }
 
-.location {
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 63px;
+  margin: 0 24px;
   padding: 4px 28px;
-  height: 32px;
-  background-color: #005bff;
-  line-height: 16px;
+}
+
+.searchInputBox {
+  flex-grow: 1;
+  margin-right: 24px;
+  padding: 8px;
+}
+
+.showCatalogButtonWrapper {
+  display: inline-flex;
+  margin-right: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 38px;
 }

@@ -1,10 +1,10 @@
-import './globals.css'
+import '../assets/styles/globals.scss'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import React from 'react'
 import { Header } from '@/components/layout/Header/Header'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -12,16 +12,21 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-	children,
-}: {
+																		 children,
+																	 }: {
 	children: React.ReactNode
 }) {
 	return (
-		<html lang='en'>
-			<body>
-				<Header />
+		<html lang='en' className={inter.className}>
+		<body>
+		<div className='root'>
+			<Header />
+			<div className={'box'}></div>
+			<div className={'root-layout'}>
 				{children}
-			</body>
+			</div>
+		</div>
+		</body>
 		</html>
 	)
 }
