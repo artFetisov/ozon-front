@@ -1,3 +1,5 @@
+'use client'
+
 import { FC } from 'react'
 import styles from './Header.module.scss'
 import { Links } from '@/components/layout/Header/Links/Links'
@@ -7,9 +9,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 import logo from '../../../assets/images/logo-ozon.png'
 import { CategoryTopRow } from '@/components/ui-kit/category-top-row/CategoryTopRow'
+import { useScrollForHeader } from '@/hooks/useScrollForHeader'
 
 export const Header: FC = () => {
-	return <header className={styles.headerContainer}>
+	const { scrollPosition, target, isHideHeader } = useScrollForHeader()
+
+	return <header className={styles.headerContainer} ref={target}>
 		<div className={styles.layout}>
 			<div className={styles.header}>
 				<Link href={'/'} className={styles.logo}>
@@ -30,6 +35,9 @@ export const Header: FC = () => {
 				<Links />
 			</div>
 			<CategoryTopRow />
+		</div>
+		<div>
+			{scrollPosition}
 		</div>
 	</header>
 }
