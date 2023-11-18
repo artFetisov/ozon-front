@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { categoriesMock } from '@/mock/categories'
 import styles from './CategoryTopRow.module.scss'
 import { CategoryTopRowLink } from '@/components/ui-kit/category-top-row/CategoryTopRowLink'
+import cn from 'classnames'
 
 export const CategoryTopRow: FC = () => {
 	return <ul className={styles.categoryTopRow}>

@@ -11,3 +11,41 @@
   margin: 24px 0 0 0;
   background-color: variables.$white-bg-color;
 }
+
+.orderSectionCartBox {
+  display: flex;
+  margin-top: 48px;
+}
+
+.cartItemsBox {
+  flex-basis: calc(66.6% - 24px);
+  max-width: calc(66.6% - 24px);
+  display: flex;
+  flex-direction: column;
+}
+
+.controlCartItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  min-height: 48px;
+  padding: 0 16px;
+  position: relative;
+
+  .removeAndSelectItems {
+    display: flex;
+  }
+
+  .shareItems {
+
+  }
+}
+
+.toOrderBox {
+  flex-basis: calc(33.3% - 24px);
+  max-width: calc(33.3% - 24px);
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+}

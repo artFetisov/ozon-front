@@ -2,18 +2,18 @@ import { useEffect, useRef, useState } from 'react'
 
 export const useScrollForHeader = () => {
 	const [scrollPosition, setScrollPosition] = useState<number>(0)
-	const [isHideHeader, setIsHideHeader] = useState<boolean>(false)
+	const [isHideContainer, setIsHideContainer] = useState<boolean>(false)
 
 	const target = useRef<HTMLHeadingElement | null>(null)
 
 	const handleScroll = (e: HTMLElementEventMap['scroll']) => {
 		const eventTarget = e.target as HTMLElement
 
-		if (!isHideHeader && target.current?.scrollHeight < scrollPosition) {
-			setIsHideHeader(true)
+		if (!isHideContainer && target.current?.scrollHeight < scrollPosition) {
+			setIsHideContainer(true)
 		}
-		if (isHideHeader && target.current?.scrollHeight > scrollPosition) {
-			setIsHideHeader(false)
+		if (isHideContainer && target.current?.scrollHeight > scrollPosition) {
+			setIsHideContainer(false)
 		}
 
 		setScrollPosition(Math.floor(eventTarget.scrollTop))
@@ -27,5 +27,5 @@ export const useScrollForHeader = () => {
 		}
 	}, [handleScroll])
 
-	return { scrollPosition, target, isHideHeader }
+	return { target, isHideContainer }
 }

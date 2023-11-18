@@ -1,0 +1,66 @@
+@use 'src/assets/styles/variables' as variables;
+
+.footer {
+  background-color: variables.$grey-bg-color;
+  //margin-top: 40px;
+  width: 100%;
+}
+
+.footerBox {
+  margin: 0 auto;
+  max-width: 1472px;
+  padding: 40px;
+  width: 100%;
+}
+
+.jobBox {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: rgba(0, 48, 120, .039);
+  border-radius: 12px;
+  margin-bottom: 30px;
+  padding: 20px 40px 20px 20px;
+
+  .logo {
+    margin-right: 50px;
+  }
+
+  .linksBox {
+    display: flex;
+    width: 100%;
+    gap: 55px;
+    flex-wrap: wrap;
+    height: 24px;
+    justify-content: flex-end;
+    overflow: hidden;
+
+    .link {
+      display: flex;
+      align-items: center;
+      color: #000;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color .3s ease;
+
+      &:hover {
+        color: variables.$blue-primary;
+      }
+
+      .icon {
+        color: variables.$grey-color;
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.infoBox {
+  display: flex;
+}
+
+. barcode {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

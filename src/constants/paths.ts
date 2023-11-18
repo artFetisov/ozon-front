@@ -1,4 +1,5 @@
 export enum PATHS {
+	HOME = '/',
 	MY_MAIN = '/my/main',
 	MY_ORDER_LIST = '/my/orderlist',
 	MY_FAVORITES = '/my/favorites',

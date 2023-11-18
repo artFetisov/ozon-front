@@ -1,7 +1,21 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import styles from './SearchBar.module.scss'
+import { useModal } from '@/hooks/useModal'
+import { LayoutModal } from '@/components/ui-kit/modals/LayoutModal'
+import { SearchBarModal } from '@/components/ui-kit/modals/search-bar-modal/SearchBarModal'
 
 export const SearchBar: FC = () => {
+	const { isOpenModal, openModal, closeModal } = useModal()
+
+	const openModalHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+		event.preventDefault()
+		openModal()
+	}
+
+	const closeModalHandler = () => {
+		closeModal()
+	}
+
 	return <div className={styles.searchBarWrapper}>
 		<form className={styles.searchForm}>
 			<div className={styles.leftSide}>
@@ -18,7 +32,7 @@ export const SearchBar: FC = () => {
 				</div>
 			</div>
 			<div className={styles.rightSide}>
-				<button className={styles.searchButton}>
+				<button className={styles.searchButton} onClick={openModalHandler}>
 					    <span className={styles.searchIconWrapper}>
 								   <svg height={24} width={24}>
 		               <path fill='currentColor'
@@ -28,5 +42,8 @@ export const SearchBar: FC = () => {
 				</button>
 			</div>
 		</form>
+		{isOpenModal && <LayoutModal>
+			<SearchBarModal close={closeModalHandler} />
+		</LayoutModal>}
 	</div>
 }

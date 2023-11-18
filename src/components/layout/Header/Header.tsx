@@ -3,21 +3,25 @@
 import { FC } from 'react'
 import styles from './Header.module.scss'
 import { Links } from '@/components/layout/Header/Links/Links'
-import { SearchBar } from '@/components/ui-kit/search-input/SearchBar'
+import { SearchBar } from '@/components/ui-kit/search-bar/SearchBar'
 import { Button } from '@/components/ui-kit/button/Button'
 import Link from 'next/link'
 import Image from 'next/image'
 import logo from '../../../assets/images/logo-ozon.png'
 import { CategoryTopRow } from '@/components/ui-kit/category-top-row/CategoryTopRow'
 import { useScrollForHeader } from '@/hooks/useScrollForHeader'
+import cn from 'classnames'
+import { PATHS } from '@/constants/paths'
 
 export const Header: FC = () => {
-	const { scrollPosition, target, isHideHeader } = useScrollForHeader()
+	const { target, isHideContainer } = useScrollForHeader()
 
-	return <header className={styles.headerContainer} ref={target}>
+	return <header className={styles.headerContainer}>
 		<div className={styles.layout}>
-			<div className={styles.header}>
-				<Link href={'/'} className={styles.logo}>
+			<div ref={target} className={cn(styles.header, {
+				[styles.fixed]: isHideContainer,
+			})}>
+				<Link href={PATHS.HOME} className={styles.logo}>
 					<Image src={logo} height={40} width={128} alt={'logo'} />
 				</Link>
 				<div className={styles.showCatalogButtonWrapper}>
@@ -34,10 +38,8 @@ export const Header: FC = () => {
 				</div>
 				<Links />
 			</div>
+			<div className={cn(styles.row)}></div>
 			<CategoryTopRow />
-		</div>
-		<div>
-			{scrollPosition}
 		</div>
 	</header>
 }

@@ -4,6 +4,7 @@ $blue-hover: #0050e0;
 $green-color: #10c44c;
 $grey-color: #99a3ae;
 $white-bg-color: #f7f8f9;
+$grey-bg-color: #f5f7fa;
 
 :export {
   redcolor: $red-color;
@@ -12,4 +13,5 @@ $white-bg-color: #f7f8f9;
   greencolor: $green-color;
   greycolor: $grey-color;
   whitecolor: $white-bg-color;
+  greybgcolor: $grey-bg-color;
 }

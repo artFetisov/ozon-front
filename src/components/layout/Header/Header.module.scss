@@ -1,16 +1,43 @@
 .headerContainer {
-  //position: fixed;
-  //top: 0;
-  //right: 0;
-  //left: 0;
+  background-color: #fff;
+}
+
+.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
   z-index: 100;
   background-color: #fff;
-  border-bottom: 1px solid rgb(204 214 228 / 60%);
+  margin-left: -28px;
+  max-width: 1472px;
+  padding: 4px 28px;
+
+  &::before {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 1px solid rgba(204, 214, 228, .6);
+    content: "";
+    height: 63px;
+    margin-left: -16px;
+    left: 0;
+  }
+}
+
+.row {
+  height: 1px;
+  position: absolute;
+  width: 100vw;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background-color: 1px solid rgb(204 214 228 / 60%);
 }
 
 .layout {
   margin: 0 24px;
   padding: 4px 28px;
+  position: relative;
 }
 
 .header {

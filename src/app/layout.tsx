@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import React from 'react'
 import { Header } from '@/components/layout/Header/Header'
+import { Footer } from '@/components/layout/Footer/Footer'
 
 const inter = Inter({ subsets: ['latin'], display: 'swap' })
 
@@ -24,6 +25,7 @@ export default function RootLayout({
 			<div className={'root-layout'}>
 				{children}
 			</div>
+			<Footer />
 		</div>
 		</body>
 		</html>
