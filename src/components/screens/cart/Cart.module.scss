@@ -33,19 +33,102 @@
   padding: 0 16px;
   position: relative;
 
-  .removeAndSelectItems {
+  .removeAndSelectBox {
     display: flex;
+
+    .removeTitle {
+      color: variables.$red-color;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
   }
 
-  .shareItems {
+  .shareBox {
+    display: flex;
+    align-items: center;
+    color: variables.$blue-primary;
+    font-size: 13px;
+    font-weight: 500;
+    transition: color .3s ease;
+    cursor: pointer;
 
+    &:hover {
+      color: variables.$blue-hover;
+    }
+
+    svg {
+      margin-right: 6px;
+    }
   }
 }
 
+.cartItems {
+  border-top: 1px solid rgba(204, 214, 228, .6);
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 2px;
+  position: relative;
+}
+
 .toOrderBox {
-  flex-basis: calc(33.3% - 24px);
-  max-width: calc(33.3% - 24px);
+  flex-basis: calc(33.3%);
+  max-width: calc(33.3%);
   display: flex;
   flex-direction: column;
   margin-left: 24px;
+  position: sticky;
+  top: 32px;
+
+  & > section {
+    background-color: #fff;
+    border-radius: 2px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .topBox {
+      padding: 24px;
+      border-bottom: 1px solid rgba(204, 214, 228, .6);
+
+      & > div {
+        margin-top: 12px;
+        line-height: 18px;
+        color: #707F8D;
+        font-size: 13px;
+      }
+    }
+
+    .priceBox {
+      padding: 24px;
+
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .heading {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.4em;
+      }
+
+      .grey {
+        color: rgba(0, 26, 52, .6);
+        font-size: 13px;
+        line-height: 1.29em;
+        text-align: end;
+      }
+
+      .p16 {
+        padding-bottom: 16px;
+      }
+
+      .p12 {
+        padding-bottom: 12px;
+      }
+    }
+  }
 }

@@ -1,7 +1,6 @@
 import { DetailedHTMLProps, FC } from 'react'
 import styles from './Heading.module.scss'
 import { HTMLAttributes } from 'react'
-import { totalmem } from 'os'
 
 type DefaultDivPropsType = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 

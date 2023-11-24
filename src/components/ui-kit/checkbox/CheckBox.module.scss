@@ -18,7 +18,44 @@
   }
 
   .checkbox {
-    background-color: variables.$blue-primary;
-    border-color: variables.$blue-primary;
+    display: inline-flex;
+    background-color: #fff;
+    border: 2px solid #b3bcc5;
+    border-radius: 4px;
+    flex: 0 0 auto;
+    height: 16px;
+    position: relative;
+    transition: background-color .15s, border-color .15s;
+    width: 16px;
+
+    .svg {
+      left: 50%;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+    }
+
+    .svgHovered {
+
+    }
   }
+}
+
+.text {
+  font-size: 13px;
+  font-weight: 500;
+  padding-left: 8px;
+}
+
+.checked {
+  background-color: variables.$blue-primary !important;
+  border-color: variables.$blue-primary !important;
+}
+
+.hovered {
+  color: #99bdff !important;
+  border-color: #99bdff !important;
 }

@@ -3,6 +3,8 @@ import styles from './Footer.module.scss'
 import Link from 'next/link'
 import { PATHS } from '@/constants/paths'
 import Image from 'next/image'
+import { footerLinksFour, footerLinksOne, footerLinksThree, footerLinksTwo } from '@/mock/footer'
+import { Button } from '@/components/ui-kit/button/Button'
 
 export const Footer: FC = () => {
 	return <footer className={styles.footer}>
@@ -75,7 +77,6 @@ export const Footer: FC = () => {
 						<svg width={24} height={24} className={styles.icon}>
 							<path fill='currentColor'
 										d='M1 4a1 1 0 0 1 1-1h11a1 1 0 1 1 0 2H3v12h1.17a3.001 3.001 0 0 1 5.66 0H12V8a1 1 0 0 1 1-1h3.078a5 5 0 0 1 3.904 1.877l1.922 2.403A5 5 0 0 1 23 14.403V18a1 1 0 0 1-1 1h-1.17a3.001 3.001 0 0 1-5.66 0H9.83a3.001 3.001 0 0 1-5.66 0H2a1 1 0 0 1-1-1V4Zm13 13h1.17a3.001 3.001 0 0 1 5.66 0H21v-2.597a3 3 0 0 0-.657-1.874l-1.923-2.403A3 3 0 0 0 16.077 9H14v2h2a1 1 0 1 1 0 2h-2v4Zm-6 1a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm10-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z'>
-
 							</path>
 						</svg>
 					</span>
@@ -97,11 +98,76 @@ export const Footer: FC = () => {
 				</div>
 			</div>
 			<div className={styles.infoBox}>
-				<div className={styles.barcode}>
-					barcode
+				<div className={styles.barcodeBox}>
+					<Image className={styles.barcode} height={190} width={190}
+								 src={'https://ir.ozone.ru/s3/cms/28/t9c/qr-code_1.png'} />
+					<p>Наведите камеру и скачайте бесплатное приложение Ozon</p>
+					<div className={styles.icons}>
+						<Image height={42} width={42} src={'https://ir.ozone.ru/s3/cms/0e/ta0/group_357649.png'} />
+						<Image height={42} width={42} src={'https://ir.ozone.ru/s3/cms/9b/te1/group_357648.png'} />
+						<Image height={42} width={42} src={'https://ir.ozone.ru/s3/cms/20/tcc/group_357647.png'} />
+						<Image height={42} width={42} src={'https://ir.ozone.ru/s3/cms/f7/tb3/rustore_desk.svg'} />
+					</div>
 				</div>
-				<div>
-					right side
+				<div className={styles.infoBoxRightSide}>
+					<div className={styles.links}>
+						<div className={styles.linksList}>
+							<span>{footerLinksOne.title}</span>
+							{footerLinksOne.links.map((l) => <Link className={styles.link} key={l.title}
+																										 href={l.link}>{l.title}</Link>)}
+						</div>
+						<div className={styles.linksList}>
+							<span>{footerLinksTwo.title}</span>
+							{footerLinksTwo.links.map((l) => <Link className={styles.link} key={l.title}
+																										 href={l.link}>{l.title}</Link>)}
+						</div>
+						<div className={styles.linksList}>
+							<span>{footerLinksThree.title}</span>
+							{footerLinksThree.links.map((l) => <Link className={styles.link} key={l.title}
+																											 href={l.link}>{l.title}</Link>)}
+						</div>
+						<div className={styles.linksList}>
+							<span>{footerLinksFour.title}</span>
+							{footerLinksFour.links.map((l) => <Link className={styles.link} key={l.title}
+																											href={l.link}>{l.title}</Link>)}
+						</div>
+					</div>
+					<div className={styles.footerEnd}>
+						<div className={styles.icons}>
+							<Link href={PATHS.HOME}>
+								<svg width={24} height={24}>
+									<path fill='currentColor'
+												d='M12.893 18C6.06 18 2.163 13.495 2 6h3.423c.112 5.502 2.636 7.832 4.634 8.312V6h3.223v4.745c1.974-.204 4.048-2.367 4.748-4.745h3.223a8.976 8.976 0 0 1-1.544 3.43 9.383 9.383 0 0 1-2.841 2.552 9.813 9.813 0 0 1 3.238 2.48A9.365 9.365 0 0 1 22 18h-3.548a5.912 5.912 0 0 0-1.913-2.895 6.29 6.29 0 0 0-3.259-1.393V18h-.387Z'>
+
+									</path>
+								</svg>
+							</Link>
+							<Link href={PATHS.HOME}>
+								<svg width={24} height={24}>
+									<path fill='currentColor'
+												d='M11.953 12.329A5.415 5.415 0 0 1 8.21 10.82 5.067 5.067 0 0 1 6.651 7.2a5.129 5.129 0 0 1 1.553-3.648A5.48 5.48 0 0 1 11.953 2 5.449 5.449 0 0 1 14 2.395a5.306 5.306 0 0 1 1.73 1.13 5.11 5.11 0 0 1 1.144 1.69c.262.63.39 1.305.38 1.985a4.921 4.921 0 0 1-.385 1.973 5.056 5.056 0 0 1-1.148 1.672 5.252 5.252 0 0 1-1.73 1.11 5.39 5.39 0 0 1-2.038.373Zm0-7.266a2.254 2.254 0 0 0-1.589.65 2.13 2.13 0 0 0-.474.718 2.075 2.075 0 0 0-.146.84c-.005.279.05.555.16.812.111.258.275.49.482.684.207.193.453.344.722.442.27.098.557.141.845.128.285.006.57-.042.836-.143.266-.1.51-.25.715-.443.205-.192.37-.422.482-.676.113-.254.173-.527.175-.804.01-.286-.04-.572-.146-.84a2.13 2.13 0 0 0-.474-.717 2.213 2.213 0 0 0-.726-.482 2.273 2.273 0 0 0-.862-.17Zm2.135 11.54 3.019 2.848c.14.136.251.297.327.474a1.42 1.42 0 0 1-.327 1.592c-.13.151-.294.273-.479.356a1.43 1.43 0 0 1-1.656-.356l-3.02-2.849-2.945 2.85a1.476 1.476 0 0 1-.505.326c-.19.073-.394.108-.599.1a1.8 1.8 0 0 1-1.104-.427 1.458 1.458 0 0 1-.328-.474 1.42 1.42 0 0 1 .328-1.591l3.092-2.85a15.575 15.575 0 0 1-3.166-1.353 1.555 1.555 0 0 1-.68-.934 1.509 1.509 0 0 1 .165-1.132c.112-.172.26-.32.433-.436a1.58 1.58 0 0 1 1.202-.233c.206.042.401.125.573.242a7.09 7.09 0 0 0 3.572.961 7.09 7.09 0 0 0 3.57-.961 1.582 1.582 0 0 1 1.2-.245c.206.04.402.12.576.236.174.115.321.264.433.436.21.335.28.734.198 1.117a1.55 1.55 0 0 1-.64.949 16.221 16.221 0 0 1-3.24 1.353Z'></path>
+								</svg>
+							</Link>
+							<Link href={PATHS.HOME}>
+								<svg width={24} height={24}>
+									<path fill='currentColor'
+												d='M3.375 10.888c5.369-2.258 8.949-3.747 10.74-4.466 5.114-2.053 6.177-2.41 6.87-2.422.152-.002.493.034.713.207a.74.74 0 0 1 .262.481c.025.139.055.454.031.7-.277 2.811-1.476 9.633-2.086 12.781-.259 1.333-.767 1.78-1.259 1.823-1.07.095-1.881-.682-2.917-1.338-1.621-1.025-2.537-1.664-4.11-2.665-1.818-1.156-.64-1.792.396-2.831.272-.272 4.984-4.41 5.075-4.785.011-.047.022-.221-.086-.314-.108-.092-.266-.06-.381-.036-.163.036-2.752 1.688-7.768 4.957-.735.487-1.4.724-1.997.712-.658-.014-1.923-.359-2.863-.654-1.153-.362-2.07-.553-1.99-1.168.041-.32.498-.647 1.37-.982Z'></path>
+								</svg>
+							</Link>
+						</div>
+						<div>
+							<Link href={PATHS.HOME} className={styles.agreement}>
+								© 1998 – 2023 ООО «Интернет Решения». Все права защищены.
+							</Link>
+							<Button variant={'large'}>
+								<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' style={{ marginRight: '6px' }}>
+									<path fill='currentColor'
+												d='M8 5a2.947 2.947 0 0 0-2.84 2.158l-.002.01-.908 3.147A4.989 4.989 0 0 1 6 10c1.494 0 2.834.655 3.75 1.693A3.983 3.983 0 0 1 12 11c.835 0 1.61.256 2.25.693A4.988 4.988 0 0 1 18 10c.463 0 .912.063 1.338.181L18.06 6.914v-.001A3 3 0 0 0 15.264 5H15a1 1 0 1 1 0-2h.264a5 5 0 0 1 4.66 3.187l2.707 6.924a5 5 0 1 1-9.382.326A1.99 1.99 0 0 0 12 13a1.99 1.99 0 0 0-1.25.438 5 5 0 1 1-9.406-.265l1.89-6.555A4.947 4.947 0 0 1 8 3a1 1 0 0 1 0 2Zm-2 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm12 0a3 3 0 1 0-.002 6A3 3 0 0 0 18 12Z'></path>
+								</svg>
+								<span>Для слабовидящих</span>
+							</Button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

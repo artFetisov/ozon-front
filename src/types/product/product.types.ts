@@ -1,12 +1,17 @@
 import { ICategory } from '@/types/category/category.types'
 import { IUser } from '@/types/user/user.types'
 import { IFeedback } from '@/types/feedback/feedback.types'
+import { ISeller } from '@/types/seller/seller.types'
 
 export interface IProduct {
 	id: number
+	slug: string
 	article: number
 	price: number
+	seller: ISeller
 	discount: number
+	remains: number
+	amount: number
 	title: string
 	category: ICategory
 	description: string
@@ -15,7 +20,7 @@ export interface IProduct {
 	brandLogo: string
 	variants: string[]
 	images: string[]
-	characteristics: ICharacteristic[]
+	characteristics: ICharacteristic
 	rating: number
 	dialog: IProductAnswerAndQuestionDialog
 }

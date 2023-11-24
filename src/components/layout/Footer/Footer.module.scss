@@ -59,8 +59,129 @@
   display: flex;
 }
 
-. barcode {
+.barcodeBox {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 26, 52, .2);
+  border-radius: 24px;
+  padding: 24px 23px;
+  margin-right: 60px;
+  width: 300px;
+  text-align: center;
+
+  p {
+    color: rgba(0, 26, 52, .6);
+    font-size: 16px;
+    margin: 16px auto;
+    max-width: 230px;
+  }
+
+  .icons {
+    display: flex;
+    gap: 16px;
+
+    img {
+      border-radius: 12px;
+    }
+  }
+}
+
+.barcode {
+  border-radius: 16px;
+}
+
+.infoBoxRightSide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+
+  .links {
+    display: flex;
+    justify-content: space-between;
+
+    .linksList {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+
+      span {
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .link {
+        margin-bottom: 8px;
+        color: rgba(0, 26, 52, .6);
+        font-size: 14px;
+        overflow: hidden;
+        transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+          color: variables.$blue-primary;
+        }
+      }
+    }
+  }
+}
+
+.footerEnd {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+
+  .icons {
+    margin-right: 40px;
+
+    a {
+      display: inline-flex;
+      background-color: #fff;
+      border-radius: 12px;
+      height: 42px;
+      position: relative;
+      transition: background-color .2s ease;
+      width: 42px;
+      margin-right: 16px;
+
+      &:nth-child(1):hover {
+        background-color: #4680C2;
+        color: #fff;
+      }
+
+      &:nth-child(2):hover {
+        background-color: #fa8409;
+        color: #fff;
+      }
+
+      &:nth-child(3):hover {
+        background-color: #2cb5f5;
+        color: #fff;
+      }
+
+      svg {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: color .1s ease;
+      }
+    }
+  }
+
+}
+
+.agreement {
+  display: inline-flex;
+  color: rgba(0, 26, 52, .6);
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 16px;
+  margin-top: 24px;
+  max-width: 272px;
 }
