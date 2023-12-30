@@ -1,54 +1,54 @@
 @use 'src/assets/styles/variables' as variables;
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  letter-spacing: normal;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	letter-spacing: normal;
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+	max-width: 100vw;
+	overflow-x: hidden;
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  color: #000;
-  background-color: variables.$white-bg-color;
-  font-size: 14px;
-  letter-spacing: -0.03em;
-  overflow-y: scroll;
+	width: 100vw;
+	height: 100vh;
+	overflow-y: scroll;
+	color: #000;
+	font-size: 14px;
+	letter-spacing: -0.03em;
+	background-color: variables.$white-bg-color;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 li {
-  list-style: none;
+	list-style: none;
 }
 
 .root {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .root-layout {
-  //margin-top: 63.8px;
+	//margin-top: 63.8px;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none; // Yeah, yeah everybody write about it
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	appearance: none; // Yeah, yeah everybody write about it
 }
 
 input[type='number'],
-input[type="number"]:hover,
-input[type="number"]:focus {
-  appearance: none;
-  -moz-appearance: textfield;
+input[type='number']:hover,
+input[type='number']:focus {
+	appearance: textfield;
+	appearance: none;
 }

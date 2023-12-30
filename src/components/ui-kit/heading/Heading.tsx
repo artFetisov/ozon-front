@@ -5,17 +5,15 @@ import { HTMLAttributes } from 'react'
 type DefaultDivPropsType = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
 type MyDivPropsType = DefaultDivPropsType & {
-	text: string
-	count?: number
+	text?: string
+	count?: number | string
 }
 
-export const Heading: FC<MyDivPropsType> = ({ text, count }) => {
-	return <div className={styles.heading}>
-		<span>
-			{text}
-		</span>
-		<span className={styles.number}>
-			{count}
-		</span>
-	</div>
+export const Heading: FC<MyDivPropsType> = ({ text, count, ...props }) => {
+	return (
+		<div className={styles.heading} {...props}>
+			<span>{text && text}</span>
+			<span className={styles.number}>{count}</span>
+		</div>
+	)
 }

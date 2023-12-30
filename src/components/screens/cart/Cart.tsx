@@ -1,57 +1,68 @@
-import { FC } from 'react'
+'use client'
+
+import { FC, useEffect } from 'react'
 import styles from './Cart.module.scss'
 import { Heading } from '@/components/ui-kit/heading/Heading'
 import { CheckBox } from '@/components/ui-kit/checkbox/CheckBox'
-import { cartItems } from '@/mock/cartItems'
-import { CartItem } from '@/components/screens/cart/CartItem/CartItem'
-import { Button } from '@/components/ui-kit/button/Button'
-import cn from 'classnames'
+import { Selection } from '@/components/ui-kit/selection/Selection'
+import { productsMock } from '@/mock/products'
+import { useActions } from '@/hooks/useActions'
+import { PreOrderBox } from './PreOrderBox/PreOrderBox'
+import { CartItems } from './CartItems/CartItems'
+import { mockCartItems } from '@/mock/cartItems'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { getProductsCartTotal } from '@/utils/products/products'
 
 export const Cart: FC = () => {
-	return <div className={styles.cartBox}>
-		<div className={styles.cart}>
-			<Heading text={'Корзина'} count={3} />
-			<div className={styles.orderSectionCartBox}>
-				<div className={styles.cartItemsBox}>
-					<div className={styles.controlCartItems}>
-						<div className={styles.removeAndSelectBox}>
-							<CheckBox text={'Выбрать все'} />
-							<div className={styles.removeTitle}>Удалить выбранные</div>
+	const { setCartItems, setSelectedCartItems, selectAllCartItems, deleteSelectedCartItems } = useActions()
+
+	const isSelectedAll = useTypedSelector((state) => state.cart.isSelectedAll)
+	const cartItems = useTypedSelector((state) => state.cart.cartItems)
+
+	useEffect(() => {
+		setCartItems(mockCartItems)
+		setSelectedCartItems(mockCartItems.filter((c) => c.checked))
+	}, [])
+
+	const selectAllCartItemsHandler = () => {
+		selectAllCartItems()
+	}
+
+	const deleteSelectedCartItemsHandler = () => {
+		deleteSelectedCartItems()
+	}
+
+	return (
+		<div className={styles.cartBox}>
+			<div className={styles.cart}>
+				<Heading text={'Корзина'} count={getProductsCartTotal(cartItems, true)} />
+				<div className={styles.orderSectionCartBox}>
+					<div className={styles.cartItemsBox}>
+						<div className={styles.controlCartItems}>
+							<div className={styles.removeAndSelectBox}>
+								<CheckBox text={'Выбрать все'} onChangeMy={selectAllCartItemsHandler} checked={isSelectedAll} />
+								<div className={styles.removeTitle} onClick={deleteSelectedCartItemsHandler}>
+									Удалить выбранные
+								</div>
+							</div>
+							<div className={styles.shareBox}>
+								<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'>
+									<path
+										fill='currentColor'
+										d='M7.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1-1.414 1.414L9 4.414V9a1 1 0 1 1-2 0V4.414l-.293.293a1 1 0 0 1-1.414-1.414l2-2ZM2 9a3 3 0 0 1 3-3 1 1 0 0 1 0 2 1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1 1 1 0 1 1 0-2 3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9Z'
+									></path>
+								</svg>
+								<span>Поделиться</span>
+							</div>
 						</div>
-						<div className={styles.shareBox}>
-							<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'>
-								<path fill='currentColor'
-											d='M7.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1-1.414 1.414L9 4.414V9a1 1 0 1 1-2 0V4.414l-.293.293a1 1 0 0 1-1.414-1.414l2-2ZM2 9a3 3 0 0 1 3-3 1 1 0 0 1 0 2 1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1 1 1 0 1 1 0-2 3 3 0 0 1 3 3v3a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9Z'></path>
-							</svg>
-							<span>Поделиться</span>
-						</div>
+						<CartItems items={cartItems} />
 					</div>
-					<div className={styles.cartItems}>
-						{cartItems.map((c) => <CartItem key={c.title + '-' + c.id} item={c} />)}
-					</div>
-				</div>
-				<div className={styles.toOrderBox}>
-					<section>
-						<div className={styles.topBox}>
-							<Button variant={'large'} color={'green'}>Перейти к оформлению</Button>
-							<div>
-								<span>Доступные способы и время доставки можно выбрать при оформлении заказа</span>
-							</div>
-						</div>
-						<div className={styles.priceBox}>
-							<div className={cn(styles.box, styles.p16)}>
-								<span className={styles.heading}>Ваша корзина</span>
-								<span className={styles.grey}>{getProductsCartTotal(cartItems)} • кг</span>
-							</div>
-							<div className={cn(styles.box, styles.p12)}>
-								<span>Ваша корзина</span>
-								<span>333</span>
-							</div>
-						</div>
-					</section>
+					<PreOrderBox />
 				</div>
 			</div>
+			<Selection rowTotalItems={6} items={productsMock.slice(0, 6)} headingText={'Вы смотрели'} />
+			<Selection rowTotalItems={5} items={productsMock.slice(0, 5)} headingText={'Рекомендуем'} />
+			<Selection rowTotalItems={4} items={productsMock.slice(0, 6)} headingText={'Лучшее'} />
 		</div>
-	</div>
+	)
 }

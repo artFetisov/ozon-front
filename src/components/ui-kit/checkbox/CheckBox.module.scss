@@ -1,61 +1,62 @@
 @use 'src/assets/styles/variables' as variables;
 
 .label {
-  margin-right: 10px;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	margin-right: 10px;
+	cursor: pointer;
 
-  .input {
-    clip: rect(0 0 0 0);
-    border: 0;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
+	.input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		padding: 0;
+		overflow: hidden;
+		border: 0;
+		clip: rect(0 0 0 0);
+	}
 
-  .checkbox {
-    display: inline-flex;
-    background-color: #fff;
-    border: 2px solid #b3bcc5;
-    border-radius: 4px;
-    flex: 0 0 auto;
-    height: 16px;
-    position: relative;
-    transition: background-color .15s, border-color .15s;
-    width: 16px;
+	.checkbox {
+		position: relative;
+		display: inline-flex;
+		flex: 0 0 auto;
+		width: 16px;
+		height: 16px;
+		background-color: #fff;
+		border: 2px solid #b3bcc5;
+		border-radius: 4px;
+		transition:
+			background-color 0.15s,
+			border-color 0.15s;
 
-    .svg {
-      left: 50%;
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      color: #fff;
-    }
+		.svg {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 16px;
+			height: 16px;
+			color: #fff;
+			transform: translate(-50%, -50%);
+		}
 
-    .svgHovered {
-
-    }
-  }
+		.svgHovered {
+		}
+	}
 }
 
 .text {
-  font-size: 13px;
-  font-weight: 500;
-  padding-left: 8px;
+	padding-left: 8px;
+	font-weight: 500;
+	font-size: 13px;
 }
 
 .checked {
-  background-color: variables.$blue-primary !important;
-  border-color: variables.$blue-primary !important;
+	background-color: variables.$blue-primary !important;
+	border-color: variables.$blue-primary !important;
 }
 
 .hovered {
-  color: #99bdff !important;
-  border-color: #99bdff !important;
+	color: #99bdff !important;
+	border-color: #99bdff !important;
 }

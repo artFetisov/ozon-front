@@ -1,0 +1,91 @@
+@use 'src/assets/styles/variables' as variables;
+
+.toOrderBox {
+	position: sticky;
+	top: 64px;
+	display: flex;
+	flex-basis: calc(33.3%);
+	flex-direction: column;
+	max-width: calc(33.3%);
+	height: 100%;
+	margin-left: 24px;
+
+	& > section {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		background-color: #fff;
+		border-radius: 2px;
+
+		.topBox {
+			padding: 24px;
+			border-bottom: 1px solid rgb(204 214 228 / 60%);
+
+			& > div {
+				margin-top: 12px;
+				color: #707f8d;
+				font-size: 13px;
+				line-height: 18px;
+			}
+		}
+
+		.priceBox {
+			padding: 24px;
+
+			.box {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				font-size: 13.2px;
+			}
+
+			.heading {
+				font-weight: 700;
+				font-size: 20px;
+				line-height: 1.4em;
+			}
+
+			.grey {
+				color: rgb(0 26 52 / 60%);
+				font-size: 13px;
+				line-height: 1.29em;
+				text-align: end;
+			}
+
+			.p16 {
+				padding-bottom: 16px;
+			}
+
+			.p12 {
+				padding-bottom: 12px;
+				line-height: 18px;
+			}
+
+			.b7x {
+				margin-top: 16px;
+				padding-top: 16px;
+				font-weight: 700;
+				font-size: 20px;
+				line-height: 1.4em;
+				border-top: 1px solid rgb(204 214 228 / 60%);
+			}
+
+			.b4x {
+				margin-top: 6px;
+				color: #707f8d;
+				font-weight: 500;
+				font-size: 16px;
+				line-height: 24px;
+			}
+		}
+	}
+}
+
+.red {
+	color: variables.$red-color;
+}
+
+.green {
+	color: variables.$green-color;
+}

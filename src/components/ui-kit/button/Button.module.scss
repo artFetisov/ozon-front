@@ -1,59 +1,69 @@
 @use 'src/assets/styles/variables' as variables;
 
 .button {
-  display: block;
-  background: transparent;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 100%;
+	display: block;
+	width: 100%;
+	background: transparent;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
 
-  .inner {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
-    text-align: center;
-    transition: all 0.3s ease;
-    width: 100%;
-  }
+	.inner {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		color: #fff;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 20px;
+		text-align: center;
+		transition: all 0.3s ease;
+	}
 }
 
 .small {
-  min-height: 40px;
-  padding: 0 12px;
-  border-radius: 8px;
+	min-height: 40px;
+	padding: 0 12px;
+	border-radius: 8px;
 }
 
 .middle {
-  min-height: 48px;
-  min-width: 192px;
-  padding: 0 20px;
-  border-radius: 10px;
+	min-width: 192px;
+	min-height: 48px;
+	padding: 0 20px;
+	border-radius: 10px;
 }
 
 .large {
-  border-radius: 12px;
-  min-height: 56px;
-  min-width: 224px;
-  padding: 0 24px;
+	min-width: 224px;
+	min-height: 56px;
+	padding: 0 24px;
+	border-radius: 12px;
 }
 
 .blue {
-  background-color: variables.$blue-primary;
+	background-color: variables.$blue-primary;
 
-  &:hover {
-    background-color: variables.$blue-hover;
-  }
+	&:hover {
+		background-color: variables.$blue-hover;
+	}
 }
 
 .green {
-  background-color: variables.$green-color;
+	background-color: variables.$green-color;
 
-  &:hover {
-    background-color: variables.$green-hover-color;
-  }
+	&:hover {
+		background-color: variables.$green-hover-color;
+	}
+}
+
+.disabled {
+	color: #707f8d !important;
+	background-color: rgb(0 48 120 / 3.9%);
+	pointer-events: none;
+
+	&:hover {
+		background-color: rgb(0 48 120 / 3.9%);
+	}
 }

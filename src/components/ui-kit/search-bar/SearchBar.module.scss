@@ -1,109 +1,241 @@
 @use 'src/assets/styles/variables' as variables;
 
-.searchBarWrapper {
-  position: relative;
-  height: 40px;
-  border-radius: 12px;
+.searchContainer {
+	position: relative;
+	padding: 8px;
+	background-color: #fff;
+	border-radius: 8px;
+}
 
-  .searchForm {
-    display: flex;
-    height: 100%;
-    background-color: variables.$blue-primary;
-    border-radius: 8px;
-  }
+.isOpenModal {
+	z-index: 1100;
+}
+
+.searchBarWrapper {
+	position: relative;
+	height: 40px;
+	border-radius: 12px;
+
+	.searchForm {
+		display: flex;
+		height: 100%;
+		background-color: variables.$blue-primary;
+		border-radius: 8px;
+	}
+}
+
+.removeButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 100%;
+	color: #99a3ae;
+
+	&:hover {
+		color: rgb(0 26 52 / 60%);
+		cursor: pointer;
+	}
+}
+
+.requestHistory {
+	position: absolute;
+	top: 40;
+	right: 0;
+	left: 0;
+	z-index: 100;
+	max-height: calc(100vh - 150px);
+	padding-top: 8px;
+	padding-bottom: 12px;
+	overflow-y: auto;
+	background-color: #fff;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	box-shadow: 0 4px 16px 2px rgb(0 26 52 / 16%);
+}
+
+.historyHeader {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	padding: 16px 16px 8px;
+	line-height: 26px;
+
+	> h4 {
+		font-weight: 700;
+		font-size: 20px;
+		letter-spacing: 0.4px;
+	}
+
+	> span {
+		color: variables.$blue-primary;
+		font-weight: 600;
+		font-size: 13px;
+		line-height: 20px;
+		letter-spacing: 0.2px;
+
+		&:hover {
+			color: variables.$blue-hover;
+			cursor: pointer;
+		}
+	}
+}
+
+.requestHistoryItem {
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-top: 1px;
+	padding: 11px 16px 11px 4px;
+	color: #070707;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.2px;
+	cursor: pointer;
+	transition: 0.2s ease-out;
+	transition-property: background-color, color;
+
+	&::before {
+		position: absolute;
+		right: 0;
+		bottom: -1px;
+		left: 48px;
+		z-index: 1;
+		display: block;
+		height: 1px;
+		background: rgb(204 214 228 / 60%);
+		content: '';
+	}
+
+	&:hover {
+		color: variables.$blue-primary;
+		background: rgb(0 150 255 / 7.8%);
+	}
+}
+
+.itemIcon {
+	display: flex;
+	justify-content: center;
+	width: 48px;
+	min-width: 48px;
+	color: #99a3ae;
+}
+
+.itemTitle {
+	overflow: hidden;
+	font-weight: 500;
+	font-size: 15px;
+	line-height: 24px;
+	letter-spacing: 0.2px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.itemRemoveBtn {
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+	color: rgb(204 214 228 / 60%);
+	font-size: 14px;
+	line-height: 18px;
+
+	&:hover {
+		color: variables.$blue-hover;
+	}
 }
 
 .leftSide {
-  display: flex;
-  flex-grow: 1;
-  height: 100%;
-  background: #fff;
-  border: 2px solid variables.$blue-primary;
-  border-radius: 8px;
+	display: flex;
+	flex-grow: 1;
+	height: 100%;
+	background: #fff;
+	border: 2px solid variables.$blue-primary;
+	border-radius: 8px;
 
-  .catButton {
-    display: flex;
-    align-items: center;
-    margin: 3px 0 3px 3px;
-    color: rgb(0 26 52 / 60%);
-    background: rgb(0 48 120 / 3.9%);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	.catButton {
+		display: flex;
+		align-items: center;
+		margin: 3px 0 3px 3px;
+		color: rgb(0 26 52 / 60%);
+		background: rgb(0 48 120 / 3.9%);
+		border-radius: 4px;
+		cursor: pointer;
+		transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-    &:hover {
-      color: variables.$blue-primary;
-    }
+		&:hover {
+			color: variables.$blue-primary;
+		}
 
-    .title {
-      display: block;
-      max-width: 170px;
-      margin-right: 2px;
-      margin-left: 8px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
+		.title {
+			display: block;
+			max-width: 170px;
+			margin-right: 2px;
+			margin-left: 8px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
 
-    .arrowBox {
-      width: 16px;
-      height: 16px;
-      margin-right: 4px;
-    }
-  }
+		.arrowBox {
+			width: 16px;
+			height: 16px;
+			margin-right: 4px;
+		}
+	}
 
-  .inputWrapper {
-    display: flex;
-    flex: 1;
-    height: 100%;
+	.inputWrapper {
+		display: flex;
+		flex: 1;
+		height: 100%;
 
-    .input {
-      z-index: 1;
-      width: calc(100% - 0.5px);
-      padding: 0 0 0 8px;
-      color: #000;
-      font-size: 16px;
-      line-height: 24px;
-      letter-spacing: 0.2px;
-      font-weight: 400;
-      vertical-align: center;
-      background: transparent;
-      border: none;
-      outline: none;
-      appearance: none;
-      -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
-    }
-  }
+		.input {
+			z-index: 1;
+			width: calc(100% - 0.5px);
+			padding: 0 0 0 8px;
+			color: #000;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 24px;
+			letter-spacing: 0.2px;
+			vertical-align: center;
+			background: transparent;
+			border: none;
+			outline: none;
+			appearance: none;
+			-webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+		}
+	}
 }
 
 .rightSide {
-  width: 74px;
-  height: 40px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+	width: 74px;
+	height: 40px;
+	border-radius: 8px;
+	transition: all 0.3s ease;
 
-  &:hover {
-    background-color: variables.$blue-hover;
-  }
+	&:hover {
+		background-color: variables.$blue-hover;
+	}
 
-  .searchButton {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: inherit;
-    line-height: 0;
-    white-space: normal;
-    text-decoration: none;
-    background: transparent;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+	.searchButton {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: inherit;
+		line-height: 0;
+		white-space: normal;
+		text-decoration: none;
+		background: transparent;
+		border: none;
+		border-radius: 6px;
+		cursor: pointer;
 
-    .searchIconWrapper {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-    }
-  }
+		.searchIconWrapper {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			color: #fff;
+		}
+	}
 }

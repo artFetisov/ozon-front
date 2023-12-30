@@ -1,18 +1,18 @@
 .heading {
-  display: flex;
-  align-items: center;
-  padding: 7px 0;
-  margin-bottom: 24px;
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 30px;
-  letter-spacing: 0.4px;
+	display: flex;
+	align-items: center;
+	margin-bottom: 24px;
+	padding: 7px 0;
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 30px;
+	letter-spacing: 0.4px;
 }
 
 .number {
-  color: rgba(0, 26, 52, .6);
-  font-weight: 400;
-  font-size: 14px;
-  height: 20px;
-  margin: 0 0 12px 2px;
+	height: 20px;
+	margin: 0 0 12px 2px;
+	color: rgb(0 26 52 / 60%);
+	font-weight: 400;
+	font-size: 14px;
 }

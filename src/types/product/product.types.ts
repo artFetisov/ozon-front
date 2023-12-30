@@ -16,17 +16,17 @@ export interface IProduct {
 	category: ICategory
 	description: string
 	brand: string
-	feedbacks: IFeedback[]
-	brandLogo: string
-	variants: string[]
-	images: string[]
-	characteristics: ICharacteristic
-	rating: number
-	dialog: IProductAnswerAndQuestionDialog
+	feedbacks?: IFeedback[]
+	brandLogo?: string
+	variants?: string[]
+	images?: string[]
+	characteristics?: ICharacteristic
+	rating?: number
+	dialog?: IProductAnswerAndQuestionDialog
 }
 
 export interface ICharacteristic {
-	[key: string]: string
+	[key: string]: string | number
 }
 
 export interface IProductAnswerAndQuestionDialog {
@@ -55,4 +55,3 @@ export interface IBenefitDialogAnswerProduct {
 	yes: number
 	no: number
 }
-

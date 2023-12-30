@@ -1,77 +1,76 @@
 .counter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .amount {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  position: relative;
-  width: 51px;
-  background-color: #fff;
-  border: 2px solid #b3bcc5;
-  border-radius: 6px;
-  overflow: hidden;
-  color: #001a34;
-  transition: border-color .2s cubic-bezier(.25, .8, .25, 1);
-  max-width: 100%;
+	position: relative;
+	display: flex;
+	flex: 1;
+	align-items: center;
+	width: 51px;
+	max-width: 100%;
+	overflow: hidden;
+	color: #001a34;
+	background-color: #fff;
+	border: 2px solid #b3bcc5;
+	border-radius: 6px;
+	transition: border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-  &:hover {
-    border-color: #005bff;
-  }
+	&:hover {
+		border-color: #005bff;
+	}
 
-  .input {
-    display: flex;
-    -webkit-text-fill-color: #001a34;
-    background-color: hsla(0, 0%, 100%, 0);
-    border: 0;
-    outline: none;
-    padding: 5px 10px;
-    font-size: 14px;
-    line-height: 18px;
-    text-align: center;
-    vertical-align: top;
-    width: 100%;
-    caret-color: #005bff;
-  }
+	.input {
+		display: flex;
+		width: 100%;
+		padding: 5px 10px;
+		font-size: 14px;
+		line-height: 18px;
+		text-align: center;
+		vertical-align: top;
+		background-color: hsl(0deg 0% 100% / 0%);
+		border: 0;
+		outline: none;
+		-webkit-text-fill-color: #001a34;
+		caret-color: #005bff;
+	}
 }
 
 .plus {
-  display: inline-flex;
-  border-radius: 8px;
-  padding: 4px;
-  margin-right: 8px;
+	display: inline-flex;
+	margin-right: 8px;
+	padding: 4px;
+	border-radius: 8px;
 }
 
 .minus {
-  display: inline-flex;
-  border-radius: 8px;
-  padding: 4px;
-  margin-left: 8px;
+	display: inline-flex;
+	margin-left: 8px;
+	padding: 4px;
+	border-radius: 8px;
 }
 
 .disabled {
-  background-color: rgba(0, 48, 120, .04);
-  color: #96a3ae;
-  cursor: default;
-  pointer-events: none;
+	color: #96a3ae;
+	background-color: rgb(0 48 120 / 4%);
+	cursor: default;
+	pointer-events: none;
 }
 
 .active {
-  background-color: rgba(0, 150, 255, .08);
-  color: #005bff;
-  cursor: pointer;
-  transition: background-color .2s ease;
+	color: #005bff;
+	background-color: rgb(0 150 255 / 8%);
+	cursor: pointer;
+	transition: background-color 0.2s ease;
 
-  &:hover {
-    background-color: rgba(0, 150, 255, .12);
-    color: #0050e0;
-  }
+	&:hover {
+		color: #0050e0;
+		background-color: rgb(0 150 255 / 12%);
+	}
 }
 
 .focusedDiv {
-  border-color: #005bff !important;
+	border-color: #005bff !important;
 }
-

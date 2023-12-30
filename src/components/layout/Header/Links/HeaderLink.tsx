@@ -6,14 +6,15 @@ interface IHeaderLinkProps {
 	title: string
 	svg: ReactNode
 	linkPath: string
-	itemsCount: number
+	itemsCount: number | string
 }
 
-
 export const HeaderLink: FC<IHeaderLinkProps> = ({ title, svg, linkPath, itemsCount }) => {
-	return <Link className={styles.link} href={linkPath}>
-		<span className={styles.control}>{itemsCount}</span>
-		{svg}
-		<span>{title}</span>
-	</Link>
+	return (
+		<Link className={styles.link} href={linkPath}>
+			<span className={styles.control}>{itemsCount}</span>
+			{svg}
+			<span>{title}</span>
+		</Link>
+	)
 }

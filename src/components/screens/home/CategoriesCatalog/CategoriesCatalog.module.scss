@@ -1,0 +1,33 @@
+.catalogCategories {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	height: calc(100vh - 80px);
+	overflow: auto;
+	background-color: #fff;
+	transition: 0.3s;
+}
+
+.catWrapper {
+	position: relative;
+	display: flex;
+	min-width: 1280px;
+	max-width: 1472px;
+	height: 100%;
+	margin: 0 auto;
+	padding: 0 28px 0 15px;
+}
+
+.col {
+	width: 1px;
+	margin: 0 24px 0 12px;
+	background: rgb(0 48 120 / 3.9%);
+	border-radius: 30px;
+}
+
+.hide {
+	display: none;
+}

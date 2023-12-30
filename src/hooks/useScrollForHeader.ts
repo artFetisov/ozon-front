@@ -9,10 +9,10 @@ export const useScrollForHeader = () => {
 	const handleScroll = (e: HTMLElementEventMap['scroll']) => {
 		const eventTarget = e.target as HTMLElement
 
-		if (!isHideContainer && target.current?.scrollHeight < scrollPosition) {
+		if (!isHideContainer && (target.current?.scrollHeight as number) < scrollPosition) {
 			setIsHideContainer(true)
 		}
-		if (isHideContainer && target.current?.scrollHeight > scrollPosition) {
+		if (isHideContainer && (target.current?.scrollHeight as number) > scrollPosition) {
 			setIsHideContainer(false)
 		}
 

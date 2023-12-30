@@ -1,0 +1,83 @@
+@use 'src/assets/styles/variables' as variables;
+
+.categoryList {
+	display: flex;
+	flex-direction: column;
+	width: calc(100% - 331px);
+	overflow-y: auto;
+}
+
+.subCategoriesWrapper {
+	display: flex;
+	gap: 56px;
+}
+
+.subCatList {
+	display: flex;
+	gap: 30px;
+	width: calc(100% - 164px);
+}
+
+.catListColumn {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	width: calc(33% - 20px);
+	padding-bottom: 24px;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
+	width: 108px;
+}
+
+.columnItem {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 100%;
+}
+
+.title {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.2px;
+}
+
+.item {
+	display: flex;
+	align-items: center;
+	color: rgb(0 26 52 / 60%);
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.2px;
+	transition: color 0.2s ease;
+
+	&:hover {
+		color: rgb(0 26 52);
+	}
+}
+
+.arrow {
+	transition: all 0.3s ease;
+}
+
+.rotate {
+	transform: rotate(180deg);
+}
+
+.arrowBox {
+	display: flex;
+	align-items: center;
+	color: variables.$blue-primary;
+	cursor: pointer;
+	transition: color 0.3s ease;
+
+	&:hover {
+		color: rgb(0 26 52);
+	}
+}
