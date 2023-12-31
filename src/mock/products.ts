@@ -27,7 +27,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 53,
 		slug: 'mkmk',
-		id: 0,
+		id: 1,
 		article: 2,
 		seller: {
 			id: 1,
@@ -46,7 +46,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 63,
 		slug: 'mkmk',
-		id: 0,
+		id: 2,
 		article: 2,
 		seller: {
 			id: 1,
@@ -65,7 +65,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 49,
 		slug: 'mkmk',
-		id: 0,
+		id: 3,
 		article: 2,
 		seller: {
 			id: 1,
@@ -84,7 +84,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 16,
 		slug: 'mkmk',
-		id: 0,
+		id: 4,
 		article: 2,
 		seller: {
 			id: 1,
@@ -103,7 +103,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 71,
 		slug: 'mkmk',
-		id: 0,
+		id: 5,
 		article: 2,
 		seller: {
 			id: 1,
@@ -122,7 +122,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 33,
 		slug: 'mkmk',
-		id: 0,
+		id: 6,
 		article: 2,
 		seller: {
 			id: 1,
@@ -141,7 +141,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 53,
 		slug: 'mkmk',
-		id: 0,
+		id: 7,
 		article: 2,
 		seller: {
 			id: 1,
@@ -160,7 +160,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 63,
 		slug: 'mkmk',
-		id: 0,
+		id: 8,
 		article: 2,
 		seller: {
 			id: 1,
@@ -179,7 +179,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 49,
 		slug: 'mkmk',
-		id: 0,
+		id: 9,
 		article: 2,
 		seller: {
 			id: 1,
@@ -198,7 +198,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 16,
 		slug: 'mkmk',
-		id: 0,
+		id: 10,
 		article: 2,
 		seller: {
 			id: 1,
@@ -217,7 +217,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 71,
 		slug: 'mkmk',
-		id: 0,
+		id: 11,
 		article: 2,
 		seller: {
 			id: 1,

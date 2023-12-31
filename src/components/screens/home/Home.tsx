@@ -4,7 +4,6 @@ import { FC, useEffect } from 'react'
 import { Selection } from '@/components/ui-kit/selection/Selection'
 import { productsMock } from '@/mock/products'
 import styles from './Home.module.scss'
-import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { useActions } from '@/hooks/useActions'
 import { categoriesMock, subCategoriesMock, subSubCategoriesMock } from '@/mock/categories'
 

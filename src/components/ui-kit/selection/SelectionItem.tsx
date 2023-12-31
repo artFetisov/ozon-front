@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState, useLayoutEffect } from 'react'
+import { FC } from 'react'
 import logo from '../../../assets/images/logo-ozon.png'
 import styles from './Selection.module.scss'
 import Image from 'next/image'
@@ -16,7 +16,7 @@ interface ISelectionItem {
 export const SelectionItem: FC<ISelectionItem> = ({ item, size }) => {
 	return (
 		<div className={styles.item} style={{ width: `${size}px` }}>
-			<Link href={`${PATHS.PRODUCT}/${item.title}`}>
+			<Link href={`${PATHS.PRODUCT}${item.title}/${item.id}`}>
 				<Image src={logo} alt={'logo item'} width={size} height={size} />
 				<div className={styles.info}>
 					<div className={styles.priceBox}>

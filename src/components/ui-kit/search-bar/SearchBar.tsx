@@ -117,7 +117,7 @@ export const SearchBar: FC = () => {
 									</span>
 								</Link>
 							))}
-							{/* <Selection items={productsMock} headingText='Рекомендуем для вас' /> */}
+							<Selection rowTotalItems={3} items={productsMock.slice(0, 12)} headingText='Рекомендуем для вас' />
 						</>
 					</section>
 				)}
