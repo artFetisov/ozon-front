@@ -21,7 +21,7 @@ export interface IProduct {
 	variants?: string[]
 	images?: string[]
 	characteristics?: ICharacteristic
-	rating?: number
+	rating: number
 	dialog?: IProductAnswerAndQuestionDialog
 }
 

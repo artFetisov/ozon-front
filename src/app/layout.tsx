@@ -1,13 +1,13 @@
 import '../assets/styles/globals.scss'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 import React from 'react'
 import { Header } from '@/components/layout/Header/Header'
 import { Footer } from '@/components/layout/Footer/Footer'
 import StoreProvider from '@/store/StoreProvider'
 import { CategoriesCatalog } from '@/components/screens/home/CategoriesCatalog/CategoriesCatalog'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Roboto({ subsets: ['latin'], weight: ['300', '400', '500', '700'] })
 
 export const metadata: Metadata = {
 	title: 'Create Next App',

@@ -35,7 +35,6 @@ export const AmountCounter: FC<IAmountCounterProps> = ({ amount, remains, id }) 
 	}
 
 	const onBlurHandler = (e: FocusEvent<HTMLInputElement>) => {
-		console.log('blur')
 		const targetValue = +e.currentTarget.value
 
 		if (targetValue > remains) {

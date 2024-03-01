@@ -8,6 +8,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 33,
 		slug: 'mkmk',
+		rating: 5,
 		id: 0,
 		article: 2,
 		seller: {
@@ -27,6 +28,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 53,
 		slug: 'mkmk',
+		rating: 4,
 		id: 1,
 		article: 2,
 		seller: {
@@ -48,6 +50,7 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 2,
 		article: 2,
+		rating: 2,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -66,6 +69,7 @@ export const productsMock: IProduct[] = [
 		discount: 49,
 		slug: 'mkmk',
 		id: 3,
+		rating: 2.3,
 		article: 2,
 		seller: {
 			id: 1,
@@ -85,6 +89,7 @@ export const productsMock: IProduct[] = [
 		discount: 16,
 		slug: 'mkmk',
 		id: 4,
+		rating: 3.7,
 		article: 2,
 		seller: {
 			id: 1,
@@ -104,6 +109,7 @@ export const productsMock: IProduct[] = [
 		discount: 71,
 		slug: 'mkmk',
 		id: 5,
+		rating: 4,
 		article: 2,
 		seller: {
 			id: 1,
@@ -124,6 +130,7 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 6,
 		article: 2,
+		rating: 4,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -143,6 +150,7 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 7,
 		article: 2,
+		rating: 4,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -160,6 +168,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 63,
 		slug: 'mkmk',
+		rating: 4,
 		id: 8,
 		article: 2,
 		seller: {
@@ -181,6 +190,7 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 9,
 		article: 2,
+		rating: 4,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -200,6 +210,7 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 10,
 		article: 2,
+		rating: 4,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -218,6 +229,7 @@ export const productsMock: IProduct[] = [
 		discount: 71,
 		slug: 'mkmk',
 		id: 11,
+		rating: 3,
 		article: 2,
 		seller: {
 			id: 1,

@@ -10,6 +10,7 @@ import { IconButton } from '@/components/ui-kit/icon-button/IconButton'
 import { getBonus, getPriceWithCard, getPriceWithDiscount, getPriceWithWhitespace } from '@/utils/price/price'
 import { AmountCounter } from '@/components/ui-kit/amount-counter/AmountCounter'
 import { useActions } from '@/hooks/useActions'
+import { PriceCard } from '@/components/ui-kit/price-card/PriceCard'
 
 interface ICartItemProps {
 	item: ICartItem
@@ -32,7 +33,7 @@ export const CartItem: FC<ICartItemProps> = ({ item }) => {
 				<div className={styles.checkBox}>
 					<CheckBox checked={item.checked} onChangeMy={updateItemHandler} />
 				</div>
-				<Link href={`${PATHS.PRODUCT}/${item.slug}`} className={styles.image}>
+				<Link href={`${PATHS.PRODUCT}${item.title}/${item.id}`} className={styles.image}>
 					<Image src={image} height={92} width={69} alt={'Product Image'} />
 				</Link>
 				<div className={styles.infoBox}>
@@ -79,9 +80,7 @@ export const CartItem: FC<ICartItemProps> = ({ item }) => {
 				</div>
 				<div className={styles.priceBox}>
 					<div className={styles.priceWithCard}>
-						<div className={styles.number}>
-							{getPriceWithWhitespace(getPriceWithCard(getPriceWithDiscount(item.price, item.discount)), item.amount)} ₽
-						</div>
+						<PriceCard amount={item.amount} price={item.price} discount={item.discount} color='red' variant='small' />
 						<div className={styles.text}>с Ozon Картой</div>
 					</div>
 					<hr style={{ height: '4px', border: 'none' }} />
@@ -93,7 +92,7 @@ export const CartItem: FC<ICartItemProps> = ({ item }) => {
 					</div>
 					<hr style={{ height: '8px', border: 'none' }} />
 					<div className={styles.bonus}>
-						<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' style={{ marginRight: '4px' }}>
+						<svg width='16' height='16' style={{ marginRight: '4px' }}>
 							<path
 								fill='currentColor'
 								d='M6 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM1 8a5 5 0 1 1 10 0A5 5 0 0 1 1 8Zm10.134-3.966a1 1 0 0 1 1.367-.364A4.998 4.998 0 0 1 15 8a4.998 4.998 0 0 1-2.5 4.33 1 1 0 1 1-1-1.73c.899-.52 1.5-1.49 1.5-2.6a3 3 0 0 0-1.5-2.6 1 1 0 0 1-.366-1.366Z'
