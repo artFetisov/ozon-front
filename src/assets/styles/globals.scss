@@ -37,13 +37,9 @@ li {
 	flex-direction: column;
 }
 
-.root-layout {
-	//margin-top: 63.8px;
-}
-
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
-	appearance: none; // Yeah, yeah everybody write about it
+	appearance: none;
 }
 
 input[type='number'],

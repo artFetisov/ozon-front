@@ -10,6 +10,7 @@ import { getPriceWithDiscount, getPriceWithWhitespace } from '@/utils/price/pric
 import { Button } from '@/components/ui-kit/button/Button'
 import { Gallery } from '@/components/ui-kit/gallery/Gallery'
 import { imagesGalleryMock } from '@/mock/galleryImages'
+import { ProductVariantBox } from '@/components/ui-kit/product-variant-box/ProductVariantBox'
 
 interface IProductProps {
 	id: number
@@ -58,7 +59,14 @@ export const Product: FC<IProductProps> = ({ id, slug }) => {
 						<Gallery images={imagesGalleryMock} />
 					</div>
 					<div className={styles.info}>
-						<div>dfddf</div>
+						{currentProduct.variants.map((v) => (
+							<ProductVariantBox
+								variant={v}
+								key={v.id + '-' + v.title}
+								title={currentProduct.title}
+								id={currentProduct.id}
+							/>
+						))}
 						<div>dfdfdf</div>
 						<div>nkkdkd</div>
 						<div>{currentProduct.description}</div>
