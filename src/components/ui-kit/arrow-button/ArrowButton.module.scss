@@ -1,0 +1,32 @@
+.arrowButton {
+	position: absolute;
+	top: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 44px;
+	height: 44px;
+	color: #001a34;
+	background-color: #fff;
+	border: none;
+	border-radius: 50%;
+	box-shadow: rgb(0 26 52 / 16%) 0 4px 16px 1px;
+	transform: translateY(-50%);
+	cursor: pointer;
+	transition:
+		color 0.15s ease-in-out,
+		background 0.15s ease-in-out;
+
+	&:hover {
+		color: #fff;
+		background-color: #005bff;
+	}
+}
+
+.left {
+	left: 0;
+}
+
+.right {
+	right: 0;
+}

@@ -9,6 +9,34 @@ export const productsMock: IProduct[] = [
 		discount: 33,
 		slug: 'mkmk',
 		rating: 5,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		id: 0,
 		article: 2,
 		seller: {
@@ -29,6 +57,34 @@ export const productsMock: IProduct[] = [
 		discount: 53,
 		slug: 'mkmk',
 		rating: 4,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		id: 1,
 		article: 2,
 		seller: {
@@ -51,6 +107,34 @@ export const productsMock: IProduct[] = [
 		id: 2,
 		article: 2,
 		rating: 2,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -71,6 +155,34 @@ export const productsMock: IProduct[] = [
 		id: 3,
 		rating: 2.3,
 		article: 2,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -91,6 +203,34 @@ export const productsMock: IProduct[] = [
 		id: 4,
 		rating: 3.7,
 		article: 2,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -108,6 +248,34 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 71,
 		slug: 'mkmk',
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		id: 5,
 		rating: 4,
 		article: 2,
@@ -130,6 +298,34 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 6,
 		article: 2,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		rating: 4,
 		seller: {
 			id: 1,
@@ -150,6 +346,34 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 7,
 		article: 2,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		rating: 4,
 		seller: {
 			id: 1,
@@ -169,6 +393,34 @@ export const productsMock: IProduct[] = [
 		discount: 63,
 		slug: 'mkmk',
 		rating: 4,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		id: 8,
 		article: 2,
 		seller: {
@@ -190,6 +442,34 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 9,
 		article: 2,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		rating: 4,
 		seller: {
 			id: 1,
@@ -210,6 +490,34 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 10,
 		article: 2,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		rating: 4,
 		seller: {
 			id: 1,
@@ -231,6 +539,34 @@ export const productsMock: IProduct[] = [
 		id: 11,
 		rating: 3,
 		article: 2,
+		variants: [
+			{
+				id: 0,
+				title: 'Размер жопы',
+				variants: [
+					{ id: 0, title: 'Огромная' },
+					{ id: 1, title: 'Нормальная' },
+				],
+			},
+			{
+				id: 0,
+				title: 'Количество',
+				variants: [
+					{ id: 0, title: 60 },
+					{ id: 1, title: 120 },
+					{ id: 2, title: 180 },
+				],
+			},
+			{
+				id: 1,
+				title: 'Размер крышки',
+				variants: [
+					{ id: 0, title: 24 },
+					{ id: 1, title: 26 },
+					{ id: 2, title: 28 },
+				],
+			},
+		],
 		seller: {
 			id: 1,
 			title: 'Sportmaster',

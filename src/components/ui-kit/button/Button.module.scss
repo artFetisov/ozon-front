@@ -51,6 +51,7 @@
 
 .green {
 	background-color: variables.$green-color;
+	cursor: pointer;
 
 	&:hover {
 		background-color: variables.$green-hover-color;

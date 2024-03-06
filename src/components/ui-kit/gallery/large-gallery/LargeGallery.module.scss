@@ -1,0 +1,81 @@
+.largeGallery {
+	position: absolute;
+	z-index: 1000;
+	width: 100vw;
+	height: 100vh;
+	min-height: 100vh;
+	overflow: hidden;
+	background: #fff;
+	inset: 0;
+}
+
+.innerWrapper {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+}
+
+.selectImageBar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 140px;
+	height: 100vh;
+}
+
+.innerBox {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	align-items: center;
+	height: 100vh;
+	padding: 16px 0;
+	overflow: scroll;
+}
+
+.selectBarItem {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 56px;
+	height: 56px;
+	margin-bottom: 4px;
+	padding: 4px;
+	cursor: pointer;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.hovered {
+	border: 2px solid rgb(0 91 255 / 30%);
+	border-radius: 3px;
+}
+
+.border {
+	border: 2px solid #005bff;
+	border-radius: 3px;
+}
+
+.selectedImageBox {
+	position: absolute;
+	top: 24px;
+	left: 164px;
+	width: calc(100% - 188px);
+	height: calc(100% - 48px);
+}
+
+.selectedImage {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	width: calc(100% - 120px);
+	height: 100%;
+	margin: 0 auto;
+}
