@@ -3,6 +3,7 @@ import { IUser } from '@/types/user/user.types'
 import { IFeedback } from '@/types/feedback/feedback.types'
 import { ISeller } from '@/types/seller/seller.types'
 import { IVariants } from './variant.types'
+import { ICharacteristics } from './characteristic.types'
 
 export interface IProduct {
 	id: number
@@ -21,13 +22,9 @@ export interface IProduct {
 	brandLogo?: string
 	variants: IVariants[]
 	images?: string[]
-	characteristics?: ICharacteristic
+	characteristics: ICharacteristics
 	rating: number
 	dialog?: IProductAnswerAndQuestionDialog
-}
-
-export interface ICharacteristic {
-	[key: string]: string | number
 }
 
 export interface IProductAnswerAndQuestionDialog {

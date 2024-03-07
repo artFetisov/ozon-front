@@ -56,7 +56,7 @@ export const Header: FC = () => {
 								</svg>
 							)}
 
-							<span style={{ fontWeight: 500 }}>Каталог</span>
+							<span>Каталог</span>
 						</Button>
 					</div>
 					<div className={styles.searchInputBox}>

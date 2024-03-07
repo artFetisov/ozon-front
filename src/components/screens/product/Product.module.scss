@@ -58,6 +58,7 @@
 	display: flex;
 	justify-content: flex-start;
 	width: 100%;
+	height: 100%;
 	column-gap: 32px;
 }
 
@@ -65,12 +66,16 @@
 	display: flex;
 	gap: 24px;
 	width: calc(100% - 412px);
+	height: 100%;
 	margin-top: 24px;
 
 	.gallery {
+		position: sticky;
+		top: 64px;
 		display: flex;
 		flex-basis: calc(58.3333% - 24px);
 		max-width: calc(58.3333% - 24px);
+		height: 100%;
 		margin-bottom: 24px;
 	}
 
@@ -78,6 +83,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+		width: 100%;
 		margin-bottom: 24px;
 		margin-left: 50px;
 	}
@@ -170,6 +176,83 @@
 	}
 }
 
+.bottomBox {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	margin-top: 12px;
+	padding: 12px 0;
+}
+
+.deliveryInfo {
+	position: relative;
+	font-size: 16px;
+	line-height: 20px;
+
+	& > h2 {
+		margin-bottom: 20px;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 26px;
+	}
+
+	.info {
+		display: flex;
+		align-items: center;
+		margin-top: 8px;
+		margin-left: 36px;
+
+		.right {
+			margin-right: 16px;
+			margin-left: auto;
+			margin-left: 8px;
+			padding: 2px 8px;
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 20px;
+			letter-spacing: 0.2px;
+			background-color: rgb(0 48 120 / 3.9%);
+			border-radius: 8px;
+		}
+	}
+
+	.address {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		padding-right: 16px;
+		transition:
+			color 0.15s ease-in-out,
+			background 0.15s ease-in-out,
+			opacity 0.3s ease-in-out;
+
+		& > span {
+			width: fit-content;
+			text-align: left;
+			transition: color 0.2s ease-out;
+		}
+
+		.arrow {
+			margin-left: auto;
+			color: rgb(204 214 228 / 60%);
+			transition: color 0.2s ease-out;
+		}
+	}
+}
+
+.lit {
+	color: rgb(0 26 52 / 60%);
+	font-size: 14px;
+	line-height: 18px;
+}
+
+.border {
+	height: 1px;
+	margin-top: 8px;
+	margin-left: 36px;
+	background-color: rgb(204 214 228 / 60%);
+}
+
 .btnsBox {
 	display: flex;
 	flex-wrap: nowrap;
@@ -187,4 +270,74 @@
 	font-size: 13px;
 	line-height: 16px;
 	letter-spacing: 0.2px;
+}
+
+.aboutContainer {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	.topTitle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 32px;
+
+		& > span {
+			font-weight: 700;
+			font-size: 20px;
+			line-height: 24px;
+			letter-spacing: 0.4px;
+		}
+	}
+
+	.aboutItems {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.aboutItem {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 12px 0;
+		border-top: 0.5px solid rgb(204 214 228 / 60%);
+
+		&:first-child {
+			border-top: none;
+		}
+
+		.prop {
+			width: 50%;
+			color: rgb(0 26 52 / 60%);
+			line-height: 18px;
+		}
+
+		.value {
+			width: 50%;
+			line-height: 20px;
+		}
+	}
+
+	.toDescription {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2px 8px;
+		color: #070707;
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 20px;
+		letter-spacing: 0.2px;
+		background-color: rgb(0 48 120 / 3.9%);
+		border-radius: 8px;
+		cursor: pointer;
+		transition: transform 0.1s cubic-bezier(0.55, 0, 1, 0.45);
+
+		&:hover {
+			background-color: rgb(7 7 7 / 10%);
+		}
+	}
 }

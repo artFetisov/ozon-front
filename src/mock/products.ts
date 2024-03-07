@@ -9,6 +9,16 @@ export const productsMock: IProduct[] = [
 		discount: 33,
 		slug: 'mkmk',
 		rating: 5,
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		variants: [
 			{
 				id: 0,
@@ -57,6 +67,16 @@ export const productsMock: IProduct[] = [
 		discount: 53,
 		slug: 'mkmk',
 		rating: 4,
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		variants: [
 			{
 				id: 0,
@@ -105,6 +125,16 @@ export const productsMock: IProduct[] = [
 		discount: 63,
 		slug: 'mkmk',
 		id: 2,
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		article: 2,
 		rating: 2,
 		variants: [
@@ -153,6 +183,16 @@ export const productsMock: IProduct[] = [
 		discount: 49,
 		slug: 'mkmk',
 		id: 3,
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		rating: 2.3,
 		article: 2,
 		variants: [
@@ -200,6 +240,16 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 16,
 		slug: 'mkmk',
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		id: 4,
 		rating: 3.7,
 		article: 2,
@@ -248,6 +298,16 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 71,
 		slug: 'mkmk',
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		variants: [
 			{
 				id: 0,
@@ -297,6 +357,16 @@ export const productsMock: IProduct[] = [
 		discount: 33,
 		slug: 'mkmk',
 		id: 6,
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		article: 2,
 		variants: [
 			{
@@ -344,6 +414,16 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 53,
 		slug: 'mkmk',
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		id: 7,
 		article: 2,
 		variants: [
@@ -392,6 +472,16 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 63,
 		slug: 'mkmk',
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		rating: 4,
 		variants: [
 			{
@@ -441,6 +531,16 @@ export const productsMock: IProduct[] = [
 		discount: 49,
 		slug: 'mkmk',
 		id: 9,
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Мощность, Вт', value: 900 },
+				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
+				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
+				{ property: 'Автор', value: 'Фило Владстон Феррейра' },
+				{ property: 'Издательство', value: 'Питер' },
+			],
+		},
 		article: 2,
 		variants: [
 			{
@@ -490,6 +590,16 @@ export const productsMock: IProduct[] = [
 		slug: 'mkmk',
 		id: 10,
 		article: 2,
+		characteristics: {
+			id: 1,
+			about: [
+				{ 'Мощность, Вт': 900 },
+				{ 'Емкости в комплекте': 'Измельчитель, Дорожная бутылка' },
+				{ 'Вид насадки': 'Венчик, Нож-измельчитель, Шинковка' },
+				{ Автор: 'Фило Владстон Феррейра' },
+				{ Издательство: 'Питер' },
+			],
+		},
 		variants: [
 			{
 				id: 0,
@@ -536,6 +646,16 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 71,
 		slug: 'mkmk',
+		characteristics: {
+			id: 1,
+			about: [
+				{ 'Мощность, Вт': 900 },
+				{ 'Емкости в комплекте': 'Измельчитель, Дорожная бутылка' },
+				{ 'Вид насадки': 'Венчик, Нож-измельчитель, Шинковка' },
+				{ Автор: 'Фило Владстон Феррейра' },
+				{ Издательство: 'Питер' },
+			],
+		},
 		id: 11,
 		rating: 3,
 		article: 2,
