@@ -3,4 +3,5 @@ export interface ISeller {
 	title: string
 	description: string
 	logo: string
+	rating: number
 }

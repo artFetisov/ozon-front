@@ -14,6 +14,7 @@ import { ProductVariantBox } from '@/components/ui-kit/product-variant-box/Produ
 import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Heading } from '@/components/ui-kit/heading/Heading'
+import { Selection } from '@/components/ui-kit/selection/Selection'
 
 interface IProductProps {
 	id: number
@@ -68,7 +69,9 @@ export const Product: FC<IProductProps> = ({ id, slug }) => {
 
 			<div className={styles.mainBox}>
 				<div className={styles.leftSideMainBox}>
-					<div className={styles.gallery}></div>
+					<div className={styles.gallery}>
+						<Gallery images={imagesGalleryMock} />
+					</div>
 					<div className={styles.info}>
 						{currentProduct.variants.map((v) => (
 							<ProductVariantBox
@@ -165,7 +168,7 @@ export const Product: FC<IProductProps> = ({ id, slug }) => {
 						<div className={styles.deliveryInfo}>
 							<h2>Информация о доставке</h2>
 							<div className={styles.address}>
-								<svg width={24} height={24} style={{ marginRight: '12px' }}>
+								<svg width={24} height={24} style={{ marginRight: '12px', color: '#070707' }}>
 									<path
 										fill='currentColor'
 										d='M12 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10m-3 5a3 3 0 1 1 6 0 3 3 0 0 1-6 0'
@@ -212,10 +215,81 @@ export const Product: FC<IProductProps> = ({ id, slug }) => {
 					</div>
 				</div>
 			</div>
-			<div ref={descriptionBox}>
+			<Selection items={productsMock.slice(0, 12)} rowTotalItems={6} headingText={'Похожие товары'} />
+			<section className={styles.description} ref={descriptionBox}>
+				<h2>Описание</h2>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo fugiat sed, sequi iste aliquid maiores quibusdam
-				aperiam autem nesciunt voluptatem cum dolorem quam odio. Blanditiis optio rerum obcaecati facilis culpa.
-			</div>
+				aperiam autem nesciunt voluptatem cum dolorem quam odio. Blanditiis optio rerum obcaecati facilis culpa. Lorem
+				ipsum dolor sit amet consectetur adipisicing elit. Nemo fugiat sed, sequi iste aliquid maiores quibusdam aperiam
+				autem nesciunt voluptatem cum dolorem quam odio. Blanditiis optio rerum obcaecati facilis culpa. Lorem ipsum
+				dolor sit amet consectetur adipisicing elit. Nemo fugiat sed, sequi iste aliquid maiores quibusdam aperiam autem
+				nesciunt voluptatem cum dolorem quam odio. Blanditiis optio rerum obcaecati facilis culpa. Сковорода гриль
+				Monolit-28G - это высококачественная профессиональная посуда, которая станет отличной альтернативой
+				электрогрилю, барбекю и уличному мангалу! Теперь приготовление любимых блюд будет намного проще и быстрее! С
+				нашей сковородкой вы сможете без труда приготовить стейки из рыбы и мяса, овощи, грибы или сочного цыпленка
+				табака и порадовать всю семью! Monolit-28G идеально подходит для жарки и запекания. Благодаря инновационному
+				5-слойному антипригарному покрытию с керамической крошкой MEGASTONE PRO-5
+				<br></br>
+				от DYFLON, вы сможете сделать любое блюдо без добавления масла или жира! Во время приготовления ингредиенты
+				практически не соприкасаются с раскаленной поверхностью, что позволяет жарить их без добавления масла, а
+				уникальное распределение жара от стенок обеспечивает быстрое приготовление. Это станет полезным инструментом для
+				тех, кто следит за своим здоровьем или находится на диете, ведь блюда на гриле содержат меньше калорий. Изделие
+				изготовлено из высококачественного кованого алюминия и имеет термостойкое внешнее покрытие. Антипригарное
+				покрытие DYFLON устойчиво к царапинам и механическим повреждениям, что позволит посуде прослужить вам не один
+				год и сохранить свой великолепный первозданный вид. Подходит для газовых, электрических, индукционных и
+				керамических плит. Квадратная сковорода имеет высокие бортики и утолщенное широкое рифленое дно, что
+				обеспечивает равномерное распределение тепла и сохранение высокой температуры. Наличие носиков по бокам
+				позволяет аккуратно слить лишнюю жидкость во время готовки<br></br>
+				<br></br>. Диаметр изделия - 28 см (крышка в комплект не входит). Универсальная алюминиевая сковородка гриль
+				имеет эргономичной бакелитовой ручкой с покрытием , которая удобно лежит в руке и не нагревается во время
+				приготовления. Такое покрытие намного удобнее и безопаснее, чем обычный пластик. Большая сковорода гриль Polaris
+				Monolit-28G станет незаменимым помощником на вашей кухне и позволит вам наслаждаться вкусными и здоровыми
+				блюдами! Комплектация<br></br>
+				<br></br> Сковорода-гриль Характеристики Общие Бренд Polaris Гарантийный срок 2 года Страна-изготовитель Китай
+				Габариты и вес Размер крышки, см 28 Диаметр дна, см 21.7 Толщина стенок, мм 3.5 Толщина дна, мм 3.5 Вес товара,
+				г 1170 Комплектация Вид ручки с фиксированной ручкой Крышка без крышки Материал Антипригарное покрытие Да
+				Материал Алюминий Основные Особенности посуды: Ненагревающиеся ручки, Можно мыть в посудомойке, Жаропрочная,
+				Профессиональная посуда Дополнительные Тип Сковорода-гриль Форма сковороды Квадрат Высота стенки, см 4 Упаковка
+				Подарочная упаковка Цвет Черный Артикул 11004895 Вид выпуска т<br></br>
+				овара Фабричное производство Совместимые плиты: Для газовых плит, Для стеклокерамических плит, Для индукционных
+				плит, Для электрических плит, Для галогеновых конфорок Вид блюда: Блины, Вафли, Десерт, Жаркое, Запеканка, Кекс,
+				Кулич, Лепёшка, Овощи, Маффины, Макаруны, Мясо, Паэлья, Печенье, Пирог, Пицца, Плов, Рыба, Птица, Суп, Торт,
+				Фондю, Хлеб, Яичница Информация о технических характеристиках, комплекте поставки, стране изготовления, внешнем
+				виде и
+			</section>
+			<section className={styles.description}>
+				<h2>Характеристики</h2>
+				<div className={styles.characteristics}>
+					<div className={styles.box}>
+						{currentProduct.characteristics.about
+							.slice(0, Math.ceil(currentProduct.characteristics.about.length / 2))
+							.map((ch) => (
+								<div key={ch.property + '-' + ch.value} className={styles.item}>
+									<div className={styles.property}>
+										<span>{ch.property}</span>
+									</div>
+									<div className={styles.value}>{ch.value}</div>
+								</div>
+							))}
+					</div>
+					<div className={styles.box}>
+						{currentProduct.characteristics.about
+							.slice(Math.ceil(currentProduct.characteristics.about.length / 2))
+							.map((ch) => (
+								<div key={ch.property + '-' + ch.value} className={styles.item}>
+									<div className={styles.property}>
+										<span>{ch.property}</span>
+									</div>
+									<div className={styles.value}>{ch.value}</div>
+								</div>
+							))}
+					</div>
+				</div>
+				<small>
+					Информация о технических характеристиках, комплекте поставки, стране изготовления, внешнем виде и цвете товара
+					носит справочный характер и основывается на последних доступных к моменту публикации сведениях
+				</small>
+			</section>
 		</div>
 	)
 }

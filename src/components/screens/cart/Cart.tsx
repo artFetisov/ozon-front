@@ -62,7 +62,7 @@ export const Cart: FC = () => {
 			</div>
 			<Selection rowTotalItems={6} items={productsMock.slice(0, 6)} headingText={'Вы смотрели'} />
 			<Selection rowTotalItems={5} items={productsMock.slice(0, 5)} headingText={'Рекомендуем'} />
-			<Selection rowTotalItems={4} items={productsMock.slice(0, 6)} headingText={'Лучшее'} />
+			<Selection rowTotalItems={4} items={productsMock.slice(0, 4)} headingText={'Лучшее'} />
 		</div>
 	)
 }
