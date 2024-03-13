@@ -15,6 +15,7 @@ import Link from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { Heading } from '@/components/ui-kit/heading/Heading'
 import { Selection } from '@/components/ui-kit/selection/Selection'
+import { FeedbacksQuestionsBox } from '@/components/ui-kit/feedbacks-questions-box/FeedbacksQuestionsBox'
 
 interface IProductProps {
 	id: number
@@ -290,6 +291,8 @@ export const Product: FC<IProductProps> = ({ id, slug }) => {
 					носит справочный характер и основывается на последних доступных к моменту публикации сведениях
 				</small>
 			</section>
+			<FeedbacksQuestionsBox />
+			<Selection items={productsMock.slice(0, 12)} rowTotalItems={6} headingText={'Рекомендации'} />
 		</div>
 	)
 }
