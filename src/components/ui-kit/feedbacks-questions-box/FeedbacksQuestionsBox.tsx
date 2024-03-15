@@ -3,6 +3,7 @@ import styles from './FeedbacksQuestionsBox.module.scss'
 import { Feedbacks } from './feedbacks/Feedbacks'
 import { Questions } from './questions/Questions'
 import cn from 'classnames'
+import { mockFeedbacks } from '@/mock/feedbacks'
 
 type VariantShow = 'feedbacks' | 'questions'
 
@@ -43,7 +44,9 @@ export const FeedbacksQuestionsBox: FC = () => {
 					})}
 				></div>
 			</div>
-			<div className={styles.content}>{variantShow === 'feedbacks' ? <Feedbacks /> : <Questions />}</div>
+			<div className={styles.content}>
+				{variantShow === 'feedbacks' ? <Feedbacks feedbacks={mockFeedbacks} /> : <Questions />}
+			</div>
 		</div>
 	)
 }

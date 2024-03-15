@@ -1,0 +1,36 @@
+@use 'src/assets/styles/variables' as variables;
+
+.sorter {
+	display: flex;
+	align-items: center;
+	padding-bottom: 12px;
+	font-size: 16px;
+	line-height: 20px;
+	border-bottom: 1px solid rgb(204 214 228 / 60%);
+
+	& > span:nth-child(1) {
+		font-weight: 500;
+	}
+
+	& > span:nth-child(2) {
+		margin-left: 16px;
+		color: rgb(0 26 52 / 60%);
+		cursor: pointer;
+	}
+
+	& > span:nth-child(3) {
+		display: flex;
+		align-items: center;
+		margin-left: 16px;
+		color: rgb(0 26 52 / 60%);
+		cursor: pointer;
+
+		& > svg {
+			margin-left: 8px;
+		}
+	}
+}
+
+.activeSort {
+	color: variables.$blue-primary !important;
+}

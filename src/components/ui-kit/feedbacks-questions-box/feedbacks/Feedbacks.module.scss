@@ -1,3 +1,29 @@
+@use 'src/assets/styles/variables' as variables;
+
+.col_1 {
+	display: flex;
+	flex-basis: calc(58.3333% - 24px);
+	flex-direction: column;
+	max-width: calc(58.3333% - 24px);
+	margin-bottom: 24px;
+}
+
 .feedbacks {
+	position: relative;
+	margin-top: 24px;
+}
+
+.col_2 {
+	flex-basis: calc(16.6666% - 24px);
+	max-width: calc(16.6666% - 24px);
+}
+
+.col_3 {
+	flex-basis: calc(25% - 24px);
+	max-width: calc(25% - 24px);
+}
+
+.listPhotos {
+	display: flex;
 	width: 100%;
 }

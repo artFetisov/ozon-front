@@ -1,0 +1,42 @@
+.feedback {
+	position: relative;
+	width: 100%;
+}
+
+.topBox {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.userData {
+	display: flex;
+	align-items: center;
+
+	.circle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		margin-right: 16px;
+		color: #fff;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 26px;
+		background-color: rgb(0 150 255 / 7.8%);
+		border-radius: 50%;
+	}
+
+	.name {
+		max-width: 400px;
+		font-weight: 700;
+		font-size: 16px;
+		line-height: 20px;
+		word-break: break-word;
+	}
+}
+
+.dateAndRating {
+	display: flex;
+}

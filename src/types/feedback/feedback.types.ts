@@ -1,14 +1,15 @@
 import { IProduct } from '@/types/product/product.types'
+import { IUser } from '../user/user.types'
 
 export interface IFeedback {
 	id: number
+	author: IUser
 	product: IProduct
 	description: IFeedbackDescription
-	video: string
+	videos: string[]
 	images: string[]
 	date: Date
-	rating: number
-	messages: string[]
+	grade: number
 }
 
 export interface IFeedbackDescription {
