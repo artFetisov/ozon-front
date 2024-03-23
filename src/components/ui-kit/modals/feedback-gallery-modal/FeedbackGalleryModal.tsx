@@ -1,11 +1,13 @@
 import { FC, MouseEvent, useState } from 'react'
 import styles from './FeedbackGalleryModal.module.scss'
 import { CloseButton } from '../../close-button/CloseButton'
-import { IFeedback } from '@/types/feedback/feedback.types'
+import { IFeedback, ISendingCommentForm } from '@/types/feedback/feedback.types'
 import { getFirstCapitalLetter, getNameWithInitials } from '@/utils/user/name'
 import { getCorrectDateView } from '@/utils/date/date'
 import { Textarea } from '../../textarea/Textarea'
-import { useForm } from 'react-hook-form'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { Button } from '../../button/Button'
+import { IconButton } from '../../icon-button/IconButton'
 
 interface IFeedbackGalleryModalProps {
 	close: (event: MouseEvent<HTMLDivElement | HTMLButtonElement>) => void
@@ -16,16 +18,14 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 	const [isShowDescription, setIsShowDescription] = useState(false)
 	const [isShowAllComments, setIsShowAllComments] = useState(false)
 
-	const {
-		setValue,
-		handleSubmit,
-		register,
-		formState: { errors },
-		control,
-		getValues,
-	} = useForm({
+	const { control, handleSubmit, register, formState, getValues } = useForm<ISendingCommentForm>({
 		mode: 'onChange',
 	})
+
+	const onSubmit: SubmitHandler<ISendingCommentForm> = async (data) => {
+		console.log('submit')
+		console.log(data)
+	}
 
 	const handleSetIsShowDescription = () => {
 		setIsShowDescription(true)
@@ -144,9 +144,33 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 						</div>
 					</div>
 				)}
-				<form className={styles.textareaForm}>
-					<Textarea placeholder='Ваш комментарий к отзыву' />
-					<div className={styles.sendIcon}>icon</div>
+				<form className={styles.textareaForm} onSubmit={handleSubmit(onSubmit)}>
+					<Controller
+						rules={{ maxLength: 100 }}
+						name='comment'
+						control={control}
+						render={({ field: { value, onChange }, fieldState: { isTouched, isDirty } }) => (
+							<Textarea
+								isTouched={isTouched}
+								isDirty={isDirty}
+								value={value}
+								onChange={onChange}
+								placeholder='Ваш комментарий к отзыву'
+							/>
+						)}
+					/>
+					<div className={styles.sendIcon}>
+						<IconButton
+							svgSize={24}
+							style={{ borderRadius: '50%', opacity: 0.4, padding: '4px' }}
+							disabled={getValues().comment?.length === 0}
+						>
+							<path
+								fill='currentColor'
+								d='M4.361 2.23a1 1 0 0 1 1.086-.124l18 9a1 1 0 0 1 0 1.788l-18 9a1 1 0 0 1-1.409-1.169l2-7a1 1 0 0 1 .646-.674l6-2a1 1 0 0 1 .632 1.898l-5.5 1.833-1.23 4.307L20.764 12 6.586 4.911l1.376 4.814a1 1 0 1 1-1.924.55l-2-7a1 1 0 0 1 .323-1.044'
+							></path>
+						</IconButton>
+					</div>
 				</form>
 			</div>
 		</div>

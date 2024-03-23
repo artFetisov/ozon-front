@@ -10,9 +10,18 @@ type MyButtonPropsType = DefaultButtonPropsType & {
 	text?: string
 	like?: boolean
 	onClickIcon?: () => void
+	svgSize: number
 }
 
-export const IconButton: FC<MyButtonPropsType> = ({ children, text, like, onClickIcon }) => {
+export const IconButton: FC<MyButtonPropsType> = ({
+	children,
+	text,
+	like,
+	onClickIcon,
+	svgSize,
+	disabled,
+	...rest
+}) => {
 	const [liked, setLiked] = useState(false)
 
 	const handleLike = () => {
@@ -25,18 +34,20 @@ export const IconButton: FC<MyButtonPropsType> = ({ children, text, like, onClic
 
 	return (
 		<button
+			disabled
+			{...rest}
 			onClick={onClickHandler}
 			className={cn(styles.iconButton, {
 				[styles.liked]: liked && like,
 				[styles.withText]: text,
+				[styles.disabled]: disabled,
 			})}
 		>
 			{children && (
-				<svg width={16} height={16} style={{ marginRight: text ? '8px' : '' }}>
+				<svg width={svgSize} height={svgSize} style={{ marginRight: text ? '8px' : '' }}>
 					{children}
 				</svg>
 			)}
-
 			{text && <span className={styles.text}>{text}</span>}
 			<div
 				className={cn({

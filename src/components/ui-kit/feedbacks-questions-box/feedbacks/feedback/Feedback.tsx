@@ -65,8 +65,8 @@ export const Feedback: FC<IFeedbackProps> = ({ feedback, setSelectedFeedbackCb }
 			<div className={styles.grade}>
 				<div>Вам помог этот отзыв?</div>
 				<div>
-					<IconButton text={`Да ${feedback.benefitGrade.yes}`}></IconButton>
-					<IconButton text={`Нет ${feedback.benefitGrade.no}`}></IconButton>
+					<IconButton svgSize={16} text={`Да ${feedback.benefitGrade.yes}`}></IconButton>
+					<IconButton svgSize={16} text={`Нет ${feedback.benefitGrade.no}`}></IconButton>
 				</div>
 			</div>
 		</div>

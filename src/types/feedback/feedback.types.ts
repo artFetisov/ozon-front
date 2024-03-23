@@ -33,3 +33,7 @@ export interface IFeedbackBenefitGrade {
 	yes: number
 	no: number
 }
+
+export interface ISendingCommentForm {
+	comment: string
+}
