@@ -52,7 +52,7 @@ export const LargeGallery: FC<ILargeGallery> = ({ setVariantGallery, images }) =
 	return (
 		<div className={styles.largeGallery}>
 			<div className={styles.innerWrapper}>
-				<CloseButton callback={setVariantGallery} />
+				<CloseButton callback={setVariantGallery} variant='inside' />
 				<div className={styles.selectImageBar}>
 					<div className={styles.innerBox}>
 						{images.map((img, ind) => (

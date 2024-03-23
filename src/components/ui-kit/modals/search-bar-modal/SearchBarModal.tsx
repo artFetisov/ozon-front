@@ -13,7 +13,7 @@ export const SearchBarModal = ({
 }) => {
 	return (
 		<div className={styles.searchBarModal}>
-			<CloseButton callback={close} />
+			<CloseButton callback={close} variant='inside' />
 			<div className={styles.modalContent}>
 				<div className={styles.categoriesLinks}>
 					<div className={styles.catsLink}>

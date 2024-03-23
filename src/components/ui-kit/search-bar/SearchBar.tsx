@@ -33,8 +33,10 @@ export const SearchBar: FC = () => {
 
 	return (
 		<>
-			{isOpenModal2 && <LayoutModal close={handleCloseModals} Content={<SearchBarModal close={handleCloseModals} />} />}
-			{isOpenModal && <LayoutModal close={handleCloseModals} />}
+			{isOpenModal2 && (
+				<LayoutModal variant='dark' close={handleCloseModals} Content={<SearchBarModal close={handleCloseModals} />} />
+			)}
+			{isOpenModal && <LayoutModal variant='dark' close={handleCloseModals} />}
 			<div
 				className={cn(styles.searchContainer, {
 					[styles.isOpenModal]: isOpenModal,

@@ -10,6 +10,15 @@ export interface IFeedback {
 	images: string[]
 	date: Date
 	grade: number
+	benefitGrade: IFeedbackBenefitGrade
+	comments: IFeedbackComment[]
+}
+
+export interface IFeedbackComment {
+	id: number
+	author: IUser
+	message: string
+	date: Date
 }
 
 export interface IFeedbackDescription {
@@ -17,4 +26,10 @@ export interface IFeedbackDescription {
 	dignities: string
 	disadvantages: string
 	comment: string
+}
+
+export interface IFeedbackBenefitGrade {
+	id: number
+	yes: number
+	no: number
 }

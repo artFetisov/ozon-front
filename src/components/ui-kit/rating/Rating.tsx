@@ -3,7 +3,7 @@ import styles from './Rating.module.scss'
 import { getRatingPercent } from '@/utils/rating/rating'
 
 interface IRatingProps {
-	rating?: number
+	rating: number
 }
 
 export const Rating: FC<IRatingProps> = ({ rating }) => {

@@ -2,7 +2,8 @@
 	position: absolute;
 	top: 18px;
 	right: 18px;
-	z-index: 5;
+
+	// z-index: 2001;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -18,4 +19,14 @@
 	&:hover {
 		background-color: rgb(204 214 228 / 50%);
 	}
+}
+
+.inside {
+	top: 18px;
+	right: 18px;
+}
+
+.outside {
+	top: 0;
+	right: -70px;
 }

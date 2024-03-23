@@ -31,9 +31,12 @@ export const IconButton: FC<MyButtonPropsType> = ({ children, text, like, onClic
 				[styles.withText]: text,
 			})}
 		>
-			<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' style={{ marginRight: text ? '8px' : '' }}>
-				{children}
-			</svg>
+			{children && (
+				<svg width={16} height={16} style={{ marginRight: text ? '8px' : '' }}>
+					{children}
+				</svg>
+			)}
+
 			{text && <span className={styles.text}>{text}</span>}
 			<div
 				className={cn({
