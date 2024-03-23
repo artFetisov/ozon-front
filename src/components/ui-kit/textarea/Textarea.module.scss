@@ -16,10 +16,6 @@
 	// 	border-color: variables.$blue-primary;
 	// }
 
-	// &:target {
-	// 	border-color: variables.$blue-primary;
-	// }
-
 	& > p {
 		position: absolute;
 		top: 5px;
@@ -48,8 +44,12 @@
 	resize: none;
 	-webkit-text-fill-color: #001a34;
 	caret-color: variables.$blue-primary;
-}
 
-.textarea:hover .txtBox {
-	border-color: variables.$blue-primary;
+	&:hover {
+		border: 1px solid variables.$blue-primary;
+
+		.txtBox {
+			border-color: variables.$blue-primary;
+		}
+	}
 }

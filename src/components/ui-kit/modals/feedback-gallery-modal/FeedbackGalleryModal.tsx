@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from 'react'
+import { FC, MouseEvent, useEffect, useState } from 'react'
 import styles from './FeedbackGalleryModal.module.scss'
 import { CloseButton } from '../../close-button/CloseButton'
 import { IFeedback, ISendingCommentForm } from '@/types/feedback/feedback.types'
@@ -17,10 +17,16 @@ interface IFeedbackGalleryModalProps {
 export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, feedback }) => {
 	const [isShowDescription, setIsShowDescription] = useState(false)
 	const [isShowAllComments, setIsShowAllComments] = useState(false)
+	const [textareaValue, setTextareaValue] = useState('')
 
-	const { control, handleSubmit, register, formState, getValues } = useForm<ISendingCommentForm>({
+	const { control, handleSubmit, watch, getValues } = useForm<ISendingCommentForm>({
 		mode: 'onChange',
 	})
+
+	useEffect(() => {
+		const subscription = watch((value) => setTextareaValue(value.comment || ''))
+		return () => subscription.unsubscribe()
+	}, [watch])
 
 	const onSubmit: SubmitHandler<ISendingCommentForm> = async (data) => {
 		console.log('submit')
@@ -34,6 +40,8 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 	const handleSetIsShowAllComments = () => {
 		setIsShowAllComments(true)
 	}
+
+	console.log(getValues().comment)
 
 	return (
 		<div className={styles.feedbackGalleryModal}>
@@ -161,9 +169,10 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 					/>
 					<div className={styles.sendIcon}>
 						<IconButton
+							active={getValues().comment.length > 0}
 							svgSize={24}
-							style={{ borderRadius: '50%', opacity: 0.4, padding: '4px' }}
-							disabled={getValues().comment?.length === 0}
+							style={{ borderRadius: '50%', padding: '4px' }}
+							disabled={getValues().comment?.length === 0 || getValues().comment === undefined}
 						>
 							<path
 								fill='currentColor'

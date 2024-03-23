@@ -11,6 +11,7 @@ type MyButtonPropsType = DefaultButtonPropsType & {
 	like?: boolean
 	onClickIcon?: () => void
 	svgSize: number
+	active?: boolean
 }
 
 export const IconButton: FC<MyButtonPropsType> = ({
@@ -20,6 +21,7 @@ export const IconButton: FC<MyButtonPropsType> = ({
 	onClickIcon,
 	svgSize,
 	disabled,
+	active,
 	...rest
 }) => {
 	const [liked, setLiked] = useState(false)
@@ -41,6 +43,7 @@ export const IconButton: FC<MyButtonPropsType> = ({
 				[styles.liked]: liked && like,
 				[styles.withText]: text,
 				[styles.disabled]: disabled,
+				[styles.active]: active,
 			})}
 		>
 			{children && (
