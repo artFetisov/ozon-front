@@ -42,8 +42,8 @@ export const IconButton: FC<MyButtonPropsType> = ({
 			className={cn(styles.iconButton, {
 				[styles.liked]: liked && like,
 				[styles.withText]: text,
-				[styles.disabled]: disabled,
-				[styles.active]: active,
+				// [styles.disabled]: disabled,
+				// [styles.active]: active,
 			})}
 		>
 			{children && (

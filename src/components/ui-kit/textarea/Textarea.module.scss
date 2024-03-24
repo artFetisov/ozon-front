@@ -12,9 +12,9 @@
 	transition: border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 	will-change: transform, border-color, top, background-color;
 
-	// &:hover {
-	// 	border-color: variables.$blue-primary;
-	// }
+	&:hover {
+		border-color: variables.$blue-primary;
+	}
 
 	& > p {
 		position: absolute;
@@ -44,12 +44,8 @@
 	resize: none;
 	-webkit-text-fill-color: #001a34;
 	caret-color: variables.$blue-primary;
+}
 
-	&:hover {
-		border: 1px solid variables.$blue-primary;
-
-		.txtBox {
-			border-color: variables.$blue-primary;
-		}
-	}
+.focused {
+	border-color: variables.$blue-primary;
 }

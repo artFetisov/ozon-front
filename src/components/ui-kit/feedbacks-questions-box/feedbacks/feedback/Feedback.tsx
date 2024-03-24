@@ -1,12 +1,13 @@
 import { IFeedback } from '@/types/feedback/feedback.types'
 import { FC, useState } from 'react'
 import styles from './Feedback.module.scss'
-import { getFirstCapitalLetter, getNameWithInitials } from '@/utils/user/name'
+import { getNameWithInitials } from '@/utils/user/name'
 import { Rating } from '@/components/ui-kit/rating/Rating'
 import { getCorrectDateView } from '@/utils/date/date'
 import Image from 'next/image'
-import classNames from 'classnames'
 import { IconButton } from '@/components/ui-kit/icon-button/IconButton'
+import { FeedbackSendCommentForm } from '@/components/ui-kit/forms/feedback-send-comment-form/FeedbackSendCommentForm'
+import { AvatarRound } from '@/components/ui-kit/user-data-round/AvatarRound'
 
 interface IFeedbackProps {
 	feedback: IFeedback
@@ -14,13 +15,17 @@ interface IFeedbackProps {
 }
 
 export const Feedback: FC<IFeedbackProps> = ({ feedback, setSelectedFeedbackCb }) => {
+	const [isShowCommentField, setIsShowCommentField] = useState(false)
+
+	const handleSetIsShowCommentField = (bool: boolean) => {
+		setIsShowCommentField(bool)
+	}
+
 	return (
 		<div className={styles.feedback}>
 			<div className={styles.topBox}>
 				<div className={styles.userData}>
-					<div className={styles.circle}>
-						<span>{getFirstCapitalLetter(feedback.author.name)}</span>
-					</div>
+					<AvatarRound name={feedback.author.name} />
 					<div className={styles.name}>{getNameWithInitials(feedback.author.name, feedback.author.lastName)}</div>
 				</div>
 				<div className={styles.dateAndRating}>
@@ -64,11 +69,23 @@ export const Feedback: FC<IFeedbackProps> = ({ feedback, setSelectedFeedbackCb }
 			</div>
 			<div className={styles.grade}>
 				<div>Вам помог этот отзыв?</div>
-				<div>
-					<IconButton svgSize={16} text={`Да ${feedback.benefitGrade.yes}`}></IconButton>
-					<IconButton svgSize={16} text={`Нет ${feedback.benefitGrade.no}`}></IconButton>
+				<div style={{ display: 'flex', alignItems: 'center' }}>
+					<IconButton
+						style={{ borderRadius: '16px' }}
+						svgSize={16}
+						text={`Да ${feedback.benefitGrade.yes}`}
+					></IconButton>
+					<IconButton
+						style={{ borderRadius: '16px' }}
+						svgSize={16}
+						text={`Нет ${feedback.benefitGrade.no}`}
+					></IconButton>
+					<div className={styles.answerBtn} onClick={(_) => handleSetIsShowCommentField(true)}>
+						Ответить
+					</div>
 				</div>
 			</div>
+			{isShowCommentField && <FeedbackSendCommentForm author={feedback.author} />}
 		</div>
 	)
 }
