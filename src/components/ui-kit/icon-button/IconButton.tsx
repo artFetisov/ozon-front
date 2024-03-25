@@ -36,8 +36,6 @@ export const IconButton: FC<MyButtonPropsType> = ({
 
 	return (
 		<button
-			disabled
-			{...rest}
 			onClick={onClickHandler}
 			className={cn(styles.iconButton, {
 				[styles.liked]: liked && like,
@@ -45,6 +43,7 @@ export const IconButton: FC<MyButtonPropsType> = ({
 				// [styles.disabled]: disabled,
 				// [styles.active]: active,
 			})}
+			{...rest}
 		>
 			{children && (
 				<svg width={svgSize} height={svgSize} style={{ marginRight: text ? '8px' : '' }}>

@@ -25,9 +25,12 @@ interface ITextareaProps {
 	value: string
 	onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
 	placeholder: string
+	minHeight: 'small' | 'large'
 }
 
-export const Textarea: FC<ITextareaProps> = ({ placeholder, value, ...rest }) => {
+export const Textarea: FC<ITextareaProps> = ({ placeholder, minHeight, value, ...rest }) => {
+	console.log(value)
+
 	const [isFocused, setISFocused] = useState(false)
 	const [plusHeightOnKeyEnter, setPlusHeightOnKeyEnter] = useState(0)
 
@@ -55,6 +58,8 @@ export const Textarea: FC<ITextareaProps> = ({ placeholder, value, ...rest }) =>
 		<div
 			className={cn(styles.txtBox, {
 				[styles.focused]: isFocused,
+				[styles.small]: minHeight === 'small',
+				[styles.large]: minHeight === 'large',
 			})}
 		>
 			<textarea
@@ -62,9 +67,10 @@ export const Textarea: FC<ITextareaProps> = ({ placeholder, value, ...rest }) =>
 				onBlur={(_) => handleSetFocus(false)}
 				onKeyDown={handleKeyPress}
 				className={styles.textarea}
-				{...rest}
+				value={value}
 				style={{ height: `${getFinalHeight(value?.length) + plusHeightOnKeyEnter}px` }}
 				maxLength={ROW_TEXTAREA_LENGTH * 5}
+				{...rest}
 			/>
 			{(value?.length === 0 || value === undefined) && <p>{placeholder}</p>}
 		</div>

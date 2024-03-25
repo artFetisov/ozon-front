@@ -10,11 +10,25 @@ type MyButtonPropsType = DefaultButtonPropsType & {
 	onClick?: () => void
 	disabledP?: boolean
 	isIcon?: boolean
+	isFullWidth?: boolean
 }
 
-export const Button: FC<MyButtonPropsType> = ({ children, variant, disabledP, color, isIcon, ...props }) => {
+export const Button: FC<MyButtonPropsType> = ({
+	children,
+	variant,
+	disabledP,
+	isFullWidth = true,
+	color,
+	isIcon,
+	...rest
+}) => {
 	return (
-		<button className={styles.button} {...props}>
+		<button
+			className={cn(styles.button, {
+				[styles.fullWidth]: isFullWidth,
+			})}
+			{...rest}
+		>
 			<span
 				className={cn(styles.inner, {
 					[styles.large]: variant === 'large',

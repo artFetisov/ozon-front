@@ -85,7 +85,9 @@ export const Feedback: FC<IFeedbackProps> = ({ feedback, setSelectedFeedbackCb }
 					</div>
 				</div>
 			</div>
-			{isShowCommentField && <FeedbackSendCommentForm author={feedback.author} />}
+			{isShowCommentField && (
+				<FeedbackSendCommentForm author={feedback.author} closeFormModal={handleSetIsShowCommentField} />
+			)}
 		</div>
 	)
 }

@@ -4,11 +4,12 @@ import { IconButton } from '../../icon-button/IconButton'
 import { Textarea } from '../../textarea/Textarea'
 import { ISendingCommentForm } from '@/types/feedback/feedback.types'
 import styles from './FeedbackGalleryModalForm.module.scss'
+import { Button } from '../../button/Button'
 
 export const FeedbackGalleryModalForm: FC = () => {
 	const [textareaValue, setTextareaValue] = useState('')
 
-	const { control, handleSubmit, watch, getValues } = useForm<ISendingCommentForm>({
+	const { control, handleSubmit, watch, getValues, resetField } = useForm<ISendingCommentForm>({
 		mode: 'onChange',
 	})
 
@@ -17,7 +18,10 @@ export const FeedbackGalleryModalForm: FC = () => {
 		return () => subscription.unsubscribe()
 	}, [watch])
 
-	const onSubmit: SubmitHandler<ISendingCommentForm> = async (data) => {}
+	const onSubmit: SubmitHandler<ISendingCommentForm> = async (data) => {
+		alert(data.comment)
+		resetField('comment')
+	}
 
 	return (
 		<form className={styles.textareaForm} onSubmit={handleSubmit(onSubmit)}>
@@ -25,16 +29,18 @@ export const FeedbackGalleryModalForm: FC = () => {
 				rules={{ maxLength: 100 }}
 				name='comment'
 				control={control}
+				defaultValue={''}
 				render={({ field: { value, onChange } }) => (
-					<Textarea value={value} onChange={onChange} placeholder='Ваш комментарий к отзыву' />
+					<Textarea value={value} onChange={onChange} placeholder='Ваш комментарий к отзыву' minHeight='small' />
 				)}
 			/>
 			<div className={styles.sendIcon}>
 				<IconButton
-					active={getValues().comment?.trim().length > 0}
+					type='submit'
+					// active={getValues().comment?.trim().length > 0}
 					svgSize={24}
 					style={{ borderRadius: '50%', padding: '4px' }}
-					disabled={getValues().comment?.trim().length === 0 || getValues().comment === undefined}
+					// disabled={getValues().comment?.trim().length === 0 || getValues().comment === undefined}
 				>
 					<path
 						fill='currentColor'

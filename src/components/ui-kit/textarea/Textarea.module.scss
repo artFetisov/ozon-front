@@ -3,7 +3,6 @@
 .txtBox {
 	position: relative;
 	width: 100%;
-	min-height: 32px;
 	margin-right: 8px;
 	overflow: inherit;
 	white-space: nowrap;
@@ -28,6 +27,14 @@
 		pointer-events: none;
 		will-change: transform;
 	}
+}
+
+.small {
+	min-height: 32px;
+}
+
+.large {
+	min-height: 52px;
 }
 
 .textarea {
