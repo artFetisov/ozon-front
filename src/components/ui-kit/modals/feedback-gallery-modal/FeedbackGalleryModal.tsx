@@ -2,17 +2,31 @@ import { FC, MouseEvent, useState } from 'react'
 import styles from './FeedbackGalleryModal.module.scss'
 import { CloseButton } from '../../close-button/CloseButton'
 import { IFeedback } from '@/types/feedback/feedback.types'
-import { getFirstCapitalLetter, getNameWithInitials } from '@/utils/user/name'
+import { getNameWithInitials } from '@/utils/user/name'
 import { getCorrectDateView } from '@/utils/date/date'
 import { FeedbackGalleryModalForm } from '../../forms/feedback-gallery-modal-form/FeedbackGalleryModalForm'
 import { AvatarRound } from '../../user-data-round/AvatarRound'
+import Image from 'next/image'
+import { Rating } from '../../rating/Rating'
+import { ArrowButton } from '../../arrow-button/ArrowButton'
+import { useImageGallery } from '@/hooks/useImageGallery'
 
 interface IFeedbackGalleryModalProps {
 	close: (event: MouseEvent<HTMLDivElement | HTMLButtonElement>) => void
-	feedback: IFeedback | null
+	selectedFeedback: IFeedback | null
+	selectedFeedbackImage: string | null
 }
 
-export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, feedback }) => {
+export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({
+	close,
+	selectedFeedback,
+	selectedFeedbackImage,
+}) => {
+	const { handleLeftArrowButton, handleRightArrowButton, selectedImage } = useImageGallery(
+		selectedFeedback?.images ? selectedFeedback.images : [],
+		selectedFeedbackImage
+	)
+
 	const [isShowDescription, setIsShowDescription] = useState(false)
 	const [isShowAllComments, setIsShowAllComments] = useState(false)
 
@@ -27,14 +41,38 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 	return (
 		<div className={styles.feedbackGalleryModal}>
 			<CloseButton callback={close} variant='outside' />
-			<div className={styles.selectedPhotoContainer}>s</div>
+			<div className={styles.selectedPhotoContainer}>
+				<div className={styles.feedbackRating}>
+					<span>Отзыв</span>
+					<div className={styles.ratingBox}>
+						<Rating rating={selectedFeedback?.grade ? selectedFeedback.grade : 0} />
+					</div>
+				</div>
+				<div className={styles.blurImgBox}>
+					<Image
+						quality={10}
+						alt='Image'
+						src={selectedImage ? selectedImage : ''}
+						fill
+						className={styles.blurImg}
+						loading='eager'
+					/>
+				</div>
+				<Image
+					alt='Image'
+					src={selectedImage ? selectedImage : ''}
+					fill
+					className={styles.originalImg}
+					loading='eager'
+				/>
+			</div>
 			<div className={styles.selectedFeedbackInfo}>
-				{feedback && (
+				{selectedFeedback && (
 					<div className={styles.info}>
 						<div className={styles.userData}>
-							<AvatarRound name={feedback.author?.name} />
+							<AvatarRound name={selectedFeedback.author?.name} />
 							<div className={styles.name}>
-								{getNameWithInitials(feedback.author.name, feedback.author.lastName)}
+								{getNameWithInitials(selectedFeedback.author.name, selectedFeedback.author.lastName)}
 								<div className={styles.date}>{getCorrectDateView(new Date())}</div>
 							</div>
 						</div>
@@ -55,22 +93,22 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 							)}
 							{isShowDescription && (
 								<div className={styles.description}>
-									{feedback.description.dignities && (
+									{selectedFeedback.description.dignities && (
 										<div className={styles.infoDesc}>
 											<div className={styles.title}>Достоинства</div>
-											<div>{feedback.description.dignities}</div>
+											<div>{selectedFeedback.description.dignities}</div>
 										</div>
 									)}
-									{feedback.description.disadvantages && (
+									{selectedFeedback.description.disadvantages && (
 										<div className={styles.infoDesc}>
 											<div className={styles.title}>Недостатки</div>
-											<div>{feedback.description.disadvantages}</div>
+											<div>{selectedFeedback.description.disadvantages}</div>
 										</div>
 									)}
-									{feedback.description.comment && (
+									{selectedFeedback.description.comment && (
 										<div className={styles.infoDesc}>
 											<div className={styles.title}>Комментарий</div>
-											<div>{feedback.description.comment}</div>
+											<div>{selectedFeedback.description.comment}</div>
 										</div>
 									)}
 								</div>
@@ -79,12 +117,12 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 						<div className={styles.comments}>
 							<div className={styles.heading}>
 								{' '}
-								Комментарии <span>{feedback.comments.length}</span>
+								Комментарии <span>{selectedFeedback.comments.length}</span>
 							</div>
-							{feedback.comments && (
+							{selectedFeedback.comments && (
 								<div className={styles.commentList}>
 									{isShowAllComments &&
-										feedback.comments.map((c) => (
+										selectedFeedback.comments.map((c) => (
 											<div key={c.id + '-' + c.author} className={styles.comment}>
 												<div className={styles.userData}>
 													<AvatarRound name={c.author?.name} />
@@ -97,7 +135,7 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 											</div>
 										))}
 									{!isShowAllComments &&
-										feedback.comments.slice(0, 1).map((c) => (
+										selectedFeedback.comments.slice(0, 1).map((c) => (
 											<div key={c.id + '-' + c.author} className={styles.comment}>
 												<div className={styles.userData}>
 													<AvatarRound name={c.author?.name} />
@@ -111,7 +149,7 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 										))}
 								</div>
 							)}
-							{!isShowAllComments && feedback.comments.length > 1 && (
+							{!isShowAllComments && selectedFeedback.comments.length > 1 && (
 								<div className={styles.moreCommentsBtn} onClick={handleSetIsShowAllComments}>
 									<div className={styles.icon}>
 										<svg width={24} height={24}>
@@ -129,6 +167,8 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({ close, fe
 				)}
 				<FeedbackGalleryModalForm />
 			</div>
+			<ArrowButton position='left' callback={handleLeftArrowButton} style={{ left: '-80px' }} />
+			<ArrowButton position='right' callback={handleRightArrowButton} style={{ right: '-80px' }} />
 		</div>
 	)
 }

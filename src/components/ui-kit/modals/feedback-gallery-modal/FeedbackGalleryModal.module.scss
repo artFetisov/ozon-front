@@ -22,6 +22,81 @@
 	width: 816px;
 	overflow: hidden;
 	background-color: black;
+	background-color: #fff;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+
+	.feedbackRating {
+		position: absolute;
+		top: 20px;
+		left: 20px;
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		margin-right: 8px;
+		padding: 3px 8px;
+		color: #fff;
+		font-size: 14px;
+		line-height: 18px;
+		background: rgb(7 7 7 / 48%);
+		border-radius: 12px;
+
+		& > span {
+			margin-right: 8px;
+		}
+
+		.ratingBox {
+			position: relative;
+			display: inline-flex;
+			align-items: center;
+			width: 90px;
+			height: 20px;
+			pointer-events: none;
+		}
+	}
+
+	.blurImgBox {
+		position: absolute;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		background: rgb(0 26 52 / 20%);
+		inset: 0;
+
+		.blurImg {
+			position: absolute;
+			top: 0;
+			left: 10%;
+			width: 80%;
+			height: 100%;
+			transform: translateZ(0);
+			backface-visibility: hidden;
+			filter: blur(100px);
+
+			// object-fit: 'contain';
+
+			&::after {
+				position: absolute;
+				inset: 0;
+				z-index: 2;
+				width: 100%;
+				height: 100%;
+				background: rgb(0 48 120 / 3.9%);
+				content: '';
+			}
+		}
+	}
+
+	.originalImg {
+		z-index: 1;
+		width: 100%;
+		object-fit: contain;
+		transform: translateZ(0);
+		opacity: 1;
+		transition:
+			transform 0.4s,
+			opacity 0.4s;
+	}
 }
 
 .selectedFeedbackInfo {
@@ -227,4 +302,37 @@
 	& > span {
 		color: variables.$blue-hover;
 	}
+}
+
+.leftArrow {
+	position: absolute;
+	top: 50%;
+	left: -80px;
+	display: inline-flex;
+	border-radius: 50%;
+}
+
+.iconArr {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 48px;
+	padding: 12px;
+	color: #001a34;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 20px;
+	text-align: center;
+	background-color: #fff;
+	box-shadow: 0 4px 16px 1px rgb(0 26 52 / 16%);
+	transition:
+		color 0.15s ease-in-out,
+		background 0.15s ease-in-out,
+		opacity 0.3s ease-in-out;
+}
+
+.rightArrow {
+	position: absolute;
+	top: 50%;
+	right: -80px;
 }

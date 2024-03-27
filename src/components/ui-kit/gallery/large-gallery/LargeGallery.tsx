@@ -4,6 +4,7 @@ import { CloseButton } from '../../close-button/CloseButton'
 import Image from 'next/image'
 import cn from 'classnames'
 import { ArrowButton } from '../../arrow-button/ArrowButton'
+import { useImageGallery } from '@/hooks/useImageGallery'
 
 interface ILargeGallery {
 	images: string[]
@@ -11,12 +12,9 @@ interface ILargeGallery {
 }
 
 export const LargeGallery: FC<ILargeGallery> = ({ setVariantGallery, images }) => {
-	const [selectedImage, setSelectedImage] = useState(images[0])
+	const { selectedImage, handleLeftArrowButton, handleRightArrowButton, handleSetSelectedImage } =
+		useImageGallery(images)
 	const [hoveredImage, setHoveredImage] = useState<string | null>(null)
-
-	const handleSelectImage = (img: string) => {
-		setSelectedImage(img)
-	}
 
 	const handleHoverImage = (img: string) => {
 		if (selectedImage === img) return
@@ -25,28 +23,6 @@ export const LargeGallery: FC<ILargeGallery> = ({ setVariantGallery, images }) =
 
 	const handleMouseLeaveImage = () => {
 		setHoveredImage(null)
-	}
-
-	const handleLeftArrowButton = () => {
-		const currentImageIndex = images.findIndex((item) => item === selectedImage)
-
-		if (currentImageIndex === 0) {
-			handleSelectImage(images[images.length - 1])
-			return
-		}
-
-		handleSelectImage(images[currentImageIndex - 1])
-	}
-
-	const handleRightArrowButton = () => {
-		const currentImageIndex = images.findIndex((item) => item === selectedImage)
-
-		if (currentImageIndex === images.length - 1) {
-			handleSelectImage(images[0])
-			return
-		}
-
-		handleSelectImage(images[currentImageIndex + 1])
 	}
 
 	return (
@@ -65,7 +41,13 @@ export const LargeGallery: FC<ILargeGallery> = ({ setVariantGallery, images }) =
 									[styles.hovered]: hoveredImage === img,
 								})}
 							>
-								<Image src={img} alt='Изображение' width={48} height={48} onClick={(e) => handleSelectImage(img)} />
+								<Image
+									src={img}
+									alt='Изображение'
+									width={48}
+									height={48}
+									onClick={(e) => handleSetSelectedImage(img)}
+								/>
 							</div>
 						))}
 					</div>

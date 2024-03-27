@@ -1,7 +1,4 @@
 import { FC, useState } from 'react'
-import styles from './Gallery.module.scss'
-import Image from 'next/image'
-import cn from 'classnames'
 import { SimpleGallery } from './simple-gallery/SimpleGallery'
 import { LargeGallery } from './large-gallery/LargeGallery'
 

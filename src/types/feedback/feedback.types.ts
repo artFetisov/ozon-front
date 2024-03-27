@@ -6,7 +6,6 @@ export interface IFeedback {
 	author: IUser
 	product: IProduct
 	description: IFeedbackDescription
-	videos: string[]
 	images: string[]
 	date: Date
 	grade: number

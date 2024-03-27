@@ -9,9 +9,7 @@ import { Button } from '../../button/Button'
 export const FeedbackGalleryModalForm: FC = () => {
 	const [textareaValue, setTextareaValue] = useState('')
 
-	const { control, handleSubmit, watch, getValues, resetField } = useForm<ISendingCommentForm>({
-		mode: 'onChange',
-	})
+	const { control, handleSubmit, watch, getValues, resetField } = useForm<ISendingCommentForm>()
 
 	useEffect(() => {
 		const subscription = watch((value) => setTextareaValue(value.comment || ''))

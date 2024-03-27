@@ -1,15 +1,18 @@
-import { FC } from 'react'
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react'
 import styles from './ArrowButton.module.scss'
 import cn from 'classnames'
 
-interface IArrowButton {
+type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+
+type ArrowButtonPropsType = DefaultButtonPropsType & {
 	position: 'left' | 'right'
 	callback: () => void
 }
 
-export const ArrowButton: FC<IArrowButton> = ({ callback, position }) => {
+export const ArrowButton: FC<ArrowButtonPropsType> = ({ callback, position, ...rest }) => {
 	return (
 		<button
+			{...rest}
 			onClick={callback}
 			className={cn(styles.arrowButton, {
 				[styles.left]: position === 'left',

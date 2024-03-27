@@ -18,8 +18,12 @@ export const Feedbacks: FC<IFeedbacksProps> = ({ feedbacks }) => {
 
 	const handleSetSelectedFeedback = (feedback: IFeedback, img: string) => {
 		setSelectedFeedback(feedback)
-		setSelectedImage(img)
+		handleSetSelectedImage(img)
 		openModal()
+	}
+
+	const handleSetSelectedImage = (img: string) => {
+		setSelectedImage(img)
 	}
 
 	return (
@@ -28,7 +32,13 @@ export const Feedbacks: FC<IFeedbacksProps> = ({ feedbacks }) => {
 				<LayoutModal
 					variant='white'
 					close={closeModal}
-					Content={<FeedbackGalleryModal close={closeModal} feedback={selectedFeedback} />}
+					Content={
+						<FeedbackGalleryModal
+							close={closeModal}
+							selectedFeedbackImage={selectedImage}
+							selectedFeedback={selectedFeedback}
+						/>
+					}
 				/>
 			)}
 			<div className={styles.col_1}>
