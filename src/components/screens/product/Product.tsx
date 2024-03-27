@@ -52,7 +52,7 @@ export const Product: FC<IProductProps> = ({ id, slug }) => {
 				<div className={styles.infoBox}>
 					<div className={styles.rateAndFeedbacksBox}>
 						<div className={styles.ratingBox}>
-							<Rating rating={currentProduct?.rating} />
+							<Rating rating={currentProduct?.rating.averageValue} />
 						</div>
 						<div className={styles.feedbackBox}>233 отзывов</div>
 					</div>
@@ -288,7 +288,7 @@ export const Product: FC<IProductProps> = ({ id, slug }) => {
 					носит справочный характер и основывается на последних доступных к моменту публикации сведениях
 				</small>
 			</section>
-			<FeedbacksQuestionsBox />
+			<FeedbacksQuestionsBox feedbacks={currentProduct.feedbacks} productRating={currentProduct.rating} />
 			<Selection items={productsMock.slice(0, 12)} rowTotalItems={6} headingText={'Рекомендации'} />
 		</div>
 	)

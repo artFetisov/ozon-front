@@ -4,10 +4,17 @@ import { Feedbacks } from './feedbacks/Feedbacks'
 import { Questions } from './questions/Questions'
 import cn from 'classnames'
 import { mockFeedbacks } from '@/mock/feedbacks'
+import { IFeedback } from '@/types/feedback/feedback.types'
+import { IRating } from '@/types/rating/rating.types'
 
 type VariantShow = 'feedbacks' | 'questions'
 
-export const FeedbacksQuestionsBox: FC = () => {
+interface IFeedbacksQuestionBox {
+	feedbacks: IFeedback[]
+	productRating: IRating
+}
+
+export const FeedbacksQuestionsBox: FC<IFeedbacksQuestionBox> = ({ feedbacks, productRating }) => {
 	const [variantShow, setVariantShow] = useState<VariantShow>('feedbacks')
 
 	const handleVariantShow = (variant: VariantShow) => {
@@ -45,7 +52,11 @@ export const FeedbacksQuestionsBox: FC = () => {
 				></div>
 			</div>
 			<div className={styles.content}>
-				{variantShow === 'feedbacks' ? <Feedbacks feedbacks={mockFeedbacks} /> : <Questions />}
+				{variantShow === 'feedbacks' ? (
+					<Feedbacks feedbacks={feedbacks} productRating={productRating} />
+				) : (
+					<Questions />
+				)}
 			</div>
 		</div>
 	)

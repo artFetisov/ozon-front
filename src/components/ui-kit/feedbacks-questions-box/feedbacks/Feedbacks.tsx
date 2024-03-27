@@ -6,12 +6,15 @@ import { Feedback } from './feedback/Feedback'
 import { useModal } from '@/hooks/useModal'
 import { LayoutModal } from '../../modals/LayoutModal'
 import { FeedbackGalleryModal } from '../../modals/feedback-gallery-modal/FeedbackGalleryModal'
+import { IRating } from '@/types/rating/rating.types'
+import { ProductRatingBox } from '../../product-rating-box/ProductRatingBox'
 
 interface IFeedbacksProps {
 	feedbacks: IFeedback[]
+	productRating: IRating
 }
 
-export const Feedbacks: FC<IFeedbacksProps> = ({ feedbacks }) => {
+export const Feedbacks: FC<IFeedbacksProps> = ({ feedbacks, productRating }) => {
 	const { isOpenModal, openModal, closeModal } = useModal()
 	const [selectedFeedback, setSelectedFeedback] = useState<IFeedback | null>(null)
 	const [selectedImage, setSelectedImage] = useState<string | null>(null)
@@ -56,7 +59,9 @@ export const Feedbacks: FC<IFeedbacksProps> = ({ feedbacks }) => {
 				</div>
 			</div>
 			<div className={styles.col_2}></div>
-			<div className={styles.col_3}></div>
+			<div className={styles.col_3}>
+				<ProductRatingBox rating={productRating} />
+			</div>
 		</>
 	)
 }

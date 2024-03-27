@@ -1,5 +1,7 @@
 import { IProduct } from '@/types/product/product.types'
 import { categoriesMock } from './categories'
+import { mockFeedbacks } from './feedbacks'
+import { imagesGalleryMock } from './galleryImages'
 
 export const productsMock: IProduct[] = [
 	{
@@ -7,8 +9,18 @@ export const productsMock: IProduct[] = [
 		title: 'fldmfk mfkmkfs ssssss smsms;f;ekf;efef',
 		category: categoriesMock[1],
 		discount: 33,
+		images: imagesGalleryMock,
 		slug: 'mkmk',
-		rating: 5,
+		rating: {
+			id: 0,
+			averageValue: 4,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
@@ -67,7 +79,17 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 53,
 		slug: 'mkmk',
-		rating: 4,
+		rating: {
+			id: 0,
+			averageValue: 4,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
+		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
@@ -127,6 +149,7 @@ export const productsMock: IProduct[] = [
 		discount: 63,
 		slug: 'mkmk',
 		id: 2,
+		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
@@ -138,7 +161,16 @@ export const productsMock: IProduct[] = [
 			],
 		},
 		article: 2,
-		rating: 2,
+		rating: {
+			id: 0,
+			averageValue: 4,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		variants: [
 			{
 				id: 0,
@@ -185,6 +217,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 49,
 		slug: 'mkmk',
+		feedbacks: mockFeedbacks,
 		id: 3,
 		characteristics: {
 			id: 1,
@@ -196,7 +229,16 @@ export const productsMock: IProduct[] = [
 				{ property: 'Издательство', value: 'Питер' },
 			],
 		},
-		rating: 2.3,
+		rating: {
+			id: 0,
+			averageValue: 4.7,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		article: 2,
 		variants: [
 			{
@@ -243,6 +285,7 @@ export const productsMock: IProduct[] = [
 		title: 'fldmfkmfk df,dlfld d;lfmdlfl d;lfmdl;f dl;fmdlfm5555555555kfms',
 		category: categoriesMock[1],
 		discount: 16,
+		feedbacks: mockFeedbacks,
 		slug: 'mkmk',
 		characteristics: {
 			id: 1,
@@ -255,7 +298,16 @@ export const productsMock: IProduct[] = [
 			],
 		},
 		id: 4,
-		rating: 3.7,
+		rating: {
+			id: 0,
+			averageValue: 3.7,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		article: 2,
 		variants: [
 			{
@@ -303,6 +355,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 71,
 		slug: 'mkmk',
+		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
@@ -342,7 +395,16 @@ export const productsMock: IProduct[] = [
 			},
 		],
 		id: 5,
-		rating: 4,
+		rating: {
+			id: 0,
+			averageValue: 2.4,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		article: 2,
 		seller: {
 			id: 1,
@@ -362,6 +424,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 33,
 		slug: 'mkmk',
+		feedbacks: mockFeedbacks,
 		id: 6,
 		characteristics: {
 			id: 1,
@@ -402,7 +465,16 @@ export const productsMock: IProduct[] = [
 				],
 			},
 		],
-		rating: 4,
+		rating: {
+			id: 0,
+			averageValue: 1,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -421,6 +493,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 53,
 		slug: 'mkmk',
+		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
@@ -461,7 +534,16 @@ export const productsMock: IProduct[] = [
 				],
 			},
 		],
-		rating: 4,
+		rating: {
+			id: 0,
+			averageValue: 3.2,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -480,6 +562,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 63,
 		slug: 'mkmk',
+		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
@@ -490,7 +573,16 @@ export const productsMock: IProduct[] = [
 				{ property: 'Издательство', value: 'Питер' },
 			],
 		},
-		rating: 4,
+		rating: {
+			id: 0,
+			averageValue: 5,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		variants: [
 			{
 				id: 0,
@@ -539,6 +631,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 49,
 		slug: 'mkmk',
+		feedbacks: mockFeedbacks,
 		id: 9,
 		characteristics: {
 			id: 1,
@@ -579,7 +672,16 @@ export const productsMock: IProduct[] = [
 				],
 			},
 		],
-		rating: 4,
+		rating: {
+			id: 0,
+			averageValue: 2.4,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -598,6 +700,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 16,
 		slug: 'mkmk',
+		feedbacks: mockFeedbacks,
 		id: 10,
 		article: 2,
 		characteristics: {
@@ -638,7 +741,16 @@ export const productsMock: IProduct[] = [
 				],
 			},
 		],
-		rating: 4,
+		rating: {
+			id: 0,
+			averageValue: 3,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -657,6 +769,7 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 71,
 		slug: 'mkmk',
+		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
@@ -668,7 +781,16 @@ export const productsMock: IProduct[] = [
 			],
 		},
 		id: 11,
-		rating: 3,
+		rating: {
+			id: 0,
+			averageValue: 2,
+			one: { value: 1, totalCount: 13 },
+			two: { value: 2, totalCount: 26 },
+			three: { value: 3, totalCount: 1 },
+			four: { value: 4, totalCount: 14 },
+			five: { value: 1, totalCount: 99 },
+		},
+		images: imagesGalleryMock,
 		article: 2,
 		variants: [
 			{

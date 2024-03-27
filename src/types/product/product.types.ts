@@ -4,6 +4,7 @@ import { IFeedback } from '@/types/feedback/feedback.types'
 import { ISeller } from '@/types/seller/seller.types'
 import { IVariants } from './variant.types'
 import { ICharacteristics } from './characteristic.types'
+import { IRating } from '../rating/rating.types'
 
 export interface IProduct {
 	id: number
@@ -18,12 +19,12 @@ export interface IProduct {
 	category: ICategory
 	description: string
 	brand: string
-	feedbacks?: IFeedback[]
+	feedbacks: IFeedback[]
 	brandLogo?: string
 	variants: IVariants[]
-	images?: string[]
+	images: string[]
 	characteristics: ICharacteristics
-	rating: number
+	rating: IRating
 	dialog?: IProductAnswerAndQuestionDialog
 }
 

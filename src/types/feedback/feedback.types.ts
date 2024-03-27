@@ -4,7 +4,6 @@ import { IUser } from '../user/user.types'
 export interface IFeedback {
 	id: number
 	author: IUser
-	product: IProduct
 	description: IFeedbackDescription
 	images: string[]
 	date: Date
