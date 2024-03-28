@@ -45,7 +45,7 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({
 				<div className={styles.feedbackRating}>
 					<span>Отзыв</span>
 					<div className={styles.ratingBox}>
-						<Rating rating={selectedFeedback?.grade ? selectedFeedback.grade : 0} />
+						<Rating rating={selectedFeedback?.grade ? selectedFeedback.grade : 0} variant='small' />
 					</div>
 				</div>
 				<div className={styles.blurImgBox}>

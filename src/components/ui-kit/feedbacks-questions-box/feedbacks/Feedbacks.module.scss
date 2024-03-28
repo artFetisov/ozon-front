@@ -19,11 +19,68 @@
 }
 
 .col_3 {
-	flex-basis: calc(25% - 24px);
-	max-width: calc(25% - 24px);
+	display: flex;
+	flex-basis: calc(25%);
+	flex-direction: column;
+	width: 100%;
+	max-width: calc(25%);
+	margin: 36px 0 24px 24px;
 }
 
-.listPhotos {
+.allPhotosFeedbacksList {
+	display: grid;
+	grid-column-gap: 4px;
+	grid-template-columns: repeat(9, 87px);
+	height: 88px;
+	margin-bottom: 24px;
+
+	.imgBox {
+		position: relative;
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+		border-radius: 8px;
+		cursor: pointer;
+
+		.img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			min-width: 100%;
+			max-width: none;
+			min-height: 100%;
+			max-height: none;
+			object-fit: contain;
+			transform: translate(-50%, -50%);
+		}
+
+		.backdrop {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			color: #fff;
+			font-weight: 700;
+			font-size: 24px;
+			line-height: 20px;
+			background: rgb(0 48 120 / 3.9%);
+			border-radius: 6px;
+			backdrop-filter: blur(2px);
+		}
+	}
+}
+
+.remark {
 	display: flex;
+	align-items: center;
 	width: 100%;
+	margin-top: 36px;
+	color: rgb(0 26 52 / 60%);
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.2px;
+	word-break: break-word;
 }

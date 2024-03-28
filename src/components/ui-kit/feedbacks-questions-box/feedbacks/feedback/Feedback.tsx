@@ -31,7 +31,7 @@ export const Feedback: FC<IFeedbackProps> = ({ feedback, setSelectedFeedbackCb }
 				<div className={styles.dateAndRating}>
 					<div className={styles.date}>{getCorrectDateView(new Date())}</div>
 					<div className={styles.ratingBox}>
-						<Rating rating={feedback.grade} />
+						<Rating rating={feedback.grade} variant='small' />
 					</div>
 				</div>
 			</div>

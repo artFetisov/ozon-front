@@ -3,7 +3,6 @@ import styles from './FeedbacksQuestionsBox.module.scss'
 import { Feedbacks } from './feedbacks/Feedbacks'
 import { Questions } from './questions/Questions'
 import cn from 'classnames'
-import { mockFeedbacks } from '@/mock/feedbacks'
 import { IFeedback } from '@/types/feedback/feedback.types'
 import { IRating } from '@/types/rating/rating.types'
 
