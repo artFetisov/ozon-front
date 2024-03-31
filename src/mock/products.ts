@@ -1,7 +1,7 @@
 import { IProduct } from '@/types/product/product.types'
 import { categoriesMock } from './categories'
 import { mockFeedbacks } from './feedbacks'
-import { imagesGalleryMock } from './galleryImages'
+import { productImagesMock } from './galleryImages'
 
 export const productsMock: IProduct[] = [
 	{
@@ -9,7 +9,7 @@ export const productsMock: IProduct[] = [
 		title: 'fldmfk mfkmkfs ssssss smsms;f;ekf;efef',
 		category: categoriesMock[1],
 		discount: 33,
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		slug: 'mkmk',
 		rating: {
 			id: 0,
@@ -88,7 +88,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
@@ -170,7 +170,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		variants: [
 			{
 				id: 0,
@@ -238,7 +238,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		article: 2,
 		variants: [
 			{
@@ -307,7 +307,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		article: 2,
 		variants: [
 			{
@@ -404,7 +404,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		article: 2,
 		seller: {
 			id: 1,
@@ -474,7 +474,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -543,7 +543,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -582,7 +582,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		variants: [
 			{
 				id: 0,
@@ -681,7 +681,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -750,7 +750,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		seller: {
 			id: 1,
 			title: 'Sportmaster',
@@ -790,7 +790,7 @@ export const productsMock: IProduct[] = [
 			four: { value: 4, totalCount: 14 },
 			five: { value: 1, totalCount: 99 },
 		},
-		images: imagesGalleryMock,
+		images: productImagesMock,
 		article: 2,
 		variants: [
 			{

@@ -78,4 +78,8 @@
 	width: calc(100% - 120px);
 	height: 100%;
 	margin: 0 auto;
+
+	& > img {
+		object-fit: contain;
+	}
 }

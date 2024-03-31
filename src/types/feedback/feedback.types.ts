@@ -1,15 +1,20 @@
-import { IProduct } from '@/types/product/product.types'
 import { IUser } from '../user/user.types'
 
 export interface IFeedback {
 	id: number
 	author: IUser
 	description: IFeedbackDescription
-	images: string[]
+	images: IFeedbackImage[]
 	date: Date
 	grade: number
 	benefitGrade: IFeedbackBenefitGrade
 	comments: IFeedbackComment[]
+}
+
+export interface IFeedbackImage {
+	id: number
+	path: string
+	fbId: number
 }
 
 export interface IFeedbackComment {
@@ -35,3 +40,5 @@ export interface IFeedbackBenefitGrade {
 export interface ISendingCommentForm {
 	comment: string
 }
+
+export type TypeVariantFeedbackGalleryModal = 'one' | 'all'

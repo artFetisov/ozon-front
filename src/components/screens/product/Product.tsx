@@ -9,7 +9,6 @@ import { PriceCard } from '@/components/ui-kit/price-card/PriceCard'
 import { getPriceWithDiscount, getPriceWithWhitespace } from '@/utils/price/price'
 import { Button } from '@/components/ui-kit/button/Button'
 import { Gallery } from '@/components/ui-kit/gallery/Gallery'
-import { imagesGalleryMock } from '@/mock/galleryImages'
 import { ProductVariantBox } from '@/components/ui-kit/product-variant-box/ProductVariantBox'
 import { Selection } from '@/components/ui-kit/selection/Selection'
 import { FeedbacksQuestionsBox } from '@/components/ui-kit/feedbacks-questions-box/FeedbacksQuestionsBox'
@@ -68,7 +67,7 @@ export const Product: FC<IProductProps> = ({ id, slug }) => {
 			<div className={styles.mainBox}>
 				<div className={styles.leftSideMainBox}>
 					<div className={styles.gallery}>
-						<Gallery images={imagesGalleryMock} />
+						<Gallery images={currentProduct.images} />
 					</div>
 					<div className={styles.info}>
 						{currentProduct.variants.map((v) => (

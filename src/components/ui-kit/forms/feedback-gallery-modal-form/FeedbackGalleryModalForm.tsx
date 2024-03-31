@@ -4,7 +4,6 @@ import { IconButton } from '../../icon-button/IconButton'
 import { Textarea } from '../../textarea/Textarea'
 import { ISendingCommentForm } from '@/types/feedback/feedback.types'
 import styles from './FeedbackGalleryModalForm.module.scss'
-import { Button } from '../../button/Button'
 
 export const FeedbackGalleryModalForm: FC = () => {
 	const [textareaValue, setTextareaValue] = useState('')
@@ -37,8 +36,8 @@ export const FeedbackGalleryModalForm: FC = () => {
 					type='submit'
 					// active={getValues().comment?.trim().length > 0}
 					svgSize={24}
-					style={{ borderRadius: '50%', padding: '4px' }}
-					// disabled={getValues().comment?.trim().length === 0 || getValues().comment === undefined}
+					// style={{ borderRadius: '50%', padding: '4px' }}
+					disabled={getValues().comment?.trim().length === 0 || getValues().comment === undefined}
 				>
 					<path
 						fill='currentColor'

@@ -6,13 +6,19 @@ import cn from 'classnames'
 interface ISimpleGalleryProps {
 	images: string[]
 	setVariantGallery: () => void
+	selectedImage: string
+	setSelectedImage: (img: string) => void
 }
 
 const BOX_IMAGE_HEIGHT = 60
 const PORTION_SIZE_IMAGES = 8
 
-export const SimpleGallery: FC<ISimpleGalleryProps> = ({ images, setVariantGallery }) => {
-	const [selectedImage, setSelectedImage] = useState(images[0])
+export const SimpleGallery: FC<ISimpleGalleryProps> = ({
+	images,
+	setVariantGallery,
+	setSelectedImage,
+	selectedImage,
+}) => {
 	const [hoveredImage, setHoveredImage] = useState<string | null>(null)
 	const [transform, setTransform] = useState(0)
 
@@ -79,7 +85,7 @@ export const SimpleGallery: FC<ISimpleGalleryProps> = ({ images, setVariantGalle
 				)}
 			</div>
 			<div className={styles.selectedImage}>
-				<Image src={selectedImage} alt='img' width={480} height={480} onClick={setVariantGallery} />
+				<Image src={selectedImage} alt='img' fill onClick={setVariantGallery} />
 			</div>
 		</div>
 	)

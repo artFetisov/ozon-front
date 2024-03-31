@@ -1,7 +1,7 @@
 import { FC, MouseEvent, useState } from 'react'
 import styles from './FeedbackGalleryModal.module.scss'
 import { CloseButton } from '../../close-button/CloseButton'
-import { IFeedback } from '@/types/feedback/feedback.types'
+import { IFeedback, IFeedbackImage, TypeVariantFeedbackGalleryModal } from '@/types/feedback/feedback.types'
 import { getNameWithInitials } from '@/utils/user/name'
 import { getCorrectDateView } from '@/utils/date/date'
 import { FeedbackGalleryModalForm } from '../../forms/feedback-gallery-modal-form/FeedbackGalleryModalForm'
@@ -10,21 +10,32 @@ import Image from 'next/image'
 import { Rating } from '../../rating/Rating'
 import { ArrowButton } from '../../arrow-button/ArrowButton'
 import { useImageGallery } from '@/hooks/useImageGallery'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+import { useActions } from '@/hooks/useActions'
 
 interface IFeedbackGalleryModalProps {
 	close: (event: MouseEvent<HTMLDivElement | HTMLButtonElement>) => void
-	selectedFeedback: IFeedback | null
-	selectedFeedbackImage: string | null
+	allFeedbacksImages: IFeedbackImage[]
+	variant: TypeVariantFeedbackGalleryModal
+	feedbacks: IFeedback[]
 }
 
 export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({
 	close,
-	selectedFeedback,
-	selectedFeedbackImage,
+	allFeedbacksImages,
+	variant,
+	feedbacks,
 }) => {
-	const { handleLeftArrowButton, handleRightArrowButton, selectedImage } = useImageGallery(
-		selectedFeedback?.images ? selectedFeedback.images : [],
-		selectedFeedbackImage
+	const selectedFeedback = useTypedSelector((state) => state.feedback.selectedFeedback)
+	const selectedFeedbackGalleryImage = useTypedSelector((state) => state.feedback.selectedFeedbackGalleryImage)
+	const { setSelectedFeedback, setSelectedFeedbackGalleryImage } = useActions()
+
+	const { handleLeftArrowButton, handleRightArrowButton } = useImageGallery<IFeedbackImage>(
+		variant === 'all' ? allFeedbacksImages : selectedFeedback?.images || [],
+		selectedFeedbackGalleryImage,
+		setSelectedFeedbackGalleryImage,
+		feedbacks,
+		setSelectedFeedback
 	)
 
 	const [isShowDescription, setIsShowDescription] = useState(false)
@@ -52,7 +63,7 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({
 					<Image
 						quality={10}
 						alt='Image'
-						src={selectedImage ? selectedImage : ''}
+						src={selectedFeedbackGalleryImage?.path ? selectedFeedbackGalleryImage?.path : ''}
 						fill
 						className={styles.blurImg}
 						loading='eager'
@@ -60,7 +71,7 @@ export const FeedbackGalleryModal: FC<IFeedbackGalleryModalProps> = ({
 				</div>
 				<Image
 					alt='Image'
-					src={selectedImage ? selectedImage : ''}
+					src={selectedFeedbackGalleryImage?.path ? selectedFeedbackGalleryImage?.path : ''}
 					fill
 					className={styles.originalImg}
 					loading='eager'

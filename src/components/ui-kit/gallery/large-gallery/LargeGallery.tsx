@@ -9,12 +9,30 @@ import { useImageGallery } from '@/hooks/useImageGallery'
 interface ILargeGallery {
 	images: string[]
 	setVariantGallery: () => void
+	selectedImage: string
+	setSelectedImage: (img: string) => void
 }
 
-export const LargeGallery: FC<ILargeGallery> = ({ setVariantGallery, images }) => {
-	const { selectedImage, handleLeftArrowButton, handleRightArrowButton, handleSetSelectedImage } =
-		useImageGallery(images)
+export const LargeGallery: FC<ILargeGallery> = ({ setVariantGallery, images, selectedImage, setSelectedImage }) => {
 	const [hoveredImage, setHoveredImage] = useState<string | null>(null)
+
+	const currentImageIndex = images.findIndex((item) => item === selectedImage)
+
+	const handleLeftArrowButton = () => {
+		if (currentImageIndex === 0) {
+			setSelectedImage(images[images.length - 1])
+			return
+		}
+		setSelectedImage(images[currentImageIndex - 1])
+	}
+
+	const handleRightArrowButton = () => {
+		if (currentImageIndex === images.length - 1) {
+			setSelectedImage(images[0])
+			return
+		}
+		setSelectedImage(images[currentImageIndex + 1])
+	}
 
 	const handleHoverImage = (img: string) => {
 		if (selectedImage === img) return
@@ -41,13 +59,7 @@ export const LargeGallery: FC<ILargeGallery> = ({ setVariantGallery, images }) =
 									[styles.hovered]: hoveredImage === img,
 								})}
 							>
-								<Image
-									src={img}
-									alt='Изображение'
-									width={48}
-									height={48}
-									onClick={(e) => handleSetSelectedImage(img)}
-								/>
+								<Image src={img} alt='Изображение' width={48} height={48} onClick={(e) => setSelectedImage(img)} />
 							</div>
 						))}
 					</div>
@@ -56,7 +68,7 @@ export const LargeGallery: FC<ILargeGallery> = ({ setVariantGallery, images }) =
 					<div className={styles.innerWrapper}>
 						<ArrowButton callback={handleLeftArrowButton} position='left' />
 						<div className={styles.selectedImage}>
-							<Image src={selectedImage} alt='Изображение' width={400} height={640} />
+							<Image src={selectedImage} alt='Изображение' fill />
 						</div>
 						<ArrowButton callback={handleRightArrowButton} position='right' />
 					</div>

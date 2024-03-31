@@ -29,8 +29,6 @@ interface ITextareaProps {
 }
 
 export const Textarea: FC<ITextareaProps> = ({ placeholder, minHeight, value, ...rest }) => {
-	console.log(value)
-
 	const [isFocused, setISFocused] = useState(false)
 	const [plusHeightOnKeyEnter, setPlusHeightOnKeyEnter] = useState(0)
 

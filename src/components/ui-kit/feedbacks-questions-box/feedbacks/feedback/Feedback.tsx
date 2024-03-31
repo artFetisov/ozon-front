@@ -1,4 +1,4 @@
-import { IFeedback } from '@/types/feedback/feedback.types'
+import { IFeedback, IFeedbackImage, TypeVariantFeedbackGalleryModal } from '@/types/feedback/feedback.types'
 import { FC, useState } from 'react'
 import styles from './Feedback.module.scss'
 import { getNameWithInitials } from '@/utils/user/name'
@@ -11,7 +11,7 @@ import { AvatarRound } from '@/components/ui-kit/user-data-round/AvatarRound'
 
 interface IFeedbackProps {
 	feedback: IFeedback
-	setSelectedFeedbackCb: (feedback: IFeedback, img: string) => void
+	setSelectedFeedbackCb: (feedback: IFeedback, img: IFeedbackImage, variant: TypeVariantFeedbackGalleryModal) => void
 }
 
 export const Feedback: FC<IFeedbackProps> = ({ feedback, setSelectedFeedbackCb }) => {
@@ -58,8 +58,12 @@ export const Feedback: FC<IFeedbackProps> = ({ feedback, setSelectedFeedbackCb }
 				</div>
 				<div className={styles.photos}>
 					{feedback.images.map((img, ind) => (
-						<div key={img + '-' + ind} className={styles.image} onClick={(_) => setSelectedFeedbackCb(feedback, img)}>
-							<Image src={img} alt='Description photo' fill quality={5} />
+						<div
+							key={img.id + '-' + img.path}
+							className={styles.image}
+							onClick={(_) => setSelectedFeedbackCb(feedback, img, 'one')}
+						>
+							<Image src={img.path} alt='Description photo' fill quality={5} />
 							{feedback.images.length > 2 && ind === 2 && (
 								<div className={styles.backdrop}>+{feedback.images.length - 3}</div>
 							)}
