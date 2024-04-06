@@ -9,6 +9,8 @@
 	max-width: calc(33.3%);
 	height: 100%;
 	margin-left: 24px;
+	overflow: hidden;
+	border-radius: 24px;
 
 	& > section {
 		position: relative;

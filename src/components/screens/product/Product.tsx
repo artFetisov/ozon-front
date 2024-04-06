@@ -29,7 +29,6 @@ export const Product: FC<IProductProps> = ({ id, slug }) => {
 	const feedbacksAndQuestionsBox = useRef<HTMLDivElement | null>(null)
 
 	const handleScrollToFeedbacksBox = () => {
-		console.log('scroll')
 		document.body.scrollTo({
 			top: feedbacksAndQuestionsBox.current?.offsetTop
 				? feedbacksAndQuestionsBox.current?.offsetTop - HEADER_HEIGHT - PRODUCT_HEADER_HEIGHT

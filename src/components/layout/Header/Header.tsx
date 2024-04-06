@@ -7,7 +7,7 @@ import { SearchBar } from '@/components/ui-kit/search-bar/SearchBar'
 import { Button } from '@/components/ui-kit/button/Button'
 import Link from 'next/link'
 import Image from 'next/image'
-import logo from '../../../assets/images/logo-ozon.png'
+import logo from '@/assets/images/logo-ozon.webp'
 import { CategoryTopRow } from '@/components/ui-kit/category-top-row/CategoryTopRow'
 import { useScroll } from '@/hooks/useScroll'
 import cn from 'classnames'
@@ -36,7 +36,7 @@ export const Header: FC = () => {
 					})}
 				>
 					<Link href={PATHS.HOME} className={styles.logo}>
-						<Image src={logo} height={40} width={128} alt={'logo'} />
+						<Image src={logo} fill alt={'logo'} />
 					</Link>
 					<div className={styles.showCatalogButtonWrapper}>
 						<Button variant={'small'} color={'blue'} onClick={handleIsShowCategoriesList}>

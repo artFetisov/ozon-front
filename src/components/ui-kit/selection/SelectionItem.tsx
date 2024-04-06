@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import logo from '../../../assets/images/logo-ozon.png'
 import styles from './Selection.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,7 +16,9 @@ export const SelectionItem: FC<ISelectionItem> = ({ item, size }) => {
 	return (
 		<div className={styles.item} style={{ width: `${size}px` }}>
 			<Link href={`${PATHS.PRODUCT}${item.title}/${item.id}`}>
-				<Image src={logo} alt={'logo item'} width={size} height={size} />
+				<div className={styles.imgBox} style={{ width: size, height: size, position: 'relative' }}>
+					<Image src={item.images[Math.floor(Math.random() * 10)]} alt={'logo item'} fill />
+				</div>
 				<div className={styles.info}>
 					<div className={styles.priceBox}>
 						<span

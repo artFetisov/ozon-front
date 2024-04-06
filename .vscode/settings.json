@@ -1,4 +1,5 @@
 {
 	"git.enabled": true,
-	"git.branchRandomName.enable": true
+	"git.branchRandomName.enable": true,
+	"cSpell.words": ["webp"]
 }

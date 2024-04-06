@@ -17,13 +17,11 @@ export const Home: FC = () => {
 	})
 
 	return (
-		<div className={styles.homeWrapper}>
-			<div className={styles.home}>
-				<Selection items={productsMock.slice(0, 12)} rowTotalItems={6} headingText={'Лучшие предложения'} />
-				<Selection items={productsMock.slice(0, 10)} rowTotalItems={5} headingText={'Вы искали'} />
-				<Selection items={productsMock.slice(0, 6)} rowTotalItems={6} headingText={'Рекомендуем для вас'} />
-				<Selection items={productsMock.slice(0, 5)} rowTotalItems={5} headingText={'Рекомендуем для вас'} />
-			</div>
+		<div className={styles.home}>
+			<Selection items={productsMock.slice(0, 12)} rowTotalItems={6} headingText={'Лучшие предложения'} />
+			<Selection items={productsMock.slice(0, 10)} rowTotalItems={5} headingText={'Вы искали'} />
+			<Selection items={productsMock.slice(0, 6)} rowTotalItems={6} headingText={'Рекомендуем для вас'} />
+			<Selection items={productsMock.slice(0, 5)} rowTotalItems={5} headingText={'Рекомендуем для вас'} />
 		</div>
 	)
 }

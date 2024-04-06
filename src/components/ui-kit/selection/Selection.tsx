@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { FC, useLayoutEffect, useRef, useState } from 'react'
 import styles from './Selection.module.scss'
 import { Heading } from '@/components/ui-kit/heading/Heading'
 import { SelectionItem } from '@/components/ui-kit/selection/SelectionItem'
