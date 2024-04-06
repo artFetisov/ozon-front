@@ -5,15 +5,26 @@ import { Questions } from './questions/Questions'
 import cn from 'classnames'
 import { IFeedback } from '@/types/feedback/feedback.types'
 import { IRating } from '@/types/rating/rating.types'
+import { IQuestion } from '@/types/question/question.types'
+import { IProduct } from '@/types/product/product.types'
 
 type VariantShow = 'feedbacks' | 'questions'
 
 interface IFeedbacksQuestionBox {
 	feedbacks: IFeedback[]
+	questions: IQuestion[]
 	productRating: IRating
+	productTitle: string
+	productMainImage: string
 }
 
-export const FeedbacksQuestionsBox: FC<IFeedbacksQuestionBox> = ({ feedbacks, productRating }) => {
+export const FeedbacksQuestionsBox: FC<IFeedbacksQuestionBox> = ({
+	feedbacks,
+	questions,
+	productRating,
+	productTitle,
+	productMainImage,
+}) => {
 	const [variantShow, setVariantShow] = useState<VariantShow>('feedbacks')
 
 	const handleVariantShow = (variant: VariantShow) => {
@@ -54,7 +65,7 @@ export const FeedbacksQuestionsBox: FC<IFeedbacksQuestionBox> = ({ feedbacks, pr
 				{variantShow === 'feedbacks' ? (
 					<Feedbacks feedbacks={feedbacks} productRating={productRating} />
 				) : (
-					<Questions />
+					<Questions questions={questions} productTitle={productTitle} productMainImage={productMainImage} />
 				)}
 			</div>
 		</div>

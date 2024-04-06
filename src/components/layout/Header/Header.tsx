@@ -9,7 +9,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import logo from '../../../assets/images/logo-ozon.png'
 import { CategoryTopRow } from '@/components/ui-kit/category-top-row/CategoryTopRow'
-import { useScrollForHeader } from '@/hooks/useScrollForHeader'
+import { useScroll } from '@/hooks/useScroll'
 import cn from 'classnames'
 import { PATHS } from '@/constants/paths'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
@@ -18,7 +18,7 @@ import { useActions } from '@/hooks/useActions'
 export const Header: FC = () => {
 	const isShowCategoriesList = useTypedSelector((state) => state.app.isShowCategoriesList)
 
-	const { target, isHideContainer } = useScrollForHeader()
+	const { target, isHideContainer } = useScroll()
 
 	const { setIsShowCategoriesList } = useActions()
 
@@ -55,7 +55,6 @@ export const Header: FC = () => {
 									></path>
 								</svg>
 							)}
-
 							<span>Каталог</span>
 						</Button>
 					</div>

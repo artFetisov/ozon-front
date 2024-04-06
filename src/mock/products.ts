@@ -2,10 +2,13 @@ import { IProduct } from '@/types/product/product.types'
 import { categoriesMock } from './categories'
 import { mockFeedbacks } from './feedbacks'
 import { productImagesMock } from './galleryImages'
+import { mockQuestions } from './questions'
 
 export const productsMock: IProduct[] = [
 	{
 		price: 999,
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		title: 'fldmfk mfkmkfs ssssss smsms;f;ekf;efef',
 		category: categoriesMock[1],
 		discount: 33,
@@ -77,6 +80,8 @@ export const productsMock: IProduct[] = [
 		price: 741,
 		title: 'fldmfkmfk m1111111kf msefe,f;elflf[f df;d;fd;f',
 		category: categoriesMock[1],
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		discount: 53,
 		slug: 'mkmk',
 		rating: {
@@ -148,6 +153,8 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 63,
 		slug: 'mkmk',
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		id: 2,
 		feedbacks: mockFeedbacks,
 		characteristics: {
@@ -217,6 +224,8 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		discount: 49,
 		slug: 'mkmk',
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		feedbacks: mockFeedbacks,
 		id: 3,
 		characteristics: {
@@ -284,6 +293,8 @@ export const productsMock: IProduct[] = [
 		price: 101500,
 		title: 'fldmfkmfk df,dlfld d;lfmdlfl d;lfmdl;f dl;fmdlfm5555555555kfms',
 		category: categoriesMock[1],
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		discount: 16,
 		feedbacks: mockFeedbacks,
 		slug: 'mkmk',
@@ -353,6 +364,8 @@ export const productsMock: IProduct[] = [
 		price: 10,
 		title: 'fldmfkmfk ldfdf ddf,df dfdfdfm5555555555kfms',
 		category: categoriesMock[1],
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		discount: 71,
 		slug: 'mkmk',
 		feedbacks: mockFeedbacks,
@@ -422,6 +435,8 @@ export const productsMock: IProduct[] = [
 		price: 999,
 		title: 'fldmfk mfkmkfs ssssss smsms;f;ekf;efef',
 		category: categoriesMock[1],
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		discount: 33,
 		slug: 'mkmk',
 		feedbacks: mockFeedbacks,
@@ -491,6 +506,8 @@ export const productsMock: IProduct[] = [
 		price: 741,
 		title: 'fldmfkmfk m1111111kf msefe,f;elflf[f df;d;fd;f',
 		category: categoriesMock[1],
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		discount: 53,
 		slug: 'mkmk',
 		feedbacks: mockFeedbacks,
@@ -561,6 +578,8 @@ export const productsMock: IProduct[] = [
 		title: 'fldmfkmfkm dfdf dfdfdfdf dlf,dlf 22222222kfms',
 		category: categoriesMock[1],
 		discount: 63,
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		slug: 'mkmk',
 		feedbacks: mockFeedbacks,
 		characteristics: {
@@ -629,6 +648,8 @@ export const productsMock: IProduct[] = [
 		price: 12300,
 		title: 'fldmfkmfk fd,fmdkfod [dkfdf dflkdf m4444444444kfms',
 		category: categoriesMock[1],
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		discount: 49,
 		slug: 'mkmk',
 		feedbacks: mockFeedbacks,
@@ -698,6 +719,8 @@ export const productsMock: IProduct[] = [
 		price: 101500,
 		title: 'fldmfkmfk df,dlfld d;lfmdlfl d;lfmdl;f dl;fmdlfm5555555555kfms',
 		category: categoriesMock[1],
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		discount: 16,
 		slug: 'mkmk',
 		feedbacks: mockFeedbacks,
@@ -767,6 +790,8 @@ export const productsMock: IProduct[] = [
 		price: 10,
 		title: 'fldmfkmfk ldfdf ddf,df dfdfdfm5555555555kfms',
 		category: categoriesMock[1],
+		questions: mockQuestions,
+		brandLogo: 'aaa',
 		discount: 71,
 		slug: 'mkmk',
 		feedbacks: mockFeedbacks,

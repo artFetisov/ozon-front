@@ -1,0 +1,54 @@
+.form {
+	position: relative;
+	padding: 24px;
+	background: #f5f7fa;
+
+	.clsBtn {
+		position: absolute;
+		top: 20px;
+		right: 24px;
+		width: 24px;
+		height: 24px;
+		color: rgb(0 26 52 / 60%);
+		cursor: pointer;
+	}
+
+	.heading {
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 26px;
+	}
+
+	.textareaBox {
+		position: relative;
+		margin-top: 12px;
+
+		.lengthCounter {
+			position: absolute;
+			right: 0;
+			bottom: -20px;
+			width: 50%;
+			margin-left: 50%;
+			padding-top: 6px;
+			color: rgb(0 26 52 / 60%);
+			font-size: 12px;
+			line-height: 16px;
+			text-align: right;
+		}
+	}
+
+	.submitBtnBox {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		margin-top: 36px;
+
+		.name {
+			& > span {
+				padding-left: 4px;
+				font-weight: 700;
+			}
+		}
+	}
+}

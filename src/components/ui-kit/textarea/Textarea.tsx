@@ -2,6 +2,13 @@ import { ChangeEvent, FC, useState, KeyboardEvent } from 'react'
 import styles from './Textarea.module.scss'
 import cn from 'classnames'
 
+// interface ITextareaProps {
+// 	placeholder: string
+// 	value: string
+// }
+
+// export type TypeTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & ITextareaProps
+
 const BASE_TEXTAREA_HEIGHT = 28
 const PORTION_ADDITIONAL_TEXTAREA_HEIGHT = 18
 const ROW_TEXTAREA_LENGTH = 33

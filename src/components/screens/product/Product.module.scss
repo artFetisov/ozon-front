@@ -46,6 +46,26 @@
 	width: 90px;
 	margin-right: 8px;
 	line-height: 18px;
+	cursor: pointer;
+}
+
+.text {
+	display: flex;
+	align-items: center;
+	color: variables.$blue-primary;
+	font-weight: 600;
+	font-size: 13px;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: transform 0.1s cubic-bezier(0.55, 0, 1, 0.45);
+
+	&:hover {
+		color: variables.$blue-hover;
+	}
+
+	& > svg {
+		margin-right: 8px;
+	}
 }
 
 .code {
