@@ -1,0 +1,33 @@
+.productInfoModal {
+	position: relative;
+	min-width: 392px;
+	max-width: 960px;
+	margin: 50px 0;
+	padding: 46px;
+	background-color: var(--white-color);
+	border-radius: 32px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-width: 288px;
+	max-width: 426px;
+}
+
+.heading {
+	margin-top: 24px;
+	margin-bottom: 8px;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 30px;
+}
+
+.text {
+	margin-bottom: 38px;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.2px;
+}
