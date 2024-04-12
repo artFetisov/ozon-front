@@ -10,14 +10,23 @@ export const mockCartItems: ICartItem[] = [
 		amount: 2,
 		category: categoriesMock[1],
 		discount: 33,
-		seller: { id: 0, title: 'nfdfef', logo: 'fd', description: 'm sjknfne' },
+		seller: {
+			id: 1,
+			title: 'Sportmaster',
+			description: 'edadd',
+			logo: 'sdds',
+			rating: 4,
+		},
+		characteristics: {
+			id: 1,
+			about: [
+				{ property: 'Цвет', value: 'белый' },
+				{ property: 'Вес', value: 0.7 },
+			],
+		},
 		id: 0,
 		images: ['', ''],
 		slug: 'www',
-		characteristics: {
-			color: 'белый',
-			weight: 0.7,
-		},
 	},
 	{
 		price: 741,
@@ -29,11 +38,20 @@ export const mockCartItems: ICartItem[] = [
 		remains: 2,
 		id: 1,
 		images: ['', ''],
-		seller: { id: 0, title: 'nfdfef', logo: 'fd', description: 'm sjknfne' },
 		slug: 'www',
+		seller: {
+			id: 1,
+			title: 'Sportmaster',
+			description: 'edadd',
+			logo: 'sdds',
+			rating: 4,
+		},
 		characteristics: {
-			color: 'красный',
-			weight: 0.7,
+			id: 1,
+			about: [
+				{ property: 'Цвет', value: 'белый' },
+				{ property: 'Вес', value: 0.7 },
+			],
 		},
 	},
 	{
@@ -45,12 +63,22 @@ export const mockCartItems: ICartItem[] = [
 		id: 2,
 		amount: 2,
 		remains: 3,
-		seller: { id: 0, title: 'nfdfef', logo: 'fd', description: 'm sjknfne' },
+
 		images: ['', ''],
 		slug: 'www',
+		seller: {
+			id: 1,
+			title: 'Sportmaster',
+			description: 'edadd',
+			logo: 'sdds',
+			rating: 4,
+		},
 		characteristics: {
-			color: 'белый',
-			weight: 0.7,
+			id: 1,
+			about: [
+				{ property: 'Цвет', value: 'белый' },
+				{ property: 'Вес', value: 0.7 },
+			],
 		},
 	},
 	{
@@ -63,11 +91,21 @@ export const mockCartItems: ICartItem[] = [
 		remains: 6,
 		amount: 3,
 		images: ['', ''],
-		seller: { id: 0, title: 'nfdfef', logo: 'fd', description: 'm sjknfne' },
+
 		slug: 'www',
+		seller: {
+			id: 1,
+			title: 'Sportmaster',
+			description: 'edadd',
+			logo: 'sdds',
+			rating: 4,
+		},
 		characteristics: {
-			color: 'серый',
-			weight: 0.7,
+			id: 1,
+			about: [
+				{ property: 'Цвет', value: 'белый' },
+				{ property: 'Вес', value: 0.7 },
+			],
 		},
 	},
 	{
@@ -80,11 +118,21 @@ export const mockCartItems: ICartItem[] = [
 		remains: 6,
 		amount: 3,
 		images: ['', ''],
-		seller: { id: 0, title: 'nfdfef', logo: 'fd', description: 'm sjknfne' },
+
 		slug: 'www',
+		seller: {
+			id: 1,
+			title: 'Sportmaster',
+			description: 'edadd',
+			logo: 'sdds',
+			rating: 4,
+		},
 		characteristics: {
-			color: 'серый',
-			weight: 0.7,
+			id: 1,
+			about: [
+				{ property: 'Цвет', value: 'белый' },
+				{ property: 'Вес', value: 0.7 },
+			],
 		},
 	},
 	{
@@ -97,11 +145,21 @@ export const mockCartItems: ICartItem[] = [
 		remains: 6,
 		amount: 3,
 		images: ['', ''],
-		seller: { id: 0, title: 'nfdfef', logo: 'fd', description: 'm sjknfne' },
+
 		slug: 'www',
+		seller: {
+			id: 1,
+			title: 'Sportmaster',
+			description: 'edadd',
+			logo: 'sdds',
+			rating: 4,
+		},
 		characteristics: {
-			color: 'серый',
-			weight: 0.7,
+			id: 1,
+			about: [
+				{ property: 'Цвет', value: 'белый' },
+				{ property: 'Вес', value: 0.7 },
+			],
 		},
 	},
 	{
@@ -114,11 +172,21 @@ export const mockCartItems: ICartItem[] = [
 		remains: 6,
 		amount: 3,
 		images: ['', ''],
-		seller: { id: 0, title: 'nfdfef', logo: 'fd', description: 'm sjknfne' },
+
 		slug: 'www',
+		seller: {
+			id: 1,
+			title: 'Sportmaster',
+			description: 'edadd',
+			logo: 'sdds',
+			rating: 4,
+		},
 		characteristics: {
-			color: 'серый',
-			weight: 0.7,
+			id: 1,
+			about: [
+				{ property: 'Цвет', value: 'белый' },
+				{ property: 'Вес', value: 0.7 },
+			],
 		},
 	},
 ]

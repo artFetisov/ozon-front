@@ -41,9 +41,12 @@ export const CartItem: FC<ICartItemProps> = ({ item }) => {
 						<hr style={{ height: '8px', border: 'none' }} />
 						<div className={styles.title}>{item.title}</div>
 						<hr style={{ height: '8px', border: 'none' }} />
-						{item.characteristics && item.characteristics['color'] && (
-							<div className={styles.color}>цвет {item.characteristics['color']}</div>
-						)}
+						{item.characteristics &&
+							item.characteristics.about.map((ch) => (
+								<div key={ch.property + '-' + ch.value} className={styles.color}>
+									{ch.property} {ch.value}
+								</div>
+							))}
 					</div>
 					<div className={styles.bottomSide}>
 						<hr style={{ height: '16px', border: 'none' }} />
@@ -80,7 +83,14 @@ export const CartItem: FC<ICartItemProps> = ({ item }) => {
 				</div>
 				<div className={styles.priceBox}>
 					<div className={styles.priceWithCard}>
-						<PriceCard amount={item.amount} price={item.price} discount={item.discount} color='red' variant='small' />
+						<PriceCard
+							isOneProductPrice={false}
+							amount={item.amount}
+							price={item.price}
+							discount={item.discount}
+							color='red'
+							variant='small'
+						/>
 						<div className={styles.text}>с Ozon Картой</div>
 					</div>
 					<hr style={{ height: '4px', border: 'none' }} />

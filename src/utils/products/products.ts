@@ -12,9 +12,9 @@ export const getProductsCartTotal = (items: ICartItem[], isOnlyNumber?: boolean)
 		: `${total} товаров`
 }
 
-export const getProductsCartTotalPropertyValueCharacteristics = (property: string, items: ICartItem[]) => {
-	return items.reduce(
-		(acc, cur) => (cur.characteristics ? (cur.characteristics[property] as number) : 0) * cur.amount + acc,
-		0
-	)
+export const getProductsTotalWeight = (items: ICartItem[]) => {
+	return items.reduce((acc, cur) => {
+		const curItemWeight = cur.characteristics.about.find((c) => c.property === 'Вес')?.value
+		return (curItemWeight as number) * cur.amount + acc
+	}, 0)
 }

@@ -9,7 +9,7 @@ import {
 	getItemsTotalPriceWithDiscountAndCard,
 	getItemsTotalPriceWithDiscount,
 } from '@/utils/price/price'
-import { getProductsCartTotal, getProductsCartTotalPropertyValueCharacteristics } from '@/utils/products/products'
+import { getProductsCartTotal, getProductsTotalWeight } from '@/utils/products/products'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 export const PreOrderBox: FC = () => {
@@ -19,12 +19,22 @@ export const PreOrderBox: FC = () => {
 		<div className={styles.toOrderBox}>
 			<section>
 				<div className={styles.topBox}>
-					<Button variant={'large'} color={'green'} disabledP={selectedCartItems.length === 0} style={{ cursor: 'default' }}>
+					<Button
+						variant={'large'}
+						color={'green'}
+						disabledP={selectedCartItems.length === 0}
+						style={{ cursor: 'default' }}
+					>
 						Перейти к оформлению
 					</Button>
 					<div>
 						{selectedCartItems.length === 0 ? (
-							<Button variant={'large'} color={'green'} disabledP={selectedCartItems.length === 0} style={{ cursor: 'default', fontSize: '13px' }}>
+							<Button
+								variant={'large'}
+								color={'green'}
+								disabledP={selectedCartItems.length === 0}
+								style={{ cursor: 'default', fontSize: '13px' }}
+							>
 								Выберите товары, чтобы перейти к оформлению заказа
 							</Button>
 						) : (
@@ -37,7 +47,7 @@ export const PreOrderBox: FC = () => {
 						<div className={cn(styles.box, styles.p16)}>
 							<span className={styles.heading}>Ваша корзина</span>
 							<span className={styles.grey}>
-								{getProductsCartTotal(selectedCartItems)} • {getProductsCartTotalPropertyValueCharacteristics('weight', selectedCartItems).toFixed(2)} кг
+								{getProductsCartTotal(selectedCartItems)} • {getProductsTotalWeight(selectedCartItems).toFixed(2)} кг
 							</span>
 						</div>
 						<div className={cn(styles.box, styles.p12)}>
@@ -52,7 +62,9 @@ export const PreOrderBox: FC = () => {
 						</div>
 						<div className={cn(styles.box, styles.b7x)}>
 							<span>С Ozon Картой</span>
-							<span className={styles.green}>{getPriceWithWhitespace(getItemsTotalPriceWithDiscountAndCard(selectedCartItems))} ₽</span>
+							<span className={styles.green}>
+								{getPriceWithWhitespace(getItemsTotalPriceWithDiscountAndCard(selectedCartItems))} ₽
+							</span>
 						</div>
 						<div className={cn(styles.box, styles.b4x)}>
 							<span>Без Ozon Карты</span>

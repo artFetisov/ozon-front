@@ -1,4 +1,3 @@
-import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { FC } from 'react'
 import styles from './CartItems.module.scss'
 import { CartItem } from './CartItem/CartItem'
