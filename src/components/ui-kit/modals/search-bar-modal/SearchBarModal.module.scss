@@ -1,12 +1,10 @@
-@use 'src/assets/styles/variables' as variables;
-
 .searchBarModal {
 	position: relative;
 	z-index: 1200;
 	min-width: 288px;
 	min-height: 100px;
 	margin: 40px auto;
-	background-color: #fff;
+	background-color: var(--white-color);
 	border-radius: 32px;
 }
 
@@ -29,7 +27,7 @@
 	transition: background-color 0.1s ease;
 
 	&:hover {
-		color: variables.$blue-hover;
+		color: var(--blue-color);
 		background-color: rgb(0 150 255 / 7.8%);
 		cursor: pointer;
 	}

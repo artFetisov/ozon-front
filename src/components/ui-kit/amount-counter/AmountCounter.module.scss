@@ -12,14 +12,14 @@
 	width: 51px;
 	max-width: 100%;
 	overflow: hidden;
-	color: #001a34;
-	background-color: #fff;
+	color: var(--grey-text2);
+	background-color: var(--white-color);
 	border: 2px solid #b3bcc5;
 	border-radius: 6px;
 	transition: border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 
 	&:hover {
-		border-color: #005bff;
+		border-color: var(--blue-color);
 	}
 
 	.input {
@@ -33,8 +33,8 @@
 		background-color: hsl(0deg 0% 100% / 0%);
 		border: 0;
 		outline: none;
-		-webkit-text-fill-color: #001a34;
-		caret-color: #005bff;
+		-webkit-text-fill-color: var(--grey-text2);
+		caret-color: var(--blue-color);
 	}
 }
 
@@ -53,24 +53,24 @@
 }
 
 .disabled {
-	color: #96a3ae;
+	color: var(--dark-grey-color);
 	background-color: rgb(0 48 120 / 4%);
 	cursor: default;
 	pointer-events: none;
 }
 
 .active {
-	color: #005bff;
+	color: var(--blue-color);
 	background-color: rgb(0 150 255 / 8%);
 	cursor: pointer;
 	transition: background-color 0.2s ease;
 
 	&:hover {
-		color: #0050e0;
+		color: var(--blue-hover-color);
 		background-color: rgb(0 150 255 / 12%);
 	}
 }
 
 .focusedDiv {
-	border-color: #005bff !important;
+	border-color: var(--blue-color) !important;
 }

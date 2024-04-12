@@ -1,5 +1,3 @@
-@use 'src/assets/styles/variables' as variables;
-
 .linkBox {
 	display: flex;
 	gap: 16px;
@@ -16,7 +14,7 @@
 		transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
 		&:hover {
-			color: variables.$blue-primary;
+			color: var(--blue-color);
 		}
 
 		.control {
@@ -28,7 +26,7 @@
 			color: #fff;
 			font-size: 12px;
 			line-height: 17px;
-			background-color: variables.$red-color;
+			background-color: var(--red-color);
 			border-radius: 8px;
 		}
 	}

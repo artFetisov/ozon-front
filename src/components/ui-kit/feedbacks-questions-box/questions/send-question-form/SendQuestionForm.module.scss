@@ -1,7 +1,7 @@
 .form {
 	position: relative;
 	padding: 24px;
-	background: #f5f7fa;
+	background: var(--grey-color);
 
 	.clsBtn {
 		position: absolute;
@@ -9,7 +9,7 @@
 		right: 24px;
 		width: 24px;
 		height: 24px;
-		color: rgb(0 26 52 / 60%);
+		color: var(--grey-op60);
 		cursor: pointer;
 	}
 
@@ -30,7 +30,7 @@
 			width: 50%;
 			margin-left: 50%;
 			padding-top: 6px;
-			color: rgb(0 26 52 / 60%);
+			color: var(--grey-op60);
 			font-size: 12px;
 			line-height: 16px;
 			text-align: right;

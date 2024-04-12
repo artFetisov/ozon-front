@@ -1,4 +1,25 @@
-@use 'src/assets/styles/variables' as variables;
+:root {
+	--white-color: #fff;
+	--black-color: #070707;
+	--blue-color: #005bff;
+	--blue-hover-color: #0050e0;
+	--light-blue-color1: #4680c2;
+	--light-blue-color2: #2cb5f5;
+	--grey-color: #f5f7fa;
+	--light-grey-color: #f7f8f9;
+	--dark-grey-color: #99a3ae;
+	--dark-grey-bg: rgb(0 48 120 / 3.9%);
+	--grey-border: rgb(204 214 228 / 60%);
+	--grey-op60: rgb(0 26 52 / 60%);
+	--grey-op20: rgb(0 26 52 / 20%);
+	--grey-text: #707f8d;
+	--grey-text1: #808d9a;
+	--grey-text2: #001a34;
+	--green-color: #10c44c;
+	--green-hover-color: #0ead43;
+	--red-color: #f91155;
+	--orange-color: #fa8409;
+}
 
 * {
 	box-sizing: border-box;
@@ -17,10 +38,10 @@ body {
 	width: 100vw;
 	height: 100vh;
 	overflow-y: scroll;
-	color: #070707;
+	color: var(--black-color);
 	font-size: 14px;
 	letter-spacing: -0.03em;
-	background-color: variables.$white-bg-color;
+	background-color: var(--light-grey-color);
 	scroll-behavior: smooth;
 }
 

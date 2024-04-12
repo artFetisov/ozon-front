@@ -1,8 +1,6 @@
-@use 'src/assets/styles/variables' as variables;
-
 .priceCard {
 	overflow: hidden;
-	color: #fff;
+	color: var(--white-color);
 	font-weight: 700;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -25,15 +23,15 @@
 }
 
 .green {
-	background-color: variables.$green-color;
+	background-color: var(--green-color);
 
 	&:hover {
-		background-color: variables.$green-hover-color;
+		background-color: var(--green-hover-color);
 		cursor: pointer;
 		transition: all 0.2s ease;
 	}
 }
 
 .red {
-	background-color: variables.$red-color;
+	background-color: var(--red-color);
 }

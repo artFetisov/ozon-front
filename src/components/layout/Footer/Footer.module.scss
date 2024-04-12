@@ -1,9 +1,6 @@
-@use 'src/assets/styles/variables' as variables;
-
 .footer {
-	//margin-top: 40px;
 	width: 100%;
-	background-color: variables.$grey-bg-color;
+	background-color: var(--grey-color);
 }
 
 .footerBox {
@@ -19,7 +16,7 @@
 	width: 100%;
 	margin-bottom: 30px;
 	padding: 20px 40px 20px 20px;
-	background-color: rgb(0 48 120 / 3.9%);
+	background-color: var(--dark-grey-gb);
 	border-radius: 12px;
 
 	.logo {
@@ -38,18 +35,17 @@
 		.link {
 			display: flex;
 			align-items: center;
-			color: #000;
 			font-weight: 500;
 			font-size: 16px;
 			transition: color 0.3s ease;
 
 			&:hover {
-				color: variables.$blue-primary;
+				color: var(--blue-color);
 			}
 
 			.icon {
 				margin-right: 8px;
-				color: variables.$grey-color;
+				color: var(--grey-color);
 			}
 		}
 	}
@@ -69,13 +65,13 @@
 	margin-right: 60px;
 	padding: 24px 23px;
 	text-align: center;
-	border: 1px solid rgb(0 26 52 / 20%);
+	border: 1px solid var(--grey-op20);
 	border-radius: 24px;
 
 	p {
 		max-width: 230px;
 		margin: 16px auto;
-		color: rgb(0 26 52 / 60%);
+		color: var(--grey-op60);
 		font-size: 16px;
 	}
 
@@ -110,7 +106,6 @@
 
 			span {
 				margin-bottom: 8px;
-				color: #000;
 				font-weight: 500;
 				font-size: 16px;
 			}
@@ -118,12 +113,12 @@
 			.link {
 				margin-bottom: 8px;
 				overflow: hidden;
-				color: rgb(0 26 52 / 60%);
+				color: var(--grey-op60);
 				font-size: 14px;
 				transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
 				&:hover {
-					color: variables.$blue-primary;
+					color: var(--blue-color);
 				}
 			}
 		}
@@ -144,23 +139,23 @@
 			width: 42px;
 			height: 42px;
 			margin-right: 16px;
-			background-color: #fff;
+			background-color: var(--white-color);
 			border-radius: 12px;
 			transition: background-color 0.2s ease;
 
 			&:nth-child(1):hover {
-				color: #fff;
-				background-color: #4680c2;
+				color: var(--w);
+				background-color: var(--light-blue-color1);
 			}
 
 			&:nth-child(2):hover {
 				color: #fff;
-				background-color: #fa8409;
+				background-color: var(--orange-color);
 			}
 
 			&:nth-child(3):hover {
 				color: #fff;
-				background-color: #2cb5f5;
+				background-color: var(--light-blue-color2);
 			}
 
 			svg {
@@ -179,7 +174,7 @@
 	max-width: 272px;
 	margin-top: 24px;
 	margin-bottom: 16px;
-	color: rgb(0 26 52 / 60%);
+	color: --grey-op60;
 	font-size: 12px;
 	line-height: 16px;
 }

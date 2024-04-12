@@ -7,12 +7,12 @@ import { getPriceWithDiscount, getPriceWithWhitespace } from '@/utils/price/pric
 import { IProduct } from '@/types/product/product.types'
 import { PATHS } from '@/constants/paths'
 
-interface ISelectionItem {
+interface ISelectionItemProps {
 	item: IProduct
 	size: number
 }
 
-export const SelectionItem: FC<ISelectionItem> = ({ item, size }) => {
+export const SelectionItem: FC<ISelectionItemProps> = ({ item, size }) => {
 	return (
 		<div className={styles.item} style={{ width: `${size}px` }}>
 			<Link href={`${PATHS.PRODUCT}${item.title}/${item.id}`}>

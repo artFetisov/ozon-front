@@ -1,10 +1,8 @@
-@use 'src/assets/styles/variables' as variables;
-
 .cartItem {
 	display: flex;
 	justify-content: space-between;
 	padding: 16px 0;
-	border-top: 1px solid rgb(204 214 228 / 60%);
+	border-top: 1px solid var(--grey-border);
 
 	&:nth-child(1) {
 		border: none;
@@ -56,7 +54,7 @@
 			align-items: center;
 
 			.text {
-				color: variables.$red-color;
+				color: var(--red-color);
 				font-weight: 500;
 				font-size: 11px;
 				line-height: 16px;
@@ -67,14 +65,14 @@
 		.bonus {
 			display: flex;
 			align-items: center;
-			color: #001a34;
+			color: var(--grey-text2);
 			font-weight: 500;
 		}
 
 		.price {
 			display: flex;
 			align-items: center;
-			color: #808d9a;
+			color: var(--grey-text1);
 			font-weight: 500;
 			font-size: 11px;
 			line-height: 1.33;
@@ -94,7 +92,7 @@
 					display: block;
 					width: 100%;
 					height: 1px;
-					background: variables.$red-color;
+					background: var(--red-color);
 					transform: rotate(-3deg);
 					content: '';
 				}
@@ -106,7 +104,7 @@
 .topSide {
 	.title {
 		overflow: hidden;
-		color: #001a34;
+		color: var(--grey-text2);
 		font-weight: 500;
 		font-size: 13px;
 		line-height: 20px;
@@ -115,7 +113,7 @@
 	}
 
 	.color {
-		color: #808d9a;
+		color: var(--grey-text1);
 		font-size: 13px;
 		line-height: 20px;
 	}
@@ -133,8 +131,8 @@
 		justify-content: center;
 		max-width: 138px;
 		padding: 2px 8px;
-		color: #fff;
-		background-color: variables.$red-color;
+		color: var(--white-color);
+		background-color: var(--red-color);
 		border-radius: 6px;
 		cursor: default;
 
@@ -165,7 +163,7 @@
 	display: flex;
 	align-items: center;
 	padding-top: 4px;
-	color: rgb(0 26 52 / 60%);
+	color: var(--grey-op60);
 	font-size: 12px;
 	line-height: 16px;
 }

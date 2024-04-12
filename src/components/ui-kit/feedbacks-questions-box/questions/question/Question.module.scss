@@ -42,7 +42,7 @@
 
 		.date {
 			align-self: flex-start;
-			color: rgb(0 26 52 / 60%);
+			color: var(--grey-op60);
 			font-size: 14px;
 			line-height: 18px;
 		}
@@ -57,7 +57,7 @@
 
 .authorName {
 	margin-top: 8px;
-	color: rgb(0 26 52 / 60%);
+	color: var(--grey-op60);
 	font-size: 14px;
 	line-height: 18px;
 }
@@ -98,7 +98,7 @@
 			}
 
 			.date {
-				color: rgb(0 26 52 / 60%);
+				color: var(--grey-op60);
 				line-height: 18px;
 			}
 		}
@@ -114,11 +114,11 @@
 			}
 
 			.grade {
-				color: rgb(0 26 52 / 60%);
+				color: var(--grey-op60);
 
 				& > div:first-child {
 					margin-bottom: 12px;
-					color: rgb(0 26 52 / 60%);
+					color: var(--grey-op60);
 					font-size: 14px;
 					line-height: 18px;
 				}

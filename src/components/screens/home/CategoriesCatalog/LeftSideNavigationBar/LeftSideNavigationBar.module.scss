@@ -1,5 +1,3 @@
-@use 'src/assets/styles/variables' as variables;
-
 .navigationBar {
 	display: flex;
 	flex-direction: column;
@@ -24,6 +22,6 @@
 }
 
 .active {
-	color: variables.$blue-primary;
-	background: variables.$grey-bg-color;
+	color: var(--blue-color);
+	background: var(--grey-color);
 }

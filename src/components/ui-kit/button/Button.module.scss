@@ -1,5 +1,3 @@
-@use 'src/assets/styles/variables' as variables;
-
 .button {
 	display: block;
 	background: transparent;
@@ -12,7 +10,7 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		color: #fff;
+		color: var(--white-color);
 		font-weight: 600;
 		font-size: 14px;
 		line-height: 20px;
@@ -46,19 +44,19 @@
 }
 
 .blue {
-	background-color: variables.$blue-primary;
+	background-color: var(--blue-color);
 
 	&:hover {
-		background-color: variables.$blue-hover;
+		background-color: var(--blue-hover-color);
 	}
 }
 
 .green {
-	background-color: variables.$green-color;
+	background-color: var(--green-color);
 	cursor: pointer;
 
 	&:hover {
-		background-color: variables.$green-hover-color;
+		background-color: var(--green-hover-color);
 	}
 }
 
@@ -72,12 +70,12 @@
 }
 
 .disabled {
-	color: #707f8d !important;
-	background-color: rgb(0 48 120 / 3.9%);
+	color: var(--grey-text) !important;
+	background-color: var(--dark-grey-bg);
 	pointer-events: none;
 
 	&:hover {
-		background-color: rgb(0 48 120 / 3.9%);
+		background-color: var(--dark-grey-bg);
 	}
 }
 

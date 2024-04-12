@@ -6,8 +6,8 @@
 	justify-content: center;
 	min-width: 44px;
 	height: 44px;
-	color: #001a34;
-	background-color: #fff;
+	color: var(--grey-text2);
+	background-color: color(--white-color);
 	border: none;
 	border-radius: 50%;
 	box-shadow: rgb(0 26 52 / 16%) 0 4px 16px 1px;
@@ -18,8 +18,8 @@
 		background 0.15s ease-in-out;
 
 	&:hover {
-		color: #fff;
-		background-color: #005bff;
+		color: var(--white-color);
+		background-color: var(--blue-color);
 	}
 }
 

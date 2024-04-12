@@ -7,7 +7,7 @@
 	width: 100%;
 	height: calc(100vh - 80px);
 	overflow: auto;
-	background-color: #fff;
+	background-color: var(--white-color);
 	transition: 0.3s;
 }
 
@@ -24,7 +24,7 @@
 .col {
 	width: 1px;
 	margin: 0 24px 0 12px;
-	background: rgb(0 48 120 / 3.9%);
+	background: var(--dark-grey-bg);
 	border-radius: 30px;
 }
 

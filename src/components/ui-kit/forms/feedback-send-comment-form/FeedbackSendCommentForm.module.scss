@@ -13,13 +13,12 @@
 		font-size: 14px;
 
 		& > div:first-child {
-			color: rgb(0 26 52 / 60%);
+			color: var(--grey-op60);
 			font-size: 13px;
 			line-height: 18px;
 		}
 
 		& > div:last-child {
-			color: #070707;
 			font-weight: 600;
 			line-height: 20px;
 		}

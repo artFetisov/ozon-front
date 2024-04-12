@@ -1,5 +1,3 @@
-@use 'src/assets/styles/variables' as variables;
-
 .txtBox {
 	position: relative;
 	width: 100%;
@@ -12,14 +10,14 @@
 	will-change: transform, border-color, top, background-color;
 
 	&:hover {
-		border-color: variables.$blue-primary;
+		border-color: var(--blue-color);
 	}
 
 	& > p {
 		position: absolute;
 		top: 5px;
 		left: 10px;
-		color: #96a3ae;
+		color: var(--dark-grey-color);
 		white-space: pre-wrap;
 		text-align: left;
 		transform-origin: 0 0;
@@ -49,10 +47,10 @@
 	border: 0;
 	outline: none;
 	resize: none;
-	-webkit-text-fill-color: #001a34;
-	caret-color: variables.$blue-primary;
+	-webkit-text-fill-color: var(--grey-text2);
+	caret-color: var(--blue-color);
 }
 
 .focused {
-	border-color: variables.$blue-primary;
+	border-color: var(--blue-color);
 }
