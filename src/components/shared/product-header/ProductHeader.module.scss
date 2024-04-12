@@ -109,15 +109,6 @@
 	border-left: 1px solid var(--grey-border);
 }
 
-.rightBox {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 350px;
-	max-width: 350px;
-	column-gap: 12px;
-}
-
 .sellerInfo {
 	& > div {
 		display: -webkit-box;
@@ -140,6 +131,16 @@
 		font-size: 12px;
 		line-height: 16px;
 	}
+}
+
+.rightBox {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 350px;
+	max-width: 350px;
+	margin-left: auto;
+	column-gap: 12px;
 }
 
 .btnGroup {

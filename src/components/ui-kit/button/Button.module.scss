@@ -69,6 +69,14 @@
 	}
 }
 
+.liked {
+	color: rgb(249 17 85) !important;
+
+	&:hover {
+		background-color: rgb(249 17 85 / 10%) !important;
+	}
+}
+
 .disabled {
 	color: var(--grey-text) !important;
 	background-color: var(--dark-grey-bg);

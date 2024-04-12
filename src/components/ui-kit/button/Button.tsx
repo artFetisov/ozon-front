@@ -11,11 +11,13 @@ type MyButtonPropsType = DefaultButtonPropsType & {
 	disabledP?: boolean
 	isIcon?: boolean
 	isFullWidth?: boolean
+	isLiked?: boolean
 }
 
 export const Button: FC<MyButtonPropsType> = ({
 	children,
 	variant,
+	isLiked,
 	disabledP,
 	isFullWidth = true,
 	color,
@@ -39,6 +41,7 @@ export const Button: FC<MyButtonPropsType> = ({
 					[styles.lightBlue]: color === 'lightBlue',
 					[styles.disabled]: disabledP,
 					[styles.noPadding]: isIcon,
+					[styles.liked]: isLiked,
 				})}
 			>
 				{children}

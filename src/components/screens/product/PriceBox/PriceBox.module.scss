@@ -19,23 +19,22 @@
 		}
 	}
 
-	.btnsBox {
-		display: flex;
-		flex-wrap: nowrap;
-		gap: 8px;
-		justify-content: flex-start;
-		width: auto;
-		margin-top: 12px;
-	}
-
 	.delivery {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		padding-top: 8px;
-		font-size: 13px;
+		font-size: 12px;
 		line-height: 16px;
 		letter-spacing: 0.2px;
+
+		& > span:first-child {
+			margin-right: 4px;
+		}
+
+		& > span:last-child {
+			font-weight: 600;
+		}
 	}
 
 	.withoutCard {
@@ -84,4 +83,14 @@
 			}
 		}
 	}
+}
+
+.btnsBox {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 12px;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 12px;
 }
