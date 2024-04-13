@@ -8,13 +8,15 @@ import { IQuestion } from '../question/question.types'
 
 export interface IProduct {
 	id: number
+	isLiked?: boolean
+	cartQuantity?: number
+	amount: number
 	slug: string
 	article: number
 	price: number
 	seller: ISeller
 	discount: number
 	remains: number
-	amount: number
 	title: string
 	category: ICategory
 	description: string

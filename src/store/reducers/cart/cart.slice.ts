@@ -5,12 +5,14 @@ interface ICartState {
 	cartItems: ICartItem[]
 	selectedItems: ICartItem[]
 	isSelectedAll: boolean
+	cartTotalCount: number
 }
 
 const initialState: ICartState = {
 	cartItems: [],
 	selectedItems: [],
 	isSelectedAll: false,
+	cartTotalCount: 0,
 }
 
 const cartSlice = createSlice({
@@ -20,16 +22,23 @@ const cartSlice = createSlice({
 		setCartItems(state, action: PayloadAction<ICartItem[]>) {
 			state.cartItems = action.payload
 		},
+		setCartTotalCount(state, action: PayloadAction<number>) {
+			state.cartTotalCount = action.payload
+		},
 		deleteCartItem(state, action: PayloadAction<{ id: number }>) {
 			state.cartItems = state.cartItems.filter((c) => c.id !== action.payload.id)
 			state.selectedItems = state.cartItems.filter((c) => c.checked)
 		},
 		updateCartItem(state, action: PayloadAction<{ id: number; checked: boolean }>) {
-			state.cartItems = state.cartItems.map((c) => (c.id === action.payload.id ? { ...c, checked: action.payload.checked } : c))
+			state.cartItems = state.cartItems.map((c) =>
+				c.id === action.payload.id ? { ...c, checked: action.payload.checked } : c
+			)
 			state.selectedItems = state.cartItems.filter((c) => c.checked)
 		},
 		updateAmountCartItem(state, action: PayloadAction<{ id: number; amount: number }>) {
-			state.cartItems = state.cartItems.map((c) => (c.id === action.payload.id ? { ...c, amount: action.payload.amount } : c))
+			state.cartItems = state.cartItems.map((c) =>
+				c.id === action.payload.id ? { ...c, amount: action.payload.amount } : c
+			)
 			state.selectedItems = state.cartItems.filter((c) => c.checked)
 		},
 		selectAllCartItems(state) {

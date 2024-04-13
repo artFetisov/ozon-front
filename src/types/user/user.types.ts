@@ -3,4 +3,6 @@ export interface IUser {
 	name: string
 	lastName: string
 	email: string
+	likedItems?: number[]
+	cartItems?: { id: number; quantity: number }[]
 }

@@ -47,6 +47,8 @@ export const productsMock: IProduct[] = [
 	{
 		price: 999,
 		questions: mockQuestions,
+		isLiked: true,
+		cartQuantity: 0,
 		brandLogo: 'aaa',
 		title: 'fldmfk mfkmkfs ssssss smsms;f;ekf;efef',
 		category: categoriesMock[1],
@@ -66,6 +68,7 @@ export const productsMock: IProduct[] = [
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -117,6 +120,8 @@ export const productsMock: IProduct[] = [
 	},
 	{
 		price: 741,
+		isLiked: false,
+		cartQuantity: 2,
 		title: 'fldmfkmfk m1111111kf msefe,f;elflf[f df;d;fd;f',
 		category: categoriesMock[1],
 		questions: mockQuestions,
@@ -137,6 +142,7 @@ export const productsMock: IProduct[] = [
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -193,12 +199,15 @@ export const productsMock: IProduct[] = [
 		discount: 63,
 		slug: 'mkmk',
 		questions: mockQuestions,
+		isLiked: true,
+		cartQuantity: 1,
 		brandLogo: 'aaa',
 		id: 2,
 		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -264,12 +273,15 @@ export const productsMock: IProduct[] = [
 		discount: 49,
 		slug: 'mkmk',
 		questions: mockQuestions,
+		isLiked: false,
+		cartQuantity: 3,
 		brandLogo: 'aaa',
 		feedbacks: mockFeedbacks,
 		id: 3,
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -334,12 +346,15 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		questions: mockQuestions,
 		brandLogo: 'aaa',
+		isLiked: true,
+		cartQuantity: 1,
 		discount: 16,
 		feedbacks: mockFeedbacks,
 		slug: 'mkmk',
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -407,10 +422,13 @@ export const productsMock: IProduct[] = [
 		brandLogo: 'aaa',
 		discount: 71,
 		slug: 'mkmk',
+		isLiked: true,
+		cartQuantity: 3,
 		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -478,11 +496,14 @@ export const productsMock: IProduct[] = [
 		brandLogo: 'aaa',
 		discount: 33,
 		slug: 'mkmk',
+		isLiked: false,
+		cartQuantity: 2,
 		feedbacks: mockFeedbacks,
 		id: 6,
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -547,12 +568,15 @@ export const productsMock: IProduct[] = [
 		category: categoriesMock[1],
 		questions: mockQuestions,
 		brandLogo: 'aaa',
+		isLiked: true,
+		cartQuantity: 0,
 		discount: 53,
 		slug: 'mkmk',
 		feedbacks: mockFeedbacks,
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -624,6 +648,7 @@ export const productsMock: IProduct[] = [
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -631,6 +656,8 @@ export const productsMock: IProduct[] = [
 				{ property: 'Издательство', value: 'Питер' },
 			],
 		},
+		isLiked: true,
+		cartQuantity: 4,
 		rating: {
 			id: 0,
 			averageValue: 5,
@@ -688,6 +715,8 @@ export const productsMock: IProduct[] = [
 		title: 'fldmfkmfk fd,fmdkfod [dkfdf dflkdf m4444444444kfms',
 		category: categoriesMock[1],
 		questions: mockQuestions,
+		isLiked: false,
+		cartQuantity: 2,
 		brandLogo: 'aaa',
 		discount: 49,
 		slug: 'mkmk',
@@ -696,6 +725,7 @@ export const productsMock: IProduct[] = [
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -762,12 +792,15 @@ export const productsMock: IProduct[] = [
 		brandLogo: 'aaa',
 		discount: 16,
 		slug: 'mkmk',
+		isLiked: true,
+		cartQuantity: 1,
 		feedbacks: mockFeedbacks,
 		id: 10,
 		article: 2,
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -837,6 +870,7 @@ export const productsMock: IProduct[] = [
 		characteristics: {
 			id: 1,
 			about: [
+				{ property: 'Вес', value: 0.7 },
 				{ property: 'Мощность, Вт', value: 900 },
 				{ property: 'Емкости в комплекте', value: 'Измельчитель, Дорожная бутылка' },
 				{ property: 'Вид насадки', value: 'Венчик, Нож-измельчитель, Шинковка' },
@@ -845,6 +879,8 @@ export const productsMock: IProduct[] = [
 			],
 		},
 		id: 11,
+		isLiked: true,
+		cartQuantity: 2,
 		rating: {
 			id: 0,
 			averageValue: 2,

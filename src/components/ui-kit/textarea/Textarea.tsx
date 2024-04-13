@@ -30,17 +30,21 @@ const getFinalHeight = (valueLength: number) => {
 
 interface ITextareaProps {
 	value: string
-	onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
+	setValue: (value: string) => void
 	placeholder: string
 	minHeight: 'small' | 'large'
 }
 
-export const Textarea: FC<ITextareaProps> = ({ placeholder, minHeight, value, ...rest }) => {
+export const Textarea: FC<ITextareaProps> = ({ placeholder, setValue, minHeight, value, ...rest }) => {
 	const [isFocused, setISFocused] = useState(false)
 	const [plusHeightOnKeyEnter, setPlusHeightOnKeyEnter] = useState(0)
 
 	const handleSetFocus = (bool: boolean) => {
 		setISFocused(bool)
+	}
+
+	const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+		setValue(event.currentTarget.value)
 	}
 
 	const handleKeyPress = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -68,6 +72,7 @@ export const Textarea: FC<ITextareaProps> = ({ placeholder, minHeight, value, ..
 			})}
 		>
 			<textarea
+				onChange={onChange}
 				onFocus={(_) => handleSetFocus(true)}
 				onBlur={(_) => handleSetFocus(false)}
 				onKeyDown={handleKeyPress}

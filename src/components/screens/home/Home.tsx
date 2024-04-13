@@ -6,11 +6,13 @@ import { productsMock } from '@/mock/products'
 import styles from './Home.module.scss'
 import { useActions } from '@/hooks/useActions'
 import { categoriesMock, subCategoriesMock, subSubCategoriesMock } from '@/mock/categories'
+import { currentAuthUser } from '@/mock/user'
 
 export const Home: FC = () => {
-	const { setCategories, setSubCategories, setSubSubCategories } = useActions()
+	const { setCategories, setSubCategories, setSubSubCategories, setUserData } = useActions()
 
 	useEffect(() => {
+		setUserData(currentAuthUser)
 		setCategories(categoriesMock)
 		setSubCategories(subCategoriesMock)
 		setSubSubCategories(subSubCategoriesMock)

@@ -13,13 +13,13 @@ import { FeedbacksQuestionsBox } from '@/components/ui-kit/feedbacks-questions-b
 import { ProductHeader } from '@/components/shared/product-header/ProductHeader'
 import { PriceBox } from './PriceBox/PriceBox'
 
+const HEADER_HEIGHT = 64
+const PRODUCT_HEADER_HEIGHT = 80
+
 interface IProductProps {
 	id: number
 	slug: string
 }
-
-const HEADER_HEIGHT = 64
-const PRODUCT_HEADER_HEIGHT = 80
 
 export const Product: FC<IProductProps> = ({ id, slug }) => {
 	const [currentProduct, setCurrentProduct] = useState<IProduct | null>(null)

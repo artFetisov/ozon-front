@@ -1,7 +1,6 @@
 import { FC, useState } from 'react'
 import styles from './PriceBox.module.scss'
 import { IProduct } from '@/types/product/product.types'
-import { Button } from '@/components/ui-kit/button/Button'
 import { LayoutModal } from '@/components/ui-kit/modals/LayoutModal'
 import { ProductInfoModal } from '@/components/ui-kit/modals/product-info-modal/ProductInfoModal'
 import { PriceCard } from '@/components/ui-kit/price-card/PriceCard'

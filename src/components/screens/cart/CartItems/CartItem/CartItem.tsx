@@ -42,7 +42,7 @@ export const CartItem: FC<ICartItemProps> = ({ item }) => {
 						<div className={styles.title}>{item.title}</div>
 						<hr style={{ height: '8px', border: 'none' }} />
 						{item.characteristics &&
-							item.characteristics.about.map((ch) => (
+							item.characteristics.about.slice(0, 2).map((ch) => (
 								<div key={ch.property + '-' + ch.value} className={styles.color}>
 									{ch.property} {ch.value}
 								</div>

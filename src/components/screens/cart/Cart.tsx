@@ -18,17 +18,18 @@ export const Cart: FC = () => {
 
 	const isSelectedAll = useTypedSelector((state) => state.cart.isSelectedAll)
 	const cartItems = useTypedSelector((state) => state.cart.cartItems)
+	const authUser = useTypedSelector((state) => state.user.user)
 
 	useEffect(() => {
 		setCartItems(mockCartItems)
 		setSelectedCartItems(mockCartItems.filter((c) => c.checked))
 	}, [])
 
-	const selectAllCartItemsHandler = () => {
+	const handleSelectAllCartItems = () => {
 		selectAllCartItems()
 	}
 
-	const deleteSelectedCartItemsHandler = () => {
+	const handleDeleteSelectedCartItems = () => {
 		deleteSelectedCartItems()
 	}
 
@@ -40,8 +41,8 @@ export const Cart: FC = () => {
 					<div className={styles.cartItemsBox}>
 						<div className={styles.controlCartItems}>
 							<div className={styles.removeAndSelectBox}>
-								<CheckBox text={'Выбрать все'} onChangeMy={selectAllCartItemsHandler} checked={isSelectedAll} />
-								<div className={styles.removeTitle} onClick={deleteSelectedCartItemsHandler}>
+								<CheckBox text={'Выбрать все'} onChangeMy={handleSelectAllCartItems} checked={isSelectedAll} />
+								<div className={styles.removeTitle} onClick={handleDeleteSelectedCartItems}>
 									Удалить выбранные
 								</div>
 							</div>

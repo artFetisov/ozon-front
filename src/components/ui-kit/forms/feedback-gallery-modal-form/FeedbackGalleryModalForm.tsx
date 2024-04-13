@@ -1,43 +1,37 @@
-import { FC, useEffect, useState } from 'react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { FC, useState, MouseEvent } from 'react'
 import { IconButton } from '../../icon-button/IconButton'
 import { Textarea } from '../../textarea/Textarea'
-import { ISendingCommentForm } from '@/types/feedback/feedback.types'
 import styles from './FeedbackGalleryModalForm.module.scss'
 
 export const FeedbackGalleryModalForm: FC = () => {
 	const [textareaValue, setTextareaValue] = useState('')
 
-	const { control, handleSubmit, watch, getValues, resetField } = useForm<ISendingCommentForm>()
+	const handleSetValue = (value: string) => {
+		setTextareaValue(value)
+	}
 
-	useEffect(() => {
-		const subscription = watch((value) => setTextareaValue(value.comment || ''))
-		return () => subscription.unsubscribe()
-	}, [watch])
-
-	const onSubmit: SubmitHandler<ISendingCommentForm> = async (data) => {
-		alert(data.comment)
-		resetField('comment')
+	const submitForm = (event: MouseEvent<HTMLButtonElement>) => {
+		event.preventDefault()
+		alert(textareaValue)
+		setTextareaValue('')
 	}
 
 	return (
-		<form className={styles.textareaForm} onSubmit={handleSubmit(onSubmit)}>
-			<Controller
-				rules={{ maxLength: 100 }}
-				name='comment'
-				control={control}
-				defaultValue={''}
-				render={({ field: { value, onChange } }) => (
-					<Textarea value={value} onChange={onChange} placeholder='Ваш комментарий к отзыву' minHeight='small' />
-				)}
+		<form className={styles.textareaForm}>
+			<Textarea
+				value={textareaValue}
+				setValue={handleSetValue}
+				placeholder='Ваш комментарий к отзыву'
+				minHeight='small'
 			/>
+
 			<div className={styles.sendIcon}>
 				<IconButton
-					type='submit'
+					onClick={submitForm}
 					// active={getValues().comment?.trim().length > 0}
 					svgSize={24}
 					// style={{ borderRadius: '50%', padding: '4px' }}
-					disabled={getValues().comment?.trim().length === 0 || getValues().comment === undefined}
+					disabled={textareaValue.trim().length === 0}
 				>
 					<path
 						fill='currentColor'

@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui-kit/button/Button'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styles from './CartQuantityButtonGroup.module.scss'
 import { useRouter } from 'next/navigation'
 import { PATHS } from '@/constants/paths'
@@ -10,10 +10,16 @@ interface ICartQuantityButtonGroupProps {
 }
 
 export const CartQuantityButtonGroup: FC<ICartQuantityButtonGroupProps> = ({ setCartQuantity, cartQuantity }) => {
+	const [isLiked, setIsLiked] = useState(false)
+
 	const router = useRouter()
 
 	const handleToCart = () => {
 		router.push(PATHS.CART)
+	}
+
+	const handleSetIsLiked = () => {
+		setIsLiked(!isLiked)
 	}
 
 	return (
@@ -23,7 +29,14 @@ export const CartQuantityButtonGroup: FC<ICartQuantityButtonGroupProps> = ({ set
 					<Button color='blue' variant='large' onClick={() => setCartQuantity(1)}>
 						Добавить в корзину
 					</Button>
-					<Button color='lightBlue' variant='large' style={{ width: '56px' }} isIcon>
+					<Button
+						color='lightBlue'
+						variant='large'
+						style={{ width: '56px' }}
+						isIcon
+						onClick={handleSetIsLiked}
+						isLiked={isLiked}
+					>
 						<svg width={24} height={24}>
 							<path
 								fill='currentColor'
@@ -64,7 +77,7 @@ export const CartQuantityButtonGroup: FC<ICartQuantityButtonGroupProps> = ({ set
 							</svg>
 						</Button>
 					</div>
-					<Button variant='large' color='lightBlue' isFullWidth={false}>
+					<Button variant='large' color='lightBlue' isFullWidth={false} onClick={handleSetIsLiked} isLiked={isLiked}>
 						<svg xmlns='http://www.w3.org/2000/svg' width={24} height={24}>
 							<path
 								fill='currentColor'

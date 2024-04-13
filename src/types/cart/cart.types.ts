@@ -1,6 +1,5 @@
-import { IProduct } from '@/types/product/product.types'
+import { IProduct } from '../product/product.types'
 
-export interface ICartItem
-	extends Pick<IProduct, 'title' | 'id' | 'price' | 'discount' | 'images' | 'slug' | 'characteristics' | 'seller' | 'remains' | 'amount' | 'category'> {
+export type ICartItem = IProduct & {
 	checked: boolean
 }
