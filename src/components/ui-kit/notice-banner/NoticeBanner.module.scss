@@ -1,0 +1,13 @@
+.noticeBanner {
+	position: fixed;
+	right: 24px;
+	bottom: 24px;
+	z-index: 10002;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 282px;
+	color: var(--grey-color);
+	background-color: var(--black-color);
+	border-radius: 20px;
+}

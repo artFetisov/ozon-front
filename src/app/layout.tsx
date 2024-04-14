@@ -1,11 +1,13 @@
 import '../assets/styles/globals.scss'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Header } from '@/components/layout/Header/Header'
 import { Footer } from '@/components/layout/Footer/Footer'
 import StoreProvider from '@/store/StoreProvider'
 import { CategoriesCatalog } from '@/components/screens/home/CategoriesCatalog/CategoriesCatalog'
+import { NoticeBanner } from '@/components/ui-kit/notice-banner/NoticeBanner'
+import { CookieBanner } from '@/components/ui-kit/notice-banner/cookie-banner/CookieBanner'
 
 const inter = Roboto({ subsets: ['latin'], weight: ['300', '400', '500', '700'] })
 
@@ -25,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 						<div className={'root-layout'}>{children}</div>
 						<Footer />
 					</div>
+					{/* <NoticeBanner></NoticeBanner> */}
 				</StoreProvider>
 			</body>
 		</html>

@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useLayoutEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import styles from './Selection.module.scss'
 import { Heading } from '@/components/ui-kit/heading/Heading'
 import { SelectionItem } from '@/components/ui-kit/selection/SelectionItem'
@@ -14,12 +14,14 @@ interface ISelection {
 
 export const Selection: FC<ISelection> = ({ headingText, items, rowTotalItems }) => {
 	const [size, setSize] = useState(0)
+
 	const parentRef = useRef<HTMLDivElement | null>(null)
-	const itemWidth = 100 / rowTotalItems
+
+	const itemWidthPercent = Math.round(100 / rowTotalItems)
 
 	const handleResize = () => {
 		if (parentRef.current) {
-			setSize(Math.round(parentRef.current?.offsetWidth / 100) * (100 / rowTotalItems) - 16)
+			setSize(Math.floor((parentRef.current?.offsetWidth / 100) * itemWidthPercent - 16))
 		}
 	}
 
@@ -45,7 +47,7 @@ export const Selection: FC<ISelection> = ({ headingText, items, rowTotalItems })
 	// 	}
 	// }, [parentRef])
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		handleResize()
 	}, [])
 
@@ -53,7 +55,10 @@ export const Selection: FC<ISelection> = ({ headingText, items, rowTotalItems })
 		<div className={styles.selectionWrapper}>
 			<Heading text={headingText} />
 			<div className={styles.itemsWrapper} ref={parentRef}>
-				{items && items.map((i, ind) => <SelectionItem key={i.price + '---' + ind} size={size} item={i} />)}
+				{items &&
+					items.map((i, ind) => (
+						<SelectionItem key={i.price + '---' + ind} size={size} percent={itemWidthPercent} item={i} />
+					))}
 			</div>
 		</div>
 	)

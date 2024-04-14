@@ -10,13 +10,14 @@ import { PATHS } from '@/constants/paths'
 interface ISelectionItemProps {
 	item: IProduct
 	size: number
+	percent: number
 }
 
-export const SelectionItem: FC<ISelectionItemProps> = ({ item, size }) => {
+export const SelectionItem: FC<ISelectionItemProps> = ({ item, size, percent }) => {
 	return (
-		<div className={styles.item} style={{ width: `${size}px` }}>
+		<div className={styles.item} style={{ width: `calc(${percent}% - 16px)` }}>
 			<Link href={`${PATHS.PRODUCT}${item.title}/${item.id}`}>
-				<div className={styles.imgBox} style={{ width: size, height: size, position: 'relative' }}>
+				<div className={styles.imgBox} style={{ width: size, height: size }}>
 					<Image src={item.images[Math.floor(Math.random() * 10)]} alt={'logo item'} fill />
 				</div>
 				<div className={styles.info}>

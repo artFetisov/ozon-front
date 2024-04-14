@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { SearchBarModal } from '../modals/search-bar-modal/SearchBarModal'
 import { Selection } from '../selection/Selection'
 import { productsMock } from '@/mock/products'
-import { Heading } from '../heading/Heading'
+import { createPortal } from 'react-dom'
 
 export const SearchBar: FC = () => {
 	const { isOpenModal, openModal, closeModal } = useModal()
@@ -25,18 +25,19 @@ export const SearchBar: FC = () => {
 		setFieldValue('')
 	}
 
-	const handleCloseModals = (event: MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
-		event.stopPropagation()
+	const handleShowSearchBarModal = () => {
 		isOpenModal && closeModal()
-		isOpenModal2 && closeModal2()
+		openModal2()
 	}
 
 	return (
 		<>
-			{isOpenModal2 && (
-				<LayoutModal variant='dark' close={handleCloseModals} Content={<SearchBarModal close={handleCloseModals} />} />
-			)}
-			{isOpenModal && <LayoutModal variant='dark' close={handleCloseModals} />}
+			{isOpenModal && createPortal(<LayoutModal variant='dark' close={closeModal} />, document.body)}
+			{isOpenModal2 &&
+				createPortal(
+					<LayoutModal variant='dark' close={closeModal2} Content={<SearchBarModal close={closeModal2} />} />,
+					document.body
+				)}
 			<div
 				className={cn(styles.searchContainer, {
 					[styles.isOpenModal]: isOpenModal,
@@ -45,7 +46,7 @@ export const SearchBar: FC = () => {
 				<div className={cn(styles.searchBarWrapper)}>
 					<form className={styles.searchForm}>
 						<div className={styles.leftSide}>
-							<div className={styles.catButton} onClick={openModal2}>
+							<div className={styles.catButton} onClick={handleShowSearchBarModal}>
 								<span className={styles.title}>Везде</span>
 								<span className={styles.arrowBox}>
 									<svg width={16} height={16}>
@@ -88,40 +89,42 @@ export const SearchBar: FC = () => {
 					</form>
 				</div>
 				{isOpenModal && (
-					<section className={styles.requestHistory}>
-						<header className={styles.historyHeader}>
-							<h4>История</h4>
-							<span>Очистить</span>
-						</header>
-						<>
-							{requestHistoryMock.map((r) => (
-								<Link key={r.id} href={'/'} className={styles.requestHistoryItem}>
-									<div className={styles.itemIcon}>
-										<svg width={24} height={24}>
-											<path
-												fill='currentColor'
-												d='M5 6.343V5a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2H6.254a7 7 0 1 1-1.2 4.876 1 1 0 1 0-1.984.248A9 9 0 1 0 5 6.344Z'
-											></path>
-											<path
-												fill='currentColor'
-												d='M13 8a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l2 2a1 1 0 0 0 1.414-1.414L13 11.586V8Z'
-											></path>
-										</svg>
-									</div>
-									<span className={styles.itemTitle}>{r.title}</span>
-									<span className={styles.itemRemoveBtn}>
-										<svg width={16} height={16}>
-											<path
-												fill='currentColor'
-												d='M3.293 3.293a1 1 0 0 1 1.414 0L8 6.586l3.293-3.293a1 1 0 1 1 1.414 1.414L9.414 8l3.293 3.293a1 1 0 0 1-1.414 1.414L8 9.414l-3.293 3.293a1 1 0 0 1-1.414-1.414L6.586 8 3.293 4.707a1 1 0 0 1 0-1.414Z'
-											></path>
-										</svg>
-									</span>
-								</Link>
-							))}
-							<Selection rowTotalItems={3} items={productsMock.slice(0, 12)} headingText='Рекомендуем для вас' />
-						</>
-					</section>
+					<div className={styles.requestHistoryWrapper}>
+						<section className={styles.requestHistory}>
+							<header className={styles.historyHeader}>
+								<h4>История</h4>
+								<span>Очистить</span>
+							</header>
+							<>
+								{requestHistoryMock.map((r) => (
+									<Link key={r.id} href={'/'} className={styles.requestHistoryItem}>
+										<div className={styles.itemIcon}>
+											<svg width={24} height={24}>
+												<path
+													fill='currentColor'
+													d='M5 6.343V5a1 1 0 0 0-2 0v4a1 1 0 0 0 1 1h4a1 1 0 0 0 0-2H6.254a7 7 0 1 1-1.2 4.876 1 1 0 1 0-1.984.248A9 9 0 1 0 5 6.344Z'
+												></path>
+												<path
+													fill='currentColor'
+													d='M13 8a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l2 2a1 1 0 0 0 1.414-1.414L13 11.586V8Z'
+												></path>
+											</svg>
+										</div>
+										<span className={styles.itemTitle}>{r.title}</span>
+										<span className={styles.itemRemoveBtn}>
+											<svg width={16} height={16}>
+												<path
+													fill='currentColor'
+													d='M3.293 3.293a1 1 0 0 1 1.414 0L8 6.586l3.293-3.293a1 1 0 1 1 1.414 1.414L9.414 8l3.293 3.293a1 1 0 0 1-1.414 1.414L8 9.414l-3.293 3.293a1 1 0 0 1-1.414-1.414L6.586 8 3.293 4.707a1 1 0 0 1 0-1.414Z'
+												></path>
+											</svg>
+										</span>
+									</Link>
+								))}
+								<Selection rowTotalItems={3} items={productsMock.slice(0, 12)} headingText='Рекомендуем для вас' />
+							</>
+						</section>
+					</div>
 				)}
 			</div>
 		</>

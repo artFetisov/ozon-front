@@ -2,17 +2,18 @@
 	position: relative;
 	padding: 8px;
 	background-color: var(--white-color);
-	border-radius: 8px;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
 }
 
 .isOpenModal {
-	z-index: 1100;
+	z-index: 1900;
 }
 
 .searchBarWrapper {
-	position: relative;
+	// position: relative;
+	// z-index: 1900;
 	height: 40px;
-	border-radius: 12px;
 
 	.searchForm {
 		display: flex;
@@ -36,20 +37,22 @@
 	}
 }
 
-.requestHistory {
+.requestHistoryWrapper {
 	position: absolute;
-	top: 40;
 	right: 0;
 	left: 0;
-	z-index: 100;
-	max-height: calc(100vh - 150px);
+	z-index: 2000;
 	padding-top: 8px;
 	padding-bottom: 12px;
-	overflow-y: auto;
 	background-color: var(--white-color);
-	border-bottom-right-radius: 8px;
-	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 12px;
+	border-bottom-left-radius: 12px;
 	box-shadow: 0 4px 16px 2px rgb(0 26 52 / 16%);
+}
+
+.requestHistory {
+	max-height: calc(100vh - 150px);
+	overflow-y: auto;
 }
 
 .historyHeader {
@@ -57,6 +60,7 @@
 	align-items: flex-end;
 	justify-content: space-between;
 	padding: 16px 16px 8px;
+	overflow: hidden;
 	line-height: 26px;
 
 	> h4 {
