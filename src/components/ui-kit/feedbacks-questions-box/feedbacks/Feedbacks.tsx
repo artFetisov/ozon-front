@@ -11,6 +11,7 @@ import { ProductRatingBox } from '../../product-rating-box/ProductRatingBox'
 import Image from 'next/image'
 import { useActions } from '@/hooks/useActions'
 import { getAllFeedbackImages, getFeedbackById } from '@/utils/feedback/feedback'
+import { createPortal } from 'react-dom'
 
 interface IFeedbacksProps {
 	feedbacks: IFeedback[]
@@ -37,20 +38,22 @@ export const Feedbacks: FC<IFeedbacksProps> = ({ feedbacks, productRating }) => 
 
 	return (
 		<>
-			{isOpenModal && (
-				<LayoutModal
-					variant='white'
-					close={closeModal}
-					Content={
-						<FeedbackGalleryModal
-							feedbacks={feedbacks}
-							close={closeModal}
-							allFeedbacksImages={allFeedbacksImages}
-							variant={variantFeedbackGalleryModal}
-						/>
-					}
-				/>
-			)}
+			{isOpenModal &&
+				createPortal(
+					<LayoutModal
+						variant='white'
+						close={closeModal}
+						Content={
+							<FeedbackGalleryModal
+								feedbacks={feedbacks}
+								close={closeModal}
+								allFeedbacksImages={allFeedbacksImages}
+								variant={variantFeedbackGalleryModal}
+							/>
+						}
+					/>,
+					document.body
+				)}
 			<div className={styles.col_1}>
 				<div>
 					<div className={styles.allPhotosFeedbacksList}>

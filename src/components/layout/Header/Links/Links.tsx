@@ -1,16 +1,46 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styles from './Links.module.scss'
 import { HeaderLink } from '@/components/layout/Header/Links/HeaderLink'
 import { PATHS } from '@/constants/paths'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { getProductsCartTotal } from '@/utils/products/products'
+import { createPortal } from 'react-dom'
+import { Popup } from '@/components/ui-kit/popup/Popup'
+import { Button } from '@/components/ui-kit/button/Button'
 
 export const Links: FC = () => {
 	const cartItems = useTypedSelector((state) => state.cart.cartItems)
 
+	const [isHoveredUserIcon, setIsHoveredUserIcon] = useState(false)
+
+	const handleMouseEnterUserIcon = () => {
+		setIsHoveredUserIcon(true)
+	}
+
+	const handleMouseLeaveUserIcon = () => {
+		setIsHoveredUserIcon(false)
+	}
+
 	return (
 		<div className={styles.linkBox}>
+			{isHoveredUserIcon &&
+				createPortal(
+					<Popup isShow={isHoveredUserIcon}>
+						<div>
+							Войдите, чтобы делать покупки, отслеживать заказы и пользоваться персональными скидками и баллами.
+						</div>
+						<Button variant='small' color='blue' style={{ marginTop: '16px' }} isFullWidth>
+							Войти или зарегестрироваться
+						</Button>
+						<Button variant='small' color='lightBlue' style={{ marginTop: '16px' }} isFullWidth>
+							Личный кабинет
+						</Button>
+					</Popup>,
+					document.body
+				)}
 			<HeaderLink
+				onMouseEnter={handleMouseEnterUserIcon}
+				onMouseLeave={handleMouseLeaveUserIcon}
 				title={'Имя'}
 				svg={
 					<svg width={24} height={24}>
@@ -27,7 +57,6 @@ export const Links: FC = () => {
 				linkPath={PATHS.MY_MAIN}
 				itemsCount={4}
 			/>
-
 			<HeaderLink
 				title={'Заказы'}
 				svg={
@@ -41,7 +70,6 @@ export const Links: FC = () => {
 				linkPath={PATHS.MY_ORDER_LIST}
 				itemsCount={10}
 			/>
-
 			<HeaderLink
 				title={'Избранное'}
 				svg={
@@ -55,7 +83,6 @@ export const Links: FC = () => {
 				linkPath={PATHS.MY_FAVORITES}
 				itemsCount={3}
 			/>
-
 			<HeaderLink
 				title={'Корзина'}
 				svg={

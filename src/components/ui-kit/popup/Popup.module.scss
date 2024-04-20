@@ -1,0 +1,32 @@
+.popup {
+	position: absolute;
+	top: 0;
+	z-index: 504;
+	display: inline-block;
+	min-width: 274px;
+	max-width: 274px;
+	margin: 0;
+	transform: translate3d(1020px, 78px, 0);
+	opacity: 1;
+	transition: opacity 0.5s ease-in-out;
+	will-change: transform;
+}
+
+.content {
+	position: relative;
+	padding: 20px 16px;
+	color: var(--grey-text2);
+	background-color: var(--white-color);
+	border-radius: 12px;
+	box-shadow: 0 4px 16px 1px rgb(0 26 52 / 16%);
+}
+
+.hide {
+	left: -99999px;
+	opacity: 0;
+}
+
+.show {
+	left: 0;
+	opacity: 1;
+}

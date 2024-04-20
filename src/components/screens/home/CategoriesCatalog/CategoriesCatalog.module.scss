@@ -5,7 +5,9 @@
 	left: 0;
 	z-index: 1000;
 	width: 100%;
-	height: calc(100vh - 80px);
+	height: calc(100vh - 63px);
+
+	// margin-left: -16px;
 	overflow: auto;
 	background-color: var(--white-color);
 	transition: 0.3s;

@@ -9,6 +9,7 @@
 }
 
 .header {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -18,7 +19,7 @@
 .fixed {
 	position: fixed;
 	top: 0;
-	z-index: 1001;
+	z-index: 499;
 	width: 100%;
 	max-width: 1472px;
 	margin-left: -28px;
@@ -51,6 +52,7 @@
 .searchInputBox {
 	flex-grow: 1;
 	margin-right: 24px;
+	background-color: var(--white-color);
 }
 
 .showCatalogButtonWrapper {

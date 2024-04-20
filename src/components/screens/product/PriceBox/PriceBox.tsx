@@ -7,6 +7,7 @@ import { PriceCard } from '@/components/ui-kit/price-card/PriceCard'
 import { useModal } from '@/hooks/useModal'
 import { getPriceWithWhitespace, getPriceWithDiscount } from '@/utils/price/price'
 import { CartQuantityButtonGroup } from '@/components/shared/cart-quantity-button-group/CartQuantityButtonGroup'
+import { createPortal } from 'react-dom'
 
 interface IPriceBoxProps {
 	currentProduct: IProduct
@@ -26,9 +27,11 @@ export const PriceBox: FC<IPriceBoxProps> = ({ currentProduct }) => {
 
 	return (
 		<div className={styles.priceBox}>
-			{isOpenModal && (
-				<LayoutModal variant='dark' close={closeModal} Content={<ProductInfoModal close={closeModal} />} />
-			)}
+			{isOpenModal &&
+				createPortal(
+					<LayoutModal variant='dark' close={closeModal} Content={<ProductInfoModal close={closeModal} />} />,
+					document.body
+				)}
 			<div className={styles.withCard} onClick={handleShowModal}>
 				<PriceCard
 					color='green'
