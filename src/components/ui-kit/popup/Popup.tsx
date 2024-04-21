@@ -5,11 +5,15 @@ import cn from 'classnames'
 interface IPopupProps {
 	children: ReactNode
 	isShow: boolean
+	onMouseLeave?: () => void
+	onMouseEnter?: () => void
 }
 
-export const Popup: FC<IPopupProps> = ({ children, isShow }) => {
+export const Popup: FC<IPopupProps> = ({ children, isShow, onMouseEnter, onMouseLeave }) => {
 	return (
 		<div
+			onMouseLeave={onMouseLeave}
+			onMouseEnter={onMouseEnter}
 			className={cn(styles.popup, {
 				[styles.show]: isShow,
 				[styles.hide]: !isShow,

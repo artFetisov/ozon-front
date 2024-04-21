@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import styles from './Links.module.scss'
+import styles from './HeaderLink.module.scss'
 import Link from 'next/link'
 
 interface ILinkPropsType {

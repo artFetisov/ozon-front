@@ -18,7 +18,7 @@ export const SelectionItem: FC<ISelectionItemProps> = ({ item, size, percent }) 
 		<div className={styles.item} style={{ width: `calc(${percent}% - 16px)` }}>
 			<Link href={`${PATHS.PRODUCT}${item.title}/${item.id}`}>
 				<div className={styles.imgBox} style={{ width: size, height: size }}>
-					<Image src={item.images[Math.floor(Math.random() * 10)]} alt={'logo item'} fill />
+					<Image src={item.images[Math.trunc(Math.random() * 10)]} alt={'logo item'} fill />
 				</div>
 				<div className={styles.info}>
 					<div className={styles.priceBox}>

@@ -21,6 +21,7 @@ export const PriceBox: FC<IPriceBoxProps> = ({ currentProduct }) => {
 	}
 
 	const { isOpenModal, openModal, closeModal } = useModal()
+
 	const handleShowModal = () => {
 		openModal()
 	}
