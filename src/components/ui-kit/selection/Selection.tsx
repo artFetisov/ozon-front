@@ -39,7 +39,7 @@ export const Selection: FC<ISelection> = ({ headingText, items, rowTotalItems })
 			<div className={styles.itemsWrapper} ref={parentRef}>
 				{items &&
 					items.map((i, ind) => (
-						<SelectionItem key={i.price + '---' + ind} size={size} percent={itemWidthPercent} item={i} index={ind} />
+						<SelectionItem key={i.price + '---' + ind} size={size} percent={itemWidthPercent} item={i} />
 					))}
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-export const useField = () => {
-	const [isFocused, setIsFocused] = useState(true)
+export const useField = (initialFocus: boolean) => {
+	const [isFocused, setIsFocused] = useState(initialFocus)
 	const [fieldValue, setFieldValue] = useState('')
 	const [fieldError, setFieldError] = useState('')
 

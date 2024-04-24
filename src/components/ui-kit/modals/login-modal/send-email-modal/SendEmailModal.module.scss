@@ -1,0 +1,40 @@
+.heading {
+	margin-top: 40px;
+	margin-bottom: 16px;
+	font-weight: 700;
+	font-size: 27px;
+	line-height: 32px;
+	letter-spacing: 0.4px;
+}
+
+.text {
+	margin-bottom: 28px;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.2px;
+}
+
+.inputBox {
+	margin-bottom: 20px;
+}
+
+.toggleBtn {
+	margin-top: 32px;
+	margin-bottom: 8px;
+	line-height: 1.5;
+	text-align: center;
+	transition: color transform 0.1s cubic-bezier(0.55, 0, 1, 0.45);
+
+	.text {
+		color: var(--blue-color);
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 24px;
+		letter-spacing: 0.2px;
+		cursor: pointer;
+
+		&:hover {
+			color: var(--blue-hover-color);
+		}
+	}
+}
