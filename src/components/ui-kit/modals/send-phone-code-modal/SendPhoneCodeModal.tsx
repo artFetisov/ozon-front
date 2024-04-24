@@ -1,11 +1,13 @@
-import { ChangeEvent, FC, useState, KeyboardEvent } from 'react'
+import { ChangeEvent, FC, KeyboardEvent } from 'react'
 import styles from './SendPhoneCodeModal.module.scss'
 import { CloseButton } from '@/components/ui-kit/close-button/CloseButton'
 import Image from 'next/image'
 import { Button } from '../../button/Button'
 import cn from 'classnames'
+import { useField } from '@/hooks/useField'
 
 const fieldPhoneError: string[] = ['Некорректный номер телефона']
+const allowedCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Backspace']
 
 const getCorrectFieldValueView = (value: string, previousValue: string): string => {
 	if (!value) return value
@@ -36,12 +38,11 @@ const getCorrectFieldValueView = (value: string, previousValue: string): string 
 
 interface ISendPhoneCodeModalProps {
 	close: () => void
+	cb: () => void
 }
 
-export const SendPhoneCodeModal: FC<ISendPhoneCodeModalProps> = ({ close }) => {
-	const [isFocused, setIsFocused] = useState(true)
-	const [fieldValue, setFieldValue] = useState('')
-	const [fieldError, setFieldError] = useState('')
+export const SendPhoneCodeModal: FC<ISendPhoneCodeModalProps> = ({ close, cb }) => {
+	const { setFieldValue, fieldValue, setFieldError, fieldError, isFocused, setIsFocused } = useField()
 
 	const handleSetFieldValue = (event: ChangeEvent<HTMLInputElement>) => {
 		if (event.currentTarget.value.length === 14) return
@@ -49,7 +50,6 @@ export const SendPhoneCodeModal: FC<ISendPhoneCodeModalProps> = ({ close }) => {
 	}
 
 	const handleKeyDownFieldValue = (event: KeyboardEvent<HTMLInputElement>) => {
-		const allowedCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Backspace']
 		!allowedCharacters.includes(event.key) && event.preventDefault()
 	}
 
@@ -62,6 +62,8 @@ export const SendPhoneCodeModal: FC<ISendPhoneCodeModalProps> = ({ close }) => {
 		}
 
 		setFieldValue('')
+		close()
+		cb()
 	}
 
 	const handleFocusInput = () => {

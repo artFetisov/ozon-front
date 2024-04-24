@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useLayoutEffect, useRef, useState } from 'react'
 import styles from './Selection.module.scss'
 import { Heading } from '@/components/ui-kit/heading/Heading'
 import { SelectionItem } from '@/components/ui-kit/selection/SelectionItem'
@@ -19,37 +19,19 @@ export const Selection: FC<ISelection> = ({ headingText, items, rowTotalItems })
 
 	const itemWidthPercent = Math.round(100 / rowTotalItems)
 
-	const handleResize = () => {
-		if (parentRef.current) {
-			setSize(Math.floor((parentRef.current?.offsetWidth / 100) * itemWidthPercent - 16))
+	useLayoutEffect(() => {
+		const handleResize = () => {
+			setSize(Math.floor(((parentRef?.current?.offsetWidth as number) / 100) * itemWidthPercent - 16))
 		}
-	}
 
-	// useEffect(() => {
-	// 	if (parentRef.current) {
-	// 		window.addEventListener('resize', handleResize)
-	// 	}
-
-	// 	return () => {
-	// 		window.removeEventListener('resize', handleResize)
-	// 	}
-	// }, [parentRef])
-
-	// useLayoutEffect(() => {
-	// 	const handleResize = () => {
-	// 		if (parentRef.current) setSize(Math.round(parentRef.current?.offsetWidth / 100) * (100 / rowTotalItems) - 16)
-	// 	}
-	// 	handleResize()
-	// 	window.addEventListener('resize', handleResize)
-
-	// 	return () => {
-	// 		window.removeEventListener('resize', handleResize)
-	// 	}
-	// }, [parentRef])
-
-	useEffect(() => {
 		handleResize()
-	}, [])
+
+		window.addEventListener('resize', handleResize)
+
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
+	}, [parentRef, itemWidthPercent])
 
 	return (
 		<div className={styles.selectionWrapper}>

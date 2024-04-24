@@ -7,11 +7,16 @@ import { HeaderLink } from '../HeaderLink'
 import { useRouter } from 'next/navigation'
 import { useModal } from '@/hooks/useModal'
 import { LayoutModal } from '@/components/ui-kit/modals/LayoutModal'
-import { ProductInfoModal } from '@/components/ui-kit/modals/product-info-modal/ProductInfoModal'
 import { SendPhoneCodeModal } from '@/components/ui-kit/modals/send-phone-code-modal/SendPhoneCodeModal'
+import { PasswordEntryModal } from '@/components/ui-kit/modals/password-entry-modal/PasswordEntryModal'
 
 export const UserInfoLink: FC = () => {
 	const { isOpenModal, openModal, closeModal } = useModal()
+	const {
+		isOpenModal: isOpenModalPasswordEntry,
+		openModal: openModalPasswordEntry,
+		closeModal: closeModalPasswordEntry,
+	} = useModal()
 
 	const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
@@ -19,6 +24,10 @@ export const UserInfoLink: FC = () => {
 
 	const [isHoveredUserIcon, setIsHoveredUserIcon] = useState(false)
 	const [isHoveredPopup, setIsHoveredPopup] = useState(false)
+
+	const handleOpenPasswordEntryModal = () => {
+		openModalPasswordEntry()
+	}
 
 	const handleShowModal = () => {
 		openModal()
@@ -53,7 +62,20 @@ export const UserInfoLink: FC = () => {
 		<>
 			{isOpenModal &&
 				createPortal(
-					<LayoutModal variant='dark' close={closeModal} Content={<SendPhoneCodeModal close={closeModal} />} />,
+					<LayoutModal
+						variant='dark'
+						close={closeModal}
+						Content={<SendPhoneCodeModal cb={handleOpenPasswordEntryModal} close={closeModal} />}
+					/>,
+					document.body
+				)}
+			{isOpenModalPasswordEntry &&
+				createPortal(
+					<LayoutModal
+						variant='dark'
+						close={closeModalPasswordEntry}
+						Content={<PasswordEntryModal close={closeModalPasswordEntry} />}
+					/>,
 					document.body
 				)}
 			{(isHoveredUserIcon || isHoveredPopup) &&
