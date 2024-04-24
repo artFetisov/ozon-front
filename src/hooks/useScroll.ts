@@ -26,7 +26,6 @@ export const useScroll = (startedBoxHeight?: number) => {
 			}
 
 			setScrollPosition(Math.floor(eventTarget.scrollTop))
-			console.log(scrollPosition)
 		},
 		[isHideContainer, scrollPosition, startedBoxHeight]
 	)

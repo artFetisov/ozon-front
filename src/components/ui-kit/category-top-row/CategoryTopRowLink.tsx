@@ -9,11 +9,15 @@ interface ICategoryTopRowLinkProps {
 }
 
 export const CategoryTopRowLink: FC<ICategoryTopRowLinkProps> = ({ item }) => {
-	return <li className={styles.link}>
-		<Link href={`${PATHS.CATEGORY}/${item.slug}`}>
-			<span className={styles.icon}
-						style={{ backgroundImage: 'url(\'https://cdn1.ozone.ru/s3/cms/fb/t19/ic_m_plane.svg\');' }}></span>
-			<span>{item.title}</span>
-		</Link>
-	</li>
+	return (
+		<li className={styles.link}>
+			<Link href={`${PATHS.CATEGORY}/${item.slug}`}>
+				<span
+					className={styles.icon}
+					style={{ backgroundImage: "url('https://cdn1.ozone.ru/s3/cms/fb/t19/ic_m_plane.svg')" }}
+				></span>
+				<span>{item.title}</span>
+			</Link>
+		</li>
+	)
 }
