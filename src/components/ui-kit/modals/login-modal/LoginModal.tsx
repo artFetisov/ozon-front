@@ -1,34 +1,44 @@
 import { FC, useState } from 'react'
 import styles from './LoginModal.module.scss'
 import { CloseButton } from '../../close-button/CloseButton'
-import { SendPhoneCodeModal } from './send-phone-code-modal/SendPhoneCodeModal'
-import { PasswordEntryModal } from './password-entry-modal/PasswordEntryModal'
+import { SendPhoneModal } from './send-phone-code-modal/SendPhoneModal'
+import { PhonePasswordEntryModal } from './phone-password-entry-modal/PhonePasswordEntryModal'
 import { SendEmailModal } from './send-email-modal/SendEmailModal'
 import Image from 'next/image'
+import { EmailPasswordEntryModal } from './email-password-entry-modal/EmailPasswordEntryModal'
 
-export type TypeCurrentModal = 'phone' | 'password' | 'byEmail'
+export type TypeCurrentModal = 'enterPhone' | 'enterPasswordByPhone' | 'enterEmail' | 'enterPasswordByEmail'
 
 interface ILoginModalProps {
 	close: () => void
 }
 
 export const LoginModal: FC<ILoginModalProps> = ({ close }) => {
-	const [currentModal, setCurrentModal] = useState<TypeCurrentModal>('phone')
+	const [currentModal, setCurrentModal] = useState<TypeCurrentModal>('enterPhone')
 
 	const handleToggleModal = (type: TypeCurrentModal) => {
 		setCurrentModal(type)
 	}
 
+	const handleCloseModal = () => {
+		close()
+	}
+
 	return (
 		<div className={styles.loginModal}>
-			<CloseButton callback={close} variant='inside' />
+			<CloseButton callback={handleCloseModal} variant='inside' />
 			<div className={styles.modalContent}>
 				<div className={styles.logo}>
 					<Image alt='logo' src={'https://ir-2.ozone.ru/graphics/ozon-id-v2.svg'} fill />
 				</div>
-				{currentModal === 'phone' && <SendPhoneCodeModal onToggle={handleToggleModal} />}
-				{currentModal === 'password' && <PasswordEntryModal onToggle={handleToggleModal} />}
-				{currentModal === 'byEmail' && <SendEmailModal onToggle={handleToggleModal} />}
+				{currentModal === 'enterPhone' && <SendPhoneModal onToggle={handleToggleModal} />}
+				{currentModal === 'enterPasswordByPhone' && (
+					<PhonePasswordEntryModal onToggle={handleToggleModal} close={handleCloseModal} />
+				)}
+				{currentModal === 'enterEmail' && <SendEmailModal onToggle={handleToggleModal} />}
+				{currentModal === 'enterPasswordByEmail' && (
+					<EmailPasswordEntryModal onToggle={handleToggleModal} close={handleCloseModal} />
+				)}
 			</div>
 		</div>
 	)

@@ -12,13 +12,10 @@ type MyCheckBoxPropsType = DefaultCheckBoxPropsType & {
 }
 
 export const CheckBox: FC<MyCheckBoxPropsType> = ({ text, checked, onChangeMy }) => {
-	// const [checked, setChecked] = useState(false)
 	const [hovered, setHovered] = useState(false)
 
 	const handleChecked = (e: any) => {
 		e.preventDefault()
-
-		// setChecked(!checked)
 	}
 
 	const onChangeHandler = (e: MouseEvent<HTMLLabelElement>) => {

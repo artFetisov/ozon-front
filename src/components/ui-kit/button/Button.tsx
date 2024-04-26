@@ -26,8 +26,10 @@ export const Button: FC<MyButtonPropsType> = ({
 }) => {
 	return (
 		<button
+			disabled={disabledP}
 			className={cn(styles.button, {
 				[styles.fullWidth]: isFullWidth,
+				[styles.disabledBtn]: disabledP,
 			})}
 			{...rest}
 		>
@@ -39,7 +41,7 @@ export const Button: FC<MyButtonPropsType> = ({
 					[styles.green]: color === 'green',
 					[styles.blue]: color === 'blue',
 					[styles.lightBlue]: color === 'lightBlue',
-					[styles.disabled]: disabledP,
+					[styles.disabledInner]: disabledP,
 					[styles.noPadding]: isIcon,
 					[styles.liked]: isLiked,
 				})}

@@ -45,23 +45,27 @@
 }
 
 .removeBtn {
-	z-index: 3000;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 	display: flex;
 	flex-flow: row nowrap;
 	align-items: center;
 	justify-content: flex-end;
-	width: 44px;
+	width: 34px;
 	height: 44px;
-	margin-right: 8px;
+	margin-right: 10px;
 	margin-left: auto;
+	background-color: var(--white-color);
 
 	& > svg {
+		z-index: 3000;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		color: var(--dark-grey-color);
 		cursor: pointer;
-		transition: color 0.2s ease-in-out;
+		transition: color 0.1s ease-in-out;
 
 		&:hover {
 			color: var(--dark-grey2);
@@ -88,4 +92,27 @@
 	font-weight: 500;
 	font-size: 12px;
 	line-height: 16px;
+}
+
+@keyframes error {
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-4px, 0, 0);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(4px, 0, 0);
+	}
 }

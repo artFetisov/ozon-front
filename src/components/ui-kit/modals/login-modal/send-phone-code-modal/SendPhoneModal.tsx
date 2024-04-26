@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, KeyboardEvent } from 'react'
-import styles from './SendPhoneCodeModal.module.scss'
+import styles from './SendPhoneModal.module.scss'
 import { Button } from '../../../button/Button'
 import cn from 'classnames'
 import { useField } from '@/hooks/useField'
@@ -39,7 +39,7 @@ interface ISendPhoneCodeModalProps {
 	onToggle: (type: TypeCurrentModal) => void
 }
 
-export const SendPhoneCodeModal: FC<ISendPhoneCodeModalProps> = ({ onToggle }) => {
+export const SendPhoneModal: FC<ISendPhoneCodeModalProps> = ({ onToggle }) => {
 	const { setFieldValue, fieldValue, setFieldError, fieldError, isFocused, setIsFocused } = useField(true)
 
 	const handleSetFieldValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +59,7 @@ export const SendPhoneCodeModal: FC<ISendPhoneCodeModalProps> = ({ onToggle }) =
 			return
 		}
 
-		onToggle('password')
+		onToggle('enterPasswordByPhone')
 		setFieldValue('')
 	}
 
@@ -72,13 +72,13 @@ export const SendPhoneCodeModal: FC<ISendPhoneCodeModalProps> = ({ onToggle }) =
 	}
 
 	const handleToEmailModal = () => {
-		onToggle('byEmail')
+		onToggle('enterEmail')
 	}
 
 	return (
 		<>
 			<div className={styles.heading}>Введите номер телефона</div>
-			<div className={styles.text}>Мы отправим код на почту или в СМС</div>
+			<div className={styles.text}>Мы отправим код в СМС</div>
 			<div className={styles.inputBox}>
 				<label
 					className={cn(styles.input, {
