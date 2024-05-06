@@ -19,18 +19,27 @@ export const OrdersLink: FC<IOrdersLinkProps> = ({ isAuth, countItems }) => {
 		handleMouseEnterPopup,
 		handleMouseEnterElement,
 		handleMouseLeaveElement,
+		coordinates,
+		targetRef,
 	} = usePopup()
 
 	return (
 		<>
 			{(isHoveredElement || isHoveredPopup) &&
 				createPortal(
-					<Popup isShow={isHoveredElement} onMouseEnter={handleMouseEnterPopup} onMouseLeave={handleMouseLeavePopup}>
+					<Popup
+						position='bottom-center'
+						isShow={isHoveredElement}
+						onMouseEnter={handleMouseEnterPopup}
+						onMouseLeave={handleMouseLeavePopup}
+						coordinates={coordinates}
+					>
 						<div>popup</div>
 					</Popup>,
 					document.body
 				)}
 			<Link
+				ref={targetRef}
 				className={styles.link}
 				href={PATHS.MY_ORDER_LIST}
 				onMouseEnter={handleMouseEnterElement}

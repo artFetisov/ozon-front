@@ -24,6 +24,8 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
 		handleMouseEnterPopup,
 		handleMouseEnterElement,
 		handleMouseLeaveElement,
+		targetRef,
+		coordinates,
 	} = usePopup()
 
 	const userName = useTypedSelector((state) => state.user.userData?.name)
@@ -52,7 +54,13 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
 				)}
 			{(isHoveredElement || isHoveredPopup) &&
 				createPortal(
-					<Popup isShow={isHoveredElement} onMouseEnter={handleMouseEnterPopup} onMouseLeave={handleMouseLeavePopup}>
+					<Popup
+						position='bottom-center'
+						coordinates={coordinates}
+						isShow={isHoveredElement}
+						onMouseEnter={handleMouseEnterPopup}
+						onMouseLeave={handleMouseLeavePopup}
+					>
 						<div>
 							Войдите, чтобы делать покупки, отслеживать заказы и пользоваться персональными скидками и баллами.
 						</div>
@@ -63,6 +71,7 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
 					document.body
 				)}
 			<div
+				ref={targetRef}
 				onClick={handleLinkClick}
 				className={styles.link}
 				onMouseEnter={handleMouseEnterElement}

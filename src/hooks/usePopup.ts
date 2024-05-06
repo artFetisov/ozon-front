@@ -1,10 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
 
 export const usePopup = () => {
+	const [coordinates, setCoordinates] = useState<DOMRect>()
 	const [isHoveredElement, setIsHoveredElement] = useState(false)
 	const [isHoveredPopup, setIsHoveredPopup] = useState(false)
 
 	const timerRef = useRef<ReturnType<typeof setTimeout>>()
+
+	const targetRef = useRef<HTMLDivElement | HTMLAnchorElement | null>(null)
+
+	useEffect(() => {
+		const handleGetElementRect = () => {
+			setCoordinates(targetRef?.current?.getBoundingClientRect())
+		}
+
+		handleGetElementRect()
+	}, [])
 
 	useEffect(() => () => clearTimeout(timerRef.current), [])
 
@@ -33,5 +44,7 @@ export const usePopup = () => {
 		handleMouseEnterElement,
 		handleMouseEnterPopup,
 		handleMouseLeaveElement,
+		targetRef,
+		coordinates,
 	}
 }
