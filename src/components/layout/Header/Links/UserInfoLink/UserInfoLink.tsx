@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui-kit/button/Button'
 import { Popup } from '@/components/ui-kit/popup/Popup'
 import { PATHS } from '@/constants/paths'
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC } from 'react'
 import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { useModal } from '@/hooks/useModal'
@@ -9,19 +9,26 @@ import { LayoutModal } from '@/components/ui-kit/modals/LayoutModal'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import styles from '../Links.module.scss'
 import { LoginModal } from '@/components/ui-kit/modals/login-modal/LoginModal'
+import { usePopup } from '@/hooks/usePopup'
 
-export const UserInfoLink: FC = () => {
+interface IUserInfoLinkProps {
+	isAuth: boolean
+}
+
+export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
 	const { isOpenModal, openModal, closeModal } = useModal()
+	const {
+		handleMouseLeavePopup,
+		isHoveredElement,
+		isHoveredPopup,
+		handleMouseEnterPopup,
+		handleMouseEnterElement,
+		handleMouseLeaveElement,
+	} = usePopup()
 
-	const isAuth = useTypedSelector((state) => state.user.isAuth)
-	const userName = useTypedSelector((state) => state.user.user?.name)
-
-	const timerRef = useRef<ReturnType<typeof setTimeout>>()
+	const userName = useTypedSelector((state) => state.user.userData?.name)
 
 	const router = useRouter()
-
-	const [isHoveredUserIcon, setIsHoveredUserIcon] = useState(false)
-	const [isHoveredPopup, setIsHoveredPopup] = useState(false)
 
 	const handleShowModal = () => {
 		openModal()
@@ -36,26 +43,6 @@ export const UserInfoLink: FC = () => {
 		handleMouseLeavePopup()
 	}
 
-	const handleMouseEnterUserIcon = () => {
-		setIsHoveredUserIcon(true)
-	}
-
-	const handleMouseLeaveUserIcon = () => {
-		timerRef.current = setTimeout(() => setIsHoveredUserIcon(false), 500)
-	}
-
-	const handleMouseEnterPopup = () => {
-		clearTimeout(timerRef.current)
-		setIsHoveredPopup(true)
-	}
-
-	const handleMouseLeavePopup = () => {
-		setIsHoveredUserIcon(false)
-		setIsHoveredPopup(false)
-	}
-
-	useEffect(() => () => clearTimeout(timerRef.current), [])
-
 	return (
 		<>
 			{isOpenModal &&
@@ -63,34 +50,24 @@ export const UserInfoLink: FC = () => {
 					<LayoutModal variant='dark' close={closeModal} Content={<LoginModal close={closeModal} />} />,
 					document.body
 				)}
-			{(isHoveredUserIcon || isHoveredPopup) &&
+			{(isHoveredElement || isHoveredPopup) &&
 				createPortal(
-					<Popup isShow={isHoveredUserIcon} onMouseEnter={handleMouseEnterPopup} onMouseLeave={handleMouseLeavePopup}>
+					<Popup isShow={isHoveredElement} onMouseEnter={handleMouseEnterPopup} onMouseLeave={handleMouseLeavePopup}>
 						<div>
 							Войдите, чтобы делать покупки, отслеживать заказы и пользоваться персональными скидками и баллами.
 						</div>
 						<Button variant='small' color='blue' style={{ marginTop: '16px' }} isFullWidth onClick={handleShowModal}>
 							Войти или зарегестрироваться
 						</Button>
-						{/* <Button
-							variant='small'
-							color='lightBlue'
-							style={{ marginTop: '16px' }}
-							isFullWidth
-							onClick={handleNavigateToMain}
-						>
-							Личный кабинет
-						</Button> */}
 					</Popup>,
 					document.body
 				)}
 			<div
 				onClick={handleLinkClick}
 				className={styles.link}
-				onMouseEnter={handleMouseEnterUserIcon}
-				onMouseLeave={handleMouseLeaveUserIcon}
+				onMouseEnter={handleMouseEnterElement}
+				onMouseLeave={handleMouseLeaveElement}
 			>
-				{isAuth && <span className={styles.control}>4</span>}
 				<svg width={24} height={24}>
 					<path
 						fill='currentColor'

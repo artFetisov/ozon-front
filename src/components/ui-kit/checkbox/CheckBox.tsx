@@ -9,14 +9,12 @@ type DefaultCheckBoxPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputE
 type MyCheckBoxPropsType = DefaultCheckBoxPropsType & {
 	text?: string
 	onChangeMy: () => void
+	error?: boolean
+	chSize?: 'big' | 'small'
 }
 
-export const CheckBox: FC<MyCheckBoxPropsType> = ({ text, checked, onChangeMy }) => {
+export const CheckBox: FC<MyCheckBoxPropsType> = ({ text, checked, onChangeMy, error, chSize = 'small' }) => {
 	const [hovered, setHovered] = useState(false)
-
-	const handleChecked = (e: any) => {
-		e.preventDefault()
-	}
 
 	const onChangeHandler = (e: MouseEvent<HTMLLabelElement>) => {
 		e.preventDefault()
@@ -41,12 +39,15 @@ export const CheckBox: FC<MyCheckBoxPropsType> = ({ text, checked, onChangeMy })
 			<div
 				className={cn(styles.checkbox, {
 					[styles.checked]: checked,
-					[styles.hovered]: hovered,
+					[styles.hovered]: hovered && !error,
+					[styles.error]: error,
+					[styles.big]: chSize === 'big',
+					[styles.small]: chSize === 'small',
 				})}
 				onMouseEnter={handleHoverEnter}
 				onMouseLeave={handleHoverLeave}
 			>
-				{(checked || hovered) && (
+				{(checked || hovered) && !error && (
 					<svg
 						className={cn(styles.svg, {
 							[styles.hovered]: hovered,

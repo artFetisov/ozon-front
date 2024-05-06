@@ -10,18 +10,22 @@ interface IPasswordEntryModalProps {
 	onToggle: (type: TypeCurrentModal) => void
 	isNewUser?: boolean
 	close: () => void
+	phoneNumber: string
 }
 
 export const getCounterCorrectView = (count: number) => {
 	return count < 10 ? '0' + count : count
 }
 
-export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({ onToggle, isNewUser = true, close }) => {
+export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
+	onToggle,
+	isNewUser = true,
+	close,
+	phoneNumber,
+}) => {
 	const { setFieldValue, fieldValue, setFieldError, fieldError, isFocused, setIsFocused } = useField(true)
-	const [checkboxValues, setCheckboxValues] = useState<{ first: boolean; second: boolean }>({
-		first: false,
-		second: true,
-	})
+	const [firstCheckbox, setFirstCheckbox] = useState(true)
+	const [secondCheckbox, setSecondCheckbox] = useState(true)
 	const [counter, setCounter] = useState(20)
 
 	const timerRef = useRef<ReturnType<typeof setInterval>>()
@@ -46,11 +50,11 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({ onToggle
 	}, [])
 
 	const handleSetFirstCheckbox = () => {
-		setCheckboxValues({ ...checkboxValues, first: !checkboxValues.first })
+		setFirstCheckbox(!firstCheckbox)
 	}
 
 	const handleSetSecondCheckbox = () => {
-		setCheckboxValues({ ...checkboxValues, second: !checkboxValues.second })
+		setSecondCheckbox(!secondCheckbox)
 	}
 
 	const handleSetFieldValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -78,13 +82,22 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({ onToggle
 		close()
 	}
 
+	const handleToEnterPhoneNumber = () => {
+		onToggle('enterPhone')
+	}
+
 	const handleToEmailModal = () => {
 		onToggle('enterEmail')
 	}
 
 	return (
 		<>
-			<div className={styles.heading}>Введите код из смс</div>
+			<div className={styles.heading}>
+				Введите код, который мы отправили на номер <br></br> {phoneNumber}
+				<span className={styles.getCode} onClick={handleToEnterPhoneNumber}>
+					Изменить номер
+				</span>
+			</div>
 			<div>
 				<label
 					className={cn(styles.inputBox, {
@@ -113,11 +126,16 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({ onToggle
 				{isNewUser && (
 					<>
 						<div className={styles.checkInfoWrapper}>
-							<CheckBox checked={checkboxValues.first} onChangeMy={handleSetFirstCheckbox} />
+							<CheckBox
+								checked={firstCheckbox}
+								onChangeMy={handleSetFirstCheckbox}
+								error={!firstCheckbox}
+								chSize='big'
+							/>
 							<span>Соглашаюсь с условиями использования сервисов Ozon и условиями обработки персональных данных</span>
 						</div>
 						<div className={styles.checkInfoWrapper}>
-							<CheckBox checked={checkboxValues.second} onChangeMy={handleSetSecondCheckbox} />
+							<CheckBox checked={secondCheckbox} onChangeMy={handleSetSecondCheckbox} chSize={'big'} />
 							<span>Соглашаюсь на получение сообщений рекламного характера</span>
 						</div>
 						<div className={styles.btnWrapper}>
@@ -125,7 +143,7 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({ onToggle
 								color='blue'
 								variant='large'
 								isFullWidth
-								disabledP={fieldValue.length < 6 && !checkboxValues.first}
+								disabledP={fieldValue.length < 6 || !firstCheckbox}
 								onClick={handleSubmit}
 							>
 								Зарегистрироваться

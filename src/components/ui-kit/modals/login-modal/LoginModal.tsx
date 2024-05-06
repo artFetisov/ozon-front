@@ -33,7 +33,11 @@ export const LoginModal: FC<ILoginModalProps> = ({ close }) => {
 				</div>
 				{currentModal === 'enterPhone' && <SendPhoneModal onToggle={handleToggleModal} />}
 				{currentModal === 'enterPasswordByPhone' && (
-					<PhonePasswordEntryModal onToggle={handleToggleModal} close={handleCloseModal} />
+					<PhonePasswordEntryModal
+						onToggle={handleToggleModal}
+						close={handleCloseModal}
+						phoneNumber='+7 987 508 53 36'
+					/>
 				)}
 				{currentModal === 'enterEmail' && <SendEmailModal onToggle={handleToggleModal} />}
 				{currentModal === 'enterPasswordByEmail' && (

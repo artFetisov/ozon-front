@@ -19,14 +19,12 @@
 		position: relative;
 		display: inline-flex;
 		flex: 0 0 auto;
-		width: 16px;
-		height: 16px;
 		background-color: var(--white-color);
-		border: 2px solid #b3bcc5;
+		border: 1px solid #b3bcc5;
 		border-radius: 4px;
 		transition:
-			background-color 0.15s,
-			border-color 0.15s;
+			background-color 0.2s,
+			border-color 0.2s;
 
 		.svg {
 			position: absolute;
@@ -46,12 +44,36 @@
 	font-size: 13px;
 }
 
+.big {
+	width: 20px;
+	height: 20px;
+}
+
+.small {
+	width: 16px;
+	height: 16px;
+}
+
 .checked {
 	background-color: var(--blue-color) !important;
 	border-color: var(--blue-color) !important;
+
+	&:hover {
+		background-color: var(--blue-hover-color) !important;
+		border-color: var(--blue-hover-color) !important;
+	}
 }
 
 .hovered {
 	color: #99bdff !important;
 	border-color: #99bdff !important;
+}
+
+.error {
+	background-color: rgb(245 60 20 / 5.9%) !important;
+	border-color: #f91155 !important;
+
+	&:hover {
+		background-color: rgb(245 60 20 / 12%) !important;
+	}
 }

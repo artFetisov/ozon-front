@@ -2,12 +2,12 @@ import { IUser } from '@/types/user/user.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface IUserState {
-	user: IUser | null
+	userData: IUser | null
 	isAuth: boolean
 }
 
 const initialState: IUserState = {
-	user: null,
+	userData: null,
 	isAuth: false,
 }
 
@@ -16,7 +16,7 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUserData(state, action: PayloadAction<IUser>) {
-			state.user = action.payload
+			state.userData = action.payload
 		},
 		setIsAuth(state, action: PayloadAction<boolean>) {
 			state.isAuth = action.payload
