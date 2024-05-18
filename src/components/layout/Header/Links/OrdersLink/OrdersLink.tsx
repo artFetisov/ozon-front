@@ -1,6 +1,6 @@
 import { PATHS } from '@/constants/paths'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import styles from '../Links.module.scss'
 import { usePopup } from '@/hooks/usePopup'
 import { Popup } from '@/components/ui-kit/popup/Popup'
@@ -21,13 +21,18 @@ export const OrdersLink: FC<IOrdersLinkProps> = ({ isAuth, countItems }) => {
 		handleMouseLeaveElement,
 		coordinates,
 		targetRef,
-	} = usePopup()
+	} = usePopup<HTMLAnchorElement>()
+
+	useEffect(() => {
+		return () => console.log('destroy')
+	}, [])
 
 	return (
 		<>
 			{(isHoveredElement || isHoveredPopup) &&
 				createPortal(
 					<Popup
+						size={{ width: 300, max: 412 }}
 						position='bottom-center'
 						isShow={isHoveredElement}
 						onMouseEnter={handleMouseEnterPopup}

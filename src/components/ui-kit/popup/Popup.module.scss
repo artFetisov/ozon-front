@@ -1,14 +1,10 @@
 .popup {
 	position: absolute;
 	top: 0;
+	left: 0;
 	z-index: 504;
 	display: inline-block;
-	min-width: 274px;
-	max-width: 274px;
 	margin: 0;
-	opacity: 1;
-	transition: opacity 0.5s ease-in-out;
-	will-change: transform;
 }
 
 .content {
@@ -20,12 +16,34 @@
 	box-shadow: 0 4px 16px 1px rgb(0 26 52 / 16%);
 }
 
-.hide {
-	left: -99999px;
-	opacity: 0;
+.show {
+	animation: popup-open 0.5s forwards;
 }
 
-.show {
-	left: 0;
-	opacity: 1;
+.hide {
+	animation: popup-close 2s forwards;
+}
+
+@keyframes popup-open {
+	from {
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	to {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+@keyframes popup-close {
+	from {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	to {
+		visibility: hidden;
+		opacity: 0;
+	}
 }

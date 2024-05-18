@@ -26,7 +26,7 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
 		handleMouseLeaveElement,
 		targetRef,
 		coordinates,
-	} = usePopup()
+	} = usePopup<HTMLDivElement>()
 
 	const userName = useTypedSelector((state) => state.user.userData?.name)
 
@@ -55,6 +55,7 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
 			{(isHoveredElement || isHoveredPopup) &&
 				createPortal(
 					<Popup
+						size={{ width: 274, max: 274 }}
 						position='bottom-center'
 						coordinates={coordinates}
 						isShow={isHoveredElement}

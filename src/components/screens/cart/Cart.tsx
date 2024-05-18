@@ -18,7 +18,7 @@ export const Cart: FC = () => {
 
 	const isSelectedAll = useTypedSelector((state) => state.cart.isSelectedAll)
 	const cartItems = useTypedSelector((state) => state.cart.cartItems)
-	const authUser = useTypedSelector((state) => state.user.user)
+	const authUser = useTypedSelector((state) => state.user.userData)
 
 	useEffect(() => {
 		setCartItems(mockCartItems)

@@ -1,0 +1,64 @@
+.personalUserData {
+	position: relative;
+	max-width: 800px;
+	margin-bottom: 56px;
+	padding-left: 40px;
+
+	.icon {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.title {
+		margin-bottom: 16px;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+		letter-spacing: 0.4px;
+	}
+
+	.info {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 32px;
+
+		.col {
+			display: flex;
+			flex-direction: column;
+			width: 50%;
+
+			.item {
+				& > p {
+					color: var(--grey-op60);
+					font-size: 13px;
+					line-height: 16px;
+				}
+
+				& > div {
+					display: flex;
+					font-weight: 500;
+					font-size: 16px;
+					line-height: 1.5;
+				}
+
+				&:nth-child(2) {
+					margin-top: 24px;
+				}
+
+				&:nth-child(3) {
+					margin-top: 24px;
+				}
+			}
+		}
+	}
+
+	.link {
+		color: var(--blue-color);
+		font-size: 16px;
+
+		&:hover {
+			color: var(--blue-hover-color);
+		}
+	}
+}

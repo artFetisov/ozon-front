@@ -1,3 +1,4 @@
+import { currentAuthUser } from '@/mock/user'
 import { IUser } from '@/types/user/user.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
@@ -7,8 +8,8 @@ interface IUserState {
 }
 
 const initialState: IUserState = {
-	userData: null,
-	isAuth: false,
+	userData: currentAuthUser,
+	isAuth: true,
 }
 
 const userSlice = createSlice({

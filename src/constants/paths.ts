@@ -3,6 +3,7 @@ export enum PATHS {
 	MY_MAIN = '/my/main',
 	MY_ORDER_LIST = '/my/orderlist',
 	MY_FAVORITES = '/my/favorites',
+	MY_SETTINGS = '/my/settings',
 	CART = '/cart',
 	CATEGORY = '/category/',
 	PRODUCT = '/product/',
@@ -10,5 +11,5 @@ export enum PATHS {
 	ADMIN_CATEGORIES = '/admin/categories',
 	ADMIN_CATEGORY = '/admin/category',
 	ADMIN_PRODUCTS = '/admin/products',
-	ADMIN_PRODUCT = '/admin/product'
+	ADMIN_PRODUCT = '/admin/product',
 }

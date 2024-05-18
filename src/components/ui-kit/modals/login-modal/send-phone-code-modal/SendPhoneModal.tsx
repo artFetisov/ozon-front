@@ -4,36 +4,10 @@ import { Button } from '../../../button/Button'
 import cn from 'classnames'
 import { useField } from '@/hooks/useField'
 import { TypeCurrentModal } from '../LoginModal'
+import { getCorrectPhoneNumberView } from '@/utils/phone/phone'
 
 const fieldPhoneError: string[] = ['Некорректный номер телефона']
 const allowedCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Backspace']
-
-const getCorrectFieldValueView = (value: string, previousValue: string): string => {
-	if (!value) return value
-
-	previousValue = previousValue.replace(/[^\d]/g, '')
-
-	const currentValue = value.replace(/[^\d]/g, '')
-	if (!previousValue || currentValue.length > previousValue.length) {
-		if (currentValue.length < 4) {
-			return currentValue
-		}
-
-		if (currentValue.length < 7) {
-			return `${currentValue.slice(0, 3)} ${currentValue.slice(3)}`
-		}
-
-		if (currentValue.length < 9) {
-			return `${currentValue.slice(0, 3)} ${currentValue.slice(3, 6)} ${currentValue.slice(6)}`
-		}
-
-		return `${currentValue.slice(0, 3)} ${currentValue.slice(3, 6)} ${currentValue.slice(6, 8)} ${currentValue.slice(
-			8
-		)}`
-	}
-
-	return value
-}
 
 interface ISendPhoneCodeModalProps {
 	onToggle: (type: TypeCurrentModal) => void
@@ -44,7 +18,7 @@ export const SendPhoneModal: FC<ISendPhoneCodeModalProps> = ({ onToggle }) => {
 
 	const handleSetFieldValue = (event: ChangeEvent<HTMLInputElement>) => {
 		if (event.currentTarget.value.length === 14) return
-		setFieldValue(getCorrectFieldValueView(event.currentTarget.value, fieldValue))
+		setFieldValue(getCorrectPhoneNumberView(event.currentTarget.value, fieldValue))
 	}
 
 	const handleKeyDownFieldValue = (event: KeyboardEvent<HTMLInputElement>) => {

@@ -2,10 +2,7 @@ import '../assets/styles/globals.scss'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import React, { useEffect } from 'react'
-import { Header } from '@/components/layout/Header/Header'
-import { Footer } from '@/components/layout/Footer/Footer'
 import StoreProvider from '@/store/StoreProvider'
-import { CategoriesCatalog } from '@/components/screens/home/CategoriesCatalog/CategoriesCatalog'
 import { NoticeBanner } from '@/components/ui-kit/notice-banner/NoticeBanner'
 import { CookieBanner } from '@/components/ui-kit/notice-banner/cookie-banner/CookieBanner'
 
@@ -21,12 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang='en' className={inter.className}>
 			<body>
 				<StoreProvider>
-					<div className='root'>
-						<Header />
-						<CategoriesCatalog />
-						<div className={'root-layout'}>{children}</div>
-						<Footer />
-					</div>
+					<div className='root'>{children}</div>
 					{/* <NoticeBanner></NoticeBanner> */}
 				</StoreProvider>
 			</body>
