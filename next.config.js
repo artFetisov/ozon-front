@@ -7,7 +7,20 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'ir.ozone.ru',
 			},
+			{
+				protocol: 'https',
+				hostname: 'ir-2.ozone.ru',
+			},
 		],
+	},
+	async redirects() {
+		return [
+			{
+				source: '/',
+				destination: '/home',
+				permanent: true,
+			},
+		]
 	},
 }
 

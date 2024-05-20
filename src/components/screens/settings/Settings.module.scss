@@ -1,6 +1,136 @@
 .settingsPage {
-	position: absolute;
-	inset: 0;
 	display: flex;
-	background-color: black;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100vh;
+	overflow-y: auto;
+	background: url('https://cdn1.ozone.ru/graphics/ozon-id-bg.svg') no-repeat 100%;
+	background-color: var(--white-color);
+	background-size: 50% 1000px;
+}
+
+.wrapper {
+	width: 100%;
+	max-width: 1472px;
+	margin: 0 auto;
+}
+
+.header {
+	padding: 30px 40px;
+	border-bottom: 1px solid var(--grey-border);
+
+	.logo {
+		position: relative;
+		width: 130px;
+		height: 30px;
+		margin-bottom: 12px;
+		border-radius: 12px;
+
+		& > img {
+			object-fit: contain;
+		}
+	}
+
+	.text {
+		height: 22px;
+		margin-bottom: 24px;
+	}
+}
+
+.linkBox {
+	padding: 0 40px;
+	background-color: #f6f9ff;
+
+	.link {
+		position: relative;
+		display: flex;
+		align-items: center;
+		padding: 12px 0;
+		color: var(--blue-color);
+		transition: color 0.2s ease-in-out;
+
+		&:hover {
+			color: var(--blue-hover-color);
+		}
+
+		.icon {
+			margin-right: 8px;
+			transform: rotate(180deg);
+		}
+
+		.linkTitle {
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 24px;
+			letter-spacing: 0.2px;
+		}
+	}
+}
+
+.userInfo {
+	position: relative;
+	min-height: 100vh;
+	padding: 0 40px;
+}
+
+.mainInfoBox {
+	display: flex;
+	padding: 40px 0;
+
+	.imgBox {
+		position: relative;
+		width: 152px;
+		height: 152px;
+		margin-right: 40px;
+		overflow: hidden;
+		border-radius: 100px;
+	}
+
+	.userName {
+		margin-bottom: 28px;
+		font-weight: 700;
+		font-size: 40px;
+		line-height: 44px;
+	}
+
+	.dateAndGender {
+		display: flex;
+
+		.data {
+			min-width: 194px;
+			margin-right: 16px;
+
+			& > span {
+				margin: 0 0 5px;
+				color: var(--grey-text);
+				font-size: 14px;
+				line-height: 18px;
+			}
+
+			& > div {
+				margin-bottom: 8px;
+				font-size: 16px;
+				line-height: 1.25;
+			}
+		}
+	}
+
+	.changeBtn {
+		margin-top: 4px;
+		color: var(--blue-color);
+		font-weight: 500;
+		cursor: pointer;
+		transition: color 0.2s ease-in-out;
+
+		&:hover {
+			color: var(--blue-hover-color);
+		}
+	}
+}
+
+.phoneAndEmailBox {
+	max-width: 900px;
+	margin-bottom: 0;
+	padding: 40px 0;
+	border-top: 1px solid var(--grey-border);
 }

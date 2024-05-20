@@ -1,0 +1,36 @@
+.personalDataModal {
+	position: relative;
+	min-width: 392px;
+	max-width: 960px;
+	margin: 50px 0;
+	padding: 46px;
+	background-color: var(--white-color);
+	border-radius: 32px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	max-width: 100%;
+}
+
+.heading {
+	margin-bottom: 24px;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 30px;
+}
+
+.input {
+	margin-bottom: 4px;
+}
+
+.btnsBox {
+	display: flex;
+	justify-content: space-between;
+}
+
+.radioGroupBox {
+	margin: 24px 0;
+}

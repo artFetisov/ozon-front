@@ -7,7 +7,7 @@ export default function FilledLayout({ children }: { children: React.ReactNode }
 		<>
 			<Header />
 			<CategoriesCatalog />
-			<div className={'root-layout'}>{children}</div>
+			<div>{children}</div>
 			<Footer />
 		</>
 	)

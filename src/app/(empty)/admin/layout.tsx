@@ -8,24 +8,25 @@ export const metadata: Metadata = {
 	description: 'Admin Panel',
 }
 
-const links: { path: string, title: string }[] = [
+const links: { path: string; title: string }[] = [
 	{ path: PATHS.ADMIN, title: 'Статистика' },
 	{ path: PATHS.ADMIN_CATEGORIES, title: 'Категории' },
 	{ path: PATHS.ADMIN_PRODUCTS, title: 'Товары' },
 ]
 
-export default function AdminLayout({
-																			children,
-																		}: {
-	children: React.ReactNode
-}) {
-	return <section>
-		<div>
-			{links.map((l) => {
-				return <Link href={l.path} key={l.path + l.title}>
-					{l.title}
-				</Link>
-			})}
-		</div>
-		{children}</section>
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
+	return (
+		<section>
+			<div>
+				{links.map((l) => {
+					return (
+						<Link href={l.path} key={l.path + l.title}>
+							{l.title}
+						</Link>
+					)
+				})}
+			</div>
+			{children}
+		</section>
+	)
 }
