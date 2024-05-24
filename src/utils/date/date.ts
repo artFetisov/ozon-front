@@ -11,7 +11,7 @@ export const getCorrectDateView = (date: Date) => {
 	)
 }
 
-export const getDateViewWithDots = (date: Date) => {
+export const getDateViewWithDots = (date: Date): string => {
 	date = new Date(date)
 
 	return `${getCorrectDateNumber(date.getDate())}.${getCorrectDateNumber(date.getMonth() + 1)}.${date.getFullYear()}`

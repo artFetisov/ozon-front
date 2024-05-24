@@ -11,6 +11,10 @@
 	transition: border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
 	will-change: transform, border-color, top, background-color;
 
+	&:focus-within {
+		border-color: var(--blue-color);
+	}
+
 	&:hover {
 		border-color: var(--blue-color);
 	}
@@ -58,7 +62,7 @@
 	margin-left: auto;
 	background-color: var(--white-color);
 
-	& > svg {
+	& > span {
 		z-index: 3000;
 		display: flex;
 		align-items: center;

@@ -13,3 +13,6 @@ export interface IUser {
 }
 
 export type TypeUserGender = 'man' | 'woman'
+
+export interface IUserEditNameAndGenderForm
+	extends Pick<IUser, 'id' | 'name' | 'lastName' | 'patronymic' | 'gender' | 'birthdayDate'> {}
