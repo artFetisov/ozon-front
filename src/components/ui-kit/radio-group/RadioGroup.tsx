@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import styles from './RadioGroup.module.scss'
 import { Radio } from '../Radio/Radio'
 import { TypeUserGender } from '@/types/user/user.types'
@@ -10,21 +10,18 @@ export interface IRadioGroupItem {
 
 interface IRadioGroupProps {
 	label: string
-	valuesArray: IRadioGroupItem[]
+	options: IRadioGroupItem[]
+
+	value: TypeUserGender
+	onChange: () => void
 }
 
-export const RadioGroup: FC<IRadioGroupProps> = ({ label, valuesArray }) => {
-	const [selectedItem, setSelectedItem] = useState(valuesArray[0])
-
-	const handleSetSelectedItem = (item: IRadioGroupItem) => {
-		setSelectedItem(item)
-	}
-
+export const RadioGroup: FC<IRadioGroupProps> = ({ label, options, value, onChange }) => {
 	return (
 		<div className={styles.radioGroup}>
 			<div className={styles.label}>{label}:</div>
-			{valuesArray.map((item) => (
-				<Radio key={item.title} item={item} selectedItem={selectedItem} onChange={handleSetSelectedItem} />
+			{options.map((item) => (
+				<Radio key={item.title} item={item} selectedItem={value} onChange={onChange} />
 			))}
 		</div>
 	)

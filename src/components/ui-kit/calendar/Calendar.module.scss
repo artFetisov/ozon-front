@@ -1,0 +1,98 @@
+.calendar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1500;
+	width: 100%;
+	min-width: 277px;
+	max-width: 277px;
+	color: var(--grey-text2);
+	background-color: var(--white-color);
+	border-radius: 6px;
+	box-shadow: 0 4px 16px 1px rgb(0 26 52 / 16%);
+	transform: translate3d(600px, 200px, 0);
+	opacity: 1;
+	transition: opacity 0.2s;
+	will-change: transform;
+}
+
+.innerBox {
+	position: relative;
+	padding: 20px 26px;
+	font-weight: 500;
+	box-shadow: 0 4px 16px 1px rgb(0 26 52 / 16%);
+	user-select: none;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	.leftArrows {
+		margin-left: 8px;
+	}
+
+	.monthAndYear {
+		padding-bottom: 2px;
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	.rightArrows {
+		margin-right: 8px;
+	}
+
+	.arrow {
+		color: var(--dark-grey-color);
+		cursor: pointer;
+		transition: color 0.15s;
+
+		&:hover {
+			color: var(--grey-text);
+		}
+	}
+
+	.rotated {
+		transform: rotate(180deg);
+	}
+}
+
+.weekDays {
+	margin: 20px 0 12px;
+
+	.dayName {
+		display: inline-block;
+		width: 14.2857%;
+		color: var(--grey-text2);
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 16px;
+		text-align: center;
+		text-transform: uppercase;
+	}
+}
+
+.dates {
+	display: flex;
+	flex-flow: column wrap;
+
+	.row {
+		display: flex;
+	}
+
+	.day {
+		position: relative;
+		display: inline-block;
+		width: 14.2857%;
+		margin: 0 2px;
+		padding: 5px 0;
+		line-height: 18px;
+		text-align: center;
+		border-radius: 3px;
+
+		&:hover {
+			background-color: #e5efff;
+		}
+	}
+}

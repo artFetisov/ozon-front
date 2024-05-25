@@ -1,20 +1,19 @@
-import { FC, MouseEvent } from 'react'
+import { FC } from 'react'
 import styles from './ChangePersonalUserDataModal.module.scss'
 import { CloseButton } from '../../close-button/CloseButton'
 import { Button } from '../../button/Button'
-import { Input } from '../../input/Input'
 import { IUser, IUserEditNameAndGenderForm } from '@/types/user/user.types'
-import { getDateViewWithDots } from '@/utils/date/date'
 import { IRadioGroupItem, RadioGroup } from '../../radio-group/RadioGroup'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { HookFormInput } from '../../input/HookFormInput'
+import { DatePicker } from '../../date-picker/DatePicker'
 
 interface IChangePersonalUserDataModalProps {
 	close: () => void
 	userData: IUser
 }
 
-const radioGroupValues: IRadioGroupItem[] = [
+const options: IRadioGroupItem[] = [
 	{ title: 'Мужской', value: 'man' },
 	{ title: 'Женский', value: 'woman' },
 ]
@@ -23,7 +22,6 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 	const {
 		setValue,
 		handleSubmit,
-		register,
 		formState: { errors },
 		control,
 		getValues,
@@ -49,7 +47,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 	return (
 		<div className={styles.personalDataModal}>
 			<CloseButton variant='inside' callback={close} />
-			<form className={styles.content} onSubmit={handleSubmit(onSubmit)}>
+			<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 				<div className={styles.heading}>Личные данные</div>
 				<div>
 					<div className={styles.input}>
@@ -68,49 +66,57 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 								/>
 							)}
 						/>
-						{/* <HookFormInput {...register('name')} type='text' placeholder='Имя' field={field} /> */}
 					</div>
 					<div className={styles.input}>
 						<Controller
 							name='patronymic'
 							control={control}
 							render={({ field: { value, onChange }, fieldState: { error } }) => (
-								<HookFormInput value={value} onChange={onChange} type='text' placeholder='Отчество' error={error} />
+								<HookFormInput
+									value={value}
+									removeName='patronymic'
+									onChange={onChange}
+									onClear={handleClearInput}
+									type='text'
+									placeholder='Отчество'
+									error={error}
+								/>
 							)}
 						/>
-						{/* <HookFormInput {...register('patronymic')} type='text' placeholder='Отчество' /> */}
 					</div>
 					<div className={styles.input}>
 						<Controller
 							name='lastName'
 							control={control}
 							render={({ field: { value, onBlur, onChange }, fieldState: { error } }) => (
-								<HookFormInput value={value} onChange={onChange} type='text' placeholder='Фамилия' error={error} />
-							)}
-						/>
-						{/* <HookFormInput {...register('lastName')} type='text' placeholder='Фамилия' /> */}
-					</div>
-					<div className={styles.input}>
-						{/* <Controller
-							name='birthdayDate'
-							control={control}
-							render={({ field: { value, onBlur, onChange }, fieldState }) => (
 								<HookFormInput
-									value={value as Date}
-									onBlur={onBlur}
+									value={value}
 									onChange={onChange}
+									onClear={handleClearInput}
 									type='text'
-									placeholder='Дата рождения'
+									placeholder='Фамилия'
+									removeName='lastName'
+									error={error}
 								/>
 							)}
-						/> */}
-						{/* <HookFormInput {...register('birthdayDate')} type='text' placeholder='Дата рождения' /> */}
+						/>
+					</div>
+					<div className={styles.input}>
+						<Controller
+							name='birthdayDate'
+							control={control}
+							render={({ field: { value, onChange }, fieldState: { error } }) => (
+								<DatePicker placeholder='Дата рождения' value={value} onChange={onChange} error={error} />
+							)}
+						/>
 					</div>
 					<div className={styles.radioGroupBox}>
 						<Controller
 							name='gender'
 							control={control}
-							render={({ field, fieldState: { error } }) => <RadioGroup label='Пол' valuesArray={radioGroupValues} />}
+							render={({ field: { value, onChange } }) => (
+								<RadioGroup label='Пол' options={options} onChange={onChange} value={value} />
+							)}
 						/>
 					</div>
 				</div>

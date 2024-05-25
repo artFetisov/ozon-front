@@ -24,3 +24,20 @@ const getCorrectDateNumber = (num: number) => {
 const getLastLetterMonthName = (monthNumber: number) => {
 	return monthNumber === 2 || monthNumber === 8 ? 'а' : 'я'
 }
+
+export function getMonth(month: number): Date[][] {
+	month = Math.floor(month)
+	const year = new Date().getFullYear()
+	const monthFirstDay = new Date(year, month, 1).getDay()
+
+	console.log(monthFirstDay)
+
+	let dayCount = 0 - monthFirstDay + 1
+
+	return new Array(5).fill([]).map(() =>
+		new Array(7).fill(null).map(() => {
+			dayCount++
+			return new Date(year, month, dayCount)
+		})
+	)
+}
