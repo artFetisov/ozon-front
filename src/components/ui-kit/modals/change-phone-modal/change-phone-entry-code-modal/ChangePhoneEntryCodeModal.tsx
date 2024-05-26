@@ -4,16 +4,24 @@ import { ChangePhoneModalType } from '../ChangePhoneModal'
 import { getCounterCorrectView } from '../../login-modal/phone-password-entry-modal/PhonePasswordEntryModal'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import { InputEntryCode } from '@/components/ui-kit/input-entry-code/InputEntryCode'
+import { Text } from '@/components/ui-kit/text/Text'
 
 interface IChangePhoneEntryCodeModalProps {
 	phoneNumber: string
 	onToggle: (type: ChangePhoneModalType) => void
+	close: () => void
 }
 
-export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({ phoneNumber, onToggle }) => {
+export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({ phoneNumber, onToggle, close }) => {
 	const [counter, setCounter] = useState(20)
 
 	const timerRef = useRef<ReturnType<typeof setInterval>>()
+	const fetchTimerRef = useRef<ReturnType<typeof setTimeout>>()
+
+	const { handleSubmit, control, watch } = useForm<{ code: string }>({
+		mode: 'onSubmit',
+		defaultValues: { code: '' },
+	})
 
 	useEffect(() => {
 		timerRef.current = setInterval(() => {
@@ -29,24 +37,35 @@ export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({
 
 		return () => {
 			clearInterval(timerRef.current)
+			clearInterval(fetchTimerRef.current)
 		}
 	}, [])
 
-	const { handleSubmit, control } = useForm<{ code: string }>({
-		mode: 'onSubmit',
-		defaultValues: { code: '' },
-	})
+	useEffect(() => {
+		const subscription = watch((value) => {
+			if (value.code?.length === 6) {
+				fetchTimerRef.current = setTimeout(() => handleSubmit(onSubmit)(), 500)
+			}
+		})
+		return () => subscription.unsubscribe()
+	}, [watch])
 
 	const onSubmit: SubmitHandler<{ code: string }> = async (data) => {
 		alert(JSON.stringify(data))
 		close()
+	}
+
+	const handleGetNewCode = () => {
+		setCounter(59)
 	}
 	return (
 		<>
 			<div className={styles.heading}>
 				Введите код, который мы отправили на номер <br></br> {phoneNumber}
 				<span className={styles.getCode} onClick={() => onToggle('phone')}>
-					Изменить номер
+					<Text callback={() => onToggle('phone')} color='blue' size='middle'>
+						Изменить номер
+					</Text>
 				</span>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +73,7 @@ export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({
 					name='code'
 					control={control}
 					render={({ field: { value, onChange }, fieldState: { error } }) => (
-						<InputEntryCode type='text' value={value} onChange={onChange} error={error} />
+						<InputEntryCode type='number' value={value} onChange={onChange} error={error} />
 					)}
 				/>
 				{counter > 0 && (
@@ -64,7 +83,13 @@ export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({
 						</div>
 					</div>
 				)}
-				{counter < 1 && <div className={styles.getCode}>Получить новый код</div>}
+				{counter < 1 && (
+					<div className={styles.getCode}>
+						<Text callback={handleGetNewCode} color='blue' size='middle'>
+							Получить новый код
+						</Text>
+					</div>
+				)}
 			</form>
 		</>
 	)

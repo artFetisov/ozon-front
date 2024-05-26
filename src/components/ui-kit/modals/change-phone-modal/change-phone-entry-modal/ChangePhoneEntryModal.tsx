@@ -11,12 +11,12 @@ interface IChangePhoneEntryModalProps {
 }
 
 export const ChangePhoneEntryModal: FC<IChangePhoneEntryModalProps> = ({ onToggle }) => {
-	const { handleSubmit, control } = useForm<Pick<IUser, 'id' | 'phone'>>({
+	const { handleSubmit, control } = useForm<Pick<IUser, 'phone'>>({
 		mode: 'onSubmit',
 		defaultValues: { phone: '' },
 	})
 
-	const onSubmit: SubmitHandler<Pick<IUser, 'id' | 'phone'>> = async (data) => {
+	const onSubmit: SubmitHandler<Pick<IUser, 'phone'>> = async (data) => {
 		alert(JSON.stringify(data))
 		close()
 		onToggle('code')

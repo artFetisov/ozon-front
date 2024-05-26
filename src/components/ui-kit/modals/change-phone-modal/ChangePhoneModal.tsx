@@ -3,6 +3,7 @@ import { CloseButton } from '../../close-button/CloseButton'
 import styles from './ChangePhoneModal.module.scss'
 import { IUser } from '@/types/user/user.types'
 import { ChangePhoneEntryModal } from './change-phone-entry-modal/ChangePhoneEntryModal'
+import { ChangePhoneEntryCodeModal } from './change-phone-entry-code-modal/ChangePhoneEntryCodeModal'
 
 export type ChangePhoneModalType = 'phone' | 'code'
 
@@ -23,6 +24,9 @@ export const ChangePhoneModal: FC<IChangePhoneModalProps> = ({ close, userData }
 			<CloseButton callback={close} variant='inside' />
 			<div className={styles.content}>
 				{modalType === 'phone' && <ChangePhoneEntryModal onToggle={handleToggleModalType} />}
+				{modalType === 'code' && (
+					<ChangePhoneEntryCodeModal onToggle={handleToggleModalType} phoneNumber='+7 987 508 53 36' close={close} />
+				)}
 			</div>
 		</div>
 	)

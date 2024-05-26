@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import styles from './PhonePasswordEntryModal.module.scss'
 import { TypeCurrentModal } from '../LoginModal'
 import { Button } from '@/components/ui-kit/button/Button'
@@ -19,30 +19,51 @@ export const getCounterCorrectView = (count: number) => {
 
 export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
 	onToggle,
-	isNewUser = false,
+	isNewUser = true,
 	close,
 	phoneNumber,
 }) => {
-	const [firstCheckbox, setFirstCheckbox] = useState(true)
-	const [secondCheckbox, setSecondCheckbox] = useState(true)
 	const [counter, setCounter] = useState(20)
 
 	const timerRef = useRef<ReturnType<typeof setInterval>>()
+	const fetchTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
-	const { handleSubmit, control } = useForm<{ code: string }>({
+	const { handleSubmit, control, watch } = useForm<{ code: string }>({
 		mode: 'onSubmit',
 		defaultValues: { code: '' },
 	})
 
-	const { handleSubmit: handleSubmitBigForm, control: controlBifForm } = useForm<{ code: string }>({
+	const {
+		handleSubmit: handleSubmitBigForm,
+		control: controlBigForm,
+		getValues,
+	} = useForm<{
+		code: string
+		agreement1: boolean
+		agreement2: boolean
+	}>({
 		mode: 'onSubmit',
-		defaultValues: { code: '' },
+		defaultValues: { code: '', agreement1: false, agreement2: true },
 	})
 
 	const onSubmit: SubmitHandler<{ code: string }> = async (data) => {
 		alert(JSON.stringify(data))
 		close()
 	}
+
+	const onSubmitBigForm: SubmitHandler<{ code: string }> = async (data) => {
+		alert(JSON.stringify(data))
+		close()
+	}
+
+	useEffect(() => {
+		const subscription = watch((value) => {
+			if (value.code?.length === 6) {
+				fetchTimerRef.current = setTimeout(() => handleSubmit(onSubmit)(), 500)
+			}
+		})
+		return () => subscription.unsubscribe()
+	}, [watch])
 
 	useEffect(() => {
 		timerRef.current = setInterval(() => {
@@ -58,33 +79,9 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
 
 		return () => {
 			clearInterval(timerRef.current)
+			clearInterval(fetchTimerRef.current)
 		}
 	}, [])
-
-	const handleSetFirstCheckbox = () => {
-		setFirstCheckbox(!firstCheckbox)
-	}
-
-	const handleSetSecondCheckbox = () => {
-		setSecondCheckbox(!secondCheckbox)
-	}
-
-	// const handleSetFieldValue = (event: ChangeEvent<HTMLInputElement>) => {
-	// 	const value = event.currentTarget.value
-	// 	setFieldValue(value)
-
-	// 	if (value.length === 6 && !isNewUser) {
-	// 		submitRef.current = setTimeout(() => {
-	// 			handleSubmit()
-	// 		}, 300)
-	// 	}
-	// }
-
-	// const handleSubmitCustom = () => {
-	// 	alert(fieldValue)
-	// 	setFieldValue('')
-	// 	close()
-	// }
 
 	const handleToEnterPhoneNumber = () => {
 		onToggle('enterPhone')
@@ -126,10 +123,10 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
 				)}
 
 				{isNewUser && (
-					<form onSubmit={handleSubmitBigForm(onSubmit)}>
+					<form onSubmit={handleSubmitBigForm(onSubmitBigForm)}>
 						<Controller
 							name='code'
-							control={control}
+							control={controlBigForm}
 							render={({ field: { value, onChange }, fieldState: { error } }) => (
 								<InputEntryCode type='tel' value={value} onChange={onChange} error={error} />
 							)}
@@ -143,16 +140,24 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
 						)}
 						{counter < 1 && <div className={styles.getCode}>Получить новый код</div>}
 						<div className={styles.checkInfoWrapper}>
-							<CheckBox
-								checked={firstCheckbox}
-								onChangeMy={handleSetFirstCheckbox}
-								error={!firstCheckbox}
-								chSize='big'
+							<Controller
+								name='agreement1'
+								control={controlBigForm}
+								render={({ field: { value, onChange } }) => (
+									<CheckBox checked={value} onChangeMy={onChange} error={!value} chSize='big' />
+								)}
 							/>
+
 							<span>Соглашаюсь с условиями использования сервисов Ozon и условиями обработки персональных данных</span>
 						</div>
 						<div className={styles.checkInfoWrapper}>
-							<CheckBox checked={secondCheckbox} onChangeMy={handleSetSecondCheckbox} chSize={'big'} />
+							<Controller
+								name='agreement2'
+								control={controlBigForm}
+								render={({ field: { value, onChange } }) => (
+									<CheckBox checked={value} onChangeMy={onChange} chSize='big' />
+								)}
+							/>
 							<span>Соглашаюсь на получение сообщений рекламного характера</span>
 						</div>
 						<div className={styles.btnWrapper}>
@@ -160,8 +165,8 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
 								color='blue'
 								variant='large'
 								isFullWidth
-								// disabledP={fieldValue.length < 6 || !firstCheckbox}
-								// onClick={handleSubmitCustom}
+								disabledP={getValues('code').length < 6 || !getValues('agreement1')}
+								type='submit'
 							>
 								Зарегистрироваться
 							</Button>

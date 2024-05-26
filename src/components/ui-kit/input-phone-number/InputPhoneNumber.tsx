@@ -27,8 +27,6 @@ export const InputPhoneNumber: FC<InputPhoneNumberPropsType> = ({ error, value, 
 	const handleKeyDownFieldValue = (event: KeyboardEvent<HTMLInputElement>) => {
 		!allowedCharacters.includes(event.key) && event.preventDefault()
 	}
-
-	console.log(value)
 	return (
 		<div className={styles.container}>
 			<label

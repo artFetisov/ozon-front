@@ -26,6 +26,8 @@ export const Settings: FC = () => {
 		closeModal: closeChangePhoneModal,
 	} = useModal()
 
+	const handleLogout = () => {}
+
 	return (
 		<>
 			{isOpenModal &&
@@ -118,6 +120,13 @@ export const Settings: FC = () => {
 									</Text>
 								</div>
 							</div>
+						</div>
+						<div className={styles.logoutBox}>
+							<h2>Управление аккаунтом</h2>
+							<p>Вы с нами с {getCorrectDateView(new Date())} года</p>
+							<Text color='red' size='middle' callback={handleLogout}>
+								Выйти из аккаунта
+							</Text>
 						</div>
 					</section>
 				</div>

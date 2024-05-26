@@ -11,6 +11,15 @@
 	}
 }
 
+.red {
+	color: var(--red-color);
+	cursor: pointer;
+
+	&:hover {
+		opacity: 0.9;
+	}
+}
+
 .middle {
 	font-weight: 500;
 	font-size: 14px;

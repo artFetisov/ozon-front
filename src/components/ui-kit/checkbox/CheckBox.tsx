@@ -8,7 +8,7 @@ type DefaultCheckBoxPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputE
 
 type MyCheckBoxPropsType = DefaultCheckBoxPropsType & {
 	text?: string
-	onChangeMy: () => void
+	onChangeMy: (value: boolean) => void
 	error?: boolean
 	chSize?: 'big' | 'small'
 }
@@ -18,9 +18,9 @@ export const CheckBox: FC<MyCheckBoxPropsType> = ({ text, checked, onChangeMy, e
 
 	const onChangeHandler = (e: MouseEvent<HTMLLabelElement>) => {
 		e.preventDefault()
-		e.stopPropagation()
+
 		if (hovered) setHovered(false)
-		onChangeMy()
+		onChangeMy(!checked)
 	}
 
 	const handleHoverEnter = () => {
