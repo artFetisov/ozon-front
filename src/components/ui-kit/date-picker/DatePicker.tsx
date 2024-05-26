@@ -34,9 +34,7 @@ export const DatePicker: FC<IDatePickerProps> = ({ value, placeholder, onChange,
 		setIsFocused(false)
 	}
 
-	const handleChangeDate = (event: ChangeEvent<HTMLInputElement>) => {
-		console.log(event)
-	}
+	const handleChangeDate = (event: ChangeEvent<HTMLInputElement>) => {}
 
 	const handleShowCalendar = (event: MouseEvent<HTMLSpanElement>) => {
 		event.preventDefault()

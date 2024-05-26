@@ -1,0 +1,41 @@
+.inputBox {
+	position: relative;
+	display: flex;
+	width: 100%;
+	padding: 0 12px;
+	overflow: hidden;
+	color: var(--grey-text2);
+	font-weight: 700;
+	font-size: 30px;
+	white-space: nowrap;
+	text-align: center;
+	text-overflow: ellipsis;
+	background-color: var(--white-color);
+	border: 2px solid #b3bcc5;
+	border-radius: 6px;
+	transition: border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+	will-change: transform, border-color, top, background-color;
+
+	&:hover {
+		border-color: var(--blue-color);
+	}
+
+	& > input {
+		width: 100%;
+		padding: 2px 12px;
+		font-weight: 500;
+		font-size: 30px;
+		line-height: 38px;
+		text-align: inherit;
+		vertical-align: top;
+		background-color: hsl(0deg 0% 100% / 0%);
+		border: 0;
+		outline: none;
+		-webkit-text-fill-color: var(--grey-text2);
+		caret-color: var(--blue-color);
+	}
+}
+
+.focusedBorder {
+	border-color: var(--blue-color);
+}

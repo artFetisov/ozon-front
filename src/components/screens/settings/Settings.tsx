@@ -12,11 +12,19 @@ import { createPortal } from 'react-dom'
 import { LayoutModal } from '@/components/ui-kit/modals/LayoutModal'
 import { ChangePersonalUserDataModal } from '@/components/ui-kit/modals/change-personal-user-data-modal/ChangePersonalUserDataModal'
 import { IUser } from '@/types/user/user.types'
+import { getCorrectPhoneNumberView } from '@/utils/phone/phone'
+import { ChangePhoneModal } from '@/components/ui-kit/modals/change-phone-modal/ChangePhoneModal'
+import { Text } from '@/components/ui-kit/text/Text'
 
 export const Settings: FC = () => {
 	const authUser = useTypedSelector((state) => state.user.userData)
 
 	const { isOpenModal, openModal, closeModal } = useModal()
+	const {
+		isOpenModal: isOpenChangePhoneModal,
+		openModal: openChangePhoneModal,
+		closeModal: closeChangePhoneModal,
+	} = useModal()
 
 	return (
 		<>
@@ -26,6 +34,15 @@ export const Settings: FC = () => {
 						variant='dark'
 						close={closeModal}
 						Content={<ChangePersonalUserDataModal close={closeModal} userData={authUser as IUser} />}
+					/>,
+					document.body
+				)}
+			{isOpenChangePhoneModal &&
+				createPortal(
+					<LayoutModal
+						variant='dark'
+						close={closeChangePhoneModal}
+						Content={<ChangePhoneModal close={closeChangePhoneModal} userData={authUser as IUser} />}
 					/>,
 					document.body
 				)}
@@ -73,12 +90,35 @@ export const Settings: FC = () => {
 										<div>{authUser?.gender === 'man' ? 'Мужской' : 'Женский'}</div>
 									</div>
 								</div>
-								<span className={styles.changeBtn} onClick={openModal}>
+								<Text callback={openModal} color='blue' size='middle'>
 									Изменить
-								</span>
+								</Text>
 							</div>
 						</div>
-						<div className={styles.phoneAndEmailBox}></div>
+						<div className={styles.phoneAndEmailBox}>
+							<h2>Учетные данные</h2>
+							<p>Здесь вы можете отредактировать информацию о себе и добавить недостающую</p>
+							<div className={styles.changeBox}>
+								<div className={styles.box}>
+									<p>
+										<span className={styles.property}>Телефон</span>
+										<span className={styles.value}>+7 {getCorrectPhoneNumberView(authUser?.phone as string)}</span>
+									</p>
+									<Text callback={openChangePhoneModal} color='blue' size='middle'>
+										Изменить
+									</Text>
+								</div>
+								<div className={styles.box}>
+									<p>
+										<span className={styles.property}>Почта</span>
+										<span className={styles.value}>{authUser?.email}</span>
+									</p>
+									<Text callback={() => {}} color='blue' size='middle'>
+										Изменить
+									</Text>
+								</div>
+							</div>
+						</div>
 					</section>
 				</div>
 			</div>

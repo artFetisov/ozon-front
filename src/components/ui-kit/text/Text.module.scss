@@ -1,0 +1,19 @@
+.text {
+	transition: color 0.2s;
+}
+
+.blue {
+	color: var(--blue-color);
+	cursor: pointer;
+
+	&:hover {
+		color: var(--blue-hover-color);
+	}
+}
+
+.middle {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: 0.2px;
+}

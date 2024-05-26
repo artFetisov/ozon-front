@@ -1,0 +1,15 @@
+.changePhoneModal {
+	position: relative;
+	z-index: 2100;
+	min-width: 288px;
+	min-height: 100px;
+	margin: 50px 0;
+	background-color: var(--white-color);
+	border-radius: 32px;
+}
+
+.content {
+	position: relative;
+	width: 420px;
+	padding: 48px;
+}

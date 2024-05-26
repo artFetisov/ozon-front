@@ -1,0 +1,107 @@
+.container {
+	position: relative;
+}
+
+.input {
+	position: relative;
+	display: flex;
+	width: 100%;
+	padding-left: 34px;
+	overflow: hidden;
+	color: var(--grey-text2);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	background-color: var(--white-color);
+	border: 2px solid #b3bcc5;
+	border-radius: 6px;
+	transition: border-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+	will-change: transform, border-color, top, background-color;
+
+	&:hover {
+		border-color: var(--blue-color);
+	}
+}
+
+.innerWrapper {
+	position: relative;
+	width: 100%;
+
+	& > input {
+		width: 100%;
+		min-height: 56px;
+		padding: 18px 10px 6px;
+		font-size: 16px;
+		line-height: 20px;
+		vertical-align: top;
+		background-color: hsl(0deg 0% 100% / 0%);
+		border: 0;
+		outline: none;
+		-webkit-text-fill-color: var(--grey-text2);
+		caret-color: var(--blue-color);
+	}
+
+	& > p {
+		position: absolute;
+		top: 18px;
+		left: 10px;
+		color: var(--dark-grey-color);
+		font-size: 16px;
+		line-height: 20px;
+		white-space: pre-wrap;
+		text-align: left;
+		transform-origin: 0 0;
+		transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+		pointer-events: none;
+		will-change: transform;
+	}
+}
+
+.active {
+	padding-top: 6px !important;
+}
+
+.focusedP {
+	transform: translateY(-10px) scale(0.75);
+}
+
+.focusedBorder {
+	border-color: var(--blue-color);
+}
+
+.erroredBorder {
+	border-color: var(--red-color) !important;
+	animation: error 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.code {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	max-width: 109px;
+	min-height: 46px;
+	margin: 7px 12px 7px 6px;
+	padding: 6px 8px;
+	overflow: hidden;
+	color: var(--grey-text2);
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	letter-spacing: 0.2px;
+	background-color: rgb(14 50 103 / 4%);
+	border: 0;
+	border-radius: 6px;
+
+	& > span {
+		color: var(--dark-grey-color);
+	}
+}
+
+.error {
+	margin: 8px 0 0;
+	color: var(--red-color);
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 16px;
+}

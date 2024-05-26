@@ -54,7 +54,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 						<Controller
 							name='name'
 							control={control}
-							render={({ field: { value, onBlur, onChange }, fieldState: { error } }) => (
+							render={({ field: { value, onChange }, fieldState: { error } }) => (
 								<HookFormInput
 									removeName='name'
 									onClear={handleClearInput}
