@@ -1,10 +1,11 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import styles from './PhonePasswordEntryModal.module.scss'
 import { TypeCurrentModal } from '../LoginModal'
 import { Button } from '@/components/ui-kit/button/Button'
 import { CheckBox } from '@/components/ui-kit/checkbox/CheckBox'
 import { InputEntryCode } from '@/components/ui-kit/input-entry-code/InputEntryCode'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
+import { useCounter } from '@/hooks/useCounter'
 
 interface IPasswordEntryModalProps {
 	onToggle: (type: TypeCurrentModal) => void
@@ -23,9 +24,8 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
 	close,
 	phoneNumber,
 }) => {
-	const [counter, setCounter] = useState(20)
+	const { counter, handleGetNewCode } = useCounter()
 
-	const timerRef = useRef<ReturnType<typeof setInterval>>()
 	const fetchTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
 	const { handleSubmit, control, watch } = useForm<{ code: string }>({
@@ -62,26 +62,11 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
 				fetchTimerRef.current = setTimeout(() => handleSubmit(onSubmit)(), 500)
 			}
 		})
-		return () => subscription.unsubscribe()
-	}, [watch])
-
-	useEffect(() => {
-		timerRef.current = setInterval(() => {
-			setCounter((count) => {
-				if (count === 0) {
-					clearInterval(timerRef.current)
-					return 0
-				} else {
-					return (count -= 1)
-				}
-			})
-		}, 1000)
-
 		return () => {
-			clearInterval(timerRef.current)
-			clearInterval(fetchTimerRef.current)
+			clearTimeout(fetchTimerRef.current)
+			subscription.unsubscribe()
 		}
-	}, [])
+	}, [watch])
 
 	const handleToEnterPhoneNumber = () => {
 		onToggle('enterPhone')
@@ -118,7 +103,11 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
 								</div>
 							</div>
 						)}
-						{counter < 1 && <div className={styles.getCode}>Получить новый код</div>}
+						{counter < 1 && (
+							<div className={styles.getCode} onClick={handleGetNewCode}>
+								Получить новый код
+							</div>
+						)}
 					</>
 				)}
 
@@ -138,7 +127,11 @@ export const PhonePasswordEntryModal: FC<IPasswordEntryModalProps> = ({
 								</div>
 							</div>
 						)}
-						{counter < 1 && <div className={styles.getCode}>Получить новый код</div>}
+						{counter < 1 && (
+							<div className={styles.getCode} onClick={handleGetNewCode}>
+								Получить новый код
+							</div>
+						)}
 						<div className={styles.checkInfoWrapper}>
 							<Controller
 								name='agreement1'

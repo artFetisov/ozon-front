@@ -1,9 +1,10 @@
-import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import styles from './EmailPasswordEntryModal.module.scss'
-import { useField } from '@/hooks/useField'
 import { TypeCurrentModal } from '../LoginModal'
-import cn from 'classnames'
 import { getCounterCorrectView } from '../phone-password-entry-modal/PhonePasswordEntryModal'
+import { useCounter } from '@/hooks/useCounter'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { InputEntryCode } from '@/components/ui-kit/input-entry-code/InputEntryCode'
 
 interface IEmailPasswordEntryModalProps {
 	onToggle: (type: TypeCurrentModal) => void
@@ -11,79 +12,47 @@ interface IEmailPasswordEntryModalProps {
 }
 
 export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onToggle, close }) => {
-	const { setFieldValue, fieldValue, setFieldError, fieldError, isFocused, setIsFocused } = useField(true)
-	const [counter, setCounter] = useState(20)
+	const { counter, handleGetNewCode } = useCounter()
 
-	const timerRef = useRef<ReturnType<typeof setTimeout>>()
-	const submitRef = useRef<ReturnType<typeof setTimeout>>()
+	const fetchTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
-	useEffect(() => {
-		timerRef.current = setInterval(() => {
-			setCounter((count) => {
-				if (count === 0) {
-					clearInterval(timerRef.current)
-					return 0
-				} else {
-					return (count -= 1)
-				}
-			})
-		}, 1000)
+	const { handleSubmit, control, watch } = useForm<{ code: string }>({
+		mode: 'onSubmit',
+		defaultValues: { code: '' },
+	})
 
-		return () => {
-			clearInterval(timerRef.current)
-			clearTimeout(submitRef.current)
-		}
-	}, [])
-
-	const handleSetFieldValue = (event: ChangeEvent<HTMLInputElement>) => {
-		const value = event.currentTarget.value
-		setFieldValue(value)
-
-		if (value.length === 6) {
-			// временное решение
-			submitRef.current = setTimeout(() => {
-				handleSubmit()
-			}, 300)
-		}
-	}
-
-	const handleFocusInput = () => {
-		setIsFocused(true)
-	}
-
-	const handleBlurInput = () => {
-		setIsFocused(false)
-	}
-
-	const handleSubmit = () => {
-		alert(fieldValue)
-		setFieldValue('')
+	const onSubmit: SubmitHandler<{ code: string }> = async (data) => {
+		alert(JSON.stringify(data))
 		close()
 	}
+
+	useEffect(() => {
+		const subscription = watch((value) => {
+			if (value.code?.length === 6) {
+				fetchTimerRef.current = setTimeout(() => handleSubmit(onSubmit)(), 500)
+			}
+		})
+		return () => {
+			clearInterval(fetchTimerRef.current)
+			subscription.unsubscribe()
+		}
+	}, [watch])
 
 	const handleToPhoneModal = () => {
 		onToggle('enterPhone')
 	}
 
 	return (
-		<>
+		<form>
 			<div className={styles.heading}>Введите код отправленный на вашу почту</div>
 			<div>
-				<label
-					className={cn(styles.inputBox, {
-						[styles.focusedBorder]: isFocused,
-					})}
-				>
-					<input
-						maxLength={6}
-						minLength={6}
-						autoFocus
-						onFocus={handleFocusInput}
-						onBlur={handleBlurInput}
-						value={fieldValue}
-						onChange={handleSetFieldValue}
-					/>
-				</label>
+				<Controller
+					name='code'
+					control={control}
+					render={({ field: { value, onChange }, fieldState: { error } }) => (
+						<InputEntryCode type='number' value={value} onChange={onChange} error={error} />
+					)}
+				/>
 				{counter > 0 && (
 					<div className={styles.counter}>
 						<div>
@@ -91,7 +60,11 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 						</div>
 					</div>
 				)}
-				{counter < 1 && <div className={styles.getCode}>Получить новый код</div>}
+				{counter < 1 && (
+					<div className={styles.getCode} onClick={handleGetNewCode}>
+						Получить новый код
+					</div>
+				)}
 
 				<div className={styles.toggleBtn}>
 					<span className={styles.text} onClick={handleToPhoneModal}>
@@ -99,6 +72,6 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 					</span>
 				</div>
 			</div>
-		</>
+		</form>
 	)
 }

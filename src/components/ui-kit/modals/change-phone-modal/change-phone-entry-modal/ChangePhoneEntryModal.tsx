@@ -23,7 +23,7 @@ export const ChangePhoneEntryModal: FC<IChangePhoneEntryModalProps> = ({ onToggl
 	}
 
 	return (
-		<form className={styles.content} onSubmit={handleSubmit(onSubmit)}>
+		<form onSubmit={handleSubmit(onSubmit)}>
 			<h2 className={styles.heading}>Укажите новый номер</h2>
 			<div className={styles.text}>На него мы отправим код подтверждения</div>
 			<div className={styles.inputBox}>

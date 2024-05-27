@@ -23,14 +23,14 @@ export const Popup: FC<IPopupProps> = ({
 }) => {
 	const popupWidth = 274
 
-	const finalPosition: { x: number; y: number } = {
+	const finalPosition: { x: number | undefined; y: number } = {
 		x:
 			position === 'bottom-left'
-				? coordinates?.left - popupWidth
+				? (coordinates?.left as number) - popupWidth
 				: position === 'bottom-right'
 				? coordinates?.right
 				: position === 'bottom-center'
-				? coordinates?.left - popupWidth / 2 + coordinates?.width / 2
+				? (coordinates?.left as number) - popupWidth / 2 + (coordinates?.width as number) / 2
 				: 0,
 		y: coordinates?.bottom || 0,
 	}

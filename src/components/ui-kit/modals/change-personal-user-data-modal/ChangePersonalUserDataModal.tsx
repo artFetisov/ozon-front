@@ -5,7 +5,7 @@ import { Button } from '../../button/Button'
 import { IUser, IUserEditNameAndGenderForm } from '@/types/user/user.types'
 import { IRadioGroupItem, RadioGroup } from '../../radio-group/RadioGroup'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { HookFormInput } from '../../input/HookFormInput'
+import { Input } from '../../input/Input'
 import { DatePicker } from '../../date-picker/DatePicker'
 
 interface IChangePersonalUserDataModalProps {
@@ -19,13 +19,7 @@ const options: IRadioGroupItem[] = [
 ]
 
 export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> = ({ close, userData }) => {
-	const {
-		setValue,
-		handleSubmit,
-		formState: { errors },
-		control,
-		getValues,
-	} = useForm<IUserEditNameAndGenderForm>({
+	const { setValue, handleSubmit, control } = useForm<IUserEditNameAndGenderForm>({
 		mode: 'onSubmit',
 		defaultValues: {
 			name: userData.name,
@@ -55,7 +49,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 							name='name'
 							control={control}
 							render={({ field: { value, onChange }, fieldState: { error } }) => (
-								<HookFormInput
+								<Input<keyof IUserEditNameAndGenderForm>
 									removeName='name'
 									onClear={handleClearInput}
 									value={value}
@@ -72,7 +66,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 							name='patronymic'
 							control={control}
 							render={({ field: { value, onChange }, fieldState: { error } }) => (
-								<HookFormInput
+								<Input<keyof IUserEditNameAndGenderForm>
 									value={value}
 									removeName='patronymic'
 									onChange={onChange}
@@ -89,7 +83,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 							name='lastName'
 							control={control}
 							render={({ field: { value, onBlur, onChange }, fieldState: { error } }) => (
-								<HookFormInput
+								<Input<keyof IUserEditNameAndGenderForm>
 									value={value}
 									onChange={onChange}
 									onClear={handleClearInput}

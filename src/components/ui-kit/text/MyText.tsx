@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import styles from './Text.module.scss'
+import styles from './MyText.module.scss'
 import cn from 'classnames'
 
 interface ITextProps {
@@ -9,7 +9,7 @@ interface ITextProps {
 	callback: () => void
 }
 
-export const Text: FC<ITextProps> = ({ children, size, color, callback }) => {
+export const MyText: FC<ITextProps> = ({ children, size, color, callback }) => {
 	return (
 		<span
 			className={cn(styles.text, {

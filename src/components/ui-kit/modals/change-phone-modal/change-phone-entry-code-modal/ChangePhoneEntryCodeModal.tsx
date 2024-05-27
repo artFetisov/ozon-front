@@ -1,10 +1,11 @@
-import { FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import styles from './ChangePhoneEntryCodeModal.module.scss'
 import { ChangePhoneModalType } from '../ChangePhoneModal'
 import { getCounterCorrectView } from '../../login-modal/phone-password-entry-modal/PhonePasswordEntryModal'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import { InputEntryCode } from '@/components/ui-kit/input-entry-code/InputEntryCode'
-import { Text } from '@/components/ui-kit/text/Text'
+import { MyText } from '@/components/ui-kit/text/MyText'
+import { useCounter } from '@/hooks/useCounter'
 
 interface IChangePhoneEntryCodeModalProps {
 	phoneNumber: string
@@ -13,9 +14,8 @@ interface IChangePhoneEntryCodeModalProps {
 }
 
 export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({ phoneNumber, onToggle, close }) => {
-	const [counter, setCounter] = useState(20)
+	const { counter, handleGetNewCode } = useCounter()
 
-	const timerRef = useRef<ReturnType<typeof setInterval>>()
 	const fetchTimerRef = useRef<ReturnType<typeof setTimeout>>()
 
 	const { handleSubmit, control, watch } = useForm<{ code: string }>({
@@ -24,30 +24,15 @@ export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({
 	})
 
 	useEffect(() => {
-		timerRef.current = setInterval(() => {
-			setCounter((count) => {
-				if (count === 0) {
-					clearInterval(timerRef.current)
-					return 0
-				} else {
-					return (count -= 1)
-				}
-			})
-		}, 1000)
-
-		return () => {
-			clearInterval(timerRef.current)
-			clearInterval(fetchTimerRef.current)
-		}
-	}, [])
-
-	useEffect(() => {
 		const subscription = watch((value) => {
 			if (value.code?.length === 6) {
 				fetchTimerRef.current = setTimeout(() => handleSubmit(onSubmit)(), 500)
 			}
 		})
-		return () => subscription.unsubscribe()
+		return () => {
+			subscription.unsubscribe()
+			clearTimeout(fetchTimerRef.current)
+		}
 	}, [watch])
 
 	const onSubmit: SubmitHandler<{ code: string }> = async (data) => {
@@ -55,17 +40,14 @@ export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({
 		close()
 	}
 
-	const handleGetNewCode = () => {
-		setCounter(59)
-	}
 	return (
 		<>
 			<div className={styles.heading}>
 				Введите код, который мы отправили на номер <br></br> {phoneNumber}
 				<span className={styles.getCode} onClick={() => onToggle('phone')}>
-					<Text callback={() => onToggle('phone')} color='blue' size='middle'>
+					<MyText callback={() => onToggle('phone')} color='blue' size='middle'>
 						Изменить номер
-					</Text>
+					</MyText>
 				</span>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
@@ -85,9 +67,9 @@ export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({
 				)}
 				{counter < 1 && (
 					<div className={styles.getCode}>
-						<Text callback={handleGetNewCode} color='blue' size='middle'>
+						<MyText callback={handleGetNewCode} color='blue' size='middle'>
 							Получить новый код
-						</Text>
+						</MyText>
 					</div>
 				)}
 			</form>

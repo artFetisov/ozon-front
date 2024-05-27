@@ -1,16 +1,16 @@
 import { FC } from 'react'
-import styles from './SendEmailModal.module.scss'
+import styles from './ChangeEmailEntryModal.module.scss'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { Button } from '@/components/ui-kit/button/Button'
-import { TypeCurrentModal } from '../LoginModal'
 import { IUser } from '@/types/user/user.types'
-import { useForm, SubmitHandler, Controller } from 'react-hook-form'
+import { ChangeEmailModalType } from '../ChangeEmailModal'
 import { Input } from '@/components/ui-kit/input/Input'
 
-interface ISendEmailModalProps {
-	onToggle: (type: TypeCurrentModal) => void
+interface IChangeEntryModal {
+	onToggle: (type: ChangeEmailModalType) => void
 }
 
-export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
+export const ChangeEmailEntryModal: FC<IChangeEntryModal> = ({ onToggle }) => {
 	const { handleSubmit, control, setValue } = useForm<Pick<IUser, 'email'>>({
 		mode: 'onSubmit',
 		defaultValues: { email: '' },
@@ -19,21 +19,17 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 	const onSubmit: SubmitHandler<Pick<IUser, 'email'>> = async (data) => {
 		alert(JSON.stringify(data))
 		close()
-		onToggle('enterPasswordByEmail')
+		onToggle('code')
 	}
 
 	const handleClearInput = (name: keyof { email: string }) => {
 		setValue(name, '')
 	}
 
-	const handleToPhoneModal = () => {
-		onToggle('enterPhone')
-	}
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
-			<div className={styles.heading}>Войдите по почте</div>
-			<div className={styles.text}>Только для зарегистрированных пользователей</div>
+			<h2 className={styles.heading}>Главное - безопасность</h2>
+			<div className={styles.text}>Введите новую почту</div>
 			<div className={styles.inputBox}>
 				<Controller
 					name='email'
@@ -46,19 +42,14 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 							onClear={handleClearInput}
 							removeName='email'
 							error={error}
-							placeholder='Электронная почта'
+							placeholder='Новая почта'
 						/>
 					)}
 				/>
 			</div>
-			<Button color='blue' variant='large' isFullWidth>
-				Войти
+			<Button variant='middle' color='blue' isFullWidth>
+				Получить код
 			</Button>
-			<div className={styles.toggleBtn}>
-				<span className={styles.text} onClick={handleToPhoneModal}>
-					Вернуться на главный экран
-				</span>
-			</div>
 		</form>
 	)
 }

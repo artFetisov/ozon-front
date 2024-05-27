@@ -14,7 +14,8 @@ import { ChangePersonalUserDataModal } from '@/components/ui-kit/modals/change-p
 import { IUser } from '@/types/user/user.types'
 import { getCorrectPhoneNumberView } from '@/utils/phone/phone'
 import { ChangePhoneModal } from '@/components/ui-kit/modals/change-phone-modal/ChangePhoneModal'
-import { Text } from '@/components/ui-kit/text/Text'
+import { MyText } from '@/components/ui-kit/text/MyText'
+import { ChangeEmailModal } from '@/components/ui-kit/modals/change-email-modal/ChangeEmailModal'
 
 export const Settings: FC = () => {
 	const authUser = useTypedSelector((state) => state.user.userData)
@@ -24,6 +25,11 @@ export const Settings: FC = () => {
 		isOpenModal: isOpenChangePhoneModal,
 		openModal: openChangePhoneModal,
 		closeModal: closeChangePhoneModal,
+	} = useModal()
+	const {
+		isOpenModal: isOpenChangeEmailModal,
+		openModal: openChangeEmailModal,
+		closeModal: closeChangeEmailModal,
 	} = useModal()
 
 	const handleLogout = () => {}
@@ -45,6 +51,15 @@ export const Settings: FC = () => {
 						variant='dark'
 						close={closeChangePhoneModal}
 						Content={<ChangePhoneModal close={closeChangePhoneModal} userData={authUser as IUser} />}
+					/>,
+					document.body
+				)}
+			{isOpenChangeEmailModal &&
+				createPortal(
+					<LayoutModal
+						variant='dark'
+						close={closeChangeEmailModal}
+						Content={<ChangeEmailModal close={closeChangeEmailModal} userData={authUser as IUser} />}
 					/>,
 					document.body
 				)}
@@ -92,9 +107,9 @@ export const Settings: FC = () => {
 										<div>{authUser?.gender === 'man' ? 'Мужской' : 'Женский'}</div>
 									</div>
 								</div>
-								<Text callback={openModal} color='blue' size='middle'>
+								<MyText callback={openModal} color='blue' size='middle'>
 									Изменить
-								</Text>
+								</MyText>
 							</div>
 						</div>
 						<div className={styles.phoneAndEmailBox}>
@@ -106,27 +121,27 @@ export const Settings: FC = () => {
 										<span className={styles.property}>Телефон</span>
 										<span className={styles.value}>+7 {getCorrectPhoneNumberView(authUser?.phone as string)}</span>
 									</p>
-									<Text callback={openChangePhoneModal} color='blue' size='middle'>
+									<MyText callback={openChangePhoneModal} color='blue' size='middle'>
 										Изменить
-									</Text>
+									</MyText>
 								</div>
 								<div className={styles.box}>
 									<p>
 										<span className={styles.property}>Почта</span>
 										<span className={styles.value}>{authUser?.email}</span>
 									</p>
-									<Text callback={() => {}} color='blue' size='middle'>
+									<MyText callback={openChangeEmailModal} color='blue' size='middle'>
 										Изменить
-									</Text>
+									</MyText>
 								</div>
 							</div>
 						</div>
 						<div className={styles.logoutBox}>
 							<h2>Управление аккаунтом</h2>
 							<p>Вы с нами с {getCorrectDateView(new Date())} года</p>
-							<Text color='red' size='middle' callback={handleLogout}>
+							<MyText color='red' size='middle' callback={handleLogout}>
 								Выйти из аккаунта
-							</Text>
+							</MyText>
 						</div>
 					</section>
 				</div>
