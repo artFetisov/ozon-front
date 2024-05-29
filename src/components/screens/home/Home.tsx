@@ -26,16 +26,16 @@ export const Home: FC = () => {
 		<div className={styles.home}>
 			<div className={styles.banner}>
 				<div className={styles.imgBoxVertical}>
-					<Image alt='banner' src={banner2} fill />
+					<Image alt='banner' src={banner2} fill priority={true} />
 				</div>
 				<div className={styles.imgBoxMiddle}></div>
 				<div className={styles.imgBoxVertical}>
-					<Image alt='banner' src={banner3} fill />
+					<Image alt='banner' src={banner3} fill priority={true} />
 				</div>
 			</div>
 			<div className={styles.banner}>
 				<div className={styles.imgBoxHorizontal}>
-					<Image alt='banner' src={banner1} fill />
+					<Image alt='banner' src={banner1} fill priority={true} />
 				</div>
 			</div>
 			<Selection items={productsMock.slice(0, 12)} rowTotalItems={6} headingText={'Лучшие предложения'} />
