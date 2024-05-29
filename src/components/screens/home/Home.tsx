@@ -8,8 +8,9 @@ import { useActions } from '@/hooks/useActions'
 import { categoriesMock, subCategoriesMock, subSubCategoriesMock } from '@/mock/categories'
 import { currentAuthUser } from '@/mock/user'
 import Image from 'next/image'
-import bannerComp from '@/assets/images/2832_200_main_static_desk_11zon_17.webp'
-import bannerCompPub from '@/../public/2832_200_main_static_desk_11zon_17.webp'
+import banner1 from '@/../public/2832_200_main_static_desk_11zon_17.webp'
+import banner2 from '@/../public/336_398_x2_ml_do_08.06.webp'
+import banner3 from '@/../public/336_398_x2_skidki_nedeli_do_08.06.webp'
 
 export const Home: FC = () => {
 	const { setCategories, setSubCategories, setSubSubCategories, setUserData } = useActions()
@@ -24,18 +25,17 @@ export const Home: FC = () => {
 	return (
 		<div className={styles.home}>
 			<div className={styles.banner}>
-				<div className={styles.imgBox}>
-					<Image alt='banner' src={'/2832_200_main_static_desk_11zon_17.webp'} fill />
+				<div className={styles.imgBoxVertical}>
+					<Image alt='banner' src={banner2} fill />
+				</div>
+				<div className={styles.imgBoxMiddle}></div>
+				<div className={styles.imgBoxVertical}>
+					<Image alt='banner' src={banner3} fill />
 				</div>
 			</div>
 			<div className={styles.banner}>
-				<div className={styles.imgBox}>
-					<Image alt='banner' src={bannerComp} fill />
-				</div>
-			</div>
-			<div className={styles.banner}>
-				<div className={styles.imgBox}>
-					<Image alt='banner' src={bannerCompPub} fill />
+				<div className={styles.imgBoxHorizontal}>
+					<Image alt='banner' src={banner1} fill />
 				</div>
 			</div>
 			<Selection items={productsMock.slice(0, 12)} rowTotalItems={6} headingText={'Лучшие предложения'} />
