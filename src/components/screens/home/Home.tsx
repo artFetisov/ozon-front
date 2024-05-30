@@ -11,6 +11,7 @@ import Image from 'next/image'
 import banner1 from '@/../public/2832_200_main_static_desk_11zon_17.webp'
 import banner2 from '@/../public/336_398_x2_ml_do_08.06.webp'
 import banner3 from '@/../public/336_398_x2_skidki_nedeli_do_08.06.webp'
+import { instance } from '@/api/axios.instance'
 
 export const Home: FC = () => {
 	const { setCategories, setSubCategories, setSubSubCategories, setUserData } = useActions()
