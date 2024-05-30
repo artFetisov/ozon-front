@@ -16,10 +16,6 @@ import { IS_PRODUCTION } from '@/configs/constants'
 
 export const Home: FC = () => {
 	useEffect(() => {
-		console.log(process.env.NEXT_PUBLIC_APP_SERVER_URL)
-		console.log(process.env.NEXT_PUBLIC_APP_LOCAL_SERVER_URL)
-		console.log(IS_PRODUCTION)
-
 		const fetch = async () => {
 			const res = await instance.get('')
 			console.log(res)
