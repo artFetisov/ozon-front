@@ -14,6 +14,15 @@ import banner3 from '@/../public/336_398_x2_skidki_nedeli_do_08.06.webp'
 import { instance } from '@/api/axios.instance'
 
 export const Home: FC = () => {
+	useEffect(() => {
+		const fetch = async () => {
+			const res = await instance.get('')
+			console.log(res)
+		}
+
+		fetch()
+	}, [])
+
 	const { setCategories, setSubCategories, setSubSubCategories, setUserData } = useActions()
 
 	useEffect(() => {
