@@ -3,12 +3,7 @@ import styles from './Footer.module.scss'
 import Link from 'next/link'
 import { PATHS } from '@/constants/paths'
 import Image from 'next/image'
-import {
-	footerLinksFour,
-	footerLinksOne,
-	footerLinksThree,
-	footerLinksTwo,
-} from '@/mock/footer'
+import { footerLinksFour, footerLinksOne, footerLinksThree, footerLinksTwo } from '@/mock/footer'
 import { Button } from '@/components/ui-kit/button/Button'
 
 export const Footer: FC = () => {
@@ -50,10 +45,7 @@ export const Footer: FC = () => {
 						<Link href={PATHS.HOME} className={styles.link}>
 							<span>
 								<svg width={24} height={24} className={styles.icon}>
-									<path
-										fill='currentColor'
-										d='M16 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z'
-									></path>
+									<path fill='currentColor' d='M16 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z'></path>
 									<path
 										fill='currentColor'
 										d='M23 14a2 2 0 0 1-2 2v3a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v3a2 2 0 0 1 2 2v4Zm-4 5v-3h-4a4 4 0 0 1 0-8h1a1 1 0 1 1 0 2h-1a2 2 0 1 0 0 4h6v-4h-1a1 1 0 0 1-1-1V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1Z'
@@ -127,30 +119,10 @@ export const Footer: FC = () => {
 						/>
 						<p>Наведите камеру и скачайте бесплатное приложение Ozon</p>
 						<div className={styles.icons}>
-							<Image
-								height={42}
-								width={42}
-								src={'https://ir.ozone.ru/s3/cms/0e/ta0/group_357649.png'}
-								alt='icon'
-							/>
-							<Image
-								height={42}
-								width={42}
-								src={'https://ir.ozone.ru/s3/cms/9b/te1/group_357648.png'}
-								alt='icon'
-							/>
-							<Image
-								height={42}
-								width={42}
-								src={'https://ir.ozone.ru/s3/cms/20/tcc/group_357647.png'}
-								alt='icon'
-							/>
-							<Image
-								height={42}
-								width={42}
-								src={'https://ir.ozone.ru/s3/cms/f7/tb3/rustore_desk.svg'}
-								alt='icon'
-							/>
+							<Image height={42} width={42} src={'https://ir.ozone.ru/s3/cms/0e/ta0/group_357649.png'} alt='icon' />
+							<Image height={42} width={42} src={'https://ir.ozone.ru/s3/cms/9b/te1/group_357648.png'} alt='icon' />
+							<Image height={42} width={42} src={'https://ir.ozone.ru/s3/cms/20/tcc/group_357647.png'} alt='icon' />
+							<Image height={42} width={42} src={'https://ir.ozone.ru/s3/cms/f7/tb3/rustore_desk.svg'} alt='icon' />
 						</div>
 					</div>
 					<div className={styles.infoBoxRightSide}>
@@ -190,14 +162,7 @@ export const Footer: FC = () => {
 						</div>
 						<div className={styles.footerEnd}>
 							<div className={styles.icons}>
-								<Link href={PATHS.HOME}>
-									<svg width={24} height={24}>
-										<path
-											fill='currentColor'
-											d='M12.893 18C6.06 18 2.163 13.495 2 6h3.423c.112 5.502 2.636 7.832 4.634 8.312V6h3.223v4.745c1.974-.204 4.048-2.367 4.748-4.745h3.223a8.976 8.976 0 0 1-1.544 3.43 9.383 9.383 0 0 1-2.841 2.552 9.813 9.813 0 0 1 3.238 2.48A9.365 9.365 0 0 1 22 18h-3.548a5.912 5.912 0 0 0-1.913-2.895 6.29 6.29 0 0 0-3.259-1.393V18h-.387Z'
-										></path>
-									</svg>
-								</Link>
+								<Link href={PATHS.HOME}></Link>
 								<Link href={PATHS.HOME}>
 									<svg width={24} height={24}>
 										<path
@@ -220,12 +185,7 @@ export const Footer: FC = () => {
 									© 1998 – 2023 ООО «Интернет Решения». Все права защищены.
 								</Link>
 								<Button variant={'large'} color={'blue'}>
-									<svg
-										xmlns='http://www.w3.org/2000/svg'
-										width='24'
-										height='24'
-										style={{ marginRight: '6px' }}
-									>
+									<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' style={{ marginRight: '6px' }}>
 										<path
 											fill='currentColor'
 											d='M8 5a2.947 2.947 0 0 0-2.84 2.158l-.002.01-.908 3.147A4.989 4.989 0 0 1 6 10c1.494 0 2.834.655 3.75 1.693A3.983 3.983 0 0 1 12 11c.835 0 1.61.256 2.25.693A4.988 4.988 0 0 1 18 10c.463 0 .912.063 1.338.181L18.06 6.914v-.001A3 3 0 0 0 15.264 5H15a1 1 0 1 1 0-2h.264a5 5 0 0 1 4.66 3.187l2.707 6.924a5 5 0 1 1-9.382.326A1.99 1.99 0 0 0 12 13a1.99 1.99 0 0 0-1.25.438 5 5 0 1 1-9.406-.265l1.89-6.555A4.947 4.947 0 0 1 8 3a1 1 0 0 1 0 2Zm-2 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm12 0a3 3 0 1 0-.002 6A3 3 0 0 0 18 12Z'
