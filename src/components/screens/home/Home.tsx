@@ -12,9 +12,14 @@ import banner1 from '@/../public/2832_200_main_static_desk_11zon_17.webp'
 import banner2 from '@/../public/336_398_x2_ml_do_08.06.webp'
 import banner3 from '@/../public/336_398_x2_skidki_nedeli_do_08.06.webp'
 import { instance } from '@/api/axios.instance'
+import { IS_PRODUCTION } from '@/configs/constants'
 
 export const Home: FC = () => {
 	useEffect(() => {
+		console.log(process.env.NEXT_PUBLIC_APP_SERVER_URL)
+		console.log(process.env.NEXT_PUBLIC_APP_LOCAL_SERVER_URL)
+		console.log(IS_PRODUCTION)
+
 		const fetch = async () => {
 			const res = await instance.get('')
 			console.log(res)
