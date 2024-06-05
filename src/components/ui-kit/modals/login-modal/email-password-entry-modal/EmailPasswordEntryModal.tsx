@@ -1,39 +1,75 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './EmailPasswordEntryModal.module.scss'
 import { TypeCurrentModal } from '../LoginModal'
 import { getCounterCorrectView } from '../phone-password-entry-modal/PhonePasswordEntryModal'
 import { useCounter } from '@/hooks/useCounter'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { InputEntryCode } from '@/components/ui-kit/input-entry-code/InputEntryCode'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useActions } from '@/hooks/useActions'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+import { CheckBox } from '@/components/ui-kit/checkbox/CheckBox'
+import { Button } from '@/components/ui-kit/button/Button'
 
 interface IEmailPasswordEntryModalProps {
 	onToggle: (type: TypeCurrentModal) => void
 	close: () => void
 }
 
+const schema = yup.object().shape({
+	code: yup.string().required('Это поле обязательно для ввода').max(6),
+})
+
 export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onToggle, close }) => {
 	const { counter, handleGetNewCode } = useCounter()
 
-	const fetchTimerRef = useRef<ReturnType<typeof setTimeout>>()
+	const isLoading = useTypedSelector((state) => state.user.isLoading)
+	const asyncError = useTypedSelector((state) => state.user.asyncError)
+	const isNewUser = useTypedSelector((state) => state.user.isNewUser)
 
-	const { handleSubmit, control, watch } = useForm<{ code: string }>({
+	const { checkCodeByEmail, clearAsyncError } = useActions()
+
+	const { handleSubmit, control, watch, reset } = useForm<{ code: string }>({
 		mode: 'onSubmit',
 		defaultValues: { code: '' },
+		resolver: yupResolver(schema),
 	})
 
-	const onSubmit: SubmitHandler<{ code: string }> = async (data) => {
-		alert(JSON.stringify(data))
-		close()
+	const {
+		handleSubmit: handleSubmitBigForm,
+		control: controlBigForm,
+		resetField,
+		getValues,
+	} = useForm<{
+		code: string
+		agreement1: boolean
+		agreement2: boolean
+	}>({
+		mode: 'onSubmit',
+		defaultValues: { code: '', agreement1: false, agreement2: true },
+	})
+
+	const onSubmit: SubmitHandler<{ code: string }> = async ({ code }) => {
+		const response = await checkCodeByEmail({ code })
+
+		reset()
+		// close()
+	}
+
+	const onSubmitBigForm: SubmitHandler<{ code: string }> = async (data) => {
+		await checkCodeByEmail({ code: data.code })
+		resetField('code')
+		// close()
 	}
 
 	useEffect(() => {
 		const subscription = watch((value) => {
 			if (value.code?.length === 6) {
-				fetchTimerRef.current = setTimeout(() => handleSubmit(onSubmit)(), 500)
+				handleSubmit(onSubmit)()
 			}
 		})
 		return () => {
-			clearInterval(fetchTimerRef.current)
 			subscription.unsubscribe()
 		}
 	}, [watch])
@@ -43,27 +79,97 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 	}
 
 	return (
-		<form>
+		<div>
 			<div className={styles.heading}>Введите код отправленный на вашу почту</div>
 			<div>
-				<Controller
-					name='code'
-					control={control}
-					render={({ field: { value, onChange }, fieldState: { error } }) => (
-						<InputEntryCode type='number' value={value} onChange={onChange} error={error} />
-					)}
-				/>
-				{counter > 0 && (
-					<div className={styles.counter}>
-						<div>
-							Получить новый код можно <div>через 00:{getCounterCorrectView(counter)}</div>
-						</div>
-					</div>
+				{!isNewUser && (
+					<>
+						<form onSubmit={handleSubmit(onSubmit)}>
+							<Controller
+								name='code'
+								control={control}
+								render={({ field: { value, onChange }, fieldState: { error } }) => (
+									<InputEntryCode
+										type='tel'
+										value={value}
+										onChange={onChange}
+										error={error}
+										isLoading={isLoading}
+										asyncError={asyncError}
+									/>
+								)}
+							/>
+						</form>
+						{counter > 0 && (
+							<div className={styles.counter}>
+								<div>
+									Получить новый код можно <div>через 00:{getCounterCorrectView(counter)}</div>
+								</div>
+							</div>
+						)}
+						{counter < 1 && (
+							<div className={styles.getCode} onClick={handleGetNewCode}>
+								Получить новый код
+							</div>
+						)}
+					</>
 				)}
-				{counter < 1 && (
-					<div className={styles.getCode} onClick={handleGetNewCode}>
-						Получить новый код
-					</div>
+
+				{isNewUser && (
+					<form onSubmit={handleSubmitBigForm(onSubmitBigForm)}>
+						<Controller
+							name='code'
+							control={controlBigForm}
+							render={({ field: { value, onChange }, fieldState: { error } }) => (
+								<InputEntryCode type='tel' value={value} onChange={onChange} error={error} asyncError={asyncError} />
+							)}
+						/>
+						{counter > 0 && (
+							<div className={styles.counter}>
+								<div>
+									Получить новый код можно <div>через 00:{getCounterCorrectView(counter)}</div>
+								</div>
+							</div>
+						)}
+						{counter < 1 && (
+							<div className={styles.getCode} onClick={handleGetNewCode}>
+								Получить новый код
+							</div>
+						)}
+						<div className={styles.checkInfoWrapper}>
+							<Controller
+								name='agreement1'
+								control={controlBigForm}
+								render={({ field: { value, onChange } }) => (
+									<CheckBox checked={value} onChangeMy={onChange} error={!value} chSize='big' />
+								)}
+							/>
+
+							<span>Соглашаюсь с условиями использования сервисов Ozon и условиями обработки персональных данных</span>
+						</div>
+						<div className={styles.checkInfoWrapper}>
+							<Controller
+								name='agreement2'
+								control={controlBigForm}
+								render={({ field: { value, onChange } }) => (
+									<CheckBox checked={value} onChangeMy={onChange} chSize='big' />
+								)}
+							/>
+							<span>Соглашаюсь на получение сообщений рекламного характера</span>
+						</div>
+						<div className={styles.btnWrapper}>
+							<Button
+								color='blue'
+								variant='large'
+								isFullWidth
+								disabledP={getValues('code').length < 6 || !getValues('agreement1')}
+								type='submit'
+								isLoading={isLoading}
+							>
+								Зарегистрироваться
+							</Button>
+						</div>
+					</form>
 				)}
 
 				<div className={styles.toggleBtn}>
@@ -72,6 +178,6 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 					</span>
 				</div>
 			</div>
-		</form>
+		</div>
 	)
 }

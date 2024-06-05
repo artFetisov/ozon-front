@@ -2,9 +2,10 @@ import { DetailedHTMLProps, FC, InputHTMLAttributes, FocusEvent, useState } from
 import styles from './Input.module.scss'
 import cn from 'classnames'
 import { FieldError } from 'react-hook-form'
+import { InputLoader } from '../loaders/InputLoader/InputLoader'
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-type SelectedMyInputPropsType = Pick<DefaultInputPropsType, 'type' | 'placeholder'>
+type SelectedMyInputPropsType = Pick<DefaultInputPropsType, 'type' | 'placeholder' | 'autoFocus'>
 
 type MyInputPropsType<T> = SelectedMyInputPropsType & {
 	onClear?: (name: T) => void
@@ -12,9 +13,19 @@ type MyInputPropsType<T> = SelectedMyInputPropsType & {
 	value: string
 	onChange: () => void
 	error: FieldError | undefined
+	isLoading?: boolean
 }
 
-export const Input = <T,>({ placeholder, type, error, value, onClear, removeName, ...props }: MyInputPropsType<T>) => {
+export const Input = <T,>({
+	placeholder,
+	type,
+	error,
+	value,
+	onClear,
+	isLoading,
+	removeName,
+	...props
+}: MyInputPropsType<T>) => {
 	const [isFocused, setIsFocused] = useState(false)
 
 	const onFocus = () => {

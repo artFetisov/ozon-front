@@ -4,8 +4,8 @@
 
 	.withCard {
 		display: flex;
-		align-items: center;
 		justify-content: flex-start;
+		align-items: center;
 		margin-bottom: 6px;
 		cursor: pointer;
 		transition: 0.2s color ease-in-out;
@@ -21,8 +21,8 @@
 
 	.delivery {
 		display: flex;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
 		padding-top: 8px;
 		font-size: 12px;
 		line-height: 16px;
@@ -39,8 +39,8 @@
 
 	.withoutCard {
 		display: flex;
-		align-items: last baseline;
 		justify-content: flex-start;
+		align-items: last baseline;
 		overflow: hidden;
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -89,8 +89,8 @@
 	display: flex;
 	flex-wrap: nowrap;
 	gap: 12px;
-	align-items: center;
 	justify-content: space-between;
+	align-items: center;
 	width: 100%;
 	margin-top: 12px;
 }

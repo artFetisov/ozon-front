@@ -5,20 +5,34 @@ import { TypeCurrentModal } from '../LoginModal'
 import { IUser } from '@/types/user/user.types'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import { Input } from '@/components/ui-kit/input/Input'
+import { useActions } from '@/hooks/useActions'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 interface ISendEmailModalProps {
 	onToggle: (type: TypeCurrentModal) => void
 }
 
+const schema = yup.object().shape({
+	email: yup.string().email('Некорректный формат почты').required('Это поле обязательно для ввода'),
+})
+
 export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
-	const { handleSubmit, control, setValue } = useForm<Pick<IUser, 'email'>>({
+	const isLoading = useTypedSelector((state) => state.user.isLoading)
+
+	const { loginByEmail } = useActions()
+
+	const { handleSubmit, control, setValue, reset, formState } = useForm<Pick<IUser, 'email'>>({
 		mode: 'onSubmit',
 		defaultValues: { email: '' },
+		resolver: yupResolver(schema),
 	})
 
-	const onSubmit: SubmitHandler<Pick<IUser, 'email'>> = async (data) => {
-		alert(JSON.stringify(data))
+	const onSubmit: SubmitHandler<Pick<IUser, 'email'>> = async ({ email }) => {
+		await loginByEmail({ email })
 		close()
+		reset()
 		onToggle('enterPasswordByEmail')
 	}
 
@@ -33,7 +47,6 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className={styles.heading}>Войдите по почте</div>
-			<div className={styles.text}>Только для зарегистрированных пользователей</div>
 			<div className={styles.inputBox}>
 				<Controller
 					name='email'
@@ -43,6 +56,7 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 							type='email'
 							value={value}
 							onChange={onChange}
+							autoFocus
 							onClear={handleClearInput}
 							removeName='email'
 							error={error}
@@ -51,7 +65,7 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 					)}
 				/>
 			</div>
-			<Button color='blue' variant='large' isFullWidth>
+			<Button color='blue' variant='large' isFullWidth isLoading={isLoading}>
 				Войти
 			</Button>
 			<div className={styles.toggleBtn}>

@@ -16,25 +16,25 @@
 	.checkBox {
 		display: flex;
 		flex-grow: 0;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
 		margin-left: 3px;
 	}
 
 	.image {
 		display: flex;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
 		padding-right: 8px;
 		padding-left: 12px;
 	}
 
 	.infoBox {
 		display: flex;
-		flex-direction: column;
 		flex-grow: 2;
-		align-items: flex-start;
+		flex-direction: column;
 		justify-content: flex-start;
+		align-items: flex-start;
 		width: 444px;
 		max-width: 444px;
 		padding-right: 8px;
@@ -43,10 +43,10 @@
 
 	.priceBox {
 		display: flex;
-		flex-direction: column;
 		flex-grow: 1;
-		align-items: flex-start;
+		flex-direction: column;
 		justify-content: flex-start;
+		align-items: flex-start;
 		padding: 0 8px 0 24px;
 
 		.priceWithCard {
@@ -127,8 +127,8 @@
 	.logo {
 		position: relative;
 		display: inline-flex;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
 		max-width: 138px;
 		padding: 2px 8px;
 		color: var(--white-color);
@@ -152,10 +152,10 @@
 
 .amountBox {
 	display: flex;
-	flex-direction: column;
 	flex-grow: 0;
-	align-items: flex-start;
+	flex-direction: column;
 	justify-content: flex-start;
+	align-items: flex-start;
 	margin-left: 16px;
 }
 

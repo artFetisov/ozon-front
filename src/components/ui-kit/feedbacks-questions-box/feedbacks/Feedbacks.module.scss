@@ -54,10 +54,9 @@
 
 		.backdrop {
 			position: absolute;
-			inset: 0;
 			display: flex;
-			align-items: center;
 			justify-content: center;
+			align-items: center;
 			overflow: hidden;
 			color: var(--white-color);
 			font-weight: 700;
@@ -66,6 +65,7 @@
 			background: var(--dark-grey-bg);
 			border-radius: 6px;
 			backdrop-filter: blur(2px);
+			inset: 0;
 		}
 	}
 }

@@ -1,8 +1,8 @@
 .circle {
 	position: relative;
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 	margin-right: 16px;
 	overflow: hidden;
 	color: var(--white-color);
@@ -31,15 +31,15 @@
 
 .backdrop {
 	position: absolute;
-	inset: 0;
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	align-items: center;
 	background-color: rgb(3 8 13 / 24%);
 	border-radius: 100%;
 	cursor: pointer;
 	opacity: 0;
 	transition: opacity 0.2s ease-out;
+	inset: 0;
 
 	&:hover {
 		opacity: 1;

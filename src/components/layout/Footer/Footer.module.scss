@@ -57,10 +57,10 @@
 
 .barcodeBox {
 	display: flex;
-	flex-direction: column;
 	flex-shrink: 0;
-	align-items: center;
+	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	width: 300px;
 	margin-right: 60px;
 	padding: 24px 23px;
@@ -127,8 +127,8 @@
 
 .footerEnd {
 	display: flex;
-	align-items: flex-end;
 	justify-content: flex-end;
+	align-items: flex-end;
 
 	.icons {
 		margin-right: 40px;

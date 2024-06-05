@@ -1,6 +1,7 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC, MouseEvent } from 'react'
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC, MouseEvent, ReactNode } from 'react'
 import styles from './Button.module.scss'
 import cn from 'classnames'
+import { Loader } from '../loaders/button-loader/ButtonLoader'
 
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
@@ -12,6 +13,7 @@ type MyButtonPropsType = DefaultButtonPropsType & {
 	isIcon?: boolean
 	isFullWidth?: boolean
 	isLiked?: boolean
+	isLoading?: boolean
 }
 
 export const Button: FC<MyButtonPropsType> = ({
@@ -22,6 +24,7 @@ export const Button: FC<MyButtonPropsType> = ({
 	isFullWidth = true,
 	color,
 	isIcon,
+	isLoading,
 	...rest
 }) => {
 	return (
@@ -46,7 +49,8 @@ export const Button: FC<MyButtonPropsType> = ({
 					[styles.liked]: isLiked,
 				})}
 			>
-				{children}
+				{isLoading && <Loader />}
+				{children && !isLoading && children}
 			</span>
 		</button>
 	)

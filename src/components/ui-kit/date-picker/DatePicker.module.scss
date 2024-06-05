@@ -8,8 +8,8 @@
 	bottom: 0;
 	display: flex;
 	flex-flow: row nowrap;
-	align-items: center;
 	justify-content: flex-end;
+	align-items: center;
 	width: 34px;
 	height: 44px;
 	margin-right: 10px;
@@ -19,8 +19,8 @@
 	& > span {
 		z-index: 3000;
 		display: flex;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
 		color: var(--dark-grey-color);
 		cursor: pointer;
 		transition: color 0.1s ease-in-out;
