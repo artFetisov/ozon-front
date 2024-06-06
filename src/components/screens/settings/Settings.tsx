@@ -41,7 +41,7 @@ export const Settings: FC = () => {
 					<LayoutModal
 						variant='dark'
 						close={closeModal}
-						Content={<ChangePersonalUserDataModal close={closeModal} userData={authUser as IUser} />}
+						Content={<ChangePersonalUserDataModal close={closeModal} userData={authUser} />}
 					/>,
 					document.body
 				)}
@@ -104,7 +104,7 @@ export const Settings: FC = () => {
 									</div>
 									<div className={styles.data}>
 										<span>Пол</span>
-										<div>{authUser?.gender === 'man' ? 'Мужской' : 'Женский'}</div>
+										<div>{authUser?.gender === 'male' ? 'Мужской' : 'Женский'}</div>
 									</div>
 								</div>
 								<MyText callback={openModal} color='blue' size='middle'>

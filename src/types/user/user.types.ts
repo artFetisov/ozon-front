@@ -12,7 +12,7 @@ export interface IUser {
 	avatar: string
 }
 
-export type TypeUserGender = 'man' | 'woman'
+export type TypeUserGender = 'male' | 'female'
 
 export interface IUserEditNameAndGenderForm
 	extends Pick<IUser, 'id' | 'name' | 'lastName' | 'patronymic' | 'gender' | 'birthdayDate'> {}
@@ -30,10 +30,3 @@ export interface ILoginByEmailResponse {
 	email: string
 	isNewUser: boolean
 }
-
-// export interface IResponse<T = {}> {
-// 	resultCode: number
-// 	messages: string[]
-// 	fieldsErrors: string[]
-// 	data: T
-// }

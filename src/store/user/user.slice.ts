@@ -13,7 +13,7 @@ interface IUserState {
 
 const initialState: IUserState = {
 	userData: null,
-	isLoggedIn: false,
+	isLoggedIn: true,
 	isLoading: false,
 	isNewUser: true,
 	tempEmail: null,

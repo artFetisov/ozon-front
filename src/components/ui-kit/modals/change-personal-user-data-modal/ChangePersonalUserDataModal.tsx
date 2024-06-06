@@ -10,23 +10,23 @@ import { DatePicker } from '../../date-picker/DatePicker'
 
 interface IChangePersonalUserDataModalProps {
 	close: () => void
-	userData: IUser
+	userData: IUser | null
 }
 
 const options: IRadioGroupItem[] = [
-	{ title: 'Мужской', value: 'man' },
-	{ title: 'Женский', value: 'woman' },
+	{ title: 'Мужской', value: 'male' },
+	{ title: 'Женский', value: 'female' },
 ]
 
 export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> = ({ close, userData }) => {
 	const { setValue, handleSubmit, control } = useForm<IUserEditNameAndGenderForm>({
 		mode: 'onSubmit',
 		defaultValues: {
-			name: userData.name,
-			lastName: userData.lastName,
-			patronymic: userData.patronymic,
-			gender: userData.gender,
-			birthdayDate: userData.birthdayDate,
+			name: userData?.name || '',
+			lastName: userData?.lastName || '',
+			patronymic: userData?.patronymic || '',
+			gender: userData?.gender,
+			birthdayDate: userData?.birthdayDate,
 		},
 	})
 

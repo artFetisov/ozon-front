@@ -1,5 +1,5 @@
-export const getCorrectPhoneNumberView = (value: string, previousValue?: string): string => {
-	if (!value) return value
+export const getCorrectPhoneNumberView = (value?: string, previousValue?: string): string => {
+	if (!value) return ''
 
 	previousValue = previousValue?.replace(/[^\d]/g, '')
 

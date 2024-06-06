@@ -4,7 +4,7 @@ import { FC, useRef } from 'react'
 import cn from 'classnames'
 
 interface IAvatarRoundProps {
-	name: string
+	name?: string
 	lastName?: string
 	size?: 'small' | 'large'
 }
@@ -23,7 +23,7 @@ export const AvatarRound: FC<IAvatarRoundProps> = ({ name, lastName, size = 'sma
 				[styles.large]: size === 'large',
 			})}
 		>
-			<span>{getFirstCapitalLetter(name)}</span>
+			<span>{getFirstCapitalLetter(name && name)}</span>
 			{lastName && <span>{getFirstCapitalLetter(lastName)}</span>}
 			{size === 'large' && (
 				<div className={styles.backdrop} onClick={handleClickFileInput}>

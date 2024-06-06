@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { PATHS } from '@/constants/paths'
 
 interface IPersonalUserDataProps {
-	userData: IUser
+	userData: IUser | null
 }
 
 export const PersonalUserData: FC<IPersonalUserDataProps> = ({ userData }) => {
@@ -29,26 +29,26 @@ export const PersonalUserData: FC<IPersonalUserDataProps> = ({ userData }) => {
 					<div className={styles.item}>
 						<p>ФИО</p>
 						<div>
-							{userData.lastName} {userData.name} {userData.patronymic}
+							{userData?.lastName} {userData?.name} {userData?.patronymic}
 						</div>
 					</div>
 					<div className={styles.item}>
 						<p>Дата рождения</p>
-						<div>{getCorrectDateView(userData.birthdayDate)}</div>
+						<div>{getCorrectDateView(userData?.birthdayDate)}</div>
 					</div>
 					<div className={styles.item}>
 						<p>Пол</p>
-						<div>{userData.gender === 'man' ? 'Мужской' : 'Женский'}</div>
+						<div>{userData?.gender === 'man' ? 'Мужской' : 'Женский'}</div>
 					</div>
 				</div>
 				<div className={styles.col}>
 					<div className={styles.item}>
 						<p>Телефон</p>
-						<div>+7 {getCorrectPhoneNumberView(userData.phone)}</div>
+						<div>+7 {getCorrectPhoneNumberView(userData?.phone)}</div>
 					</div>
 					<div className={styles.item}>
 						<p>Почта</p>
-						<div>{userData.email}</div>
+						<div>{userData?.email}</div>
 					</div>
 				</div>
 			</div>

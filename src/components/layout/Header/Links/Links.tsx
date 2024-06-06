@@ -11,14 +11,14 @@ import { ordersMock } from '@/mock/orders'
 export const Links: FC = () => {
 	const ordersItemsLength = ordersMock.length
 	const cartItems = useTypedSelector((state) => state.cart.cartItems)
-	const isAuth = useTypedSelector((state) => state.user.isAuth)
+	const isLoggedIn = useTypedSelector((state) => state.user.isLoggedIn)
 
 	return (
 		<div className={styles.linkBox}>
-			<UserInfoLink isAuth={isAuth} />
-			<OrdersLink isAuth={isAuth} countItems={ordersItemsLength} />
+			<UserInfoLink isAuth={isLoggedIn} />
+			<OrdersLink isAuth={isLoggedIn} countItems={ordersItemsLength} />
 			<Link className={styles.link} href={PATHS.MY_FAVORITES}>
-				{isAuth && <span className={styles.control}>3</span>}
+				{isLoggedIn && <span className={styles.control}>3</span>}
 				<svg width={24} height={24}>
 					<path
 						fill='currentColor'
@@ -28,7 +28,7 @@ export const Links: FC = () => {
 				<span>{'Избранное'}</span>
 			</Link>
 			<Link className={styles.link} href={PATHS.CART}>
-				{isAuth && <span className={styles.control}>{getProductsCartTotal(cartItems, true)}</span>}
+				{isLoggedIn && <span className={styles.control}>{getProductsCartTotal(cartItems, true)}</span>}
 				<svg width={24} height={24}>
 					<path
 						fill='currentColor'

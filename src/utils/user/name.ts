@@ -1,5 +1,5 @@
-export const getFirstCapitalLetter = (name: string) => {
-	return name[0].toUpperCase()
+export const getFirstCapitalLetter = (name?: string) => {
+	return name ? name[0].toUpperCase() : 'U'
 }
 
 export const getNameWithInitials = (name: string, lastName: string) => {
