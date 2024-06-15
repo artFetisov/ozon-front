@@ -12,9 +12,15 @@ import banner2 from '@/../public/336_398_x2_ml_do_08.06.webp'
 import banner3 from '@/../public/336_398_x2_skidki_nedeli_do_08.06.webp'
 
 export const Home: FC = () => {
-	const { setCategories, setSubCategories, setSubSubCategories } = useActions()
+	const { setCategories, setSubCategories, setSubSubCategories, authMe } = useActions()
 
 	useEffect(() => {
+		const fetchData = async () => {
+			await authMe()
+		}
+
+		fetchData()
+
 		setCategories(categoriesMock)
 		setSubCategories(subCategoriesMock)
 		setSubSubCategories(subSubCategoriesMock)

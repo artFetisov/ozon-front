@@ -1,6 +1,6 @@
 import { IUser } from '@/types/user/user.types'
 import { createSlice } from '@reduxjs/toolkit'
-import { checkCodeByEmail, loginByEmail } from './user.actions'
+import { authMe, checkCodeByEmail, loginByEmail } from './user.actions'
 
 interface IUserState {
 	userData: IUser | null
@@ -58,6 +58,17 @@ const userSlice = createSlice({
 					state.asyncError = action.error.message as string
 				}
 
+				state.isLoading = false
+			})
+			.addCase(authMe.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(authMe.fulfilled, (state, { payload }) => {
+				state.isLoading = false
+				state.userData = payload.user
+				state.isLoggedIn = true
+			})
+			.addCase(authMe.rejected, (state) => {
 				state.isLoading = false
 			})
 	},

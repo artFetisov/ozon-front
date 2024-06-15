@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 
-export const useCounter = (initialValue = 20) => {
+export const useCounter = (initialValue = 20, cb: () => void) => {
 	const [counter, setCounter] = useState(initialValue)
 	const [counterNumber, setCounterNumber] = useState(1)
 
@@ -23,7 +23,8 @@ export const useCounter = (initialValue = 20) => {
 		}
 	}, [counterNumber])
 
-	const handleGetNewCode = () => {
+	const handleGetNewCode = async () => {
+		await cb()
 		setCounterNumber((num) => num + 1)
 		setCounter(59)
 	}

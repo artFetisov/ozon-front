@@ -6,16 +6,17 @@ import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import { useModal } from '@/hooks/useModal'
 import { LayoutModal } from '@/components/ui-kit/modals/LayoutModal'
-import { useTypedSelector } from '@/hooks/useTypedSelector'
 import styles from '../Links.module.scss'
 import { LoginModal } from '@/components/ui-kit/modals/login-modal/LoginModal'
 import { usePopup } from '@/hooks/usePopup'
+import { IUser } from '@/types/user/user.types'
 
 interface IUserInfoLinkProps {
-	isAuth: boolean
+	isLoggedIn: boolean
+	userData: IUser
 }
 
-export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
+export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isLoggedIn, userData }) => {
 	const { isOpenModal, openModal, closeModal } = useModal()
 	const {
 		handleMouseLeavePopup,
@@ -28,8 +29,6 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
 		coordinates,
 	} = usePopup<HTMLDivElement>()
 
-	const userName = useTypedSelector((state) => state.user.userData?.name)
-
 	const router = useRouter()
 
 	const handleShowModal = () => {
@@ -37,7 +36,7 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
 	}
 
 	const handleLinkClick = () => {
-		isAuth ? handleNavigateToMain() : handleShowModal()
+		isLoggedIn ? handleNavigateToMain() : handleShowModal()
 	}
 
 	const handleNavigateToMain = () => {
@@ -88,7 +87,7 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isAuth }) => {
 						d='M11 2a1 1 0 0 1 1-1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12a11 11 0 0 1 6.23-9.914 1 1 0 0 1 1.36.524c.292.72.69 1.565 1.362 2.233C10.592 5.481 11.524 6 13 6a1 1 0 1 1 0 2c-2.024 0-3.458-.743-4.459-1.74-.6-.596-1.027-1.267-1.34-1.875A9 9 0 1 0 12 3a1 1 0 0 1-1.001-1Z'
 					></path>
 				</svg>
-				<span>{!isAuth ? 'Войти' : userName}</span>
+				<span>{isLoggedIn && userData ? userData?.name : 'Войти'}</span>
 			</div>
 		</>
 	)

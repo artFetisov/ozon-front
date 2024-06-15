@@ -17,6 +17,16 @@ export const loginByEmail = createAsyncThunk<ILoginByEmailResponse, { email: str
 	}
 )
 
+export const authMe = createAsyncThunk<IAuthResponse>('auth/me', async (_, thunkApi) => {
+	try {
+		const response = await AuthService.authMe()
+
+		return response.data
+	} catch (error) {
+		return thunkApi.rejectWithValue(error)
+	}
+})
+
 export const checkCodeByEmail = createAsyncThunk<
 	IAuthResponse,
 	{ code: string },

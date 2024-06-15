@@ -22,13 +22,18 @@ const schema = yup.object().shape({
 })
 
 export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onToggle, close }) => {
-	const { counter, handleGetNewCode } = useCounter()
-
 	const isLoading = useTypedSelector((state) => state.user.isLoading)
 	const asyncError = useTypedSelector((state) => state.user.asyncError)
 	const isNewUser = useTypedSelector((state) => state.user.isNewUser)
+	const tempEmail = useTypedSelector((state) => state.user.tempEmail)
 
-	const { checkCodeByEmail, clearAsyncError } = useActions()
+	const { checkCodeByEmail, clearAsyncError, loginByEmail } = useActions()
+
+	const handleGetNewCodeCb = async () => {
+		await loginByEmail({ email: tempEmail as string })
+	}
+
+	const { counter, handleGetNewCode } = useCounter(undefined, handleGetNewCodeCb)
 
 	const { handleSubmit, control, watch, reset } = useForm<{ code: string }>({
 		mode: 'onSubmit',
@@ -51,7 +56,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 	})
 
 	const onSubmit: SubmitHandler<{ code: string }> = async ({ code }) => {
-		const response = await checkCodeByEmail({ code })
+		await checkCodeByEmail({ code })
 
 		reset()
 		// close()

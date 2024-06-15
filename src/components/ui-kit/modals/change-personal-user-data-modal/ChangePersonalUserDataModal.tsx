@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styles from './ChangePersonalUserDataModal.module.scss'
 import { CloseButton } from '../../close-button/CloseButton'
 import { Button } from '../../button/Button'
-import { IUser, IUserEditNameAndGenderForm } from '@/types/user/user.types'
+import { IUser, IUserEditPersonalDataForm } from '@/types/user/user.types'
 import { IRadioGroupItem, RadioGroup } from '../../radio-group/RadioGroup'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { Input } from '../../input/Input'
@@ -19,7 +19,7 @@ const options: IRadioGroupItem[] = [
 ]
 
 export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> = ({ close, userData }) => {
-	const { setValue, handleSubmit, control } = useForm<IUserEditNameAndGenderForm>({
+	const { setValue, handleSubmit, control } = useForm<IUserEditPersonalDataForm>({
 		mode: 'onSubmit',
 		defaultValues: {
 			name: userData?.name || '',
@@ -30,11 +30,11 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 		},
 	})
 
-	const onSubmit: SubmitHandler<IUserEditNameAndGenderForm> = async (data) => {
+	const onSubmit: SubmitHandler<IUserEditPersonalDataForm> = async (data) => {
 		alert(JSON.stringify(data))
 	}
 
-	const handleClearInput = (name: keyof IUserEditNameAndGenderForm) => {
+	const handleClearInput = (name: keyof IUserEditPersonalDataForm) => {
 		setValue(name, '')
 	}
 
@@ -49,7 +49,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 							name='name'
 							control={control}
 							render={({ field: { value, onChange }, fieldState: { error } }) => (
-								<Input<keyof IUserEditNameAndGenderForm>
+								<Input<keyof IUserEditPersonalDataForm>
 									removeName='name'
 									onClear={handleClearInput}
 									value={value}
@@ -66,7 +66,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 							name='patronymic'
 							control={control}
 							render={({ field: { value, onChange }, fieldState: { error } }) => (
-								<Input<keyof IUserEditNameAndGenderForm>
+								<Input<keyof IUserEditPersonalDataForm>
 									value={value}
 									removeName='patronymic'
 									onChange={onChange}
@@ -83,7 +83,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 							name='lastName'
 							control={control}
 							render={({ field: { value, onBlur, onChange }, fieldState: { error } }) => (
-								<Input<keyof IUserEditNameAndGenderForm>
+								<Input<keyof IUserEditPersonalDataForm>
 									value={value}
 									onChange={onChange}
 									onClear={handleClearInput}
