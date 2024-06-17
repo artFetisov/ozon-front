@@ -36,7 +36,7 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isLoggedIn, userData }) =
 	}
 
 	const handleLinkClick = () => {
-		isLoggedIn ? handleNavigateToMain() : handleShowModal()
+		isLoggedIn && userData ? handleNavigateToMain() : handleShowModal()
 	}
 
 	const handleNavigateToMain = () => {
@@ -61,12 +61,28 @@ export const UserInfoLink: FC<IUserInfoLinkProps> = ({ isLoggedIn, userData }) =
 						onMouseEnter={handleMouseEnterPopup}
 						onMouseLeave={handleMouseLeavePopup}
 					>
-						<div>
-							Войдите, чтобы делать покупки, отслеживать заказы и пользоваться персональными скидками и баллами.
-						</div>
-						<Button variant='small' color='blue' style={{ marginTop: '16px' }} isFullWidth onClick={handleShowModal}>
-							Войти или зарегестрироваться
-						</Button>
+						{!isLoggedIn && !userData ? (
+							<>
+								<div>
+									Войдите, чтобы делать покупки, отслеживать заказы и пользоваться персональными скидками и баллами.
+								</div>
+								<Button
+									variant='small'
+									color='blue'
+									style={{ marginTop: '16px' }}
+									isFullWidth
+									onClick={handleShowModal}
+								>
+									Войти или зарегестрироваться
+								</Button>
+							</>
+						) : (
+							<>
+								<Button variant='small' color='lightBlue' isFullWidth onClick={handleNavigateToMain}>
+									Личный кабинет
+								</Button>
+							</>
+						)}
 					</Popup>,
 					document.body
 				)}
