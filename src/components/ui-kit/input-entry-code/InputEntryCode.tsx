@@ -16,7 +16,7 @@ type InputEntryCodePropsType = SelectedMyInputPropsType & {
 	onChange: () => void
 	max?: number
 	isLoading?: boolean
-	asyncError: string
+	asyncError?: string
 }
 
 export const InputEntryCode = ({

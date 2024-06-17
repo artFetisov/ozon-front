@@ -6,7 +6,7 @@ export const currentAuthUser: IUser = {
 	lastName: 'Fetisov',
 	email: 'fetishfestoff@mail.ru',
 	patronymic: 'Dmitrievich',
-	gender: 'man',
+	gender: 'other',
 	birthdayDate: new Date(),
 	id: 12,
 	likedItems: productsMock.map((p) => p.id).slice(5, 10),

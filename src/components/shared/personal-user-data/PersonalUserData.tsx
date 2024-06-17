@@ -38,7 +38,7 @@ export const PersonalUserData: FC<IPersonalUserDataProps> = ({ userData }) => {
 					</div>
 					<div className={styles.item}>
 						<p>Пол</p>
-						<div>{userData?.gender === 'man' ? 'Мужской' : 'Женский'}</div>
+						<div>{userData?.gender === 'male' ? 'Мужской' : 'Женский'}</div>
 					</div>
 				</div>
 				<div className={styles.col}>

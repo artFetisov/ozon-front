@@ -12,7 +12,7 @@ export interface IUser {
 	avatar: string
 }
 
-export type TypeUserGender = 'male' | 'female'
+export type TypeUserGender = 'male' | 'female' | 'other'
 
 export interface IUserEditPersonalDataForm
 	extends Pick<IUser, 'id' | 'name' | 'lastName' | 'patronymic' | 'gender' | 'birthdayDate'> {}
