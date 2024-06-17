@@ -4,13 +4,13 @@ import cn from 'classnames'
 import { IRadioGroupItem } from '../radio-group/RadioGroup'
 import { TypeUserGender } from '@/types/user/user.types'
 
-interface IRadioGroup {
+interface IRadioProps {
 	item: IRadioGroupItem
 	selectedItem: TypeUserGender
 	onChange: (value: TypeUserGender) => void
 }
 
-export const Radio: FC<IRadioGroup> = ({ item, selectedItem, onChange }) => {
+export const Radio: FC<IRadioProps> = ({ item, selectedItem, onChange }) => {
 	const [hovered, setHovered] = useState(false)
 
 	const handleMouseLeave = () => {
