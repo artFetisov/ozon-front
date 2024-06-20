@@ -1,14 +1,13 @@
 export const getCorrectDateView = (date?: Date) => {
 	date = date ? new Date(date) : new Date()
 
-	return (
-		date?.getDate() +
-		' ' +
-		date?.toLocaleString('default', { month: 'long' }) +
-		`${getLastLetterMonthName(date.getMonth())}` +
-		' ' +
-		date?.getFullYear()
-	)
+	const dayNumber = date?.getDate()
+	const monthName = date?.toLocaleString('default', { month: 'long' })
+	const yearNumber = date.getFullYear()
+
+	return `${dayNumber} ${monthName.slice(0, monthName.length - 1)}${getLastLetterMonthName(
+		date.getMonth()
+	)} ${yearNumber}`
 }
 
 export const getDateViewWithDots = (date: Date): string => {

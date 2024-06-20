@@ -5,7 +5,7 @@ import styles from './Main.module.scss'
 import { AvatarRound } from '@/components/ui-kit/user-data-round/AvatarRound'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { PersonalUserData } from '@/components/shared/personal-user-data/PersonalUserData'
-import { IUser } from '@/types/user/user.types'
+import { getWordWithFirstCapitalLetter } from '@/utils/user/name'
 
 export const Main: FC = () => {
 	const userData = useTypedSelector((state) => state.user.userData)
@@ -16,8 +16,8 @@ export const Main: FC = () => {
 				<div className={styles.leftSideBox}>
 					<div className={styles.avatarBox}>
 						<AvatarRound name={userData?.name} size='large' lastName={userData?.lastName} />
-						<span className={`${styles.text} ${styles.m}`}>{userData?.name}</span>
-						<span className={styles.text}>{userData?.lastName}</span>
+						<span className={`${styles.text} ${styles.m}`}>{getWordWithFirstCapitalLetter(userData?.name)}</span>
+						<span className={styles.text}>{getWordWithFirstCapitalLetter(userData?.lastName)}</span>
 					</div>
 				</div>
 				<div className={styles.userInfoBox}>

@@ -16,6 +16,7 @@ import { getCorrectPhoneNumberView } from '@/utils/phone/phone'
 import { ChangePhoneModal } from '@/components/ui-kit/modals/change-phone-modal/ChangePhoneModal'
 import { MyText } from '@/components/ui-kit/text/MyText'
 import { ChangeEmailModal } from '@/components/ui-kit/modals/change-email-modal/ChangeEmailModal'
+import { getWordWithFirstCapitalLetter } from '@/utils/user/name'
 
 export const Settings: FC = () => {
 	const authUser = useTypedSelector((state) => state.user.userData)
@@ -95,17 +96,25 @@ export const Settings: FC = () => {
 							</div>
 							<div>
 								<div className={styles.userName}>
-									{authUser?.lastName} {authUser?.name} {authUser?.patronymic}
+									{authUser?.lastName && getWordWithFirstCapitalLetter(authUser?.lastName)}{' '}
+									{authUser?.name && getWordWithFirstCapitalLetter(authUser?.name)}{' '}
+									{authUser?.patronymic && getWordWithFirstCapitalLetter(authUser?.patronymic)}
 								</div>
 								<div className={styles.dateAndGender}>
-									<div className={styles.data}>
-										<span>Дата рождения</span>
-										<div>{getCorrectDateView(authUser?.birthdayDate as Date)}</div>
-									</div>
-									<div className={styles.data}>
-										<span>Пол</span>
-										<div>{authUser?.gender === 'male' ? 'Мужской' : 'Женский'}</div>
-									</div>
+									{authUser?.birthdayDate && (
+										<div className={styles.data}>
+											<span>Дата рождения</span>
+											<div>{getCorrectDateView(authUser?.birthdayDate as Date)}</div>
+										</div>
+									)}
+									{(authUser?.gender === 'male' || authUser?.gender === 'female') && (
+										<div className={styles.data}>
+											<span>Пол</span>
+											<div>
+												{authUser?.gender === 'male' ? 'Мужской' : authUser?.gender === 'female' ? 'Женский' : ''}
+											</div>
+										</div>
+									)}
 								</div>
 								<MyText callback={openModal} color='blue' size='middle'>
 									Изменить

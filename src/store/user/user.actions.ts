@@ -1,8 +1,9 @@
 import { AuthService } from '@/services/auth/auth.service'
-import { IAuthResponse, ILoginByEmailResponse } from '@/types/user/user.types'
+import { IAuthResponse, ILoginByEmailResponse, IUser, IUserEditPersonalDataForm } from '@/types/user/user.types'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AppRootState } from '..'
 import { AxiosError } from 'axios'
+import { UserService } from '@/services/user/user.service'
 
 export const loginByEmail = createAsyncThunk<ILoginByEmailResponse, { email: string }>(
 	'auth/login-by-email',
@@ -46,3 +47,16 @@ export const checkCodeByEmail = createAsyncThunk<
 		return thunkApi.rejectWithValue(error.response.data)
 	}
 })
+
+export const updatePersonalUserData = createAsyncThunk<IUser, IUserEditPersonalDataForm>(
+	'user/update-personal-data',
+	async (data, thunkApi) => {
+		try {
+			const response = await UserService.updatePersonalUserData(data)
+
+			return response.data
+		} catch (error) {
+			return thunkApi.rejectWithValue(error)
+		}
+	}
+)

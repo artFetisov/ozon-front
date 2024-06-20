@@ -4,6 +4,9 @@ import { IUser, IUserEditPersonalDataForm } from '@/types/user/user.types'
 
 export const UserService = {
 	async updatePersonalUserData(data: IUserEditPersonalDataForm) {
-		return await instanceAuth.put<IUser>(getUserUrl('update-personal-data'))
+		return instanceAuth.put<IUser>(getUserUrl('update-personal-data'), { ...data })
+	},
+	async updatePhoneNumber(phone: string) {
+		return instanceAuth.put<IUser>(getUserUrl('update-phone'), { phone })
 	},
 }

@@ -7,6 +7,8 @@ import { IRadioGroupItem, RadioGroup } from '../../radio-group/RadioGroup'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { Input } from '../../input/Input'
 import { DatePicker } from '../../date-picker/DatePicker'
+import { useActions } from '@/hooks/useActions'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 interface IChangePersonalUserDataModalProps {
 	close: () => void
@@ -19,6 +21,10 @@ const options: IRadioGroupItem[] = [
 ]
 
 export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> = ({ close, userData }) => {
+	const isLoading = useTypedSelector((state) => state.user.isLoading)
+
+	const { updatePersonalUserData } = useActions()
+
 	const { setValue, handleSubmit, control } = useForm<IUserEditPersonalDataForm>({
 		mode: 'onSubmit',
 		defaultValues: {
@@ -30,8 +36,14 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 		},
 	})
 
-	const onSubmit: SubmitHandler<IUserEditPersonalDataForm> = async (data) => {
-		alert(JSON.stringify(data))
+	const onSubmit: SubmitHandler<IUserEditPersonalDataForm> = (data) => {
+		const finalData: IUserEditPersonalDataForm = { ...data, birthdayDate: new Date() }
+
+		updatePersonalUserData(finalData)
+			.unwrap()
+			.then(() => {
+				close()
+			})
 	}
 
 	const handleClearInput = (name: keyof IUserEditPersonalDataForm) => {
@@ -115,10 +127,16 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 					</div>
 				</div>
 				<div className={styles.btnsBox}>
-					<Button color='lightBlue' variant='middle' style={{ marginRight: '8px' }} onClick={close}>
+					<Button
+						color='lightBlue'
+						variant='middle'
+						style={{ marginRight: '8px' }}
+						onClick={close}
+						disabledP={isLoading}
+					>
 						Отмена
 					</Button>
-					<Button color='blue' variant='middle' type='submit'>
+					<Button color='blue' variant='middle' type='submit' isLoading={isLoading}>
 						Сохранить
 					</Button>
 				</div>

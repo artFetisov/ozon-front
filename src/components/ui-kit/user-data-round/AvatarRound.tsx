@@ -23,7 +23,7 @@ export const AvatarRound: FC<IAvatarRoundProps> = ({ name, lastName, size = 'sma
 				[styles.large]: size === 'large',
 			})}
 		>
-			<span>{getFirstCapitalLetter(name && name)}</span>
+			<span>{getFirstCapitalLetter(name)}</span>
 			{lastName && <span>{getFirstCapitalLetter(lastName)}</span>}
 			{size === 'large' && (
 				<div className={styles.backdrop} onClick={handleClickFileInput}>

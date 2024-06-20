@@ -26,30 +26,41 @@ export const PersonalUserData: FC<IPersonalUserDataProps> = ({ userData }) => {
 			<h2 className={styles.title}>Учетные данные</h2>
 			<div className={styles.info}>
 				<div className={styles.col}>
-					<div className={styles.item}>
-						<p>ФИО</p>
-						<div>
-							{userData?.lastName} {userData?.name} {userData?.patronymic}
+					{(userData?.name || userData?.lastName || userData?.patronymic) && (
+						<div className={styles.item}>
+							<p>ФИО</p>
+							<div>
+								{userData?.lastName && userData.lastName} {userData?.name && userData.name}{' '}
+								{userData?.patronymic && userData.patronymic}
+							</div>
 						</div>
-					</div>
-					<div className={styles.item}>
-						<p>Дата рождения</p>
-						<div>{getCorrectDateView(userData?.birthdayDate)}</div>
-					</div>
-					<div className={styles.item}>
-						<p>Пол</p>
-						<div>{userData?.gender === 'male' ? 'Мужской' : 'Женский'}</div>
-					</div>
+					)}
+					{userData?.birthdayDate && (
+						<div className={styles.item}>
+							<p>Дата рождения</p>
+							<div>{getCorrectDateView(userData?.birthdayDate)}</div>
+						</div>
+					)}
+					{(userData?.gender === 'male' || userData?.gender === 'female') && (
+						<div className={styles.item}>
+							<p>Пол</p>
+							<div>{userData?.gender === 'male' ? 'Мужской' : 'Женский'}</div>
+						</div>
+					)}
 				</div>
 				<div className={styles.col}>
-					<div className={styles.item}>
-						<p>Телефон</p>
-						<div>+7 {getCorrectPhoneNumberView(userData?.phone)}</div>
-					</div>
-					<div className={styles.item}>
-						<p>Почта</p>
-						<div>{userData?.email}</div>
-					</div>
+					{userData?.phone && (
+						<div className={styles.item}>
+							<p>Телефон</p>
+							<div>+7 {getCorrectPhoneNumberView(userData?.phone)}</div>
+						</div>
+					)}
+					{userData?.email && (
+						<div className={styles.item}>
+							<p>Почта</p>
+							<div>{userData?.email}</div>
+						</div>
+					)}
 				</div>
 			</div>
 			<Link href={PATHS.MY_SETTINGS} className={styles.link}>
