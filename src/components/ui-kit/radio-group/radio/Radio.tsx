@@ -1,7 +1,7 @@
 import { FC, useState } from 'react'
 import styles from './Radio.module.scss'
 import cn from 'classnames'
-import { IRadioGroupItem } from '../radio-group/RadioGroup'
+import { IRadioGroupItem } from '../RadioGroup'
 import { TypeUserGender } from '@/types/user/user.types'
 
 interface IRadioProps {

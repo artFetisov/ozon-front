@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styles from './RadioGroup.module.scss'
 import { TypeUserGender } from '@/types/user/user.types'
-import { Radio } from '../radio/Radio'
+import { Radio } from './radio/Radio'
 
 export interface IRadioGroupItem {
 	title: string
