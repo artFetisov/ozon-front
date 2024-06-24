@@ -1,18 +1,21 @@
 'use client'
 
-import { FC, ReactNode, useState } from 'react'
 import styles from './NoticeBanner.module.scss'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+import cn from 'classnames'
 
-interface INoticeBannerProps {
-	Content?: ReactNode
-}
+export const NoticeBanner = () => {
+	const BannerContent = useTypedSelector((state) => state.app.BannerContent)
+	const isShowBanner = useTypedSelector((state) => state.app.isShowBanner)
 
-export const NoticeBanner: FC<INoticeBannerProps> = ({ Content }) => {
-	const [isShowBanner, setIsShowBanner] = useState(true)
-
-	const handleSetIsShowBanner = (bool: boolean) => {
-		setIsShowBanner(bool)
-	}
-
-	return <div className={styles.noticeBanner}>{Content && Content}</div>
+	return (
+		<div
+			className={cn(styles.noticeBanner, {
+				[styles.show]: isShowBanner,
+				[styles.hide]: !isShowBanner,
+			})}
+		>
+			{BannerContent && BannerContent}
+		</div>
+	)
 }

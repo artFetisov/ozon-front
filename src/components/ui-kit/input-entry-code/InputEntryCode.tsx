@@ -16,18 +16,9 @@ type InputEntryCodePropsType = SelectedMyInputPropsType & {
 	onChange: () => void
 	max?: number
 	isLoading?: boolean
-	asyncError?: string
 }
 
-export const InputEntryCode = ({
-	value,
-	onChange,
-	error,
-	isLoading,
-	asyncError,
-	max = 6,
-	...props
-}: InputEntryCodePropsType) => {
+export const InputEntryCode = ({ value, onChange, error, isLoading, max = 6, ...props }: InputEntryCodePropsType) => {
 	const { isFocused, onBlur, onFocus } = useFocus()
 
 	const handleKeyDownFieldValue = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -39,7 +30,7 @@ export const InputEntryCode = ({
 			<label
 				className={cn(styles.inputBox, {
 					[styles.focusedBorder]: isFocused,
-					[styles.erroredBorder]: !!error?.message?.length || (asyncError && !value.length),
+					[styles.erroredBorder]: !!error?.message?.length,
 				})}
 			>
 				<input
@@ -59,7 +50,6 @@ export const InputEntryCode = ({
 				)}
 			</label>
 			{error?.message && <div className={styles.error}>{error?.message}</div>}
-			{asyncError && !value.length && <div className={styles.error}>{asyncError}</div>}
 		</>
 	)
 }

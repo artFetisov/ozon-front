@@ -23,17 +23,23 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 
 	const { loginByEmail } = useActions()
 
-	const { handleSubmit, control, setValue, reset, formState } = useForm<Pick<IUser, 'email'>>({
+	const { handleSubmit, control, setValue, reset, setError } = useForm<Pick<IUser, 'email'>>({
 		mode: 'onSubmit',
 		defaultValues: { email: '' },
 		resolver: yupResolver(schema),
 	})
 
-	const onSubmit: SubmitHandler<Pick<IUser, 'email'>> = async ({ email }) => {
-		await loginByEmail({ email })
-		close()
-		reset()
-		onToggle('enterPasswordByEmail')
+	const onSubmit: SubmitHandler<Pick<IUser, 'email'>> = ({ email }) => {
+		loginByEmail({ email })
+			.unwrap()
+			.then(() => {
+				close()
+				reset()
+				onToggle('enterPasswordByEmail')
+			})
+			.catch((error) => {
+				setError('email', { message: error.message })
+			})
 	}
 
 	const handleClearInput = (name: keyof { email: string }) => {

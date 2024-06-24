@@ -1,6 +1,6 @@
 'use client'
 
-import { FC, useEffect } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import { Selection } from '@/components/ui-kit/selection/Selection'
 import { productsMock } from '@/mock/products'
 import styles from './Home.module.scss'
@@ -10,9 +10,14 @@ import Image from 'next/image'
 import banner1 from '@/../public/2832_200_main_static_desk_11zon_17.webp'
 import banner2 from '@/../public/336_398_x2_ml_do_08.06.webp'
 import banner3 from '@/../public/336_398_x2_skidki_nedeli_do_08.06.webp'
+import { CookieBanner } from '@/components/ui-kit/notice-banner/cookie-banner/CookieBanner'
+import { NetworkErrorBanner } from '@/components/ui-kit/notice-banner/network-error-banner/NetworkErrorBanner'
 
 export const Home: FC = () => {
-	const { setCategories, setSubCategories, setSubSubCategories, authMe } = useActions()
+	const { setCategories, setSubCategories, setSubSubCategories, authMe, setIsShowBanner, setBannerContent } =
+		useActions()
+
+	const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -24,7 +29,16 @@ export const Home: FC = () => {
 		setCategories(categoriesMock)
 		setSubCategories(subCategoriesMock)
 		setSubSubCategories(subSubCategoriesMock)
-	})
+	}, [])
+
+	useEffect(() => {
+		timerRef.current = setTimeout(() => {
+			setBannerContent(<NetworkErrorBanner />)
+			setIsShowBanner(true)
+		}, 3000)
+
+		return () => clearTimeout(timerRef.current)
+	}, [])
 
 	return (
 		<div className={styles.home}>

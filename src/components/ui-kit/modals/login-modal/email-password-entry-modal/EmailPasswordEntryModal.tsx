@@ -23,11 +23,10 @@ const schema = yup.object().shape({
 
 export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onToggle, close }) => {
 	const isLoading = useTypedSelector((state) => state.user.isLoading)
-	const asyncError = useTypedSelector((state) => state.user.asyncError)
 	const isNewUser = useTypedSelector((state) => state.user.isNewUser)
 	const tempEmail = useTypedSelector((state) => state.user.tempEmail)
 
-	const { checkCodeByEmail, clearAsyncError, loginByEmail } = useActions()
+	const { checkCodeByEmail, loginByEmail } = useActions()
 
 	const handleGetNewCodeCb = async () => {
 		await loginByEmail({ email: tempEmail as string })
@@ -35,7 +34,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 
 	const { counter, handleGetNewCode } = useCounter(undefined, handleGetNewCodeCb)
 
-	const { handleSubmit, control, watch, reset } = useForm<{ code: string }>({
+	const { handleSubmit, control, watch, reset, setError } = useForm<{ code: string }>({
 		mode: 'onSubmit',
 		defaultValues: { code: '' },
 		resolver: yupResolver(schema),
@@ -55,17 +54,30 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 		defaultValues: { code: '', agreement1: false, agreement2: true },
 	})
 
-	const onSubmit: SubmitHandler<{ code: string }> = async ({ code }) => {
-		await checkCodeByEmail({ code })
+	const onSubmit: SubmitHandler<{ code: string }> = ({ code }) => {
+		checkCodeByEmail({ code })
+			.unwrap()
+			.then(() => {
+				resetField('code')
+				close()
+			})
+			.catch((error) => {
+				setError('code', { message: error.message })
+			})
 
 		reset()
-		// close()
 	}
 
-	const onSubmitBigForm: SubmitHandler<{ code: string }> = async (data) => {
-		await checkCodeByEmail({ code: data.code })
-		resetField('code')
-		// close()
+	const onSubmitBigForm: SubmitHandler<{ code: string }> = ({ code }) => {
+		checkCodeByEmail({ code })
+			.unwrap()
+			.then(() => {
+				resetField('code')
+				close()
+			})
+			.catch((error) => {
+				setError('code', { message: error.message })
+			})
 	}
 
 	useEffect(() => {
@@ -94,14 +106,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 								name='code'
 								control={control}
 								render={({ field: { value, onChange }, fieldState: { error } }) => (
-									<InputEntryCode
-										type='tel'
-										value={value}
-										onChange={onChange}
-										error={error}
-										isLoading={isLoading}
-										asyncError={asyncError}
-									/>
+									<InputEntryCode type='tel' value={value} onChange={onChange} error={error} isLoading={isLoading} />
 								)}
 							/>
 						</form>
@@ -126,7 +131,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 							name='code'
 							control={controlBigForm}
 							render={({ field: { value, onChange }, fieldState: { error } }) => (
-								<InputEntryCode type='tel' value={value} onChange={onChange} error={error} asyncError={asyncError} />
+								<InputEntryCode type='tel' value={value} onChange={onChange} error={error} />
 							)}
 						/>
 						{counter > 0 && (

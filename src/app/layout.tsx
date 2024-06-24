@@ -1,7 +1,7 @@
 import '../assets/styles/globals.scss'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
-import React, { useEffect } from 'react'
+import React from 'react'
 import StoreProvider from '@/store/StoreProvider'
 import { NoticeBanner } from '@/components/ui-kit/notice-banner/NoticeBanner'
 import { CookieBanner } from '@/components/ui-kit/notice-banner/cookie-banner/CookieBanner'
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body>
 				<StoreProvider>
 					<div className='root'>{children}</div>
-					{/* <NoticeBanner></NoticeBanner> */}
+					<NoticeBanner></NoticeBanner>
 				</StoreProvider>
 			</body>
 		</html>
