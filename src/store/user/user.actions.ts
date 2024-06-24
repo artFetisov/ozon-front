@@ -54,6 +54,35 @@ export const updatePersonalUserData = createAsyncThunk<IUser, IUserEditPersonalD
 		try {
 			const response = await UserService.updatePersonalUserData(data)
 
+			debugger
+
+			return response.data
+		} catch (error) {
+			debugger
+			return thunkApi.rejectWithValue(error)
+		}
+	}
+)
+
+export const updatePhoneNumber = createAsyncThunk<IUser, { phone: string }>(
+	'user/update-phone-number',
+	async ({ phone }, thunkApi) => {
+		try {
+			const response = await UserService.updatePhoneNumber(phone)
+
+			return response.data
+		} catch (error) {
+			return thunkApi.rejectWithValue(error)
+		}
+	}
+)
+
+export const updateEmail = createAsyncThunk<IUser, { email: string }>(
+	'user/update-email',
+	async ({ email }, thunkApi) => {
+		try {
+			const response = await UserService.updateEmail(email)
+
 			return response.data
 		} catch (error) {
 			return thunkApi.rejectWithValue(error)

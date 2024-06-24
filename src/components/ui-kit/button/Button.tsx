@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC, MouseEvent, ReactNode } from 'react'
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC, MouseEvent } from 'react'
 import styles from './Button.module.scss'
 import cn from 'classnames'
 import { Loader } from '../loaders/button-loader/ButtonLoader'

@@ -44,6 +44,10 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 			.then(() => {
 				close()
 			})
+			.catch((error) => {
+				debugger
+				// hookForm setFieldError()
+			})
 	}
 
 	const handleClearInput = (name: keyof IUserEditPersonalDataForm) => {
