@@ -1,9 +1,8 @@
-import { FC } from 'react'
 import styles from './CookieBanner.module.scss'
 import { Button } from '../../button/Button'
 import { useActions } from '@/hooks/useActions'
 
-export const CookieBanner: FC = () => {
+export const CookieBanner = () => {
 	const { setIsShowBanner } = useActions()
 
 	return (

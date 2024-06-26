@@ -4,7 +4,6 @@ import { Roboto } from 'next/font/google'
 import React from 'react'
 import StoreProvider from '@/store/StoreProvider'
 import { NoticeBanner } from '@/components/ui-kit/notice-banner/NoticeBanner'
-import { CookieBanner } from '@/components/ui-kit/notice-banner/cookie-banner/CookieBanner'
 
 const inter = Roboto({ subsets: ['latin'], weight: ['300', '400', '500', '700'] })
 

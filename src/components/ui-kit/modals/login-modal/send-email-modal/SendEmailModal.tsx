@@ -9,6 +9,8 @@ import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { checkIsNetworkError } from '@/utils/error/thunk.error'
+import { AxiosError } from 'axios'
 
 interface ISendEmailModalProps {
 	onToggle: (type: TypeCurrentModal) => void
@@ -37,8 +39,8 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 				reset()
 				onToggle('enterPasswordByEmail')
 			})
-			.catch((error) => {
-				setError('email', { message: error.message })
+			.catch((error: Error | AxiosError) => {
+				!checkIsNetworkError(error) && setError('email', { message: error.message })
 			})
 	}
 

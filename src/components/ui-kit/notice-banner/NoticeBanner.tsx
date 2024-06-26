@@ -15,7 +15,7 @@ export const NoticeBanner = () => {
 				[styles.hide]: !isShowBanner,
 			})}
 		>
-			{BannerContent && BannerContent}
+			{BannerContent && <BannerContent />}
 		</div>
 	)
 }

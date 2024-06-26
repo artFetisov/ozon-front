@@ -1,11 +1,11 @@
 import { AuthService } from '@/services/auth/auth.service'
 import { IAuthResponse, ILoginByEmailResponse, IUser, IUserEditPersonalDataForm } from '@/types/user/user.types'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AppRootState } from '..'
+import { AppDispatch, AppRootState } from '..'
 import { UserService } from '@/services/user/user.service'
 import { handleCatchThunkError } from '@/utils/error/thunk.error'
 
-export const loginByEmail = createAsyncThunk<ILoginByEmailResponse, { email: string }>(
+export const loginByEmail = createAsyncThunk<ILoginByEmailResponse, { email: string }, { dispatch: AppDispatch }>(
 	'auth/login-by-email',
 	async ({ email }, thunkApi) => {
 		try {
@@ -13,7 +13,7 @@ export const loginByEmail = createAsyncThunk<ILoginByEmailResponse, { email: str
 
 			return response.data
 		} catch (err) {
-			const error = handleCatchThunkError(err)
+			const error = handleCatchThunkError(err, thunkApi.dispatch)
 
 			return thunkApi.rejectWithValue(error?.response?.data)
 		}
@@ -30,21 +30,22 @@ export const authMe = createAsyncThunk<IAuthResponse>('auth/me', async (_, thunk
 	}
 })
 
-export const checkCodeByEmail = createAsyncThunk<IAuthResponse, { code: string }, { state: AppRootState }>(
-	'auth/check-code-by-email',
-	async ({ code }, thunkApi) => {
-		try {
-			const tempEmail = thunkApi.getState().user.tempEmail
-			const response = await AuthService.checkCodeByEmail({ code, email: tempEmail as string })
+export const checkCodeByEmail = createAsyncThunk<
+	IAuthResponse,
+	{ code: string },
+	{ state: AppRootState; dispatch: AppDispatch }
+>('auth/check-code-by-email', async ({ code }, thunkApi) => {
+	try {
+		const tempEmail = thunkApi.getState().user.tempEmail
+		const response = await AuthService.checkCodeByEmail({ code, email: tempEmail as string })
 
-			return response.data
-		} catch (err) {
-			const error = handleCatchThunkError(err)
+		return response.data
+	} catch (err) {
+		const error = handleCatchThunkError(err, thunkApi.dispatch)
 
-			return thunkApi.rejectWithValue(error?.response?.data)
-		}
+		return thunkApi.rejectWithValue(error?.response?.data)
 	}
-)
+})
 
 export const updatePersonalUserData = createAsyncThunk<IUser, IUserEditPersonalDataForm>(
 	'user/update-personal-data',

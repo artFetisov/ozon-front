@@ -33,7 +33,7 @@ export const Home: FC = () => {
 
 	useEffect(() => {
 		timerRef.current = setTimeout(() => {
-			setBannerContent(<NetworkErrorBanner />)
+			setBannerContent(NetworkErrorBanner)
 			setIsShowBanner(true)
 		}, 3000)
 

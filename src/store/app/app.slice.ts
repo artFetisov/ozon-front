@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ReactNode } from 'react'
+import { FC } from 'react'
 
 interface IAppState {
 	isShowCategoriesList: boolean
 	isInitialized: boolean
 	isShowBanner: boolean
-	BannerContent: ReactNode | null
+	BannerContent: null | (() => JSX.Element)
 }
 
 const initialState: IAppState = {
@@ -28,12 +28,14 @@ const appSlice = createSlice({
 		setIsShowBanner(state, action: PayloadAction<boolean>) {
 			state.isShowBanner = action.payload
 		},
-		setBannerContent(state, action: PayloadAction<ReactNode>) {
+		setBannerContent(state, action: PayloadAction<() => JSX.Element>) {
 			state.BannerContent = action.payload
 		},
 	},
 })
 
 export const { actions } = appSlice
+
+export const { setIsShowBanner, setBannerContent } = appSlice.actions
 
 export const { reducer } = appSlice
