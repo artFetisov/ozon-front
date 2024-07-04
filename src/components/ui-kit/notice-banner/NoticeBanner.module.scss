@@ -13,11 +13,11 @@
 }
 
 .show {
-	animation: banner-open 1s forwards;
+	animation: banner-open 0.5s forwards;
 }
 
 .hide {
-	animation: banner-close 1s forwards;
+	animation: banner-close 0.5s forwards;
 }
 
 @keyframes banner-open {

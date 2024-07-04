@@ -1,6 +1,13 @@
 import { IUser } from '@/types/user/user.types'
 import { createSlice } from '@reduxjs/toolkit'
-import { authMe, checkCodeByEmail, loginByEmail, updatePersonalUserData } from './user.actions'
+import {
+	authMe,
+	checkCodeByEmail,
+	loginByEmail,
+	loginByPhone,
+	updateAvatar,
+	updatePersonalUserData,
+} from './user.actions'
 
 interface IUserState {
 	userData: IUser | null
@@ -35,6 +42,17 @@ const userSlice = createSlice({
 			.addCase(loginByEmail.rejected, (state) => {
 				state.isLoading = false
 			})
+			.addCase(loginByPhone.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(loginByPhone.fulfilled, (state, { payload }) => {
+				state.isLoading = false
+				state.tempEmail = payload.email
+				state.isNewUser = payload.isNewUser
+			})
+			.addCase(loginByPhone.rejected, (state) => {
+				state.isLoading = false
+			})
 			.addCase(checkCodeByEmail.pending, (state) => {
 				state.isLoading = true
 			})
@@ -65,6 +83,18 @@ const userSlice = createSlice({
 				state.userData = payload
 			})
 			.addCase(updatePersonalUserData.rejected, (state) => {
+				state.isLoading = false
+			})
+			.addCase(updateAvatar.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(updateAvatar.fulfilled, (state, { payload }) => {
+				state.isLoading = false
+				if (state.userData !== null) {
+					state.userData.avatar = payload.avatar
+				}
+			})
+			.addCase(updateAvatar.rejected, (state) => {
 				state.isLoading = false
 			})
 	},

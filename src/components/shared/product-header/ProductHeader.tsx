@@ -6,7 +6,7 @@ import { FC, useState } from 'react'
 import { IProduct } from '@/types/product/product.types'
 import { Rating } from '@/components/ui-kit/rating/Rating'
 import Link from 'next/link'
-import { AvatarRound } from '@/components/ui-kit/user-data-round/AvatarRound'
+import { AvatarRound } from '@/components/ui-kit/avatar-round/AvatarRound'
 import { CartQuantityButtonGroup } from '../cart-quantity-button-group/CartQuantityButtonGroup'
 
 interface IProductHeaderProps {

@@ -22,11 +22,13 @@ export const Settings: FC = () => {
 	const authUser = useTypedSelector((state) => state.user.userData)
 
 	const { isOpenModal, openModal, closeModal } = useModal()
+
 	const {
 		isOpenModal: isOpenChangePhoneModal,
 		openModal: openChangePhoneModal,
 		closeModal: closeChangePhoneModal,
 	} = useModal()
+
 	const {
 		isOpenModal: isOpenChangeEmailModal,
 		openModal: openChangeEmailModal,

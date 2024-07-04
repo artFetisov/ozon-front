@@ -5,7 +5,7 @@ import { IFeedback, IFeedbackImage, TypeVariantFeedbackGalleryModal } from '@/ty
 import { getNameWithInitials } from '@/utils/user/name'
 import { getCorrectDateView } from '@/utils/date/date'
 import { FeedbackGalleryModalForm } from '../../forms/feedback-gallery-modal-form/FeedbackGalleryModalForm'
-import { AvatarRound } from '../../user-data-round/AvatarRound'
+import { AvatarRound } from '../../avatar-round/AvatarRound'
 import Image from 'next/image'
 import { Rating } from '../../rating/Rating'
 import { ArrowButton } from '../../arrow-button/ArrowButton'

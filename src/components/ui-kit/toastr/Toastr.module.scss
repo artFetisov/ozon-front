@@ -1,0 +1,64 @@
+.toastr {
+	position: fixed;
+	top: 100px;
+	right: 40px;
+	z-index: 1000;
+	width: 400px;
+	height: 100px;
+	color: var(--white-color);
+	background-color: var(--green-color);
+	border-radius: 12px;
+	opacity: 0.7;
+}
+
+.innerBox {
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 20px;
+}
+
+.remove {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.text {
+	margin-top: 16px;
+	font-size: 18px;
+	line-height: 20px;
+}
+
+.show {
+	animation: toastr-open 0.5s forwards;
+}
+
+.hide {
+	animation: toastr-close 0.5s forwards;
+}
+
+@keyframes toastr-open {
+	from {
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	to {
+		visibility: visible;
+		opacity: 0.9;
+	}
+}
+
+@keyframes toastr-close {
+	from {
+		visibility: visible;
+		opacity: 0.9;
+	}
+
+	to {
+		visibility: hidden;
+		opacity: 0;
+	}
+}

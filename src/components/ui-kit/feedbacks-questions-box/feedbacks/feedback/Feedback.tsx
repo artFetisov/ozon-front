@@ -7,7 +7,7 @@ import { getCorrectDateView } from '@/utils/date/date'
 import Image from 'next/image'
 import { IconButton } from '@/components/ui-kit/icon-button/IconButton'
 import { FeedbackSendCommentForm } from '@/components/ui-kit/forms/feedback-send-comment-form/FeedbackSendCommentForm'
-import { AvatarRound } from '@/components/ui-kit/user-data-round/AvatarRound'
+import { AvatarRound } from '@/components/ui-kit/avatar-round/AvatarRound'
 
 interface IFeedbackProps {
 	feedback: IFeedback

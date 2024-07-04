@@ -5,20 +5,43 @@ import { TypeCurrentModal } from '../LoginModal'
 import { InputPhoneNumber } from '@/components/ui-kit/input-phone-number/InputPhoneNumber'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { IUser } from '@/types/user/user.types'
+import { useActions } from '@/hooks/useActions'
+import { AxiosError } from 'axios'
+import { checkIsNetworkError } from '@/utils/error/thunk.error'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { getPhoneNumberForRequest } from '@/utils/phone/phone'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 interface ISendPhoneCodeModalProps {
 	onToggle: (type: TypeCurrentModal) => void
 }
 
+const schema = yup.object().shape({
+	phone: yup.string().required('Это поле обязательно для ввода').min(13, 'Введите корректный номер'),
+})
+
 export const SendPhoneModal: FC<ISendPhoneCodeModalProps> = ({ onToggle }) => {
-	const { handleSubmit, control } = useForm<Pick<IUser, 'id' | 'phone'>>({
+	const isLoading = useTypedSelector((state) => state.user.isLoading)
+
+	const { loginByPhone } = useActions()
+
+	const { handleSubmit, control, resetField, setError } = useForm<Pick<IUser, 'phone'>>({
 		mode: 'onSubmit',
 		defaultValues: { phone: '' },
+		resolver: yupResolver(schema),
 	})
 
-	const onSubmit: SubmitHandler<Pick<IUser, 'id' | 'phone'>> = async (data) => {
-		alert(JSON.stringify(data))
-		onToggle('enterPasswordByPhone')
+	const onSubmit: SubmitHandler<Pick<IUser, 'phone'>> = ({ phone }) => {
+		loginByPhone({ phone: getPhoneNumberForRequest(phone) })
+			.unwrap()
+			.then(() => {
+				resetField('phone')
+				onToggle('enterPasswordByPhone')
+			})
+			.catch((error: Error | AxiosError) => {
+				!checkIsNetworkError(error) && setError('phone', { message: error.message })
+			})
 	}
 
 	const handleToEmailModal = () => {
@@ -39,7 +62,7 @@ export const SendPhoneModal: FC<ISendPhoneCodeModalProps> = ({ onToggle }) => {
 				/>
 			</div>
 			<div>
-				<Button variant='large' color='blue' isFullWidth type='submit'>
+				<Button variant='large' color='blue' isFullWidth type='submit' isLoading={isLoading}>
 					Войти
 				</Button>
 				<div className={styles.separator}>или</div>

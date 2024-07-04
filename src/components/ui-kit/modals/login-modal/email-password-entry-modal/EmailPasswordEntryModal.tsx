@@ -11,6 +11,8 @@ import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { CheckBox } from '@/components/ui-kit/checkbox/CheckBox'
 import { Button } from '@/components/ui-kit/button/Button'
+import { checkIsNetworkError } from '@/utils/error/thunk.error'
+import { AxiosError } from 'axios'
 
 interface IEmailPasswordEntryModalProps {
 	onToggle: (type: TypeCurrentModal) => void
@@ -21,6 +23,12 @@ const schema = yup.object().shape({
 	code: yup.string().required('Это поле обязательно для ввода').max(6),
 })
 
+const schemaB = yup.object().shape({
+	code: yup.string().required('Это поле обязательно для ввода').max(6),
+	agreement1: yup.boolean().required(),
+	agreement2: yup.boolean().required(),
+})
+
 export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onToggle, close }) => {
 	const isLoading = useTypedSelector((state) => state.user.isLoading)
 	const isNewUser = useTypedSelector((state) => state.user.isNewUser)
@@ -28,13 +36,17 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 
 	const { checkCodeByEmail, loginByEmail } = useActions()
 
-	const handleGetNewCodeCb = async () => {
-		await loginByEmail({ email: tempEmail as string })
+	const handleGetNewCodeCb = () => {
+		loginByEmail({ email: tempEmail as string })
+			.unwrap()
+			.catch((error: Error | AxiosError) => {
+				!checkIsNetworkError(error) && setError('code', { message: error.message })
+			})
 	}
 
 	const { counter, handleGetNewCode } = useCounter(undefined, handleGetNewCodeCb)
 
-	const { handleSubmit, control, watch, reset, setError } = useForm<{ code: string }>({
+	const { handleSubmit, control, watch, setError } = useForm<{ code: string }>({
 		mode: 'onSubmit',
 		defaultValues: { code: '' },
 		resolver: yupResolver(schema),
@@ -52,6 +64,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 	}>({
 		mode: 'onSubmit',
 		defaultValues: { code: '', agreement1: false, agreement2: true },
+		resolver: yupResolver(schemaB),
 	})
 
 	const onSubmit: SubmitHandler<{ code: string }> = ({ code }) => {
@@ -62,10 +75,8 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 				close()
 			})
 			.catch((error) => {
-				setError('code', { message: error.message })
+				!checkIsNetworkError(error) && setError('code', { message: error.message })
 			})
-
-		reset()
 	}
 
 	const onSubmitBigForm: SubmitHandler<{ code: string }> = ({ code }) => {
@@ -76,7 +87,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 				close()
 			})
 			.catch((error) => {
-				setError('code', { message: error.message })
+				!checkIsNetworkError(error) && setError('code', { message: error.message })
 			})
 	}
 
@@ -131,7 +142,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 							name='code'
 							control={controlBigForm}
 							render={({ field: { value, onChange }, fieldState: { error } }) => (
-								<InputEntryCode type='tel' value={value} onChange={onChange} error={error} />
+								<InputEntryCode type='tel' value={value} onChange={onChange} error={error} isLoading={isLoading} />
 							)}
 						/>
 						{counter > 0 && (

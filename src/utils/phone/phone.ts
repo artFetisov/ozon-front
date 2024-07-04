@@ -24,3 +24,7 @@ export const getCorrectPhoneNumberView = (value?: string, previousValue?: string
 
 	return value
 }
+
+export const getPhoneNumberForRequest = (phone: string) => {
+	return `+7${phone.replaceAll(' ', '')}`
+}

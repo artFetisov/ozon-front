@@ -8,6 +8,9 @@ export const AuthService = {
 	async loginByEmail(email: string) {
 		return instance.post<ILoginByEmailResponse>(getAuthUrl('login-by-email'), { email })
 	},
+	async loginByPhone(phone: string) {
+		return instance.post(getAuthUrl('login-by-phone'), { phone })
+	},
 	async checkCodeByEmail({ email, code }: { email: string; code: string }) {
 		const response = await instance.post<IAuthResponse>(getAuthUrl('check-code-by-email'), { email, code })
 

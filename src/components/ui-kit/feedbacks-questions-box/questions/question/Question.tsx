@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { getCorrectDateView } from '@/utils/date/date'
 import { getNameWithInitials } from '@/utils/user/name'
 import { IconButton } from '@/components/ui-kit/icon-button/IconButton'
-import { AvatarRound } from '@/components/ui-kit/user-data-round/AvatarRound'
+import { AvatarRound } from '@/components/ui-kit/avatar-round/AvatarRound'
 
 interface IQuestionProps {
 	question: IQuestion

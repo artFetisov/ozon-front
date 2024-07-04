@@ -31,3 +31,7 @@ export interface ILoginByEmailResponse {
 	email: string
 	isNewUser: boolean
 }
+
+export interface IUpdateAvatarResponse {
+	avatar: string
+}

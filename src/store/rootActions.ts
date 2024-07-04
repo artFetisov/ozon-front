@@ -12,6 +12,6 @@ export const allActions = {
 	...appActions,
 	...categoriesActions,
 	...feedbackActions,
-	...userAsyncActions,
 	...userActions,
+	...userAsyncActions,
 }

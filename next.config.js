@@ -16,8 +16,8 @@ const nextConfig = {
 	async redirects() {
 		return [
 			{
-				source: '/',
-				destination: '/home',
+				source: '/uploads/:path*',
+				destination: 'http://localhost:5000/uploads/:path*',
 				permanent: true,
 			},
 		]

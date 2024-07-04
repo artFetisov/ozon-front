@@ -35,7 +35,6 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 		loginByEmail({ email })
 			.unwrap()
 			.then(() => {
-				close()
 				reset()
 				onToggle('enterPasswordByEmail')
 			})

@@ -1,18 +1,20 @@
 import { getFirstCapitalLetter } from '@/utils/user/name'
 import styles from './AvatarRound.module.scss'
-import { FC, useRef } from 'react'
+import { ChangeEvent, FC, useRef } from 'react'
 import cn from 'classnames'
+import Image from 'next/image'
 
 interface IAvatarRoundProps {
 	name?: string
 	lastName?: string
 	size?: 'small' | 'large'
+	onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const AvatarRound: FC<IAvatarRoundProps> = ({ name, lastName, size = 'small' }) => {
+export const AvatarRound: FC<IAvatarRoundProps> = ({ name, lastName, onChange, size = 'small' }) => {
 	const inputFileRef = useRef<HTMLInputElement | null>(null)
 
-	const handleClickFileInput = () => {
+	const handleClickFileInput = (event: any) => {
 		inputFileRef?.current?.click()
 	}
 
@@ -38,8 +40,8 @@ export const AvatarRound: FC<IAvatarRoundProps> = ({ name, lastName, size = 'sma
 						></path>
 					</svg>
 					<input
-						accept='.jpg, .jpeg, .png'
-						name='Photo'
+						onChange={onChange}
+						accept='.jpg, .jpeg, .png, .webp'
 						type='file'
 						style={{ display: 'none' }}
 						ref={inputFileRef}

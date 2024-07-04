@@ -1,7 +1,7 @@
 import { FC, useState, MouseEvent } from 'react'
 import styles from './FeedbackSendCommentForm.module.scss'
 import { IUser } from '@/types/user/user.types'
-import { AvatarRound } from '../../user-data-round/AvatarRound'
+import { AvatarRound } from '../../avatar-round/AvatarRound'
 import { currentAuthUser } from '@/mock/user'
 import { getNameWithInitials } from '@/utils/user/name'
 import { Textarea } from '../../textarea/Textarea'

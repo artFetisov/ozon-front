@@ -1,7 +1,27 @@
 .container {
+	position: relative;
 	padding: 20px;
 }
 
+.box {
+	display: flex;
+	width: 70%;
+	margin-top: 8px;
+}
+
 .orange {
+	display: inline-block;
 	color: rgb(240 160 0);
+}
+
+.text {
+	margin-left: 8px;
+	text-wrap: pretty;
+}
+
+.remove {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	cursor: pointer;
 }

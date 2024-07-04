@@ -1,5 +1,5 @@
 import { reducers } from './rootReducer'
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const store = configureStore({
 	reducer: reducers,
