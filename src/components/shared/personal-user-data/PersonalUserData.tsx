@@ -26,6 +26,12 @@ export const PersonalUserData: FC<IPersonalUserDataProps> = ({ userData }) => {
 			<h2 className={styles.title}>Учетные данные</h2>
 			<div className={styles.info}>
 				<div className={styles.col}>
+					{userData?.email && (
+						<div className={styles.item}>
+							<p>Почта</p>
+							<div>{userData?.email}</div>
+						</div>
+					)}
 					{(userData?.name || userData?.lastName || userData?.patronymic) && (
 						<div className={styles.item}>
 							<p>ФИО</p>
@@ -41,12 +47,6 @@ export const PersonalUserData: FC<IPersonalUserDataProps> = ({ userData }) => {
 							<div>{getCorrectDateView(userData?.birthdayDate)}</div>
 						</div>
 					)}
-					{(userData?.gender === 'male' || userData?.gender === 'female') && (
-						<div className={styles.item}>
-							<p>Пол</p>
-							<div>{userData?.gender === 'male' ? 'Мужской' : 'Женский'}</div>
-						</div>
-					)}
 				</div>
 				<div className={styles.col}>
 					{userData?.phone && (
@@ -55,10 +55,10 @@ export const PersonalUserData: FC<IPersonalUserDataProps> = ({ userData }) => {
 							<div>+7 {getCorrectPhoneNumberView(userData?.phone)}</div>
 						</div>
 					)}
-					{userData?.email && (
+					{(userData?.gender === 'male' || userData?.gender === 'female') && (
 						<div className={styles.item}>
-							<p>Почта</p>
-							<div>{userData?.email}</div>
+							<p>Пол</p>
+							<div>{userData?.gender === 'male' ? 'Мужской' : 'Женский'}</div>
 						</div>
 					)}
 				</div>

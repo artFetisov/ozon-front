@@ -9,6 +9,7 @@ import { Input } from '../../input/Input'
 import { DatePicker } from '../../date-picker/DatePicker'
 import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
+import { checkIsNetworkError } from '@/utils/error/thunk.error'
 
 interface IChangePersonalUserDataModalProps {
 	close: () => void
@@ -25,7 +26,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 
 	const { updatePersonalUserData } = useActions()
 
-	const { setValue, handleSubmit, control } = useForm<IUserEditPersonalDataForm>({
+	const { setValue, handleSubmit, control, setError } = useForm<IUserEditPersonalDataForm>({
 		mode: 'onSubmit',
 		defaultValues: {
 			name: userData?.name || '',
@@ -45,8 +46,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 				close()
 			})
 			.catch((error) => {
-				debugger
-				// hookForm setFieldError()
+				!checkIsNetworkError(error) && setError('root', { message: error.message })
 			})
 	}
 

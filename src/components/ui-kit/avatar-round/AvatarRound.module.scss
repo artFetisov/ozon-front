@@ -29,6 +29,10 @@
 	}
 }
 
+.avatar {
+	object-fit: contain;
+}
+
 .backdrop {
 	position: absolute;
 	display: flex;

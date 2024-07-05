@@ -2,15 +2,17 @@ import { getFirstCapitalLetter } from '@/utils/user/name'
 import styles from './AvatarRound.module.scss'
 import { ChangeEvent, FC, useRef } from 'react'
 import cn from 'classnames'
+import Image from 'next/image'
 
 interface IAvatarRoundProps {
 	name?: string
 	lastName?: string
 	size?: 'small' | 'large'
 	onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+	avatar?: string
 }
 
-export const AvatarRound: FC<IAvatarRoundProps> = ({ name, lastName, onChange, size = 'small' }) => {
+export const AvatarRound: FC<IAvatarRoundProps> = ({ name, lastName, onChange, avatar, size = 'small' }) => {
 	const inputFileRef = useRef<HTMLInputElement | null>(null)
 
 	const handleClickFileInput = (event: any) => {
@@ -24,8 +26,13 @@ export const AvatarRound: FC<IAvatarRoundProps> = ({ name, lastName, onChange, s
 				[styles.large]: size === 'large',
 			})}
 		>
-			<span>{getFirstCapitalLetter(name)}</span>
-			{lastName && <span>{getFirstCapitalLetter(lastName)}</span>}
+			{!avatar && (
+				<>
+					{name && <span>{getFirstCapitalLetter(name)}</span>}
+					{lastName && <span>{getFirstCapitalLetter(lastName)}</span>}
+				</>
+			)}
+			{avatar && <Image src={avatar} loader={() => avatar} width={112} height={112} alt='avatar' />}
 			{size === 'large' && (
 				<div className={styles.backdrop} onClick={handleClickFileInput}>
 					<svg xmlns='http://www.w3.org/2000/svg' width={24} height={24}>

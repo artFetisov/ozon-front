@@ -92,8 +92,10 @@ export const updatePersonalUserData = createAppAsyncThunk<IUser, IUserEditPerson
 			const response = await UserService.updatePersonalUserData(data)
 
 			return response.data
-		} catch (error) {
-			return thunkApi.rejectWithValue(error)
+		} catch (err) {
+			const error = handleCatchThunkError(err, thunkApi.dispatch)
+
+			return thunkApi.rejectWithValue(error?.response?.data)
 		}
 	}
 )

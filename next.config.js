@@ -20,6 +20,11 @@ const nextConfig = {
 				destination: 'http://localhost:5000/uploads/:path*',
 				permanent: true,
 			},
+			{
+				source: '/',
+				destination: '/home',
+				permanent: true,
+			},
 		]
 	},
 	webpack(config) {

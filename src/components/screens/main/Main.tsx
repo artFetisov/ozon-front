@@ -29,16 +29,19 @@ export const Main: FC = () => {
 			<div className={styles.main}>
 				<div className={styles.leftSideBox}>
 					<div className={styles.avatarBox}>
-						<img src={userData?.avatar} alt='avatar' />
-						{userData?.avatar && <Image src={userData?.avatar} alt='avatar' width={100} height={100} />}
 						<AvatarRound
+							avatar={userData?.avatar}
 							name={userData?.name}
 							size='large'
 							lastName={userData?.lastName}
 							onChange={handleUploadImage}
 						/>
-						<span className={`${styles.text} ${styles.m}`}>{getWordWithFirstCapitalLetter(userData?.name)}</span>
-						<span className={styles.text}>{getWordWithFirstCapitalLetter(userData?.lastName)}</span>
+						{userData?.name && (
+							<span className={`${styles.text} ${styles.m}`}>{getWordWithFirstCapitalLetter(userData?.name)}</span>
+						)}
+						{userData?.lastName && (
+							<span className={styles.text}>{getWordWithFirstCapitalLetter(userData?.lastName)}</span>
+						)}
 					</div>
 				</div>
 				<div className={styles.userInfoBox}>
