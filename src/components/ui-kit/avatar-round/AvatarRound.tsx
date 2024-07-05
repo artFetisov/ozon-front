@@ -2,7 +2,6 @@ import { getFirstCapitalLetter } from '@/utils/user/name'
 import styles from './AvatarRound.module.scss'
 import { ChangeEvent, FC, useRef } from 'react'
 import cn from 'classnames'
-import Image from 'next/image'
 
 interface IAvatarRoundProps {
 	name?: string

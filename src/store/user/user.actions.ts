@@ -37,7 +37,7 @@ export const loginByPhone = createAppAsyncThunk<ILoginByEmailResponse, { phone: 
 		} catch (err) {
 			const error = handleCatchThunkError(err, thunkApi.dispatch)
 
-			return thunkApi.rejectWithValue(error?.response?.data)
+			return thunkApi.rejectWithValue(error?.response?.data || '')
 		}
 	}
 )

@@ -22,7 +22,9 @@ export const InputEntryCode = ({ value, onChange, error, isLoading, max = 6, ...
 	const { isFocused, onBlur, onFocus } = useFocus()
 
 	const handleKeyDownFieldValue = (event: KeyboardEvent<HTMLInputElement>) => {
-		!allowedCharacters.includes(event.key) || (event.currentTarget.value.length === max && event.preventDefault())
+		if (!allowedCharacters.includes(event.key)) {
+			event.preventDefault()
+		}
 	}
 
 	return (
@@ -35,7 +37,7 @@ export const InputEntryCode = ({ value, onChange, error, isLoading, max = 6, ...
 			>
 				<input
 					{...props}
-					max={max}
+					maxLength={max}
 					autoFocus
 					onFocus={onFocus}
 					onBlur={onBlur}

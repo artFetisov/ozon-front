@@ -24,7 +24,7 @@ const schema = yup.object().shape({
 })
 
 const schemaB = yup.object().shape({
-	code: yup.string().required('Это поле обязательно для ввода').max(6),
+	codeB: yup.string().required('Это поле обязательно для ввода').max(6),
 	agreement1: yup.boolean().required(),
 	agreement2: yup.boolean().required(),
 })
@@ -46,7 +46,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 
 	const { counter, handleGetNewCode } = useCounter(undefined, handleGetNewCodeCb)
 
-	const { handleSubmit, control, watch, setError } = useForm<{ code: string }>({
+	const { handleSubmit, control, watch, setError, resetField } = useForm<{ code: string }>({
 		mode: 'onSubmit',
 		defaultValues: { code: '' },
 		resolver: yupResolver(schema),
@@ -55,15 +55,17 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 	const {
 		handleSubmit: handleSubmitBigForm,
 		control: controlBigForm,
-		resetField,
+		resetField: resetFieldB,
+		setError: setErrorB,
+		watch: watchB,
 		getValues,
 	} = useForm<{
-		code: string
+		codeB: string
 		agreement1: boolean
 		agreement2: boolean
 	}>({
 		mode: 'onSubmit',
-		defaultValues: { code: '', agreement1: false, agreement2: true },
+		defaultValues: { codeB: '', agreement1: false, agreement2: true },
 		resolver: yupResolver(schemaB),
 	})
 
@@ -75,19 +77,21 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 				close()
 			})
 			.catch((error) => {
+				resetField('code')
 				!checkIsNetworkError(error) && setError('code', { message: error.message })
 			})
 	}
 
-	const onSubmitBigForm: SubmitHandler<{ code: string }> = ({ code }) => {
-		checkCodeByEmail({ code })
+	const onSubmitBigForm: SubmitHandler<{ codeB: string }> = ({ codeB }) => {
+		checkCodeByEmail({ code: codeB })
 			.unwrap()
 			.then(() => {
-				resetField('code')
+				resetFieldB('codeB')
 				close()
 			})
 			.catch((error) => {
-				!checkIsNetworkError(error) && setError('code', { message: error.message })
+				resetFieldB('codeB')
+				!checkIsNetworkError(error) && setErrorB('codeB', { message: error.message })
 			})
 	}
 
@@ -117,7 +121,13 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 								name='code'
 								control={control}
 								render={({ field: { value, onChange }, fieldState: { error } }) => (
-									<InputEntryCode type='tel' value={value} onChange={onChange} error={error} isLoading={isLoading} />
+									<InputEntryCode
+										type='tel'
+										value={watch('code')}
+										onChange={onChange}
+										error={error}
+										isLoading={isLoading}
+									/>
 								)}
 							/>
 						</form>
@@ -139,10 +149,16 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 				{isNewUser && (
 					<form onSubmit={handleSubmitBigForm(onSubmitBigForm)}>
 						<Controller
-							name='code'
+							name='codeB'
 							control={controlBigForm}
 							render={({ field: { value, onChange }, fieldState: { error } }) => (
-								<InputEntryCode type='tel' value={value} onChange={onChange} error={error} isLoading={isLoading} />
+								<InputEntryCode
+									type='tel'
+									value={watchB('codeB')}
+									onChange={onChange}
+									error={error}
+									isLoading={isLoading}
+								/>
 							)}
 						/>
 						{counter > 0 && (
@@ -162,7 +178,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 								name='agreement1'
 								control={controlBigForm}
 								render={({ field: { value, onChange } }) => (
-									<CheckBox checked={value} onChangeMy={onChange} error={!value} chSize='big' />
+									<CheckBox checked={watchB('agreement1')} onChangeMy={onChange} error={!value} chSize='big' />
 								)}
 							/>
 
@@ -173,7 +189,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 								name='agreement2'
 								control={controlBigForm}
 								render={({ field: { value, onChange } }) => (
-									<CheckBox checked={value} onChangeMy={onChange} chSize='big' />
+									<CheckBox checked={watchB('agreement2')} onChangeMy={onChange} chSize='big' />
 								)}
 							/>
 							<span>Соглашаюсь на получение сообщений рекламного характера</span>
@@ -183,7 +199,7 @@ export const EmailPasswordEntryModal: FC<IEmailPasswordEntryModalProps> = ({ onT
 								color='blue'
 								variant='large'
 								isFullWidth
-								disabledP={getValues('code').length < 6 || !getValues('agreement1')}
+								disabledP={getValues('codeB').length < 6 || !getValues('agreement1')}
 								type='submit'
 								isLoading={isLoading}
 							>

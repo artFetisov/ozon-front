@@ -10,6 +10,7 @@ import styles from '../Links.module.scss'
 import { LoginModal } from '@/components/ui-kit/modals/login-modal/LoginModal'
 import { usePopup } from '@/hooks/usePopup'
 import { IUser } from '@/types/user/user.types'
+import dynamic from 'next/dynamic'
 
 interface IUserInfoLinkProps {
 	isLoggedIn: boolean
