@@ -14,8 +14,13 @@ export interface IUser {
 
 export type TypeUserGender = 'male' | 'female' | 'other'
 
-export interface IUserEditPersonalDataForm
-	extends Pick<IUser, 'id' | 'name' | 'lastName' | 'patronymic' | 'gender' | 'birthdayDate'> {}
+export interface IUserEditPersonalDataForm {
+	name?: string
+	lastName?: string
+	patronymic?: string
+	gender?: TypeUserGender
+	birthdayDate?: Date
+}
 
 export interface ITokens {
 	accessToken: string
@@ -34,4 +39,10 @@ export interface ILoginByEmailResponse {
 
 export interface IUpdateAvatarResponse {
 	avatar: string
+}
+
+export interface IUpdatePhoneCheckCodeRequest {
+	code: string
+	phone: string
+	email: string
 }

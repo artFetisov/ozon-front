@@ -6,56 +6,82 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import { InputEntryCode } from '@/components/ui-kit/input-entry-code/InputEntryCode'
 import { MyText } from '@/components/ui-kit/text/MyText'
 import { useCounter } from '@/hooks/useCounter'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useActions } from '@/hooks/useActions'
+import { checkIsNetworkError } from '@/utils/error/thunk.error'
+import { AxiosError } from 'axios'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
 
 interface IChangePhoneEntryCodeModalProps {
-	phoneNumber: string
 	onToggle: (type: ChangePhoneModalType) => void
 	close: () => void
 }
 
-export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({ phoneNumber, onToggle, close }) => {
+const schema = yup.object().shape({
+	code: yup.string().required('Это поле обязательно для ввода').max(6),
+})
+
+export const ChangePhoneEntryCodeModal: FC<IChangePhoneEntryCodeModalProps> = ({ onToggle, close }) => {
+	const isLoading = useTypedSelector((state) => state.user.isLoading)
+
 	const { counter, handleGetNewCode } = useCounter()
 
-	const fetchTimerRef = useRef<ReturnType<typeof setTimeout>>()
+	const { updatePhoneCheckCode } = useActions()
 
-	const { handleSubmit, control, watch } = useForm<{ code: string }>({
+	const { handleSubmit, control, watch, resetField, setError } = useForm<{ code: string }>({
 		mode: 'onSubmit',
 		defaultValues: { code: '' },
+		resolver: yupResolver(schema),
 	})
 
 	useEffect(() => {
 		const subscription = watch((value) => {
 			if (value.code?.length === 6) {
-				fetchTimerRef.current = setTimeout(() => handleSubmit(onSubmit)(), 500)
+				handleSubmit(onSubmit)()
 			}
 		})
 		return () => {
 			subscription.unsubscribe()
-			clearTimeout(fetchTimerRef.current)
 		}
 	}, [watch])
 
-	const onSubmit: SubmitHandler<{ code: string }> = async (data) => {
-		alert(JSON.stringify(data))
-		close()
+	const onSubmit: SubmitHandler<{ code: string }> = async ({ code }) => {
+		updatePhoneCheckCode({ code })
+			.unwrap()
+			.then(() => {
+				resetField('code')
+				close()
+			})
+			.catch((error: Error | AxiosError) => {
+				resetField('code')
+				!checkIsNetworkError(error) && setError('code', { message: error.message })
+			})
 	}
 
 	return (
 		<>
 			<div className={styles.heading}>
-				Введите код, который мы отправили на номер <br></br> {phoneNumber}
-				<span className={styles.getCode} onClick={() => onToggle('phone')}>
+				Введите код, который мы отправили на вашу почту
+				<div className={styles.getCode} onClick={() => onToggle('phone')}>
 					<MyText callback={() => onToggle('phone')} color='blue' size='middle'>
-						Изменить номер
+						Изменить номер телефона
 					</MyText>
-				</span>
+				</div>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Controller
 					name='code'
 					control={control}
 					render={({ field: { value, onChange }, fieldState: { error } }) => (
-						<InputEntryCode type='number' value={value} onChange={onChange} error={error} />
+						<InputEntryCode
+							type='number'
+							value={watch('code')}
+							onChange={onChange}
+							error={error}
+							isLoading={isLoading}
+							max={6}
+						/>
 					)}
 				/>
 				{counter > 0 && (

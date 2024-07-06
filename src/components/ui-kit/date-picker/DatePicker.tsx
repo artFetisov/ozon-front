@@ -9,7 +9,7 @@ import { LayoutModal } from '../modals/LayoutModal'
 import { Calendar } from '../calendar/Calendar'
 
 interface IDatePickerProps {
-	value: Date
+	value?: Date
 	onChange: () => void
 	placeholder: string
 	error?: FieldError

@@ -1,4 +1,4 @@
-import { ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes, KeyboardEvent, useState } from 'react'
+import { ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes, KeyboardEvent } from 'react'
 import styles from './InputPhoneNumber.module.scss'
 import cn from 'classnames'
 import { FieldError } from 'react-hook-form'
@@ -12,7 +12,7 @@ type SelectedMyInputPropsType = Pick<DefaultInputPropsType, 'type'>
 
 type InputPhoneNumberPropsType = SelectedMyInputPropsType & {
 	error: FieldError | undefined
-	value: string
+	value?: string
 	onChange: (value: string) => void
 }
 
@@ -39,7 +39,7 @@ export const InputPhoneNumber: FC<InputPhoneNumberPropsType> = ({ error, value, 
 					<input
 						onKeyDown={handleKeyDownFieldValue}
 						className={cn({
-							[styles.active]: value?.length > 0,
+							[styles.active]: !!value && value?.length > 0,
 						})}
 						maxLength={13}
 						type='tel'

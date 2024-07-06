@@ -10,7 +10,7 @@ type SelectedMyInputPropsType = Pick<DefaultInputPropsType, 'type' | 'placeholde
 type MyInputPropsType<T> = SelectedMyInputPropsType & {
 	onClear?: (name: T) => void
 	removeName?: T
-	value: string
+	value?: string
 	onChange: () => void
 	error: FieldError | undefined
 	isLoading?: boolean

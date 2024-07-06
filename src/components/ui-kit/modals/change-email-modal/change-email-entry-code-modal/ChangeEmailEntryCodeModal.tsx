@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect } from 'react'
 import styles from './ChangeEmailEntryCodeModal.module.scss'
 import { ChangeEmailModalType } from '../ChangeEmailModal'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
@@ -6,36 +6,56 @@ import { InputEntryCode } from '@/components/ui-kit/input-entry-code/InputEntryC
 import { MyText } from '@/components/ui-kit/text/MyText'
 import { getCounterCorrectView } from '../../login-modal/phone-password-entry-modal/PhonePasswordEntryModal'
 import { useCounter } from '@/hooks/useCounter'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useActions } from '@/hooks/useActions'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+import { checkIsNetworkError } from '@/utils/error/thunk.error'
+import { AxiosError } from 'axios'
 
 interface IChangeEntryCodeModal {
 	onToggle: (type: ChangeEmailModalType) => void
 	close: () => void
-	newEmail: string
 }
 
-export const ChangeEmailEntryCodeModal: FC<IChangeEntryCodeModal> = ({ onToggle, newEmail, close }) => {
+const schema = yup.object().shape({
+	code: yup.string().required('Это поле обязательно для ввода').max(6),
+})
+
+export const ChangeEmailEntryCodeModal: FC<IChangeEntryCodeModal> = ({ onToggle, close }) => {
+	const isLoading = useTypedSelector((state) => state.user.isLoading)
+	const newEmail = useTypedSelector((state) => state.user.tempEmail)
+
 	const { counter, handleGetNewCode } = useCounter()
 
-	const fetchTimerRef = useRef<ReturnType<typeof setTimeout>>()
+	const { updateEmailCheckCode } = useActions()
 
-	const { handleSubmit, control, watch } = useForm<{ code: string }>({
+	const { handleSubmit, control, watch, resetField, setError } = useForm<{ code: string }>({
 		mode: 'onSubmit',
 		defaultValues: { code: '' },
+		resolver: yupResolver(schema),
 	})
 
-	const onSubmit: SubmitHandler<{ code: string }> = async (data) => {
-		alert(JSON.stringify(data))
-		close()
+	const onSubmit: SubmitHandler<{ code: string }> = ({ code }) => {
+		updateEmailCheckCode({ code })
+			.unwrap()
+			.then(() => {
+				resetField('code')
+				close()
+			})
+			.catch((error: Error | AxiosError) => {
+				resetField('code')
+				!checkIsNetworkError(error) && setError('code', { message: error.message })
+			})
 	}
 
 	useEffect(() => {
 		const subscription = watch((value) => {
 			if (value.code?.length === 6) {
-				fetchTimerRef.current = setTimeout(() => handleSubmit(onSubmit)(), 500)
+				handleSubmit(onSubmit)()
 			}
 		})
 		return () => {
-			clearInterval(fetchTimerRef.current)
 			subscription.unsubscribe()
 		}
 	}, [watch])
@@ -57,7 +77,13 @@ export const ChangeEmailEntryCodeModal: FC<IChangeEntryCodeModal> = ({ onToggle,
 					name='code'
 					control={control}
 					render={({ field: { value, onChange }, fieldState: { error } }) => (
-						<InputEntryCode type='number' value={value} onChange={onChange} error={error} />
+						<InputEntryCode
+							type='number'
+							value={watch('code')}
+							onChange={onChange}
+							error={error}
+							isLoading={isLoading}
+						/>
 					)}
 				/>
 			</div>

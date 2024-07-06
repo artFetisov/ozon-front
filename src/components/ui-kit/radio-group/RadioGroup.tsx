@@ -11,7 +11,7 @@ export interface IRadioGroupItem {
 interface IRadioGroupProps {
 	label: string
 	options: IRadioGroupItem[]
-	value: TypeUserGender
+	value?: TypeUserGender
 	onChange: () => void
 }
 

@@ -24,9 +24,7 @@ export const ChangePhoneModal: FC<IChangePhoneModalProps> = ({ close, userData }
 			<CloseButton callback={close} variant='inside' />
 			<div className={styles.content}>
 				{modalType === 'phone' && <ChangePhoneEntryModal onToggle={handleToggleModalType} />}
-				{modalType === 'code' && (
-					<ChangePhoneEntryCodeModal onToggle={handleToggleModalType} phoneNumber='+7 987 508 53 36' close={close} />
-				)}
+				{modalType === 'code' && <ChangePhoneEntryCodeModal onToggle={handleToggleModalType} close={close} />}
 			</div>
 		</div>
 	)

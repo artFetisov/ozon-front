@@ -5,21 +5,42 @@ import { Button } from '@/components/ui-kit/button/Button'
 import { IUser } from '@/types/user/user.types'
 import { ChangeEmailModalType } from '../ChangeEmailModal'
 import { Input } from '@/components/ui-kit/input/Input'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useActions } from '@/hooks/useActions'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+import { checkIsNetworkError } from '@/utils/error/thunk.error'
+import { AxiosError } from 'axios'
 
-interface IChangeEntryModal {
+interface IChangeEntryModalProps {
 	onToggle: (type: ChangeEmailModalType) => void
 }
 
-export const ChangeEmailEntryModal: FC<IChangeEntryModal> = ({ onToggle }) => {
-	const { handleSubmit, control, setValue } = useForm<Pick<IUser, 'email'>>({
+const schema = yup.object().shape({
+	email: yup.string().email('Некорректный формат почты').required('Это поле обязательно для ввода'),
+})
+
+export const ChangeEmailEntryModal: FC<IChangeEntryModalProps> = ({ onToggle }) => {
+	const isLoading = useTypedSelector((state) => state.user.isLoading)
+
+	const { updateEmail } = useActions()
+
+	const { handleSubmit, control, setValue, resetField, setError } = useForm<Pick<IUser, 'email'>>({
 		mode: 'onSubmit',
 		defaultValues: { email: '' },
+		resolver: yupResolver(schema),
 	})
 
-	const onSubmit: SubmitHandler<Pick<IUser, 'email'>> = async (data) => {
-		alert(JSON.stringify(data))
-		close()
-		onToggle('code')
+	const onSubmit: SubmitHandler<Pick<IUser, 'email'>> = (data) => {
+		updateEmail({ newEmail: data.email })
+			.unwrap()
+			.then(() => {
+				resetField('email')
+				onToggle('code')
+			})
+			.catch((error: Error | AxiosError) => {
+				!checkIsNetworkError(error) && setError('email', { message: error.message })
+			})
 	}
 
 	const handleClearInput = (name: keyof { email: string }) => {
@@ -47,7 +68,7 @@ export const ChangeEmailEntryModal: FC<IChangeEntryModal> = ({ onToggle }) => {
 					)}
 				/>
 			</div>
-			<Button variant='middle' color='blue' isFullWidth>
+			<Button variant='middle' color='blue' isFullWidth isLoading={isLoading}>
 				Получить код
 			</Button>
 		</form>

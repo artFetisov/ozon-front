@@ -24,9 +24,7 @@ export const ChangeEmailModal: FC<IChangeEmailModalProps> = ({ close, userData }
 			<CloseButton callback={close} variant='inside' />
 			<div className={styles.content}>
 				{modalType === 'email' && <ChangeEmailEntryModal onToggle={handleToggleModalType} />}
-				{modalType === 'code' && (
-					<ChangeEmailEntryCodeModal onToggle={handleToggleModalType} close={close} newEmail='iriss@yandex.ru' />
-				)}
+				{modalType === 'code' && <ChangeEmailEntryCodeModal onToggle={handleToggleModalType} close={close} />}
 			</div>
 		</div>
 	)

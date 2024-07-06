@@ -52,7 +52,7 @@ export const PersonalUserData: FC<IPersonalUserDataProps> = ({ userData }) => {
 					{userData?.phone && (
 						<div className={styles.item}>
 							<p>Телефон</p>
-							<div>+7 {getCorrectPhoneNumberView(userData?.phone)}</div>
+							<div>+7 {getCorrectPhoneNumberView(userData?.phone.slice(2))}</div>
 						</div>
 					)}
 					{(userData?.gender === 'male' || userData?.gender === 'female') && (

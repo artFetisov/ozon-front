@@ -6,7 +6,7 @@ import { TypeUserGender } from '@/types/user/user.types'
 
 interface IRadioProps {
 	item: IRadioGroupItem
-	selectedItem: TypeUserGender
+	selectedItem?: TypeUserGender
 	onChange: (value: TypeUserGender) => void
 }
 

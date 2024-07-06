@@ -17,9 +17,19 @@ import { ChangePhoneModal } from '@/components/ui-kit/modals/change-phone-modal/
 import { MyText } from '@/components/ui-kit/text/MyText'
 import { ChangeEmailModal } from '@/components/ui-kit/modals/change-email-modal/ChangeEmailModal'
 import { getWordWithFirstCapitalLetter } from '@/utils/user/name'
+import { useActions } from '@/hooks/useActions'
+import { useRouter } from 'next/navigation'
 
 export const Settings: FC = () => {
 	const authUser = useTypedSelector((state) => state.user.userData)
+
+	const router = useRouter()
+
+	const handleRedirectToHome = () => {
+		router.push('/')
+	}
+
+	const { logout } = useActions()
 
 	const { isOpenModal, openModal, closeModal } = useModal()
 
@@ -35,7 +45,9 @@ export const Settings: FC = () => {
 		closeModal: closeChangeEmailModal,
 	} = useModal()
 
-	const handleLogout = () => {}
+	const handleLogout = () => {
+		logout({ redirect: handleRedirectToHome })
+	}
 
 	return (
 		<>
@@ -130,10 +142,14 @@ export const Settings: FC = () => {
 								<div className={styles.box}>
 									<p>
 										<span className={styles.property}>Телефон</span>
-										<span className={styles.value}>+7 {getCorrectPhoneNumberView(authUser?.phone as string)}</span>
+										{authUser?.phone && (
+											<span className={styles.value}>
+												+7 {getCorrectPhoneNumberView(authUser?.phone.slice(2) as string)}
+											</span>
+										)}
 									</p>
 									<MyText callback={openChangePhoneModal} color='blue' size='middle'>
-										Изменить
+										{authUser?.phone ? 'Изменить' : 'Добавить'}
 									</MyText>
 								</div>
 								<div className={styles.box}>

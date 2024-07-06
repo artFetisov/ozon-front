@@ -7,7 +7,6 @@ import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { PersonalUserData } from '@/components/shared/personal-user-data/PersonalUserData'
 import { getWordWithFirstCapitalLetter } from '@/utils/user/name'
 import { useUploadAvatar } from '@/hooks/useUpload'
-import Image from 'next/image'
 import { useActions } from '@/hooks/useActions'
 
 export const Main: FC = () => {

@@ -5,8 +5,13 @@ import {
 	checkCodeByEmail,
 	loginByEmail,
 	loginByPhone,
+	logout,
 	updateAvatar,
+	updateEmail,
+	updateEmailCheckCode,
 	updatePersonalUserData,
+	updatePhoneCheckCode,
+	updatePhoneNumber,
 } from './user.actions'
 
 interface IUserState {
@@ -15,6 +20,7 @@ interface IUserState {
 	isLoading: boolean
 	isNewUser: boolean
 	tempEmail: string | null
+	tempPhone: string | null
 }
 
 const initialState: IUserState = {
@@ -23,6 +29,7 @@ const initialState: IUserState = {
 	isLoading: false,
 	isNewUser: true,
 	tempEmail: null,
+	tempPhone: null,
 }
 
 const userSlice = createSlice({
@@ -96,6 +103,49 @@ const userSlice = createSlice({
 			})
 			.addCase(updateAvatar.rejected, (state) => {
 				state.isLoading = false
+			})
+			.addCase(updatePhoneNumber.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(updatePhoneNumber.fulfilled, (state, { payload }) => {
+				state.isLoading = false
+				state.tempPhone = payload.phone
+			})
+			.addCase(updatePhoneNumber.rejected, (state) => {
+				state.isLoading = false
+			})
+			.addCase(updatePhoneCheckCode.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(updatePhoneCheckCode.fulfilled, (state, { payload }) => {
+				state.isLoading = false
+				state.userData = payload
+			})
+			.addCase(updatePhoneCheckCode.rejected, (state) => {
+				state.isLoading = false
+			})
+			.addCase(updateEmail.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(updateEmail.fulfilled, (state, { payload }) => {
+				state.isLoading = false
+				state.tempEmail = payload.email
+			})
+			.addCase(updateEmail.rejected, (state) => {
+				state.isLoading = false
+			})
+			.addCase(updateEmailCheckCode.pending, (state) => {
+				state.isLoading = true
+			})
+			.addCase(updateEmailCheckCode.fulfilled, (state, { payload }) => {
+				state.isLoading = false
+				state.userData = payload
+			})
+			.addCase(updateEmailCheckCode.rejected, (state) => {
+				state.isLoading = false
+			})
+			.addCase(logout.fulfilled, (state, { payload }) => {
+				state.userData = null
 			})
 	},
 })

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import styles from './ChangePersonalUserDataModal.module.scss'
 import { CloseButton } from '../../close-button/CloseButton'
 import { Button } from '../../button/Button'
-import { IUser, IUserEditPersonalDataForm } from '@/types/user/user.types'
+import { IUser, IUserEditPersonalDataForm, TypeUserGender } from '@/types/user/user.types'
 import { IRadioGroupItem, RadioGroup } from '../../radio-group/RadioGroup'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { Input } from '../../input/Input'
@@ -10,11 +10,21 @@ import { DatePicker } from '../../date-picker/DatePicker'
 import { useActions } from '@/hooks/useActions'
 import { useTypedSelector } from '@/hooks/useTypedSelector'
 import { checkIsNetworkError } from '@/utils/error/thunk.error'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 interface IChangePersonalUserDataModalProps {
 	close: () => void
 	userData: IUser | null
 }
+
+const schema = yup.object().shape({
+	name: yup.string(),
+	lastName: yup.string(),
+	patronymic: yup.string(),
+	gender: yup.mixed<TypeUserGender>().oneOf(['female', 'male']),
+	birthdayDate: yup.date(),
+})
 
 const options: IRadioGroupItem[] = [
 	{ title: 'Мужской', value: 'male' },
@@ -28,6 +38,7 @@ export const ChangePersonalUserDataModal: FC<IChangePersonalUserDataModalProps> 
 
 	const { setValue, handleSubmit, control, setError } = useForm<IUserEditPersonalDataForm>({
 		mode: 'onSubmit',
+		resolver: yupResolver(schema),
 		defaultValues: {
 			name: userData?.name || '',
 			lastName: userData?.lastName || '',

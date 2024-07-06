@@ -10,7 +10,7 @@ export const getCorrectDateView = (date?: Date) => {
 	)} ${yearNumber}`
 }
 
-export const getDateViewWithDots = (date: Date): string => {
+export const getDateViewWithDots = (date?: Date): string => {
 	if (!date) return ''
 
 	date = new Date(date)

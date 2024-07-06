@@ -25,7 +25,7 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 
 	const { loginByEmail } = useActions()
 
-	const { handleSubmit, control, setValue, reset, setError } = useForm<Pick<IUser, 'email'>>({
+	const { handleSubmit, control, setValue, resetField, setError } = useForm<Pick<IUser, 'email'>>({
 		mode: 'onSubmit',
 		defaultValues: { email: '' },
 		resolver: yupResolver(schema),
@@ -35,7 +35,7 @@ export const SendEmailModal: FC<ISendEmailModalProps> = ({ onToggle }) => {
 		loginByEmail({ email })
 			.unwrap()
 			.then(() => {
-				reset()
+				resetField('email')
 				onToggle('enterPasswordByEmail')
 			})
 			.catch((error: Error | AxiosError) => {
