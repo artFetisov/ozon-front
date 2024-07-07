@@ -1,11 +1,11 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC, MouseEvent } from 'react'
+import { ButtonHTMLAttributes, ComponentPropsWithoutRef, DetailedHTMLProps, FC, MouseEvent } from 'react'
 import styles from './Button.module.scss'
 import cn from 'classnames'
 import { Loader } from '../loaders/button-loader/ButtonLoader'
 
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
-type MyButtonPropsType = DefaultButtonPropsType & {
+type MyButtonPropsType = ComponentPropsWithoutRef<'button'> & {
 	variant: 'large' | 'middle' | 'small' | 'disabled'
 	color: 'blue' | 'green' | 'lightBlue'
 	onClick?: (event: MouseEvent<HTMLButtonElement>) => void
