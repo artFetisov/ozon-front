@@ -1,7 +1,8 @@
+import { AdminProducts } from '@/components/screens/admin/products/AdminProducts'
 import { NextPage } from 'next'
 
 const ProductsAdminPage: NextPage = () => {
-	return <div>Products Admin Page</div>
+	return <AdminProducts />
 }
 
 export default ProductsAdminPage

@@ -17,6 +17,7 @@ interface IDatePickerProps {
 
 export const DatePicker: FC<IDatePickerProps> = ({ value, placeholder, onChange, error, ...props }) => {
 	const [isFocused, setIsFocused] = useState(false)
+
 	const [isShowCalendar, setIsShowCalendar] = useState(false)
 
 	const onFocus = () => {
