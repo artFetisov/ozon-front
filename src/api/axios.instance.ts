@@ -5,15 +5,19 @@ import { removeTokenStorage } from '@/utils/token/token'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
+export const baseURL = IS_PRODUCTION
+	? process.env.NEXT_PUBLIC_APP_SERVER_URL
+	: process.env.NEXT_PUBLIC_APP_LOCAL_SERVER_URL
+
 export const instance = axios.create({
-	baseURL: IS_PRODUCTION ? process.env.NEXT_PUBLIC_APP_SERVER_URL : process.env.NEXT_PUBLIC_APP_LOCAL_SERVER_URL,
+	baseURL: baseURL,
 	headers: {
 		'Content-Type': 'application/json',
 	},
 })
 
 const instanceAuth = axios.create({
-	baseURL: IS_PRODUCTION ? process.env.NEXT_PUBLIC_APP_SERVER_URL : process.env.NEXT_PUBLIC_APP_LOCAL_SERVER_URL,
+	baseURL: baseURL,
 	headers: {
 		'Content-Type': 'application/json',
 	},

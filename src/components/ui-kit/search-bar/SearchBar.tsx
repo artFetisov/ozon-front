@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent, FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import styles from './SearchBar.module.scss'
 import cn from 'classnames'
 import { useModal } from '@/hooks/useModal'
@@ -9,6 +9,7 @@ import { SearchBarModal } from '../modals/search-bar-modal/SearchBarModal'
 import { Selection } from '../selection/Selection'
 import { productsMock } from '@/mock/products'
 import { createPortal } from 'react-dom'
+import { InputSearch } from '../input-search/InputSearch'
 
 export const SearchBar: FC = () => {
 	const { isOpenModal, openModal, closeModal } = useModal()
@@ -16,13 +17,8 @@ export const SearchBar: FC = () => {
 
 	const [fieldValue, setFieldValue] = useState('')
 
-	const handleSetFieldValue = (event: ChangeEvent<HTMLInputElement>) => {
-		event.preventDefault()
-		setFieldValue(event.currentTarget.value)
-	}
-
-	const handleClearFieldValue = () => {
-		setFieldValue('')
+	const handleSetFieldValue = (value: string) => {
+		setFieldValue(value)
 	}
 
 	const handleShowSearchBarModal = () => {
@@ -43,51 +39,12 @@ export const SearchBar: FC = () => {
 					[styles.isOpenModal]: isOpenModal,
 				})}
 			>
-				<div className={cn(styles.searchBarWrapper)}>
-					<form className={styles.searchForm}>
-						<div className={styles.leftSide}>
-							<div className={styles.catButton} onClick={handleShowSearchBarModal}>
-								<span className={styles.title}>Везде</span>
-								<span className={styles.arrowBox}>
-									<svg width={16} height={16}>
-										<path fill='currentColor' d='m4 6 4 5 4-5H4Z'></path>
-									</svg>
-								</span>
-							</div>
-							<div className={styles.inputWrapper}>
-								<input
-									placeholder={'Искать на Ozon'}
-									className={styles.input}
-									onClick={openModal}
-									value={fieldValue}
-									onChange={handleSetFieldValue}
-								/>
-								{fieldValue.length > 0 && (
-									<div className={styles.removeButton} onClick={handleClearFieldValue}>
-										<svg width={16} height={16}>
-											<path
-												fill='currentColor'
-												d='M3.293 3.293a1 1 0 0 1 1.414 0L8 6.586l3.293-3.293a1 1 0 1 1 1.414 1.414L9.414 8l3.293 3.293a1 1 0 0 1-1.414 1.414L8 9.414l-3.293 3.293a1 1 0 0 1-1.414-1.414L6.586 8 3.293 4.707a1 1 0 0 1 0-1.414Z'
-											></path>
-										</svg>
-									</div>
-								)}
-							</div>
-						</div>
-						<div className={styles.rightSide}>
-							<button className={styles.searchButton}>
-								<span className={styles.searchIconWrapper}>
-									<svg height={24} width={24}>
-										<path
-											fill='currentColor'
-											d='M11 5a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm-8 6a8 8 0 1 1 14.281 4.955l4.419 4.33a1 1 0 1 1-1.4 1.43l-4.444-4.357A8 8 0 0 1 3 11Z'
-										></path>
-									</svg>
-								</span>
-							</button>
-						</div>
-					</form>
-				</div>
+				<InputSearch
+					showCategoryModal={handleShowSearchBarModal}
+					showHistoryModal={openModal}
+					value={fieldValue}
+					onChange={handleSetFieldValue}
+				/>
 				{isOpenModal && (
 					<div className={styles.requestHistoryWrapper}>
 						<section className={styles.requestHistory}>

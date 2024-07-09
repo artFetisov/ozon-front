@@ -1,0 +1,14 @@
+.icons {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	& > a {
+		margin-right: 6px;
+	}
+
+	& > span {
+		text-align: center;
+		cursor: pointer;
+	}
+}
