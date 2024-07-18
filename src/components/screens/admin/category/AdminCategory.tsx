@@ -15,6 +15,10 @@ import { AdminTable } from '@/components/shared/AdminTable/AdminTable'
 import { Button } from '@/components/ui-kit/button/Button'
 import { getSubItemsForAdminTable, getSubSubItemsForAdminTable } from '@/utils/admin/admin'
 
+const newFunc3 = () => {
+	return 'new func 3'
+}
+
 const catSchema = yup.object().shape({
 	title: yup.string().required('Это поле обязательно для ввода').min(3),
 	slug: yup.string().required('Это поле обязательно для ввода').min(3),
