@@ -9,6 +9,10 @@ import { useDeleteCategoryMutation, useGetCategoriesQuery } from '@/store/catego
 import { getCommonItemsForAdminTable } from '@/utils/admin/admin'
 import { useState } from 'react'
 
+const newFuncTwoMerge = () => {
+	return 'merge new func two'
+}
+
 const newFunc = () => {
 	return 'new func'
 }
