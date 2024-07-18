@@ -9,6 +9,10 @@ interface IAdminHeaderProps {
 	searchValue: string
 }
 
+const newFunc2 = () => {
+	return 'new func 2'
+}
+
 export const AdminHeader: FC<IAdminHeaderProps> = ({ btnTitle, onSearch, searchValue }) => {
 	return (
 		<div className={styles.adminHeader}>
