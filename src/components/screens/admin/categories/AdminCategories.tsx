@@ -9,6 +9,18 @@ import { useDeleteCategoryMutation, useGetCategoriesQuery } from '@/store/catego
 import { getCommonItemsForAdminTable } from '@/utils/admin/admin'
 import { useState } from 'react'
 
+const newFunc = () => {
+	return 'new func'
+}
+
+const newFunc2 = () => {
+	return 'new func 2'
+}
+
+const newFunc3 = () => {
+	return 'new func 3'
+}
+
 export const AdminCategories = () => {
 	const [search, setSearch] = useState('')
 
