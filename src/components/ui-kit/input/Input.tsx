@@ -2,7 +2,6 @@ import { DetailedHTMLProps, FC, InputHTMLAttributes, FocusEvent, useState } from
 import styles from './Input.module.scss'
 import cn from 'classnames'
 import { FieldError } from 'react-hook-form'
-import { InputLoader } from '../loaders/InputLoader/InputLoader'
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type SelectedMyInputPropsType = Pick<DefaultInputPropsType, 'type' | 'placeholder' | 'autoFocus'>

@@ -2,30 +2,35 @@ import { FC } from 'react'
 import styles from './AdminTable.module.scss'
 import { IAdminTableItem } from './types/admin-table.interface'
 import { AdminTableItem } from './AdminTableItem/AdminTableItem'
-import { AdminHeader } from './AdminHeader/AdminHeader'
 
 interface IAdminTableProps {
 	headers: string[]
 	tableItems: IAdminTableItem[]
-	remove: () => void
-	btnTitle: string
+	subItems?: IAdminTableItem[]
+	remove: (id: number) => void
 }
 
-export const AdminTable: FC<IAdminTableProps> = ({ headers, tableItems, remove, btnTitle }) => {
+const mapSubSubItems = (parentId: number, items?: IAdminTableItem[]) => {
+	return items ? items.filter((item) => item.parentId === parentId) : []
+}
+
+export const AdminTable: FC<IAdminTableProps> = ({ headers, tableItems, remove, subItems }) => {
 	return (
 		<div className={styles.adminTable}>
-			<AdminHeader btnTitle={btnTitle} />
 			<div className={styles.header}>
 				{headers.map((h) => (
 					<div key={h}>{h}</div>
 				))}
 				<div>Действия</div>
 			</div>
-			<div>
-				{tableItems.map((item) => (
-					<AdminTableItem key={item.id} item={item} remove={remove} />
-				))}
-			</div>
+			{tableItems.map((item) => (
+				<AdminTableItem
+					key={item.id}
+					item={item}
+					remove={remove}
+					subItems={mapSubSubItems(item.id, subItems)}
+				></AdminTableItem>
+			))}
 		</div>
 	)
 }

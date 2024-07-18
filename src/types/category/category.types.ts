@@ -40,3 +40,8 @@ export interface ISubSubCategoryR {
 	categoryId: number
 	subCategoryId: number
 }
+
+export interface IUpdateCategoryRequest {
+	id: number
+	data: Pick<ICategoryResponse, 'slug' | 'title'>
+}

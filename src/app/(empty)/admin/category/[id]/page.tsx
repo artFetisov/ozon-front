@@ -1,5 +1,7 @@
-const CategoryAdminPage = ({ params }: { params: { id: string } }) => {
-	return <div>Category Admin Page --- {params.id}</div>
+import { AdminCategory } from '@/components/screens/admin/category/AdminCategory'
+
+const CategoryAdminPage = () => {
+	return <AdminCategory />
 }
 
 export default CategoryAdminPage

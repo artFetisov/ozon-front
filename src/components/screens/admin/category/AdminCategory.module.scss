@@ -1,0 +1,18 @@
+.catsForm {
+	margin-bottom: 24px;
+}
+
+.inputsBox {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 24px;
+
+	& > label {
+		width: 25%;
+
+		&:first-child {
+			margin-right: 30px;
+		}
+	}
+}

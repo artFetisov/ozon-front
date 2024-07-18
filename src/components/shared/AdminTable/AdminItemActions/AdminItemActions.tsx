@@ -5,17 +5,25 @@ import Link from 'next/link'
 import styles from './AdminItemActions.module.scss'
 
 interface IAdminItemActionsProps {
-	remove: () => void
-	editUrl: string
+	catId: number
+	remove: (id: number) => void
+	editUrl?: string
 }
 
-export const AdminItemActions: FC<IAdminItemActionsProps> = ({ remove, editUrl }) => {
+export const AdminItemActions: FC<IAdminItemActionsProps> = ({ remove, editUrl, catId }) => {
 	return (
 		<div className={styles.icons}>
-			<Link href={editUrl}>
-				<EditSvg />
-			</Link>
-			<span onClick={remove}>
+			{editUrl ? (
+				<Link href={editUrl}>
+					<EditSvg />
+				</Link>
+			) : (
+				<span>
+					<EditSvg />
+				</span>
+			)}
+
+			<span onClick={() => remove(catId)}>
 				<DeleteSvg />
 			</span>
 		</div>
