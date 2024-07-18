@@ -13,14 +13,6 @@ const newFunc = () => {
 	return 'new func'
 }
 
-const newFunc2 = () => {
-	return 'new func 2'
-}
-
-const newFunc3 = () => {
-	return 'new func 3'
-}
-
 export const AdminCategories = () => {
 	const [search, setSearch] = useState('')
 
